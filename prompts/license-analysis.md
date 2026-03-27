@@ -75,6 +75,14 @@ Your response will be saved as a Markdown file and must render correctly in any 
 
 ### Output Format
 
+Begin your response with this metadata block — fill in your model name/version and today's date:
+
+````yaml
+model: <your model name and version>
+date: <YYYY-MM-DD>
+prompt: license-analysis
+````
+
 Structure your response with the following sections:
 
 #### Software License

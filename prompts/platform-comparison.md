@@ -78,6 +78,14 @@ Your response will be saved as a Markdown file and must render correctly in any 
 
 ### Output Format
 
+Begin your response with this metadata block — fill in your model name/version and today's date:
+
+````yaml
+model: <your model name and version>
+date: <YYYY-MM-DD>
+prompt: platform-comparison
+````
+
 **Part 1 — Summary Table**
 
 Return a Markdown table with one row per platform and one column per dimension, using brief descriptors (3–6 words per cell):

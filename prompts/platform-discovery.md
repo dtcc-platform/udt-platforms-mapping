@@ -61,7 +61,15 @@ Your response will be saved as a Markdown file and must render correctly in any 
 
 ### Output Format
 
-Return results as a Markdown table with the following columns, followed by brief notes for each platform:
+Begin your response with this metadata block — fill in your model name/version and today's date:
+
+````yaml
+model: <your model name and version>
+date: <YYYY-MM-DD>
+prompt: platform-discovery
+````
+
+Then return results as a Markdown table with the following columns, followed by brief notes for each platform:
 
 | Name | Organization | Link | Purpose | Open-source / Proprietary | License | Relevance to DTCC |
 |------|--------------|------|---------|---------------------------|---------|-------------------|
