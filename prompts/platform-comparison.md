@@ -9,6 +9,7 @@ Use this prompt to produce a structured side-by-side comparison of two or more U
 
 > **Source of truth for research dimensions:** `docs/methodology.md`
 > **Source of truth for platform selection:** `docs/platform-inventory.md`
+> **Save response as:** `responses/<platform-a>-vs-<platform-b>-comparison.md` — e.g., `responses/cesium-vs-dtcc-comparison.md`. See `docs/methodology.md` for the full convention.
 
 ---
 

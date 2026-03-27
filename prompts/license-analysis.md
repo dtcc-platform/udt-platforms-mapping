@@ -5,6 +5,7 @@ Copy the prompt below, replace `[PLATFORM_NAME]` with the platform name, provide
 text or URL in `[LICENSE_URL_OR_TEXT]`, and paste into your AI session.
 
 > **Source of truth for license taxonomy and scoring:** `docs/license-review.md`
+> **Save response as:** `responses/<platform>-license.md` — e.g., `responses/cesium-license.md`. See `docs/methodology.md` for the full convention.
 
 ---
 

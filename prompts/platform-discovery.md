@@ -5,6 +5,7 @@ Copy the prompt below, replace `[SEARCH_SCOPE]` with your focus (e.g., "European
 "platforms using CityGML", "open-source UDT frameworks"), and paste into your AI session.
 
 > **Source of truth for inclusion criteria:** `docs/methodology.md`
+> **Save response as:** `responses/<platform>-discovery.md` — e.g., `responses/cesium-discovery.md`; for broad sessions use a scope descriptor e.g., `responses/european-platforms-discovery.md`. See `docs/methodology.md` for the full convention.
 
 ---
 

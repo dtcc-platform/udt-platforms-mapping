@@ -23,3 +23,29 @@ This review applies a **moderate** inclusion boundary. Platforms that are purely
 ## Research Approach
 
 Each platform is researched using primary sources only (see `docs/source-policy.md`). Findings are recorded in `search_logs/` and synthesized into `docs/review.md`. The canonical data record for each platform is its row in `docs/platform-inventory.md`.
+
+## File Naming
+
+All filename components use only lowercase letters, digits, and hyphens (kebab-case). No spaces, underscores, or uppercase.
+
+### Response files (`responses/`)
+
+Pattern: `<platform>-<prompt-type>.md`
+
+| Token | Values |
+| -------------- | ----------------------------------------- |
+| `<platform>` | kebab-case platform name, e.g. `cesium`, `3d-city-db` |
+| `<prompt-type>` | `discovery`, `comparison`, or `license` |
+
+Examples:
+
+- `cesium-license.md`
+- `cesium-vs-dtcc-comparison.md` — two platforms joined with `vs`
+- `cesium-et-al-comparison.md` — more than two platforms
+- `european-platforms-discovery.md` — broad discovery session; use a scope descriptor instead of a platform name
+
+If a session is re-run for the same platform and prompt type, overwrite the file. Git history preserves the previous version.
+
+### Session logs (`search_logs/`)
+
+Pattern: `<platform>.md` — one file per platform, updated as research evolves.
