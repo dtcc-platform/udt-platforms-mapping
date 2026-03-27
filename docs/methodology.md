@@ -24,6 +24,8 @@ This review applies a **moderate** inclusion boundary. Platforms that are purely
 
 Each platform is researched using primary sources only (see `docs/source-policy.md`). Findings are recorded in `search_logs/` and synthesized into `docs/review.md`. The canonical data record for each platform is its row in `docs/platform-inventory.md`.
 
+For operational guidance on applying these criteria — including explicit exclusion examples, a seed list of known qualifying platforms, and a target corpus size — see [`docs/scope.md`](scope.md).
+
 ## File Naming
 
 All filename components use only lowercase letters, digits, and hyphens (kebab-case). No spaces, underscores, or uppercase.

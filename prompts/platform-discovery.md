@@ -39,6 +39,7 @@ The platform is a foundational building block commonly integrated into UDT syste
 ### Research Instructions
 
 For each platform you identify:
+
 1. Verify it meets at least one inclusion criterion using primary sources
 2. Note which criterion it satisfies
 3. Locate the software license (repository root, docs, or official site)
@@ -64,18 +65,19 @@ Your response will be saved as a Markdown file and must render correctly in any 
 
 Begin your response with this metadata block — fill in your model name/version and today's date:
 
-````yaml
+```yaml
 model: <your model name and version>
 date: <YYYY-MM-DD>
 prompt: platform-discovery
-````
+```
 
 Then return results as a Markdown table with the following columns, followed by brief notes for each platform:
 
 | Name | Organization | Link | Purpose | Open-source / Proprietary | License | Relevance to DTCC |
-|------|--------------|------|---------|---------------------------|---------|-------------------|
+| ---- | ------------ | ---- | ------- | ------------------------- | ------- | ----------------- |
 
 After the table, for each platform provide a short paragraph (2–4 sentences) covering:
+
 - What it does and what makes it relevant
 - Its technical architecture in brief
 - Any notable limitations or gaps
