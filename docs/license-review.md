@@ -10,11 +10,11 @@ This document defines how to evaluate the licensing of UDT platforms. License as
 
 Platforms where the source code is publicly available under an OSI-approved license. Key distinctions:
 
-| Type | Examples | Key Implication |
-|------|----------|----------------|
-| Permissive | MIT, Apache 2.0, BSD | Can be used, modified, and redistributed with minimal restriction; commercial use allowed |
-| Copyleft (strong) | GPL v2, GPL v3 | Derivative works must also be open source under the same license |
-| Copyleft (weak) | LGPL, MPL | Allows linking without triggering copyleft; only modifications to the licensed component must be shared |
+| Type              | Examples             | Key Implication                                                                                         |
+| ----------------- | -------------------- | ------------------------------------------------------------------------------------------------------- |
+| Permissive        | MIT, Apache 2.0, BSD | Can be used, modified, and redistributed with minimal restriction; commercial use allowed               |
+| Copyleft (strong) | GPL v2, GPL v3       | Derivative works must also be open source under the same license                                        |
+| Copyleft (weak)   | LGPL, MPL            | Allows linking without triggering copyleft; only modifications to the licensed component must be shared |
 
 **What to look for:** License file in the repository root (`LICENSE`, `COPYING`), SPDX identifier in package metadata, or explicit license statement in documentation.
 
@@ -40,17 +40,18 @@ Separate from software licensing, some platforms produce or consume open data. N
 
 ## Scoring Guide (Openness & Licensing dimension)
 
-| Score | Description |
-|-------|-------------|
-| 5 | Permissive open-source software + open data standards |
-| 4 | Copyleft open-source or open-core with a substantial open component |
-| 3 | Open-core with significant proprietary features, or open source with restrictive data formats |
-| 2 | Primarily proprietary with limited open components or open APIs |
-| 1 | Fully proprietary, no public source, no open APIs |
+| Score | Description                                                                                   |
+| ----- | --------------------------------------------------------------------------------------------- |
+| 5     | Permissive open-source software + open data standards                                         |
+| 4     | Copyleft open-source or open-core with a substantial open component                           |
+| 3     | Open-core with significant proprietary features, or open source with restrictive data formats |
+| 2     | Primarily proprietary with limited open components or open APIs                               |
+| 1     | Fully proprietary, no public source, no open APIs                                             |
 
 ## Review Checklist
 
 For each platform:
+
 - [ ] Locate the software license (check repo root, docs, and official site)
 - [ ] Identify the license family (permissive, copyleft, open-core, proprietary)
 - [ ] Note any data format lock-in

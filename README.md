@@ -8,14 +8,14 @@ Produce a comprehensive landscape review of existing UDT platforms — understan
 
 ## Directory Layout
 
-| Directory | Purpose |
-|-----------|---------|
-| `prompts/` | Prompt templates for AI-assisted platform discovery, comparison, and license analysis |
+| Directory      | Purpose                                                                                                      |
+| -------------- | ------------------------------------------------------------------------------------------------------------ |
+| `prompts/`     | Prompt templates for AI-assisted platform discovery, comparison, and license analysis                        |
 | `search_logs/` | Session logs recording date, model, prompt, response, sources, and notes — one file per platform per session |
-| `responses/` | Raw AI responses saved for reference and verification |
-| `docs/` | Methodology, source policy, license review approach, and the canonical platform inventory |
-| `sources/` | Raw research material — license files, screenshots, exports, downloaded docs |
-| `notes/` | Freeform researcher notes, observations, and working drafts |
+| `responses/`   | Raw AI responses saved for reference and verification                                                        |
+| `docs/`        | Methodology, source policy, license review approach, and the canonical platform inventory                    |
+| `sources/`     | Raw research material — license files, screenshots, exports, downloaded docs                                 |
+| `notes/`       | Freeform researcher notes, observations, and working drafts                                                  |
 
 ## Research Workflow
 
