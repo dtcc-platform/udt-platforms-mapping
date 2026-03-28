@@ -5,19 +5,16 @@ The repository SHALL contain a file at `prompts/platform-comparison.md` that pro
 - **WHEN** a researcher navigates to `prompts/platform-comparison.md`
 - **THEN** the file exists and contains a complete, copy-pasteable prompt
 
-### Requirement: Comparison prompt uses parameterized platform name tokens
-The prompt template SHALL include `[PLATFORM_A]` and `[PLATFORM_B]` placeholder tokens (and optionally more) that the researcher replaces with platform names selected from `docs/platform-inventory.md`.
+### Requirement: Comparison prompt uses a single selection table token
+The prompt template SHALL include a single `[PASTE_SELECTED_PLATFORMS_HERE]` placeholder token where the researcher pastes the `x`-marked rows from the discovery response summary table. The model SHALL treat every row in the pasted table as a comparison target.
 
 #### Scenario: Researcher customizes platforms to compare
-- **WHEN** a researcher replaces `[PLATFORM_A]` with "DTCC" and `[PLATFORM_B]` with "Cesium"
+- **WHEN** a researcher pastes two `x`-marked rows from a discovery summary table into `[PASTE_SELECTED_PLATFORMS_HERE]`
 - **THEN** the model produces a comparison specifically for those two platforms
 
-### Requirement: Comparison prompt accepts inventory context
-The prompt template SHALL include a `[PASTE_INVENTORY_ROWS_HERE]` placeholder where the researcher pastes the relevant rows from `docs/platform-inventory.md`, so the model can build on existing research rather than starting from scratch.
-
-#### Scenario: Researcher provides existing inventory context
-- **WHEN** a researcher pastes inventory rows for the chosen platforms into `[PASTE_INVENTORY_ROWS_HERE]`
-- **THEN** the model acknowledges the known data and focuses its research on dimensions not yet captured in the inventory
+#### Scenario: Researcher compares more than two platforms
+- **WHEN** a researcher pastes three or more rows into `[PASTE_SELECTED_PLATFORMS_HERE]`
+- **THEN** the model produces a comparison covering all pasted platforms without requiring any other prompt changes
 
 ### Requirement: Comparison prompt covers the six research dimensions
 The prompt template SHALL instruct the model to compare platforms across all six dimensions used in this research: technical architecture, openness and licensing, city-scale capability, platform maturity, integration posture, and governance model.

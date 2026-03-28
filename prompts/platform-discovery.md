@@ -103,7 +103,7 @@ Then return one section per platform, ordered by relevance to city-scale digital
 
 ---
 
-After all per-platform sections, you may optionally append a summary table for quick reference:
+After all per-platform sections, append a summary table. Leave the **Select** column empty — the researcher fills it in to mark platforms for a comparison session:
 
-| Name | Organization | License | Type | Maturity | Inclusion Criterion |
-| ---- | ------------ | ------- | ---- | -------- | ------------------- |
+| Name | Organization | License | Type | Maturity | Inclusion Criterion | Select |
+| ---- | ------------ | ------- | ---- | -------- | ------------------- | ------ |

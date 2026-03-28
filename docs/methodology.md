@@ -22,7 +22,16 @@ This review applies a **moderate** inclusion boundary. Platforms that are purely
 
 ## Research Approach
 
-Each platform is researched using primary sources only (see `docs/source-policy.md`). Findings are recorded in `search_logs/` and synthesized into `docs/review.md`. The canonical data record for each platform is its row in `docs/platform-inventory.md`.
+Each platform is researched using primary sources only (see `docs/source-policy.md`). Findings are synthesized into `docs/review.md`. The canonical data record for each platform is its row in `docs/platform-inventory.md`.
+
+## Discovery to Comparison Workflow
+
+1. Run a discovery session using `prompts/platform-discovery.md` and save the response to `responses/`
+2. Open the saved response and place `x` in the **Select** column of the summary table for each platform you want to compare
+3. Copy only the `x`-marked rows
+4. Paste them into the `[PASTE_SELECTED_PLATFORMS_HERE]` token in `prompts/platform-comparison.md`
+5. Run the comparison session and save the response to `responses/`
+6. Clear the `x` marks from the discovery response when done
 
 For operational guidance on applying these criteria — including explicit exclusion examples, a seed list of known qualifying platforms, and a target corpus size — see [`docs/scope.md`](scope.md).
 

@@ -2,10 +2,11 @@
 
 Use this prompt to produce a structured side-by-side comparison of two or more UDT platforms.
 
-1. Pick the platforms to compare from `docs/platform-inventory.md`
-2. Replace `[PLATFORM_A]` and `[PLATFORM_B]` with the platform names (add more as needed)
-3. Paste the relevant rows from the inventory table into `[PASTE_INVENTORY_ROWS_HERE]`
-4. Paste the completed prompt into your AI session
+1. Open the discovery response file for your research session
+2. Place `x` in the **Select** column for each platform you want to compare
+3. Copy only the marked rows from the summary table
+4. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
+5. Paste the completed prompt into your AI session
 
 > **Source of truth for research dimensions:** `docs/methodology.md`
 > **Source of truth for platform selection:** `docs/platform-inventory.md`
@@ -21,14 +22,11 @@ Your task is to produce a structured, evidence-based comparison of the platforms
 Use **primary sources only** (official websites, public repositories, published papers, official documentation).
 For every substantive claim, include a source reference or URL.
 
-**Platforms to compare:**
+**Platforms to compare** (rows marked for selection from the discovery summary table):
 
-- [PLATFORM_A]
-- [PLATFORM_B]
+[PASTE_SELECTED_PLATFORMS_HERE]
 
-**Known context from the research inventory:**
-
-[PASTE_INVENTORY_ROWS_HERE]
+Compare every platform present in the pasted table. Treat the table fields (Type, License, Maturity) as known context and focus your research on dimensions not already captured there.
 
 ---
 
