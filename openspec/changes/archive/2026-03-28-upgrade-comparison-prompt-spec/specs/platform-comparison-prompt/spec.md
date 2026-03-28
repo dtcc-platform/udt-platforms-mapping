@@ -1,20 +1,4 @@
-### Requirement: Platform comparison prompt file exists
-The repository SHALL contain a file at `prompts/platform-comparison.md` that provides a self-contained prompt template for AI-assisted side-by-side comparison of two or more UDT platforms.
-
-#### Scenario: File is present and non-empty
-- **WHEN** a researcher navigates to `prompts/platform-comparison.md`
-- **THEN** the file exists and contains a complete, copy-pasteable prompt
-
-### Requirement: Comparison prompt uses a single selection table token
-The prompt template SHALL include a single `[PASTE_SELECTED_PLATFORMS_HERE]` placeholder token where the researcher pastes the `x`-marked rows from the discovery response summary table. The model SHALL treat every row in the pasted table as a comparison target.
-
-#### Scenario: Researcher customizes platforms to compare
-- **WHEN** a researcher pastes two `x`-marked rows from a discovery summary table into `[PASTE_SELECTED_PLATFORMS_HERE]`
-- **THEN** the model produces a comparison specifically for those two platforms
-
-#### Scenario: Researcher compares more than two platforms
-- **WHEN** a researcher pastes three or more rows into `[PASTE_SELECTED_PLATFORMS_HERE]`
-- **THEN** the model produces a comparison covering all pasted platforms without requiring any other prompt changes
+## MODIFIED Requirements
 
 ### Requirement: Comparison prompt covers the six research dimensions with scoring
 The prompt template SHALL instruct the model to compare platforms across all six dimensions — technical architecture, openness and licensing, city-scale capability, platform maturity, integration posture, and governance model — and assign each platform a score of 1–5 per dimension using a rubric defined in the prompt. The rubric for each dimension SHALL be self-contained in the prompt so the model can apply it without additional context.
@@ -58,6 +42,17 @@ The prompt template SHALL include a description of DTCC (Digital Twin Cities Cen
 - **WHEN** an AI responds to the comparison prompt
 - **THEN** DTCC appears as a platform entry and the landscape observations section explicitly addresses where DTCC sits relative to comparable and complementary platforms
 
+### Requirement: Comparison prompt requires explicit uncertainty handling
+The prompt template SHALL instruct the model to distinguish inferred claims from verified facts, state "unknown" or "unclear" when information is not findable, and never fabricate URLs, license names, or deployment claims.
+
+#### Scenario: Model cannot find license information
+- **WHEN** an AI cannot locate a platform's license from primary sources
+- **THEN** the response states "unknown" rather than guessing or inferring
+
+#### Scenario: Model infers a score from indirect evidence
+- **WHEN** an AI assigns a dimension score based on indirect evidence
+- **THEN** the response explicitly flags this as an inference (e.g., "likely X based on [evidence]")
+
 ### Requirement: Comparison prompt enforces agent-agnostic output structure
 The prompt template SHALL include a concrete example of the per-platform profile structure so any agent can reproduce the exact shape mechanically. The prompt SHALL also include a complete list of prohibited Markdown syntax to prevent agent-specific formatting artifacts.
 
@@ -85,24 +80,6 @@ The prompt SHALL include a concrete example profile for one fictional platform d
 - **WHEN** an AI model would normally respond with numeric bracket citations or footnotes
 - **THEN** the prompt instruction overrides this and the model uses `[Description](https://...)` inline links instead
 
-### Requirement: Comparison prompt requires explicit uncertainty handling
-The prompt template SHALL instruct the model to distinguish inferred claims from verified facts, state "unknown" or "unclear" when information is not findable, and never fabricate URLs, license names, or deployment claims.
-
-#### Scenario: Model cannot find license information
-- **WHEN** an AI cannot locate a platform's license from primary sources
-- **THEN** the response states "unknown" rather than guessing or inferring
-
-#### Scenario: Model infers a score from indirect evidence
-- **WHEN** an AI assigns a dimension score based on indirect evidence
-- **THEN** the response explicitly flags this as an inference (e.g., "likely X based on [evidence]")
-
-### Requirement: Comparison prompt instructs use of primary sources
-The prompt template SHALL instruct the model to base its comparison on primary sources (official documentation, repositories, published papers) and to cite sources for each claim.
-
-#### Scenario: Response includes source citations
-- **WHEN** an AI responds to the comparison prompt
-- **THEN** each substantive claim is accompanied by a source reference or URL
-
 ### Requirement: Comparison prompt requires a per-platform sources section
 The prompt template SHALL instruct the model to include a **Sources** section within each per-platform profile, listing at least one primary source per dimension as an inline Markdown link with an access date.
 
@@ -110,46 +87,8 @@ The prompt template SHALL instruct the model to include a **Sources** section wi
 - **WHEN** a researcher wants to verify a dimension claim for a platform
 - **THEN** the platform's Sources section contains a direct link to the primary source used
 
-### Requirement: Comparison prompt output uses portable Markdown syntax
-The prompt template SHALL instruct the model to format its response using only CommonMark / GFM syntax, so that saved response files render correctly in any standard Markdown viewer without AI-specific formatting artifacts.
+## REMOVED Requirements
 
-The instruction SHALL specify:
-- Permitted syntax: ATX headings (`#`), `**bold**`, `_italic_`, `[text](url)` links, fenced code blocks, GFM pipe tables, `-` unordered lists, `1.` ordered lists
-- Citation format: inline links `[Description](https://...)` only — no numeric brackets (`[1]`), no footnotes (`[^1]`), no AI-specific formats
-- Prohibited syntax: custom containers (`:::`, `!!!`, `> [!NOTE]`), extended syntax (`==highlight==`, `^superscript^`, `~subscript~`), raw HTML
-- Whitespace: blank line before and after every heading, table, and code block
-
-#### Scenario: Model uses AI-specific citation format
-- **WHEN** an AI model would normally respond with numeric bracket citations like `[1]` or `【†source】`
-- **THEN** the prompt instruction overrides this and the model uses `[Description](https://...)` inline links instead
-
-#### Scenario: Response is opened in a standard Markdown viewer
-- **WHEN** a researcher saves the response as a `.md` file and opens it in GitHub, VS Code, Obsidian, or Typora
-- **THEN** all formatting renders correctly with no raw syntax visible and no broken elements
-
-### Requirement: Comparison prompt output begins with a model metadata block
-The prompt template SHALL instruct the model to begin its response with a fenced YAML code block containing provenance metadata, so that saved response files are self-documenting.
-
-The metadata block SHALL contain exactly three fields:
-- `model` — the AI model's name and version as reported by the model itself
-- `date` — the session date in `YYYY-MM-DD` format
-- `prompt` — the name of the prompt template used (`platform-comparison`)
-
-The metadata block SHALL appear before any other content in the response.
-
-#### Scenario: Response is saved as a file and opened later
-- **WHEN** a researcher opens a saved comparison response file
-- **THEN** the first visible element is the metadata block identifying the model, date, and prompt template
-
-#### Scenario: Model self-reports its name and version
-- **WHEN** the prompt instructs the model to fill in the `model` field
-- **THEN** the model populates the field with its own name and version to the best of its ability
-
-### Requirement: Comparison prompt usage header includes save-as filename instruction
-The prompt template's usage header SHALL include an instruction telling the researcher what filename to use when saving the AI response, referencing the pattern defined in `docs/methodology.md`.
-
-The instruction SHALL show a concrete example filename using the `comparison` prompt-type token and the `vs` join convention for two platforms (e.g., `responses/<platform-a>-vs-<platform-b>-comparison.md`).
-
-#### Scenario: Researcher reads the usage header before pasting the prompt
-- **WHEN** a researcher reads the usage instructions at the top of `prompts/platform-comparison.md`
-- **THEN** they see the expected filename pattern and a concrete example before they begin the session
+### Requirement: Comparison prompt requests a structured table output
+**Reason**: Superseded by the more specific four-part output requirement. The scoring table is now Part 1 of the required four-part structure, with a defined column schema.
+**Migration**: The summary table is now Part 1 of the required output — no action needed.

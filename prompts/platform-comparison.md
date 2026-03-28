@@ -1,6 +1,6 @@
 # Platform Comparison Prompt
 
-Use this prompt to produce a structured side-by-side comparison of two or more UDT platforms.
+Use this prompt to produce a structured, evidence-based comparison of UDT platforms.
 
 1. Open the discovery response file for your research session
 2. Place `x` in the **Select** column for each platform you want to compare
@@ -9,98 +9,211 @@ Use this prompt to produce a structured side-by-side comparison of two or more U
 5. Paste the completed prompt into your AI session
 
 > **Source of truth for research dimensions:** `docs/methodology.md`
-> **Source of truth for platform selection:** `docs/platform-inventory.md`
-> **Save response as:** `responses/<platform-a>-vs-<platform-b>-comparison.md` — e.g., `responses/cesium-vs-dtcc-comparison.md`. See `docs/methodology.md` for the full convention.
+> **Save response as:** `responses/<platform-a>-vs-<platform-b>-comparison.md` — e.g., `responses/cesium-vs-3dcitydb-comparison.md`. See `docs/methodology.md` for the full convention.
 
 ---
 
 ## Prompt
 
-You are a research assistant helping to compare Urban Digital Twin (UDT) platforms for a landscape review.
-Your task is to produce a structured, evidence-based comparison of the platforms listed below.
+You are a research assistant helping to map the Urban Digital Twin (UDT) platform landscape for DTCC.
 
-Use **primary sources only** (official websites, public repositories, published papers, official documentation).
-For every substantive claim, include a source reference or URL.
+**About DTCC (reference platform):** DTCC (Digital Twin Cities Centre) is a Swedish research centre developing an open-source, city-scale urban digital twin platform. It supports 3D modelling, simulation, and visualization using CityGML and IFC as core data models. DTCC is open-source, academically governed, and oriented toward interoperability with OGC standards.
 
-**Platforms to compare** (rows marked for selection from the discovery summary table):
+Use **primary sources only** (official websites, public repositories, published papers, official documentation). For every substantive claim, include a source reference. Distinguish inferred claims from verified facts. If you cannot find information, state "unknown" or "unclear" — do not fabricate URLs, license names, or deployment claims.
+
+**Platforms to compare** (rows marked for selection from the discovery summary table — include DTCC as a reference entry):
 
 [PASTE_SELECTED_PLATFORMS_HERE]
 
-Compare every platform present in the pasted table. Treat the table fields (Type, License, Maturity) as known context and focus your research on dimensions not already captured there.
+Compare every platform present in the pasted table, plus DTCC. Treat the table fields (Type, License, Maturity) as known context and focus your research on dimensions not already captured there.
 
 ---
 
 ### Research Dimensions
 
-Compare each platform across all six dimensions:
+Score each platform 1–5 per dimension using the rubrics below.
 
 **1. Technical Architecture**
-Core technology stack, data models used (CityGML, IFC, OGC standards, proprietary), runtime environment, scalability approach, and how the platform ingests and manages urban data.
+Core technology stack, data models (CityGML, IFC, OGC standards, proprietary), component structure, deployment model, scalability approach.
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Fully modular, open standards (CityGML/IFC/OGC), cloud-native or self-hostable |
+| 4 | Mostly modular, supports open standards with some proprietary layers |
+| 3 | Mixed architecture, partial standards support |
+| 2 | Largely monolithic, limited open standards |
+| 1 | Monolithic with proprietary data model, no open standards |
 
 **2. Openness & Licensing**
-Software license type (permissive open source, copyleft, open-core, proprietary), availability of source code, any community vs. enterprise tier split, and whether output data uses open or proprietary formats.
+Source availability, license type, contribution model, commercial restrictions, dual licensing, open data formats.
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Permissive open-source (MIT/Apache/BSD) + open data formats, no SaaS dependency |
+| 4 | Copyleft open-source, or open-core with substantial open component |
+| 3 | Open-core with significant proprietary features, or open source with restrictive data formats |
+| 2 | Primarily proprietary with limited open components or open APIs |
+| 1 | Fully proprietary, no public source, no open APIs |
 
 **3. City-Scale Capability**
-Ability to handle city-scale datasets and simulations: supported extent, data volume, multi-domain coverage (buildings, transport, energy, climate, utilities), and real-time vs. batch processing.
+Urban domains covered (buildings, infrastructure, mobility, energy, climate, water, noise), geographic extent, multi-domain analytics, real-time vs. batch.
 
-**4. Platform Maturity**
-Deployment stage (experimental / research / production-ready), known production deployments, community size, release cadence, and documentation quality.
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Comprehensive multi-domain urban coverage at full city scale |
+| 4 | Multi-domain coverage, strong city-scale support with minor gaps |
+| 3 | Several domains covered, city-scale with notable limitations |
+| 2 | Limited domains or district/building scale only |
+| 1 | Single narrow domain or sub-city scale |
+
+**4. Maturity & Adoption**
+Development status, known city deployments (name cities if possible), release cadence, community activity.
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Production-grade, multiple named city deployments, active community |
+| 4 | Production-ready, some city deployments or pilots, regular releases |
+| 3 | Stable but limited deployments, moderate activity |
+| 2 | Prototype or early production, few or no known deployments |
+| 1 | Concept or prototype, no known deployments |
 
 **5. Integration Posture**
-APIs and interoperability interfaces offered, supported standards and protocols, ease of integration with third-party tools, and extensibility model.
+Public APIs (REST, GraphQL, gRPC), plugin/extension ecosystem, data exchange standards, interoperability with other tools.
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Rich public APIs, active plugin ecosystem, easy to compose with other tools |
+| 4 | Good APIs, some ecosystem, OGC-compliant interfaces |
+| 3 | Basic APIs, limited ecosystem, some interoperability |
+| 2 | Minimal public APIs, closed or limited integration |
+| 1 | Closed system, no public APIs |
 
 **6. Governance Model**
-Who controls the roadmap (vendor, consortium, community, government), contribution model, and long-term sustainability signals.
+Who controls the roadmap (vendor, consortium, community, research institution), contribution model, funding model.
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Open consortium or community governance, transparent decision-making, diverse funding |
+| 4 | Academic or public institution governance with open contribution |
+| 3 | Mixed governance, some community input |
+| 2 | Single organisation control with limited community input |
+| 1 | Single corporate control, no community input |
 
 ---
 
-### Instructions
+### Rules
 
-1. Research each platform using primary sources
-2. Cite at least one source for each dimension per platform
-3. Note explicitly where information is unavailable or unclear rather than inferring
+- **Cite sources.** Every factual claim must reference an official website, repository, documentation page, or published paper. Include URLs as inline links `[Description](https://...)`.
+- **Distinguish facts from inference.** If you are inferring a score or characteristic from indirect evidence, say so explicitly (e.g., "likely X based on [evidence]").
+- **Prefer primary sources.** Official project pages, GitHub/GitLab repos, LICENSE files, and official documentation over blog posts or third-party summaries.
+- **Do not fabricate.** If you cannot find information, state "unknown" or "unclear." Do not invent URLs, license names, or deployment claims.
+- **Be specific about uncertainty.** "Unknown" is better than a guess.
 
 ---
 
-### Markdown Syntax Rules
+### Markdown and Formatting Rules
 
-Your response will be saved as a Markdown file and must render correctly in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
+Your response will be saved as a Markdown file and must render identically in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
 
-- Use only CommonMark / GFM syntax: `#` ATX headings, `**bold**`, `_italic_`, `[text](url)` links, fenced code blocks, pipe tables, `-` unordered lists, `1.` ordered lists
-- Cite sources as inline links only: `[Description](https://...)` — no numeric brackets (`[1]`), no footnotes (`[^1]`), no AI-specific citation formats
-- Do not use custom containers or admonitions (`:::`, `!!!`, `> [!NOTE]`, etc.)
-- Do not use extended syntax: no `==highlight==`, no `^superscript^`, no `~subscript~`
-- Do not embed raw HTML
-- Leave a blank line before and after every heading, table, and code block
+**Permitted syntax only:**
+- ATX headings: `#`, `##`, `###`, `####`
+- Emphasis: `**bold**`, `_italic_`
+- Links: `[text](url)` inline only
+- Lists: `-` unordered, `1.` ordered
+- Tables: GFM pipe tables
+- Code: fenced code blocks with ` ``` `
+
+**Prohibited syntax:**
+- Custom containers: `:::`, `!!!`, `> [!NOTE]`, `> [!WARNING]`
+- Extended syntax: `==highlight==`, `^superscript^`, `~subscript~`
+- Raw HTML
+- Numeric citations `[1]`, footnotes `[^1]`, AI-specific formats `【†source】`
+
+**Whitespace:** leave a blank line before and after every heading, table, and code block.
+
+**Score notation:**
+- In profile sections: `**Dimension Name (X/5):**` — e.g., `**Technical Architecture (4/5):**`
+- In the scoring table: bare number only — e.g., `4` — use `?` for unknown. Do not write `/5` in table cells.
+
+**Profile heading level:** use `###` for every platform profile heading so all profiles nest consistently under the Part 2 heading.
+
+**Example profile (fictional platform — for structure reference only):**
+
+---
+
+### Example Platform
+
+**Organization:** Open City Foundation
+**Link:** [example-platform.org](https://example-platform.org)
+**Description:** Open-source 3D geospatial data platform for city-scale digital twin use cases.
+**Type:** Open-source
+**License:** Apache-2.0
+
+#### Dimension Analysis
+
+**Technical Architecture (4/5):** Modular microservices architecture with native CityGML support and OGC-compliant APIs. Deployment via Docker or Kubernetes. Proprietary streaming layer for real-time ingestion. [Architecture docs](https://example-platform.org/docs/arch) — inferred from repository structure.
+
+**Openness & Licensing (5/5):** Apache-2.0 licence confirmed in [repository root](https://github.com/example/platform/blob/main/LICENSE). No SaaS tier. All output formats use open OGC standards.
+
+**City-Scale Capability (3/5):** Covers buildings and infrastructure at city scale. No native energy or mobility domain support — likely requires third-party integration based on [roadmap](https://example-platform.org/roadmap).
+
+**Maturity & Adoption (4/5):** Production-ready. Known deployments in Amsterdam and Helsinki per [official case studies](https://example-platform.org/cases). Last release 2024-11. Active GitHub community (340 stars, 12 contributors).
+
+**Integration Posture (4/5):** REST and GraphQL APIs documented at [API reference](https://example-platform.org/api). OGC WFS/WCS compliant. Plugin SDK available. No gRPC support.
+
+**Governance (5/5):** Governed by the Open City Consortium, a multi-institution body. Contribution model documented at [CONTRIBUTING.md](https://github.com/example/platform/blob/main/CONTRIBUTING.md). Funded by EU Horizon grants.
+
+#### Sources
+
+- [Architecture documentation](https://example-platform.org/docs/arch) — accessed 2026-03-28
+- [LICENSE file](https://github.com/example/platform/blob/main/LICENSE) — accessed 2026-03-28
+- [Case studies](https://example-platform.org/cases) — accessed 2026-03-28
+- [API reference](https://example-platform.org/api) — accessed 2026-03-28
 
 ---
 
 ### Output Format
 
-Begin your response with this metadata block — fill in your model name/version and today's date:
+Begin your response with this metadata block:
 
-````yaml
+```yaml
 model: <your model name and version>
 date: <YYYY-MM-DD>
 prompt: platform-comparison
-````
+```
 
-**Part 1 — Summary Table**
+**Part 1 — Scoring Table**
 
-Return a Markdown table with one row per platform and one column per dimension, using brief descriptors (3–6 words per cell):
+One row per platform (including DTCC), one column per dimension score, plus name and link:
 
-| Platform | Technical Architecture | Openness & Licensing | City-Scale Capability | Maturity | Integration Posture | Governance |
-| -------- | ---------------------- | -------------------- | --------------------- | -------- | ------------------- | ---------- |
+| Name | Link | Arch | Open | City | Mature | Integ | Gov |
+| ---- | ---- | ---- | ---- | ---- | ------ | ----- | --- |
 
-**Part 2 — Per-Dimension Analysis**
+Use bare numbers (1–5) in score cells. Use `?` for unknown. Do not write `/5`.
 
-For each of the six dimensions, write a short comparative section (one paragraph per platform) with source citations. Structure as:
+**Part 2 — Platform Profiles**
 
-#### [Dimension Name]
+One `###` profile per platform following the example structure above. Include all six dimension analyses with inline scores (`**Dimension (X/5):**`), and a Sources section per platform.
 
-- **[PLATFORM_A]:** ...
-- **[PLATFORM_B]:** ...
+**Part 3 — Landscape Observations**
 
-**Part 3 — Key Differentiators**
+- What gaps exist in the landscape?
+- Where does DTCC sit relative to comparable platforms?
+- Which platforms are most directly comparable to DTCC?
+- Which are complementary rather than competing?
 
-2–4 bullet points summarizing the most significant differences between the platforms from a DTCC integration perspective.
+**Part 4 — Functional Categorization**
+
+Assign each platform to one or more of these categories:
+
+- `visualization` — 3D rendering, GIS viewers, scene composition
+- `data-management` — data ingestion, storage, twin models, semantic layers
+- `simulation` — urban simulation, physics, scenario modelling
+- `iot-sensing` — real-time data, sensor integration, device management
+- `standards` — open standards implementation, interoperability frameworks
+- `infrastructure` — built environment, BIM/GIS, infrastructure lifecycle
+
+Format as a table:
+
+| Platform | Categories |
+| -------- | ---------- |
