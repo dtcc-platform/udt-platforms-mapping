@@ -12,33 +12,53 @@ The prompt template SHALL include all three inclusion criteria from `docs/method
 - **WHEN** a researcher copies the prompt and pastes it into an AI chat session without pasting `docs/methodology.md`
 - **THEN** the model has sufficient criteria to correctly classify a platform as in-scope or out-of-scope
 
-### Requirement: Discovery prompt response ends with a required summary table
-The prompt template SHALL instruct the model to append a summary table after all per-platform sections. The table is required and SHALL use the following columns: **Name**, **Organization**, **License**, **Type**, **Maturity**, **Inclusion Criterion**, **Select**. The **Select** column SHALL be left empty in the model's response — the researcher fills it in manually to mark platforms for a comparison session.
-
-#### Scenario: Researcher saves a discovery response and wants to start a comparison
-- **WHEN** a researcher opens a saved discovery response
-- **THEN** the file ends with a summary table containing all discovered platforms and an empty Select column ready to be marked
-
-#### Scenario: Researcher marks platforms for comparison
-- **WHEN** a researcher places `x` in the Select column for two or more rows
-- **THEN** those marked rows can be copied and pasted directly into the comparison prompt as the scope input
-
 ### Requirement: Discovery prompt requests structured output aligned with inventory
-The prompt template SHALL instruct the model to return one `##`-level Markdown section per platform, each containing a fixed bullet list with exactly the following labelled fields: **Organization**, **Link**, **License**, **Type**, **Maturity**, **City-scale capability**, **Integration posture**, **Inclusion criterion**, and **Notes**. This structure SHALL appear before any optional summary content.
+The prompt template SHALL instruct the model to return one `##`-level Markdown section per platform containing two blocks:
 
-The prompt template SHALL include a concrete example of the per-platform section so agents can reproduce the exact shape without interpreting an abstract description.
+1. **Identification block** — five labelled bullet fields: **Organization**, **Link**, **License**, **Type**, **Inclusion criterion**
+2. **Dimension block** — six labelled bullet fields, one per comparison dimension, each with an inline `X/5` score and a one-sentence rationale: **Technical Architecture (X/5)**, **Openness & Licensing (X/5)**, **City-Scale Capability (X/5)**, **Maturity & Adoption (X/5)**, **Integration Posture (X/5)**, **Governance (X/5)**
+
+The score scale (1–5) SHALL match the comparison prompt's scoring scale. The prompt SHALL instruct agents to score by judgment — no rubric tables are required in the discovery prompt.
+
+The prompt template SHALL include a concrete example section demonstrating the exact field labels, score notation, and two-block structure.
 
 #### Scenario: Response is used to populate inventory
 - **WHEN** an AI responds to the discovery prompt
-- **THEN** the response contains one `##` heading per platform followed by exactly the nine labelled bullet fields, making each field directly transferable to a platform-inventory.md row
+- **THEN** each platform section contains the five identification fields and six scored dimension fields, making all data directly transferable to platform-inventory.md
 
-#### Scenario: Response is opened for manual review
+#### Scenario: Discovery scores feed into comparison
+- **WHEN** a researcher pastes marked rows from the discovery summary table into the comparison prompt
+- **THEN** the dimension scores from discovery provide a starting signal that comparison refines with its full rubrics
+
+#### Scenario: Two agents respond to the same discovery prompt
+- **WHEN** a researcher runs the discovery prompt on ChatGPT and on Claude
+- **THEN** both responses use identical field labels, score notation (`X/5`), and section structure
+
+### Requirement: Discovery prompt response ends with a required summary table
+The prompt template SHALL instruct the model to append a summary table after all per-platform sections. The table is required and SHALL use the following columns: **Name**, **Link**, **License**, **Type**, **Arch**, **Open**, **City**, **Mature**, **Integ**, **Gov**, **Inclusion Criterion**, **Select**.
+
+Score columns (Arch, Open, City, Mature, Integ, Gov) SHALL contain bare numbers (1–5) or `?` for unknown — no `/5` suffix. The **Select** column SHALL be left empty in the model's response.
+
+#### Scenario: Researcher saves a discovery response and wants to start a comparison
 - **WHEN** a researcher opens a saved discovery response
-- **THEN** each platform is scannable as a self-contained section with consistent field labels, without needing to cross-reference a table and a separate paragraph block
+- **THEN** the file ends with a summary table containing all discovered platforms, six dimension scores, and an empty Select column ready to be marked
 
-#### Scenario: Two responses from different agents cover the same platform
-- **WHEN** a researcher compares a ChatGPT response and a Claude response for the same platform
-- **THEN** both use the same section heading and bullet field structure, making the comparison straightforward
+#### Scenario: Marked rows are pasted into the comparison prompt
+- **WHEN** a researcher copies `x`-marked rows from the summary table and pastes them into `[PASTE_SELECTED_PLATFORMS_HERE]`
+- **THEN** the comparison prompt receives platform names, license, type, and six seed scores as context
+
+### Requirement: Discovery prompt enforces agent-agnostic output structure
+The prompt template SHALL include a concrete example of the per-platform section structure and SHALL specify the following formatting constraints:
+
+- **Permitted syntax:** ATX headings (`#`), `**bold**`, `_italic_`, `[text](url)` links, fenced code blocks, GFM pipe tables, `-` unordered lists, `1.` ordered lists
+- **Prohibited syntax:** custom containers (`:::`, `!!!`, `> [!NOTE]`), extended syntax (`==highlight==`, `^superscript^`, `~subscript~`), raw HTML, numeric citations `[1]`, footnotes `[^1]`, AI-specific formats
+- **Whitespace:** blank line before and after every heading, table, and code block
+- **Platform heading level:** `##` for every platform section
+- **Score notation:** `**Dimension (X/5):**` inline in sections; bare number in table cells; `?` for unknown
+
+#### Scenario: Two agents respond to the same discovery prompt
+- **WHEN** a researcher runs the discovery prompt on two different agents
+- **THEN** both responses use the same heading level, field labels, and score notation with no agent-specific formatting artifacts
 
 ### Requirement: Discovery prompt uses a parameterized search scope token
 The prompt template SHALL include a `[SEARCH_SCOPE]` placeholder that the researcher replaces with a specific domain, region, or technology focus before using the prompt.

@@ -61,6 +61,34 @@ Your response will be saved as a Markdown file and must render correctly in any 
 
 ---
 
+### Markdown and Formatting Rules
+
+Your response will be saved as a Markdown file and must render identically in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
+
+**Permitted syntax only:**
+- ATX headings: `#`, `##`, `###`, `####`
+- Emphasis: `**bold**`, `_italic_`
+- Links: `[text](url)` inline only
+- Lists: `-` unordered, `1.` ordered
+- Tables: GFM pipe tables
+- Code: fenced code blocks with ` ``` `
+
+**Prohibited syntax:**
+- Custom containers: `:::`, `!!!`, `> [!NOTE]`, `> [!WARNING]`
+- Extended syntax: `==highlight==`, `^superscript^`, `~subscript~`
+- Raw HTML
+- Numeric citations `[1]`, footnotes `[^1]`, AI-specific formats `【†source】`
+
+**Whitespace:** leave a blank line before and after every heading, table, and code block.
+
+**Score notation:**
+- In platform sections: `**Dimension (X/5):**` — e.g., `**Technical Architecture (3/5):**`
+- In the summary table: bare number only — e.g., `3` — use `?` for unknown. Do not write `/5` in table cells.
+
+**Platform heading level:** use `##` for every platform section heading.
+
+---
+
 ### Output Format
 
 Begin your response with this metadata block — fill in your model name/version and today's date:
@@ -71,21 +99,26 @@ date: <YYYY-MM-DD>
 prompt: platform-discovery
 ```
 
-Then return one section per platform, ordered by relevance to city-scale digital twin use cases. Use a `##` heading for each platform name, followed by exactly these nine labelled bullet fields:
+Then return one section per platform, ordered by relevance to city-scale digital twin use cases. Use a `##` heading for each platform name, followed by two blocks — identification fields, then six scored dimension fields:
 
 ```
 ## <Platform Name>
 
 - **Organization:** <name of the organization or project behind the platform>
 - **Link:** [<short label>](<url>)
-- **License:** <license name> — <open-source / proprietary / open-core>
+- **License:** <exact license name, e.g. Apache-2.0, MIT — open-source / proprietary / open-core>
 - **Type:** <e.g., visualization engine, data platform, simulation framework, standards implementation>
-- **Maturity:** <experimental / research / production-ready>
-- **City-scale capability:** <what makes it relevant to city-scale digital twin use cases>
-- **Integration posture:** <e.g., open APIs, SDK, OGC-compliant, standalone, plugin-based>
-- **Inclusion criterion:** <which of the three criteria it satisfies: Explicit UDT / City-Scale Capabilities / Adjacent Architecture or Governance>
-- **Notes:** <limitations, gaps, or anything else notable>
+- **Inclusion criterion:** <Explicit UDT / City-Scale Capabilities / Adjacent Architecture or Governance>
+
+- **Technical Architecture (X/5):** <one sentence — core stack, data models, modularity>
+- **Openness & Licensing (X/5):** <one sentence — source availability, license type, SaaS dependency>
+- **City-Scale Capability (X/5):** <one sentence — domains covered, geographic extent>
+- **Maturity & Adoption (X/5):** <one sentence — development status, known deployments>
+- **Integration Posture (X/5):** <one sentence — APIs, standards, interoperability>
+- **Governance (X/5):** <one sentence — who controls the roadmap, funding model>
 ```
+
+Score each dimension 1–5 by judgment using the same scale as the comparison prompt. Do not fabricate — state `?` if a dimension cannot be assessed from available sources.
 
 **Example:**
 
@@ -93,17 +126,20 @@ Then return one section per platform, ordered by relevance to city-scale digital
 
 - **Organization:** Open City Foundation
 - **Link:** [example-platform.org](https://example-platform.org)
-- **License:** Apache 2.0 — open-source
+- **License:** Apache-2.0 — open-source
 - **Type:** 3D geospatial data platform
-- **Maturity:** production-ready
-- **City-scale capability:** Handles city-wide 3D building and infrastructure datasets using CityGML; supports multi-domain urban analytics
-- **Integration posture:** OGC-compliant REST APIs, open data formats, active plugin ecosystem
 - **Inclusion criterion:** City-Scale Capabilities
-- **Notes:** No built-in simulation engine; real-time data ingestion requires third-party connectors
+
+- **Technical Architecture (4/5):** Modular microservices with native CityGML support and OGC-compliant APIs; Docker/Kubernetes deployment.
+- **Openness & Licensing (5/5):** Apache-2.0, fully self-hostable, no SaaS dependency, open data formats throughout.
+- **City-Scale Capability (3/5):** Covers buildings and infrastructure at city scale; no native energy or mobility domain support.
+- **Maturity & Adoption (4/5):** Production-ready; known deployments in Amsterdam and Helsinki; active community.
+- **Integration Posture (4/5):** REST and GraphQL APIs, OGC WFS/WCS compliant, plugin SDK available.
+- **Governance (5/5):** Governed by an open multi-institution consortium; EU Horizon funded.
 
 ---
 
 After all per-platform sections, append a summary table. Leave the **Select** column empty — the researcher fills it in to mark platforms for a comparison session:
 
-| Name | Organization | License | Type | Maturity | Inclusion Criterion | Select |
-| ---- | ------------ | ------- | ---- | -------- | ------------------- | ------ |
+| Name | Link | License | Type | Arch | Open | City | Mature | Integ | Gov | Inclusion Criterion | Select |
+| ---- | ---- | ------- | ---- | ---- | ---- | ---- | ------ | ----- | --- | ------------------- | ------ |
