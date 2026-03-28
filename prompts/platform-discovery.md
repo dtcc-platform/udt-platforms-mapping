@@ -71,15 +71,39 @@ date: <YYYY-MM-DD>
 prompt: platform-discovery
 ```
 
-Then return results as a Markdown table with the following columns, followed by brief notes for each platform:
+Then return one section per platform, ordered by relevance to city-scale digital twin use cases. Use a `##` heading for each platform name, followed by exactly these nine labelled bullet fields:
 
-| Name | Organization | Link | Purpose | Open-source / Proprietary | License | Relevance to DTCC |
-| ---- | ------------ | ---- | ------- | ------------------------- | ------- | ----------------- |
+```
+## <Platform Name>
 
-After the table, for each platform provide a short paragraph (2–4 sentences) covering:
+- **Organization:** <name of the organization or project behind the platform>
+- **Link:** [<short label>](<url>)
+- **License:** <license name> — <open-source / proprietary / open-core>
+- **Type:** <e.g., visualization engine, data platform, simulation framework, standards implementation>
+- **Maturity:** <experimental / research / production-ready>
+- **City-scale capability:** <what makes it relevant to city-scale digital twin use cases>
+- **Integration posture:** <e.g., open APIs, SDK, OGC-compliant, standalone, plugin-based>
+- **Inclusion criterion:** <which of the three criteria it satisfies: Explicit UDT / City-Scale Capabilities / Adjacent Architecture or Governance>
+- **Notes:** <limitations, gaps, or anything else notable>
+```
 
-- What it does and what makes it relevant
-- Its technical architecture in brief
-- Any notable limitations or gaps
+**Example:**
 
-List platforms in order of relevance to city-scale digital twin use cases.
+## Example Platform
+
+- **Organization:** Open City Foundation
+- **Link:** [example-platform.org](https://example-platform.org)
+- **License:** Apache 2.0 — open-source
+- **Type:** 3D geospatial data platform
+- **Maturity:** production-ready
+- **City-scale capability:** Handles city-wide 3D building and infrastructure datasets using CityGML; supports multi-domain urban analytics
+- **Integration posture:** OGC-compliant REST APIs, open data formats, active plugin ecosystem
+- **Inclusion criterion:** City-Scale Capabilities
+- **Notes:** No built-in simulation engine; real-time data ingestion requires third-party connectors
+
+---
+
+After all per-platform sections, you may optionally append a summary table for quick reference:
+
+| Name | Organization | License | Type | Maturity | Inclusion Criterion |
+| ---- | ------------ | ------- | ---- | -------- | ------------------- |
