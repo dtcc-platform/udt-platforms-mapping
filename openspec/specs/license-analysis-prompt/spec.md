@@ -5,12 +5,23 @@ The repository SHALL contain a file at `prompts/license-analysis.md` that provid
 - **WHEN** a researcher navigates to `prompts/license-analysis.md`
 - **THEN** the file exists and contains a complete, copy-pasteable prompt
 
-### Requirement: License analysis prompt uses a parameterized platform token
-The prompt template SHALL include a `[PLATFORM_NAME]` placeholder and a `[LICENSE_URL_OR_TEXT]` placeholder that the researcher fills in before use.
+### Requirement: License analysis prompt uses a discovery table row token
+The prompt template SHALL include a single `[PASTE_SELECTED_PLATFORM_HERE]` placeholder token where the researcher pastes one row (plus the header row) from the discovery response summary table. The model SHALL derive the platform name from the Name column, use the Link column to locate the license source, and treat the License column value as a seed signal to verify or correct.
 
-#### Scenario: Researcher customizes prompt for a specific platform
-- **WHEN** a researcher replaces `[PLATFORM_NAME]` with "CityGML" and provides a license URL or pasted license text in `[LICENSE_URL_OR_TEXT]`
-- **THEN** the model analyzes the specific license for that platform
+#### Scenario: Researcher pastes a discovery row
+- **WHEN** a researcher copies the header row and one data row from a discovery summary table and pastes them into `[PASTE_SELECTED_PLATFORM_HERE]`
+- **THEN** the model identifies the platform, locates the license from the Link, and produces a full license analysis
+
+#### Scenario: Researcher runs license analysis without a prior discovery session
+- **WHEN** a researcher manually constructs a single-row table matching the discovery summary table schema and pastes it into `[PASTE_SELECTED_PLATFORM_HERE]`
+- **THEN** the model produces a full license analysis using the provided fields
+
+### Requirement: License analysis prompt usage header follows the discovery-to-prompt pattern
+The prompt template's usage header SHALL instruct the researcher to open the discovery response, copy the header row and the platform row from the summary table, replace `[PASTE_SELECTED_PLATFORM_HERE]` with those rows, and paste the completed prompt into their AI session.
+
+#### Scenario: Researcher reads the usage header
+- **WHEN** a researcher reads the usage instructions at the top of `prompts/license-analysis.md`
+- **THEN** they see the same row-paste pattern used by the comparison prompt, with a save-as filename instruction
 
 ### Requirement: License analysis prompt embeds the license family taxonomy
 The prompt template SHALL include the license family definitions from `docs/license-review.md` — permissive open source, copyleft (strong), copyleft (weak), open core, and proprietary — so the model classifies using the project's taxonomy.
