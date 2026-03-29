@@ -71,3 +71,80 @@ If a session is re-run for the same platform and prompt type, overwrite the file
 ### Session logs (`search_logs/`)
 
 Pattern: `<platform>.md` — one file per platform, updated as research evolves.
+
+## Functional Category Rubrics
+
+The Part 1 scoring table includes six functional category columns in addition to the six research dimensions. Each category uses the same 1–5 integer scale — bare integer, `?` for unknown.
+
+**Column abbreviations:**
+
+| Abbreviation | Full name | Description |
+| ------------ | --------- | ----------- |
+| Viz | Visualization | 3D rendering, GIS viewers, scene composition |
+| DM | Data Management | Data ingestion, storage, twin models, semantic layers |
+| Sim | Simulation | Urban simulation, physics, scenario modelling |
+| IoT | IoT Sensing | Real-time data, sensor integration, device management |
+| Std | Standards | Open standards implementation, interoperability frameworks |
+| Infra | Infrastructure | Built environment, BIM/GIS, infrastructure lifecycle |
+
+**Rubrics:**
+
+**Visualization (Viz)**
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Purpose-built 3D visualization engine or viewer; primary purpose; real-time or near-real-time rendering |
+| 4 | Strong visualization capabilities; core feature set with significant investment |
+| 3 | Visualization present and useful but not the primary strength |
+| 2 | Basic or incidental visualization (e.g., simple 2D map view, no 3D) |
+| 1 | No meaningful visualization capability |
+
+**Data Management (DM)**
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Purpose-built for city-scale data storage and management; semantic model, versioning, full data lifecycle |
+| 4 | Strong data management with semantic modelling or graph; multi-source ingestion |
+| 3 | Solid data management but limited semantic layer or scalability |
+| 2 | Basic storage or data exchange; limited query or model capabilities |
+| 1 | No meaningful data management role |
+
+**Simulation (Sim)**
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Purpose-built simulation engine; multi-domain urban physics, scenario comparison at city scale |
+| 4 | Strong simulation support across multiple urban domains |
+| 3 | Simulation present for one or two domains; limited scenario tooling |
+| 2 | Basic scenario comparison or single-variable simulation |
+| 1 | No simulation capability |
+
+**IoT Sensing (IoT)**
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Purpose-built IoT platform; real-time ingestion, device registry, stream processing at scale |
+| 4 | Strong IoT support; real-time APIs, sensor integration, stream handling |
+| 3 | Connects to sensors but limited real-time processing |
+| 2 | Basic real-time data hookup; manual or batch sensor feeds |
+| 1 | No IoT or real-time sensing capability |
+
+**Standards (Std)**
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Primary purpose is defining or implementing open standards (OGC, ISO, W3C); governance role in standards body |
+| 4 | Strong standards implementation; multiple OGC/ISO standards as native data models |
+| 3 | Partial standards support; some open standards alongside proprietary models |
+| 2 | Limited standards; primarily proprietary with token open format support |
+| 1 | No meaningful open standards implementation |
+
+**Infrastructure (Infra)**
+
+| Score | Criteria |
+| ----- | -------- |
+| 5 | Purpose-built for infrastructure or BIM lifecycle; IFC, asset management, lifecycle tracking |
+| 4 | Strong infrastructure support; BIM integration, asset management, or civil engineering focus |
+| 3 | Infrastructure is one of several domains; partial BIM/GIS support |
+| 2 | Limited infrastructure scope; building-level only or minimal lifecycle management |
+| 1 | No meaningful infrastructure or built environment focus |
