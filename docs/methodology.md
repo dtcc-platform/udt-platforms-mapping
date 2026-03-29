@@ -38,7 +38,8 @@ The canonical data record for each platform is its row in `docs/platform-invento
 4. Paste them into the `[PASTE_SELECTED_PLATFORMS_HERE]` token in `prompts/platform-comparison.md`
 5. Run the comparison session and save the response to `responses/`
 
-**Optional — License analysis:** For any platform in the discovery table, copy the header row and that platform's row and paste them into the `[PASTE_SELECTED_PLATFORM_HERE]` token in `prompts/license-analysis.md`. This can be run independently at any point — it does not need to precede or follow a comparison session.
+**Optional — License analysis:** For any platform in the discovery table, copy the header row and that platform's row and paste them into the `[PASTE_SELECTED_PLATFORM_HERE]` token in `prompts/license-analysis.md`.
+This can be run independently at any point — it does not need to precede or follow a comparison session.
 
 For operational guidance on applying these criteria — including explicit exclusion examples, a seed list of known qualifying platforms, and a target corpus size — see [`docs/scope.md`](scope.md).
 

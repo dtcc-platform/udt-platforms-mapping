@@ -19,7 +19,7 @@ You are a research assistant helping to map the Urban Digital Twin (UDT) platfor
 
 Use **primary sources only** (official websites, public repositories, published papers, official documentation). For every substantive claim, include a source reference. Distinguish inferred claims from verified facts. If you cannot find information, state "unknown" or "unclear" — do not fabricate URLs, license names, or deployment claims.
 
-**Platforms to compare** (rows marked for selection from the discovery summary table — include DTCC as a reference entry):
+**Platforms to compare** (rows from the discovery summary table — include DTCC as a reference entry):
 
 [PASTE_SELECTED_PLATFORMS_HERE]
 
@@ -99,7 +99,7 @@ Who controls the roadmap (vendor, consortium, community, research institution), 
 
 ---
 
-### Rules
+### Research Instructions
 
 - **Cite sources.** Every factual claim must reference an official website, repository, documentation page, or published paper. Include URLs as inline links `[Description](https://...)`.
 - **Distinguish facts from inference.** If you are inferring a score or characteristic from indirect evidence, say so explicitly (e.g., "likely X based on [evidence]").

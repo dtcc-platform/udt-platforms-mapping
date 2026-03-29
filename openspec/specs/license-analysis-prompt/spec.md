@@ -16,13 +16,6 @@ The prompt template SHALL include a single `[PASTE_SELECTED_PLATFORM_HERE]` plac
 - **WHEN** a researcher manually constructs a single-row table matching the discovery summary table schema and pastes it into `[PASTE_SELECTED_PLATFORM_HERE]`
 - **THEN** the model produces a full license analysis using the provided fields
 
-### Requirement: License analysis prompt usage header follows the discovery-to-prompt pattern
-The prompt template's usage header SHALL instruct the researcher to open the discovery response, copy the header row and the platform row from the summary table, replace `[PASTE_SELECTED_PLATFORM_HERE]` with those rows, and paste the completed prompt into their AI session.
-
-#### Scenario: Researcher reads the usage header
-- **WHEN** a researcher reads the usage instructions at the top of `prompts/license-analysis.md`
-- **THEN** they see the same row-paste pattern used by the comparison prompt, with a save-as filename instruction
-
 ### Requirement: License analysis prompt embeds the license family taxonomy
 The prompt template SHALL include the license family definitions from `docs/license-review.md` — permissive open source, copyleft (strong), copyleft (weak), open core, and proprietary — so the model classifies using the project's taxonomy.
 
@@ -88,11 +81,27 @@ The metadata block SHALL appear before any other content in the response.
 - **WHEN** the prompt instructs the model to fill in the `model` field
 - **THEN** the model populates the field with its own name and version to the best of its ability
 
-### Requirement: License analysis prompt usage header includes save-as filename instruction
-The prompt template's usage header SHALL include an instruction telling the researcher what filename to use when saving the AI response, referencing the pattern defined in `docs/methodology.md`.
+### Requirement: License analysis prompt requires explicit uncertainty handling
+The prompt template SHALL instruct the model to state "unknown" or "unclear" when license information cannot be confirmed from primary sources, and to never fabricate license names, URLs, or tier descriptions.
 
-The instruction SHALL show a concrete example filename using the `license` prompt-type token (e.g., `responses/<platform>-license.md`).
+#### Scenario: Model cannot locate a license
+- **WHEN** an AI cannot find a platform's license from the repository root, package metadata, or official site
+- **THEN** the response states the license is unknown rather than guessing
+
+#### Scenario: Model cannot confirm a tier distinction
+- **WHEN** an AI cannot verify whether a community vs. enterprise split exists
+- **THEN** the response states "unclear" rather than assuming
+
+### Requirement: License analysis prompt instructs use of primary sources
+The prompt template SHALL instruct the model to locate and verify license information from primary sources only — repository root (`LICENSE`, `COPYING`), SPDX identifiers in package metadata, and official site documentation.
+
+#### Scenario: Model locates license from primary source
+- **WHEN** an AI responds to the license analysis prompt
+- **THEN** the source of the license identification is a direct link to the repository or official documentation, not a secondary summary
+
+### Requirement: License analysis prompt usage header includes save-as filename instruction
+The prompt template's usage header SHALL include numbered step-by-step instructions telling the researcher to open the discovery response, copy the header row and the platform row from the summary table, replace `[PASTE_SELECTED_PLATFORM_HERE]` with those rows, and paste the completed prompt into their AI session. It SHALL also tell the researcher what filename to use when saving the response, referencing the pattern defined in `docs/methodology.md`, with a concrete example using the `license` prompt-type token (e.g., `responses/<platform>-license.md`).
 
 #### Scenario: Researcher reads the usage header before pasting the prompt
 - **WHEN** a researcher reads the usage instructions at the top of `prompts/license-analysis.md`
-- **THEN** they see the expected filename pattern and a concrete example before they begin the session
+- **THEN** they see the row-paste steps and the expected filename pattern before they begin the session

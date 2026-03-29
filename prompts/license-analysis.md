@@ -53,7 +53,7 @@ Assign a score from 1–5 using this rubric:
 
 ---
 
-### Review Checklist
+### Research Instructions
 
 Work through each item:
 

@@ -51,7 +51,8 @@ Score columns (Arch, Open, City, Mature, Integ, Gov) SHALL contain bare numbers 
 The prompt template SHALL include a concrete example of the per-platform section structure and SHALL specify the following formatting constraints:
 
 - **Permitted syntax:** ATX headings (`#`), `**bold**`, `_italic_`, `[text](url)` links, fenced code blocks, GFM pipe tables, `-` unordered lists, `1.` ordered lists
-- **Prohibited syntax:** custom containers (`:::`, `!!!`, `> [!NOTE]`), extended syntax (`==highlight==`, `^superscript^`, `~subscript~`), raw HTML, numeric citations `[1]`, footnotes `[^1]`, AI-specific formats
+- **Citation format:** inline links `[Description](https://...)` only — no numeric brackets (`[1]`), no footnotes (`[^1]`), no AI-specific citation formats
+- **Prohibited syntax:** custom containers (`:::`, `!!!`, `> [!NOTE]`), extended syntax (`==highlight==`, `^superscript^`, `~subscript~`), raw HTML
 - **Whitespace:** blank line before and after every heading, table, and code block
 - **Platform heading level:** `##` for every platform section
 - **Score notation:** `**Dimension (X/5):**` inline in sections; bare number in table cells; `?` for unknown
@@ -67,22 +68,6 @@ The prompt template SHALL include a `[SEARCH_SCOPE]` placeholder that the resear
 - **WHEN** a researcher replaces `[SEARCH_SCOPE]` with a value such as "European city-scale platforms" or "platforms using CityGML"
 - **THEN** the model scopes its discovery results to that domain without other prompt changes needed
 
-### Requirement: Discovery prompt output uses portable Markdown syntax
-The prompt template SHALL instruct the model to format its response using only CommonMark / GFM syntax, so that saved response files render correctly in any standard Markdown viewer without AI-specific formatting artifacts.
-
-The instruction SHALL specify:
-- Permitted syntax: ATX headings (`#`), `**bold**`, `_italic_`, `[text](url)` links, fenced code blocks, GFM pipe tables, `-` unordered lists, `1.` ordered lists
-- Citation format: inline links `[Description](https://...)` only — no numeric brackets (`[1]`), no footnotes (`[^1]`), no AI-specific formats
-- Prohibited syntax: custom containers (`:::`, `!!!`, `> [!NOTE]`), extended syntax (`==highlight==`, `^superscript^`, `~subscript~`), raw HTML
-- Whitespace: blank line before and after every heading, table, and code block
-
-#### Scenario: Model uses AI-specific citation format
-- **WHEN** an AI model would normally respond with numeric bracket citations like `[1]` or `【†source】`
-- **THEN** the prompt instruction overrides this and the model uses `[Description](https://...)` inline links instead
-
-#### Scenario: Response is opened in a standard Markdown viewer
-- **WHEN** a researcher saves the response as a `.md` file and opens it in GitHub, VS Code, Obsidian, or Typora
-- **THEN** all formatting renders correctly with no raw syntax visible and no broken elements
 
 ### Requirement: Discovery prompt output begins with a model metadata block
 The prompt template SHALL instruct the model to begin its response with a fenced YAML code block containing provenance metadata, so that saved response files are self-documenting.
@@ -110,3 +95,21 @@ The instruction SHALL show a concrete example filename using the `discovery` pro
 #### Scenario: Researcher reads the usage header before pasting the prompt
 - **WHEN** a researcher reads the usage instructions at the top of `prompts/platform-discovery.md`
 - **THEN** they see the expected filename pattern and a concrete example before they begin the session
+
+### Requirement: Discovery prompt requires explicit uncertainty handling
+The prompt template SHALL instruct the model to state `?` when a dimension score cannot be assessed from available sources, and to never fabricate platform details, license names, or deployment claims.
+
+#### Scenario: Model cannot assess a dimension
+- **WHEN** an AI cannot find sufficient information to score a dimension
+- **THEN** the response uses `?` rather than guessing
+
+#### Scenario: Model cannot verify a platform detail
+- **WHEN** an AI cannot confirm a license name or deployment from primary sources
+- **THEN** the response states the information is unknown rather than fabricating it
+
+### Requirement: Discovery prompt instructs use of primary sources
+The prompt template SHALL instruct the model to base its findings on primary sources only — official websites, public repositories, published papers, and official documentation.
+
+#### Scenario: Researcher pastes prompt without supplemental context
+- **WHEN** an AI responds to the discovery prompt
+- **THEN** all platform details are sourced from primary sources, not secondary summaries or AI-generated assumptions
