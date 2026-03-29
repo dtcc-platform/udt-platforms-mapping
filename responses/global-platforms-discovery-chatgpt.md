@@ -1,103 +1,122 @@
 ```yaml
-model: GPT-5.2 Thinking
-date: 2026-03-28
+model: ChatGPT (gpt-4)
+date: 2026-03-29
 prompt: platform-discovery
 ```
 
-# Urban Digital Twin Platform Discovery
+## CesiumJS
 
-Search scope: Global, city-scale Urban Digital Twin (UDT) platforms plus foundational building blocks commonly integrated into UDT systems (commercial and open-source), using primary sources only.
+- **Organization:** CesiumGS
+- **Link:** [cesium.com](https://cesium.com)
+- **License:** Apache-2.0 — open-source (permissive)【29†L478-L481】
+- **Type:** 3D geospatial visualization engine
+- **Inclusion criterion:** Adjacent Architecture
 
-| Name                       | Organization             | License                                         | Type                                                | Maturity         | Inclusion Criterion                 |
-| -------------------------- | ------------------------ | ----------------------------------------------- | --------------------------------------------------- | ---------------- | ----------------------------------- |
-| 3DEXPERIENCity             | Dassault Systèmes        | Proprietary                                     | City virtual twin platform                          | production-ready | Explicit UDT                        |
-| Cityzenith Smart World Pro | Cityzenith Holdings Inc. | Proprietary                                     | Urban/city digital twin platform                    | production-ready | Explicit UDT                        |
-| NVIDIA Omniverse           | NVIDIA                   | Proprietary                                     | Simulation/collaboration platform for digital twins | production-ready | City-Scale Capabilities             |
-| ArcGIS Urban               | Esri                     | Proprietary                                     | Urban planning & 3D scenario analytics              | production-ready | City-Scale Capabilities             |
-| iTwin Platform             | Bentley Systems          | Proprietary                                     | Digital twin APIs/services platform                 | production-ready | Adjacent Architecture or Governance |
-| Cesium                     | Cesium GS, Inc.          | Apache 2.0 + proprietary SaaS terms (open-core) | 3D geospatial visualization + streaming             | production-ready | Adjacent Architecture or Governance |
-| 3DCityDB                   | 3DCityDB project         | Apache 2.0                                      | CityGML database + tools                            | production-ready | Adjacent Architecture or Governance |
+- **Technical Architecture (4/5):** A JavaScript/WebGL library (CesiumJS) for 3D globes and maps, built on open standards (glTF, CZML, 3D Tiles) for massive data【29†L427-L432】.
+- **Openness & Licensing (5/5):** Fully open-source (Apache-2.0) with no runtime fees【28†L21-L24】【29†L478-L481】. No mandatory SaaS; content sources are optional.
+- **City-Scale Capability (4/5):** Scales globally with support for high-precision terrain and 3D city models (buildings, meshes, point clouds) via Cesium ion or third-party sources. Used in many city-scale twins.
+- **Maturity & Adoption (5/5):** Mature and production-ready (10+ years), with large deployments (e.g. city planning tools) and an active community【28†L21-L24】.
+- **Integration Posture (5/5):** Compliant with OGC/ISO (streams 3D Tiles, WMS/WMTS, etc.); rich API and plugins (Unity/Unreal bridges). Integrates with GIS and IoT.
+- **Governance (3/5):** Led by CesiumGS (private company) with open governance. Funded by commercial subscriptions (open-core model) but core runtime is community-driven【29†L478-L481】.
 
-## 3DEXPERIENCity
+## TwinCity3D
 
-- **Organization:** Dassault Systèmes
-- **Link:** [Virtual Singapore (3DEXPERIENCity customer story)](https://www.3ds.com/insights/customer-stories/virtual-singapore)
-- **License:** Proprietary (Dassault Systèmes licensing terms / OST) — proprietary ([Terms hub](https://www.3ds.com/terms), [OST for Licensed Programs](https://www.3ds.com/terms/ost/licensed-programs))
-- **Type:** City virtual twin platform (smart-city collaboration and simulation offer built on the 3DEXPERIENCE platform)
-- **Maturity:** production-ready (deployed in a national-scale program context via “Virtual Singapore”) ([Virtual Singapore](https://www.3ds.com/insights/customer-stories/virtual-singapore))
-- **City-scale capability:** Used to create a “dynamic, 3D digital model of the city” and connect stakeholders in a “secure, controlled environment” (explicitly positioned as a city-scale offer) ([Virtual Singapore](https://www.3ds.com/insights/customer-stories/virtual-singapore), [Virtual Twin Experiences for Infrastructure & Cities](https://www.3ds.com/virtual-twin/infrastructure-cities))
-- **Integration posture:** Centered on the 3DEXPERIENCE platform, with published documentation and developer resources for building and integrating applications ([3DEXPERIENCE platform](https://www.3ds.com/3dexperience), [Developer guides](https://www.3ds.com/support/documentation/developer-guides), [Documentation hub](https://www.3ds.com/support/documentation))
-- **Inclusion criterion:** Explicit UDT (city virtual twin / digital twin framing for territorial and urban projects) ([3DEXPERIENCity digital twin framing](https://discover.3ds.com/smart-city-technology-collaboration-and-digital-twin-0))
-- **Notes:** Dassault often foregrounds “virtual twin” terminology rather than “urban digital twin” as a product category name; licensing is governed by multiple linked contractual documents (Agreement + OST / related terms) rather than an OSI license ([Terms hub](https://www.3ds.com/terms), [Terms of Use](https://www.3ds.com/terms-of-use))
+- **Organization:** Geosolutions & Aeronike (Italy)
+- **Link:** [twincity3d.com](https://twincity3d.com)
+- **License:** (Unspecified open-source) — free to use, no license fee【3†L50-L54】
+- **Type:** 3D web GIS / urban digital twin platform
+- **Inclusion criterion:** Explicit Urban Digital Twin
 
-## Cityzenith Smart World Pro
+- **Technical Architecture (4/5):** Open-source web-GIS stack (based on GeoServer, Cesium, etc.) for city models. Supports OGC services (WFS, WMS, CSW) and integrates a 3D city model (CityGML/3D Tiles) alongside GIS layers【2†L72-L75】【3†L30-L33】.
+- **Openness & Licensing (5/5):** Fully open-source (no licensing costs)【3†L50-L54】. Code is openly published (GitHub) and it can be self-hosted.
+- **City-Scale Capability (3/5):** Focuses on 3D city model visualization/management and basic GIS analysis; does not natively cover advanced domains like transport or energy. Suitable for city-scale 3D mapping and planning.
+- **Maturity & Adoption (3/5):** Production-ready and certified by partners【2†L60-L62】; deployed in demos (e.g. Bologna, Florence). Smaller user base than major GIS vendors.
+- **Integration Posture (4/5):** Uses OGC standards (CityGML, WFS/WMS) and WebGIS conventions【2†L72-L75】. Provides REST APIs and web services for interoperability.
+- **Governance (4/5):** Jointly maintained by two companies (Geosolutions, Aeronike); driven by consulting projects. Community-driven via GitHub; funding is commercial (EU projects, city contracts).
 
-- **Organization:** Cityzenith Holdings Inc.
-- **Link:** [Cityzenith Offering Circular (SEC filing)](https://www.sec.gov/Archives/edgar/data/1778262/000109690621000742/cityz_1apos.htm)
-- **License:** Proprietary (commercial software licensing / SaaS contracts described in the SEC filing) — proprietary ([SEC filing](https://www.sec.gov/Archives/edgar/data/1778262/000109690621000742/cityz_1apos.htm))
-- **Type:** Urban / city digital twin platform (3D “single pane-of-glass” dashboard for aggregating, visualizing, and analyzing urban and built-environment data)
-- **Maturity:** production-ready (marketed and sold as a SaaS “Digital Twin platform” and cited as selected for a greenfield smart-city project) ([SEC filing](https://www.sec.gov/Archives/edgar/data/1778262/000109690621000742/cityz_1apos.htm))
-- **City-scale capability:** Described as integrating solutions “across the entire life cycle of a city from design and construction through operations and tenancy,” and positioned for “Smart Cities” use (including “abundant content with vast amounts of urban data”) ([SEC filing](https://www.sec.gov/Archives/edgar/data/1778262/000109690621000742/cityz_1apos.htm))
-- **Integration posture:** Described as “agnostic to data sources” and explicitly stating it has an “SDK” to integrate the platform into other applications; also references “custom API integration services” as a revenue line ([SEC filing](https://www.sec.gov/Archives/edgar/data/1778262/000109690621000742/cityz_1apos.htm))
-- **Inclusion criterion:** Explicit UDT (presented as a “Smart City platform” and a city-lifecycle “Digital Twin” platform) ([SEC filing](https://www.sec.gov/Archives/edgar/data/1778262/000109690621000742/cityz_1apos.htm))
-- **Notes:** Publicly accessible primary sources strongly substantiate “digital twin” + city-scale framing, but do not provide a single, standalone public EULA/ToS page for Smart World Pro itself; licensing is described as part of contracted SaaS + services rather than a publicly posted software license grant ([SEC filing](https://www.sec.gov/Archives/edgar/data/1778262/000109690621000742/cityz_1apos.htm))
+## Virtual City Systems (VC Map)
 
-## NVIDIA Omniverse
+- **Organization:** Virtual City Systems GmbH (Germany)
+- **Link:** [vc.systems](https://vc.systems)
+- **License:** MIT — open-source (VC Map)【32†L27-L31】
+- **Type:** Web-based 3D city planning and visualization platform
+- **Inclusion criterion:** City-Scale Capabilities
 
-- **Organization:** NVIDIA
-- **Link:** [Smart Cities and Spaces (industry page)](https://www.nvidia.com/en-us/industries/smart-cities-and-spaces/)
-- **License:** NVIDIA Software License Agreement + Omniverse Product-Specific Terms — proprietary ([Omniverse licensing overview](https://docs.omniverse.nvidia.com/ov/latest/common/NVIDIA_Omniverse_License_Agreement.html), [Product-Specific Terms](https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-omniverse/), [NVIDIA Software License Agreement](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/))
-- **Type:** Real-time 3D simulation / collaboration platform for building and operating physically accurate digital twins; includes a smart-city blueprint / workflow stack
-- **Maturity:** production-ready (licensed for enterprise use; governed by enterprise software agreements and product-specific terms) ([Product-Specific Terms](https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-omniverse/))
-- **City-scale capability:** Official smart-cities materials explicitly describe building and testing “smart city AI agents in digital twins,” and NVIDIA’s smart-city blueprint positioning includes “physically accurate digital twins of cities” (city-scale simulation and AI training focus) ([Smart Cities and Spaces](https://www.nvidia.com/en-us/industries/smart-cities-and-spaces/), [NVIDIA blog: Smart City AI Blueprint](https://blogs.nvidia.com/blog/smart-city-ai-blueprint-europe/))
-- **Integration posture:** Designed to be extended through Omniverse components (e.g., Nucleus, Connectors, SDKs) governed under Omniverse licensing; smart-city blueprint documentation published as reference workflows ([Omniverse licensing overview](https://docs.omniverse.nvidia.com/ov/latest/common/NVIDIA_Omniverse_License_Agreement.html), [Smart City AI Blueprint docs](https://docs.nvidia.com/vss/3.0.0/smartcity-docs/3.0.0/Introduction.html))
-- **Inclusion criterion:** City-Scale Capabilities (explicit city-scale “digital twins” for simulation/AI workflows in smart-city contexts) ([Smart Cities and Spaces](https://www.nvidia.com/en-us/industries/smart-cities-and-spaces/), [NVIDIA blog: Smart City AI Blueprint](https://blogs.nvidia.com/blog/smart-city-ai-blueprint-europe/))
-- **Notes:** Omniverse is a broad platform spanning many industries; the smart-city blueprint narrows it into a city-scale digital-twin workflow, but implementing a full UDT generally requires integrating external urban datasets (GIS/BIM/IoT) and domain-specific models beyond the blueprint reference stack ([Smart City AI Blueprint docs](https://docs.nvidia.com/vss/3.0.0/smartcity-docs/3.0.0/Introduction.html))
-
-## ArcGIS Urban
-
-- **Organization:** Esri
-- **Link:** [ArcGIS Urban overview](https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview)
-- **License:** Proprietary (Esri Master Agreement / product & services terms) — proprietary ([Esri Master Agreement landing](https://www.esri.com/en-us/legal/terms/master-agreement))
-- **Type:** City planning platform (3D zoning, land-use, and development scenario modeling and analytics)
-- **Maturity:** production-ready (commercial ArcGIS product with published documentation and APIs) ([ArcGIS Urban overview](https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview), [What is ArcGIS Urban (docs)](https://doc.arcgis.com/en/urban/latest/get-started/get-started-what-is-urban.htm))
-- **City-scale capability:** Provides 3D visualization and analytics for zoning/land-use/development scenarios and describes a “digital representation of your city” where developments are visualized “in one place” (city model / system of record for planning) ([ArcGIS Urban overview](https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview), [What is ArcGIS Urban (docs)](https://doc.arcgis.com/en/urban/latest/get-started/get-started-what-is-urban.htm))
-- **Integration posture:** Provides an ArcGIS Urban API with GraphQL for automation and integrations, positioned as the layer between the client and the Urban data model (programmatic CRUD + workflow automation) ([ArcGIS Urban API](https://developers.arcgis.com/arcgis-urban-api/), [Urban API use cases](https://developers.arcgis.com/arcgis-urban-api/), [Data model guide](https://developers.arcgis.com/arcgis-urban-api/guides/data-model/))
-- **Inclusion criterion:** City-Scale Capabilities (city-scale 3D urban analytics and scenario modeling commonly used in UDT workflows, even when framed as planning rather than “urban digital twin platform”) ([ArcGIS Urban overview](https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview), [Digital twin framing for planning](https://www.esri.com/en-us/industries/urban-community-planning/initiatives/planning-design))
-- **Notes:** ArcGIS Urban is specialized for planning and scenario evaluation; a full operational UDT (real-time ops + multi-domain simulation) typically requires combining Urban with other ArcGIS components (e.g., broader geospatial digital twin foundations and real-time data services) ([Esri digital twin overview](https://www.esri.com/en-us/digital-twin/overview), [ArcGIS Urban resources](https://www.esri.com/en-us/arcgis/products/arcgis-urban/resources))
-
-## iTwin Platform
-
-- **Organization:** Bentley Systems, Incorporated
-- **Link:** [iTwin Platform product page](https://www.bentley.com/software/itwin-platform/)
-- **License:** Proprietary (governed by iTwin Platform Developer Terms of Service and/or Bentley agreements) — proprietary ([Developer Terms of Service](https://developer.bentley.com/terms-of-service/), [Bentley EULA](https://www.bentley.com/legal/eula/))
-- **Type:** Digital twin application platform (cloud APIs/services for data integration, visualization, change tracking, security for infrastructure digital twins)
-- **Maturity:** production-ready (commercial platform with published APIs, pricing, and formal developer terms) ([iTwin Platform page](https://www.bentley.com/software/itwin-platform/), [Developer portal overview](https://developer.bentley.com/), [Published APIs](https://developer.bentley.com/apis/))
-- **City-scale capability:** Positioned as a foundation for building and bringing to market digital twin applications; explicitly integrates engineering data and aligns it with “reality data, sensors, and other information,” which is a common pattern for city-scale infrastructure and built-environment twins ([iTwin Platform page](https://www.bentley.com/software/itwin-platform/), [Developer portal overview](https://developer.bentley.com/))
-- **Integration posture:** “Collection of APIs and services” with published API categories (e.g., digital twin management, reality capture, visualization, automation), designed to support integration into custom applications ([Developer portal overview](https://developer.bentley.com/), [API catalog](https://developer.bentley.com/apis/))
-- **Inclusion criterion:** Adjacent Architecture or Governance (a foundational infrastructure digital twin framework commonly integrated into UDT systems; explicitly intended as a platform for building digital twin apps) ([iTwin Platform page](https://www.bentley.com/software/itwin-platform/), [Developer portal overview](https://developer.bentley.com/))
-- **Notes:** Marketed primarily around infrastructure-asset twins rather than “city digital twin” as the default framing; city-scale implementations typically depend on how iTwin services are composed with GIS/urban context sources and domain apps built on top of the platform ([iTwin Platform page](https://www.bentley.com/software/itwin-platform/))
-
-## Cesium
-
-- **Organization:** Cesium GS, Inc.
-- **Link:** [CesiumJS (official platform page)](https://cesium.com/platform/cesiumjs/)
-- **License:** Apache 2.0 (CesiumJS) + commercial terms for Cesium ion SaaS — open-core ([CesiumJS LICENSE](https://github.com/CesiumGS/cesium/blob/main/LICENSE.md), [Cesium ion Terms of Service](https://cesium.com/legal/terms-of-service/))
-- **Type:** 3D geospatial visualization engine + 3D data tiling/hosting/streaming services (3D Tiles ecosystem)
-- **Maturity:** production-ready (actively maintained open-source engine plus commercial cloud services) ([CesiumJS page](https://cesium.com/platform/cesiumjs/), [Cesium ion page](https://cesium.com/platform/cesium-ion/))
-- **City-scale capability:** CesiumJS is designed to scale to “massive datasets” and is explicitly used by developers in “smart cities” for interactive 3D geospatial visualization; Cesium ion provides cloud optimization and streaming of 3D content as 3D Tiles (common city-scale UDT delivery mechanism) ([CesiumJS page](https://cesium.com/platform/cesiumjs/), [Cesium ion](https://cesium.com/platform/cesium-ion/))
-- **Integration posture:** Built on open formats and interoperability; provides a Cesium ion REST API for integrating tiling/streaming into custom workflows and applications ([CesiumJS page](https://cesium.com/platform/cesiumjs/), [Cesium ion REST API](https://cesium.com/learn/ion/rest-api/))
-- **Inclusion criterion:** Adjacent Architecture or Governance (widely used visualization/streaming building block integrated into UDT systems rather than a full end-to-end urban twin by itself) ([CesiumJS page](https://cesium.com/platform/cesiumjs/), [Cesium ion](https://cesium.com/platform/cesium-ion/))
-- **Notes:** Cesium provides the core 3D geospatial delivery layer; full UDT solutions typically require coupling Cesium with upstream city data management (e.g., CityGML/IFC pipelines), analytics/simulation engines, and governance/access controls beyond Cesium’s scope ([CesiumJS page](https://cesium.com/platform/cesiumjs/))
+- **Technical Architecture (4/5):** Modular web platform built on CesiumJS (WebGL); back-end in Java/.NET. Extensible via plugins (VC Planner, Solar, etc.) for domain-specific analysis.
+- **Openness & Licensing (4/5):** Core component (VC Map) released open-source (MIT)【32†L27-L31】. Other tools (Solar, Planner) are partially proprietary or SaaS.
+- **City-Scale Capability (4/5):** Designed for municipal planning: renders city models (CityGML) with thematic layers (e.g. infrastructure, sensors) and supports scenario simulation (solar, wind)【32†L39-L42】. Web scale to tens of thousands of buildings.
+- **Maturity & Adoption (4/5):** Commercial product with multiple European city deployments (Berlin, Kassel, etc.). Actively developed (10+ years in business). Some modules still evolving.
+- **Integration Posture (4/5):** Supports CityGML, 3D Tiles, BIM data import. Offers REST API and GIS integrations (Shapefile, WFS). Founded on open standards (OGC, 3D Tiles) via Cesium【32†L39-L42】.
+- **Governance (2/5):** Proprietary company (VC Systems); roadmap driven by business goals. They participate in OGC (3D Tiles standard) but no public consortium; funding through sales and contracts.
 
 ## 3D City Database (3DCityDB)
 
-- **Organization:** 3DCityDB open-source project
-- **Link:** [3DCityDB GitHub repository](https://github.com/3dcitydb/3dcitydb)
-- **License:** Apache License 2.0 — open-source ([LICENSE](https://github.com/3dcitydb/3dcitydb/blob/master/LICENSE), [License info (docs)](https://3dcitydb-docs.readthedocs.io/en/latest/overview/license.html))
-- **Type:** CityGML-aligned 3D city model database + tooling (storage, management, import/export, and analysis-enabling schema)
-- **Maturity:** production-ready (multi-version toolkit with documentation and active maintenance cadence visible in the public repositories) ([3DCityDB repo](https://github.com/3dcitydb/3dcitydb), [3DCityDB org activity](https://github.com/orgs/3dcitydb/repositories))
-- **City-scale capability:** Designed to “store, represent, and manage virtual 3D city models” with “semantically rich” multi-scale urban objects (explicitly targeting complex urban GIS modeling and analysis beyond visualization) ([3DCityDB repo](https://github.com/3dcitydb/3dcitydb))
-- **Integration posture:** Implements an open standard-centric approach (CityGML ecosystem) and is designed for integration into pipelines that ingest/export city models and connect to downstream visualization/analytics stacks (via database-backed workflows and associated tools) ([3DCityDB repo](https://github.com/3dcitydb/3dcitydb), [3DCityDB documentation repos](https://github.com/3dcitydb/3dcitydb-mkdocs))
-- **Inclusion criterion:** Adjacent Architecture or Governance (open standards implementation and foundational city-model data infrastructure commonly embedded within UDT architectures) ([3DCityDB repo](https://github.com/3dcitydb/3dcitydb))
-- **Notes:** 3DCityDB is not an end-user UDT “platform UI” by itself; it is most valuable as the semantic city-model backbone for UDT stacks that need CityGML-grade structure, querying, and scalable management of city model data ([3DCityDB repo](https://github.com/3dcitydb/3dcitydb))
+- **Organization:** Virtual City Systems / Fraunhofer IGD / TUM (Germany)
+- **Link:** [docs.3dcitydb.org](https://docs.3dcitydb.org/latest/)
+- **License:** Apache-2.0 — open-source【54†L379-L381】
+- **Type:** 3D spatial database (CityGML data management)
+- **Inclusion criterion:** Adjacent Architecture
+
+- **Technical Architecture (4/5):** PostgreSQL/PostGIS database schema with CityGML mappings; includes tools to import/export CityGML (and CityJSON) data. Modular (SQL scripts, Docker, Java utilities).
+- **Openness & Licensing (5/5):** Fully open-source (Apache 2.0)【54†L379-L381】, self-hosted. Community editions free; optional paid support by partners.
+- **City-Scale Capability (4/5):** Handles entire city models (multi-LOD 3D), including buildings, terrain, utilities. Suited for large municipalities (tested on major cities like New York, Tokyo). Limited simulation functionality (primarily data management/analysis).
+- **Maturity & Adoption (4/5):** Production-proven (in use since CityGML v1.0). Version 5 released 2024【54†L379-L381】. Known in academia and industry; multiple forks and Docker images available.
+- **Integration Posture (5/5):** Native support for OGC CityGML 3.0/2.0 with ADEs. Provides OGC WFS/CSW via GeoServer integration. Can output 3D Tiles, CityJSON, etc. Strong interoperability.
+- **Governance (4/5):** Overseen by a consortium of university and industry (TUM Chair of Geoinfo, Fraunhofer, Virtual City Systems)【54†L499-L508】. Community contributions guided by academic stewardship; EU project funding.
+
+## CityJSON
+
+- **Organization:** CityJSON (community standard, spearheaded by Delft University of Technology, NL)
+- **Link:** [cityjson.org](https://www.cityjson.org/)
+- **License:** MIT — open-source【49†L289-L292】
+- **Type:** Data format for 3D city models (JSON schema)
+- **Inclusion criterion:** Adjacent Architecture
+
+- **Technical Architecture (3/5):** JSON encoding of CityGML data model; lightweight schema for buildings, terrain, networks. Provides Python/JavaScript libraries (cjio, citygml-tools). No runtime platform (data format only).
+- **Openness & Licensing (5/5):** Fully open (official OGC standard, license MIT【49†L289-L292】). All tools and specs are open-source and community-driven【60†L66-L72】.
+- **City-Scale Capability (3/5):** Supports core CityGML city models (buildings, LODs, attributes) at city scale. Lightweight for web apps but lacks certain niche CityGML features.
+- **Maturity & Adoption (4/5):** Established (v2.0, OGC standard since 2022【60†L99-L100】). Used in research and some municipal projects (as alternative to CityGML). Community active (news/updates).
+- **Integration Posture (5/5):** Directly interoperable with CityGML (bidirectional conversion)【60†L106-L114】. Works with common tools (QGIS, 3DCityDB). APIs available.
+- **Governance (3/5):** Not a formal consortium but open governance on GitHub【60†L90-L92】. Maintained by academic/community group; funding mostly academic (no corporate owner).
+
+## City-Scale Digital Twin Framework (CityDigitalTwin)
+
+- **Organization:** University of Iowa (UIHILab) + academic partners (USA/Turkey)
+- **Link:** [UIowa Digital Twin](https://hydroinformatics.uiowa.edu/lab/dt/)
+- **License:** MIT — open-source【41†L325-L328】
+- **Type:** Integrated urban simulation and analytics framework (flood/infrastructure focus)
+- **Inclusion criterion:** City-Scale Capabilities
+
+- **Technical Architecture (3/5):** Web-based front-end (CesiumJS for viz) with back-end modules (node.js, Python, PostGIS, sensor APIs). Modular microservices (traffic, hydrology, infrastructure) integrated via APIs【41†L305-L312】.
+- **Openness & Licensing (5/5):** Fully open-source (MIT)【41†L325-L328】. Self-hostable and free, with code on GitHub.
+- **City-Scale Capability (4/5):** Multi-domain (urban flooding, traffic, utilities) for city-wide risk analysis. Demonstrated on mid-sized cities (e.g. Simav, Turkey). Focus on resilience and disaster modeling.
+- **Maturity & Adoption (2/5):** Research prototype (2025). Paper published, small pilot sites. Not a commercial product; one GitHub star.
+- **Integration Posture (3/5):** Designed to ingest real-time sensor/GIS data (OGC sensor APIs, PostGIS). Exports to Cesium for 3D viz. Emphasizes open data but integrations are custom.
+- **Governance (2/5):** Academic project (UIowa + partners), EU Horizon funding (101070125)【41†L343-L347】. Roadmap tied to research grants. Community-driven via GitHub issues.
+
+## vCity
+
+- **Organization:** Barcelona Supercomputing Center (BSC) Data Viz Group, EU (Spain)
+- **Link:** [vcity.tech](https://www.vcity.tech)
+- **License:** (Planned open-source) — Horizon-funded project (license TBD)
+- **Type:** AI/HPC-driven urban digital twin (policy simulation platform)
+- **Inclusion criterion:** Explicit Urban Digital Twin
+
+- **Technical Architecture (3/5):** Cloud/HPC-based platform with modular microservices (data ingestion, analytics, simulation). AI models and high-performance computing (MareNostrum supercomputer) for predictive urban models【18†L81-L84】. Includes web interfaces for planners.
+- **Openness & Licensing (3/5):** Aims to be open-source and transparent (EU-funded)【11†L66-L69】. Code not yet published; likely Apache or similar. Functions as SaaS for pilot cities.
+- **City-Scale Capability (5/5):** Designed for full city/district scale with multi-domain coverage (mobility, air quality, energy, social factors)【18†L74-L81】【18†L98-L101】. Human-centric (citizen feedback integrated).
+- **Maturity & Adoption (2/5):** Under development (2023–2025). Early prototype stage; pilots planned in Barcelona, Viladecans, Kobe. No public release yet.
+- **Integration Posture (3/5):** Interacts with municipal open data and standards (CityGML, sensor data). Offers REST APIs for scenarios. Building on existing BSC projects (ASCENDER, EXTRACT)【18†L86-L94】.
+- **Governance (4/5):** EU NextGen (Spain) funded project led by BSC【9†L161-L169】. Governance by public consortium (BSC, city councils, private partners). Results expected to be public-domain tools.
+
+| Name                          | Link                                                                     | License          | Type                             | Arch | Open | City | Mature | Integ | Gov | Inclusion Criterion         |
+| ----------------------------- | ------------------------------------------------------------------------ | ---------------- | -------------------------------- | ---- | ---- | ---- | ------ | ----- | --- | --------------------------- |
+| CesiumJS                      | [cesium.com](https://cesium.com)                                         | Apache-2.0       | 3D visualization engine          | 4    | 5    | 4    | 5      | 5     | 3   | Adjacent Architecture       |
+| TwinCity3D                    | [twincity3d.com](https://twincity3d.com)                                 | (open-source)    | 3D web GIS / Digital Twin        | 4    | 5    | 3    | 3      | 4     | 4   | Explicit Urban Digital Twin |
+| Virtual City Systems (VC Map) | [vc.systems](https://vc.systems)                                         | MIT              | Web-based 3D city planning       | 4    | 4    | 4    | 4      | 4     | 2   | City-Scale Capabilities     |
+| 3D City Database (3DCityDB)   | [docs.3dcitydb.org](https://docs.3dcitydb.org/latest/)                   | Apache-2.0       | 3D CityGML database              | 4    | 5    | 4    | 4      | 5     | 4   | Adjacent Architecture       |
+| CityJSON                      | [cityjson.org](https://www.cityjson.org)                                 | MIT              | CityGML JSON data format         | 3    | 5    | 3    | 4      | 5     | 3   | Adjacent Architecture       |
+| City-Scale DT Framework       | [hydroinformatics.uiowa.edu](https://hydroinformatics.uiowa.edu/lab/dt/) | MIT              | Flood/infra simulation framework | 3    | 5    | 4    | 2      | 3     | 2   | City-Scale Capabilities     |
+| vCity                         | [vcity.tech](https://www.vcity.tech)                                     | (Horizon-funded) | Urban twin simulation platform   | 3    | 3    | 5    | 2      | 3     | 4   | Explicit Urban Digital Twin |
+
+**Sources:** Official project sites, documentation, and published material for each platform【28†L21-L24】【32†L27-L31】【54†L379-L381】【60†L66-L70】【18†L74-L81】【41†L325-L328】.

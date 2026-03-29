@@ -53,14 +53,16 @@ For each platform you identify:
 Your response will be saved as a Markdown file and must render identically in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
 
 **Permitted syntax only:**
+
 - ATX headings: `#`, `##`, `###`, `####`
 - Emphasis: `**bold**`, `_italic_`
 - Links: `[text](url)` inline only
 - Lists: `-` unordered, `1.` ordered
 - Tables: GFM pipe tables
-- Code: fenced code blocks with ` ``` `
+- Code: fenced code blocks with `` ``` ``
 
 **Prohibited syntax:**
+
 - Custom containers: `:::`, `!!!`, `> [!NOTE]`, `> [!WARNING]`
 - Extended syntax: `==highlight==`, `^superscript^`, `~subscript~`
 - Raw HTML
@@ -69,6 +71,7 @@ Your response will be saved as a Markdown file and must render identically in an
 **Whitespace:** leave a blank line before and after every heading, table, and code block.
 
 **Score notation:**
+
 - In platform sections: `**Dimension (X/5):**` — e.g., `**Technical Architecture (3/5):**`
 - In the summary table: bare number only — e.g., `3` — use `?` for unknown. Do not write `/5` in table cells.
 
