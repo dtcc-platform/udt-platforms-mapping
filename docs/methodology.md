@@ -38,6 +38,8 @@ The canonical data record for each platform is its row in `docs/platform-invento
 4. Paste them into the `[PASTE_SELECTED_PLATFORMS_HERE]` token in `prompts/platform-comparison.md`
 5. Run the comparison session and save the response to `responses/`
 
+Discovery dimension scores are judgment-based first-pass signals. The comparison prompt deepens them with full rubric-based research and primary source evidence — expect scores to shift.
+
 **Optional — License analysis:** For any platform in the discovery table, copy the header row and that platform's row and paste them into the `[PASTE_SELECTED_PLATFORM_HERE]` token in `prompts/license-analysis.md`.
 This can be run independently at any point — it does not need to precede or follow a comparison session.
 

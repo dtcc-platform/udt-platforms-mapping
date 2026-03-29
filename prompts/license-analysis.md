@@ -7,7 +7,6 @@ Use this prompt to evaluate the licensing of a UDT platform.
 3. Replace `[PASTE_SELECTED_PLATFORM_HERE]` with those rows
 4. Paste the completed prompt into your AI session
 
-> **Source of truth for license taxonomy and scoring:** `docs/license-review.md`
 > **Save response as:** `responses/<platform>-license.md` — e.g., `responses/cesium-license.md`. See `docs/methodology.md` for the full convention.
 
 ---
@@ -87,7 +86,7 @@ Your response will be saved as a Markdown file and must render identically in an
 
 **Whitespace:** leave a blank line before and after every heading, table, and code block.
 
-**Score notation:** in the Score field, bare number only (1–5). Do not write `/5`.
+**Score notation:** the Score output field uses a bare number only — e.g., `**Score:** 3`. Do not use the `(X/5)` inline form; that notation is for discovery and comparison profile headings, not for this flat field list.
 
 ---
 
