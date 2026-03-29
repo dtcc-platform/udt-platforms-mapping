@@ -6,47 +6,53 @@ A platform is included in this review if it satisfies at least one of the follow
 
 ### 1. Explicit Urban Digital Twin
 
-The platform explicitly presents itself as an urban or city-scale digital twin. This includes platforms that use the term "digital twin" in their official documentation, product descriptions, or marketing, and are scoped to urban environments (cities, districts, or built infrastructure at city scale).
+The platform explicitly presents itself as an urban or city-scale digital twin.
+This includes platforms that use the term "digital twin" in their official documentation, product descriptions, or marketing, and are scoped to urban environments (cities, districts, or built infrastructure at city scale).
 
 ### 2. City-Scale Capabilities
 
-The platform provides capabilities commonly used to build or operate urban digital twins, even if it does not use the term. This includes platforms for city-scale 3D visualization, urban simulation, large-scale geospatial data management, or multi-domain urban analytics (buildings, transport, energy, climate).
+The platform provides capabilities commonly used to build or operate urban digital twins, even if it does not use the term.
+This includes platforms for city-scale 3D visualization, urban simulation, large-scale geospatial data management, or multi-domain urban analytics (buildings, transport, energy, climate).
 
 ### 3. Adjacent Architecture or Governance
 
-The platform is a foundational building block commonly integrated into UDT systems — for example, open standards implementations (CityGML, IFC, OGC standards), enabling visualization engines (Cesium, Unity, Unreal with urban extensions), or infrastructure digital twin frameworks (iTwin). Excluded are standalone smart city IoT platforms, transport simulation tools, or standards bodies unless they are directly used as UDT building blocks.
+The platform is a foundational building block commonly integrated into UDT systems — for example, open standards implementations (CityGML, IFC, OGC standards), enabling visualization engines (Cesium, Unity, Unreal with urban extensions), or infrastructure digital twin frameworks (iTwin).
+Excluded are standalone smart city IoT platforms, transport simulation tools, or standards bodies unless they are directly used as UDT building blocks.
 
 ## Scope Boundary
 
-This review applies a **moderate** inclusion boundary. Platforms that are purely adjacent (e.g., generic IoT platforms, general-purpose GIS tools without urban twin framing) are excluded even if they could theoretically be used in a UDT context.
+This review applies a **moderate** inclusion boundary.
+Platforms that are purely adjacent (e.g., generic IoT platforms, general-purpose GIS tools without urban twin framing) are excluded even if they could theoretically be used in a UDT context.
 
 ## Research Approach
 
-Each platform is researched using primary sources only (see `docs/source-policy.md`). Findings are synthesized into `docs/review.md`. The canonical data record for each platform is its row in `docs/platform-inventory.md`.
+Each platform is researched using primary sources only (see `docs/source-policy.md`).
+Findings are synthesized into `docs/review.md`.
+The canonical data record for each platform is its row in `docs/platform-inventory.md`.
 
 ## Discovery to Comparison Workflow
 
 1. Run a discovery session using `prompts/platform-discovery.md` and save the response to `responses/`
-2. Open the saved response and place `x` in the **Select** column of the summary table for each platform you want to compare
-3. Copy only the `x`-marked rows
+2. Open the saved response and choose which platforms to compare
+3. Copy the rows you want to compare (including the header row) from the summary table
 4. Paste them into the `[PASTE_SELECTED_PLATFORMS_HERE]` token in `prompts/platform-comparison.md`
 5. Run the comparison session and save the response to `responses/`
-6. Clear the `x` marks from the discovery response when done
 
 For operational guidance on applying these criteria — including explicit exclusion examples, a seed list of known qualifying platforms, and a target corpus size — see [`docs/scope.md`](scope.md).
 
 ## File Naming
 
-All filename components use only lowercase letters, digits, and hyphens (kebab-case). No spaces, underscores, or uppercase.
+All filename components use only lowercase letters, digits, and hyphens (kebab-case).
+No spaces, underscores, or uppercase.
 
 ### Response files (`responses/`)
 
 Pattern: `<platform>-<prompt-type>.md`
 
-| Token | Values |
-| -------------- | ----------------------------------------- |
-| `<platform>` | kebab-case platform name, e.g. `cesium`, `3d-city-db` |
-| `<prompt-type>` | `discovery`, `comparison`, or `license` |
+| Token           | Values                                                |
+| --------------- | ----------------------------------------------------- |
+| `<platform>`    | kebab-case platform name, e.g. `cesium`, `3d-city-db` |
+| `<prompt-type>` | `discovery`, `comparison`, or `license`               |
 
 Examples:
 

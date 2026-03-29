@@ -139,7 +139,7 @@ Score each dimension 1–5 by judgment using the same scale as the comparison pr
 
 ---
 
-After all per-platform sections, append a summary table. Leave the **Select** column empty — the researcher fills it in to mark platforms for a comparison session:
+After all per-platform sections, append a summary table:
 
-| Name | Link | License | Type | Arch | Open | City | Mature | Integ | Gov | Inclusion Criterion | Select |
-| ---- | ---- | ------- | ---- | ---- | ---- | ---- | ------ | ----- | --- | ------------------- | ------ |
+| Name | Link | License | Type | Arch | Open | City | Mature | Integ | Gov | Inclusion Criterion |
+| ---- | ---- | ------- | ---- | ---- | ---- | ---- | ------ | ----- | --- | ------------------- |

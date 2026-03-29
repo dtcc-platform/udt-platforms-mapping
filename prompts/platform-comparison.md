@@ -3,12 +3,10 @@
 Use this prompt to produce a structured, evidence-based comparison of UDT platforms.
 
 1. Open the discovery response file for your research session
-2. Place `x` in the **Select** column for each platform you want to compare
-3. Copy only the marked rows from the summary table
-4. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
-5. Paste the completed prompt into your AI session
+2. Copy the rows you want to compare (including the header row) from the summary table
+3. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
+4. Paste the completed prompt into your AI session
 
-> **Source of truth for research dimensions:** `docs/methodology.md`
 > **Save response as:** `responses/<platform-a>-vs-<platform-b>-comparison.md` — e.g., `responses/cesium-vs-3dcitydb-comparison.md`. See `docs/methodology.md` for the full convention.
 
 ---
@@ -25,7 +23,7 @@ Use **primary sources only** (official websites, public repositories, published 
 
 [PASTE_SELECTED_PLATFORMS_HERE]
 
-Compare every platform present in the pasted table, plus DTCC. Treat the table fields (Type, License, Maturity) as known context and focus your research on dimensions not already captured there.
+Compare every platform present in the pasted table, plus DTCC. Treat the pasted table as a discovery baseline — use the identification fields (Name, Link, License, Type) and the first-pass dimension scores as starting context. Your task is to deepen each dimension with primary source research and produce authoritative scores and analysis for all six dimensions.
 
 ---
 
@@ -36,68 +34,68 @@ Score each platform 1–5 per dimension using the rubrics below.
 **1. Technical Architecture**
 Core technology stack, data models (CityGML, IFC, OGC standards, proprietary), component structure, deployment model, scalability approach.
 
-| Score | Criteria |
-| ----- | -------- |
-| 5 | Fully modular, open standards (CityGML/IFC/OGC), cloud-native or self-hostable |
-| 4 | Mostly modular, supports open standards with some proprietary layers |
-| 3 | Mixed architecture, partial standards support |
-| 2 | Largely monolithic, limited open standards |
-| 1 | Monolithic with proprietary data model, no open standards |
+| Score | Criteria                                                                       |
+| ----- | ------------------------------------------------------------------------------ |
+| 5     | Fully modular, open standards (CityGML/IFC/OGC), cloud-native or self-hostable |
+| 4     | Mostly modular, supports open standards with some proprietary layers           |
+| 3     | Mixed architecture, partial standards support                                  |
+| 2     | Largely monolithic, limited open standards                                     |
+| 1     | Monolithic with proprietary data model, no open standards                      |
 
 **2. Openness & Licensing**
 Source availability, license type, contribution model, commercial restrictions, dual licensing, open data formats.
 
-| Score | Criteria |
-| ----- | -------- |
-| 5 | Permissive open-source (MIT/Apache/BSD) + open data formats, no SaaS dependency |
-| 4 | Copyleft open-source, or open-core with substantial open component |
-| 3 | Open-core with significant proprietary features, or open source with restrictive data formats |
-| 2 | Primarily proprietary with limited open components or open APIs |
-| 1 | Fully proprietary, no public source, no open APIs |
+| Score | Criteria                                                                                      |
+| ----- | --------------------------------------------------------------------------------------------- |
+| 5     | Permissive open-source (MIT/Apache/BSD) + open data formats, no SaaS dependency               |
+| 4     | Copyleft open-source, or open-core with substantial open component                            |
+| 3     | Open-core with significant proprietary features, or open source with restrictive data formats |
+| 2     | Primarily proprietary with limited open components or open APIs                               |
+| 1     | Fully proprietary, no public source, no open APIs                                             |
 
 **3. City-Scale Capability**
 Urban domains covered (buildings, infrastructure, mobility, energy, climate, water, noise), geographic extent, multi-domain analytics, real-time vs. batch.
 
-| Score | Criteria |
-| ----- | -------- |
-| 5 | Comprehensive multi-domain urban coverage at full city scale |
-| 4 | Multi-domain coverage, strong city-scale support with minor gaps |
-| 3 | Several domains covered, city-scale with notable limitations |
-| 2 | Limited domains or district/building scale only |
-| 1 | Single narrow domain or sub-city scale |
+| Score | Criteria                                                         |
+| ----- | ---------------------------------------------------------------- |
+| 5     | Comprehensive multi-domain urban coverage at full city scale     |
+| 4     | Multi-domain coverage, strong city-scale support with minor gaps |
+| 3     | Several domains covered, city-scale with notable limitations     |
+| 2     | Limited domains or district/building scale only                  |
+| 1     | Single narrow domain or sub-city scale                           |
 
 **4. Maturity & Adoption**
 Development status, known city deployments (name cities if possible), release cadence, community activity.
 
-| Score | Criteria |
-| ----- | -------- |
-| 5 | Production-grade, multiple named city deployments, active community |
-| 4 | Production-ready, some city deployments or pilots, regular releases |
-| 3 | Stable but limited deployments, moderate activity |
-| 2 | Prototype or early production, few or no known deployments |
-| 1 | Concept or prototype, no known deployments |
+| Score | Criteria                                                            |
+| ----- | ------------------------------------------------------------------- |
+| 5     | Production-grade, multiple named city deployments, active community |
+| 4     | Production-ready, some city deployments or pilots, regular releases |
+| 3     | Stable but limited deployments, moderate activity                   |
+| 2     | Prototype or early production, few or no known deployments          |
+| 1     | Concept or prototype, no known deployments                          |
 
 **5. Integration Posture**
 Public APIs (REST, GraphQL, gRPC), plugin/extension ecosystem, data exchange standards, interoperability with other tools.
 
-| Score | Criteria |
-| ----- | -------- |
-| 5 | Rich public APIs, active plugin ecosystem, easy to compose with other tools |
-| 4 | Good APIs, some ecosystem, OGC-compliant interfaces |
-| 3 | Basic APIs, limited ecosystem, some interoperability |
-| 2 | Minimal public APIs, closed or limited integration |
-| 1 | Closed system, no public APIs |
+| Score | Criteria                                                                    |
+| ----- | --------------------------------------------------------------------------- |
+| 5     | Rich public APIs, active plugin ecosystem, easy to compose with other tools |
+| 4     | Good APIs, some ecosystem, OGC-compliant interfaces                         |
+| 3     | Basic APIs, limited ecosystem, some interoperability                        |
+| 2     | Minimal public APIs, closed or limited integration                          |
+| 1     | Closed system, no public APIs                                               |
 
 **6. Governance Model**
 Who controls the roadmap (vendor, consortium, community, research institution), contribution model, funding model.
 
-| Score | Criteria |
-| ----- | -------- |
-| 5 | Open consortium or community governance, transparent decision-making, diverse funding |
-| 4 | Academic or public institution governance with open contribution |
-| 3 | Mixed governance, some community input |
-| 2 | Single organisation control with limited community input |
-| 1 | Single corporate control, no community input |
+| Score | Criteria                                                                              |
+| ----- | ------------------------------------------------------------------------------------- |
+| 5     | Open consortium or community governance, transparent decision-making, diverse funding |
+| 4     | Academic or public institution governance with open contribution                      |
+| 3     | Mixed governance, some community input                                                |
+| 2     | Single organisation control with limited community input                              |
+| 1     | Single corporate control, no community input                                          |
 
 ---
 
@@ -116,14 +114,16 @@ Who controls the roadmap (vendor, consortium, community, research institution), 
 Your response will be saved as a Markdown file and must render identically in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
 
 **Permitted syntax only:**
+
 - ATX headings: `#`, `##`, `###`, `####`
 - Emphasis: `**bold**`, `_italic_`
 - Links: `[text](url)` inline only
 - Lists: `-` unordered, `1.` ordered
 - Tables: GFM pipe tables
-- Code: fenced code blocks with ` ``` `
+- Code: fenced code blocks with `` ``` ``
 
 **Prohibited syntax:**
+
 - Custom containers: `:::`, `!!!`, `> [!NOTE]`, `> [!WARNING]`
 - Extended syntax: `==highlight==`, `^superscript^`, `~subscript~`
 - Raw HTML
@@ -132,6 +132,7 @@ Your response will be saved as a Markdown file and must render identically in an
 **Whitespace:** leave a blank line before and after every heading, table, and code block.
 
 **Score notation:**
+
 - In profile sections: `**Dimension Name (X/5):**` — e.g., `**Technical Architecture (4/5):**`
 - In the scoring table: bare number only — e.g., `4` — use `?` for unknown. Do not write `/5` in table cells.
 
