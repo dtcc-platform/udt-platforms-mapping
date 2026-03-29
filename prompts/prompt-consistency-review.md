@@ -36,7 +36,7 @@ Check all three prompt files (`platform-discovery.md`, `platform-comparison.md`,
 
 - **1.1** Each usage header uses a numbered-step list (not inline prose).
 - **1.2** Each usage header has exactly one `> **Save response as:**` blockquote and no other blockquotes.
-- **1.3** The save-as example follows the `responses/<scope>-<prompt-type>.md` pattern from `docs/methodology.md`.
+- **1.3** The save-as example follows the `responses/<platform>-<prompt-type>.md` pattern from `docs/methodology.md` (using a scope descriptor for broad discovery sessions, `vs` join for two-platform comparisons — see `docs/methodology.md` for special cases).
 
 ---
 
@@ -51,7 +51,7 @@ Check all three prompt files (`platform-discovery.md`, `platform-comparison.md`,
 #### 3. Research Conduct Instructions
 
 - **3.1** All three prompts instruct the model to use primary sources only.
-- **3.2** All three prompts instruct the model to state "unknown" or "unclear" rather than fabricating information.
+- **3.2** Each prompt handles uncertainty in a way appropriate to its output type: the discovery prompt uses `?` for unknown dimension scores; the comparison and license prompts instruct the model to state "unknown" or "unclear" for prose fields. Verify each prompt uses the correct form for its output structure — do not require identical wording across all three.
 - **3.3** All three prompts instruct the model to cite sources with inline links `[Description](https://...)`.
 
 ---
@@ -82,11 +82,13 @@ Check all three prompt files (`platform-discovery.md`, `platform-comparison.md`,
 
 #### 7. Spec–Prompt Alignment
 
-For each requirement in the three spec files, verify the corresponding prompt satisfies it. Flag any requirement whose scenario WHEN/THEN condition is not met by the current prompt content.
+For each requirement in the three spec files, verify the corresponding prompt satisfies it. Produce **one table row per requirement** (not one row per spec file) — use the requirement name as the Check identifier. Flag any requirement whose scenario WHEN/THEN condition is not met by the current prompt content.
 
-- **7.1** All requirements in `openspec/specs/platform-discovery-prompt/spec.md` are satisfied by `prompts/platform-discovery.md`.
-- **7.2** All requirements in `openspec/specs/platform-comparison-prompt/spec.md` are satisfied by `prompts/platform-comparison.md`.
-- **7.3** All requirements in `openspec/specs/license-analysis-prompt/spec.md` are satisfied by `prompts/license-analysis.md`.
+**7-discovery** — check each requirement in `openspec/specs/platform-discovery-prompt/spec.md` against `prompts/platform-discovery.md`.
+
+**7-comparison** — check each requirement in `openspec/specs/platform-comparison-prompt/spec.md` against `prompts/platform-comparison.md`.
+
+**7-license** — check each requirement in `openspec/specs/license-analysis-prompt/spec.md` against `prompts/license-analysis.md`.
 
 ---
 
@@ -103,14 +105,16 @@ For each requirement in the three spec files, verify the corresponding prompt sa
 Your response will be saved as a Markdown file.
 
 **Permitted syntax only:**
+
 - ATX headings: `#`, `##`, `###`, `####`
 - Emphasis: `**bold**`, `_italic_`
 - Links: `[text](url)` inline only
 - Lists: `-` unordered, `1.` ordered
 - Tables: GFM pipe tables
-- Code: fenced code blocks with ` ``` `
+- Code: fenced code blocks with `` ``` ``
 
 **Prohibited syntax:**
+
 - Custom containers: `:::`, `!!!`, `> [!NOTE]`, `> [!WARNING]`
 - Extended syntax: `==highlight==`, `^superscript^`, `~subscript~`
 - Raw HTML
@@ -136,7 +140,10 @@ Then produce a structured report with one section per checklist group (1–8). U
 | ----- | ------ | ----- |
 | 1.1   | PASS   | …     |
 
+For Section 7, produce one row per requirement (using the requirement name as the Check identifier), not one row per spec file.
+
 End with a **Summary** section listing:
+
 - Total checks: N
 - PASS: N
 - WARN: N
