@@ -1,11 +1,11 @@
 # Platform Discovery Prompt
 
 Use this prompt to discover Urban Digital Twin (UDT) platforms for the research inventory.
-Copy the prompt below, replace `[SEARCH_SCOPE]` with your focus (e.g., "European city-scale platforms",
-"platforms using CityGML", "open-source UDT frameworks"), and paste into your AI session.
 
-> **Source of truth for inclusion criteria:** `docs/methodology.md`
-> **Save response as:** `responses/<platform>-discovery.md` — e.g., `responses/cesium-discovery.md`; for broad sessions use a scope descriptor e.g., `responses/european-platforms-discovery.md`. See `docs/methodology.md` for the full convention.
+1. Replace `[SEARCH_SCOPE]` with your focus (e.g., "European city-scale platforms", "platforms using CityGML", "open-source UDT frameworks")
+2. Paste the completed prompt into your AI session
+
+> **Save response as:** `responses/<scope>-discovery.md` — e.g., `responses/european-platforms-discovery.md`. See `docs/methodology.md` for the full convention.
 
 ---
 
