@@ -23,6 +23,8 @@ Your task is to assess the software license and data licensing posture of the pl
 
 Derive the platform name from the **Name** column. Use the **Link** column to locate the license source (check repository root for `LICENSE`/`COPYING`, SPDX identifier in package metadata, and official site documentation). Treat the **License** column value as a seed signal — verify it from primary sources and correct if needed.
 
+Use **primary sources only** (repository root, package metadata, official site documentation). Cite the source for every claim with an inline link `[Description](https://...)`. If you cannot confirm a license name, URL, or tier distinction from primary sources, state "unknown" or "unclear" — do not fabricate or infer without evidence.
+
 ---
 
 ### License Family Taxonomy
@@ -128,3 +130,43 @@ Structure your response with the following sections:
 #### Open Questions
 
 Any aspects of the license that were unclear, unavailable, or require further investigation.
+
+---
+
+**Example response (fictional platform — for structure reference only):**
+
+---
+
+```yaml
+model: example-model-1.0
+date: 2026-03-29
+prompt: license-analysis
+```
+
+#### Software License
+
+- **License identified:** Apache License 2.0 (SPDX: Apache-2.0)
+- **Source located at:** [LICENSE file in repository root](https://github.com/example/open-city-platform/blob/main/LICENSE)
+- **License family:** Permissive open source
+- **Summary:** Apache-2.0 permits use, modification, and redistribution with minimal restriction. Commercial use is allowed. Derivative works are not required to be open source, but must retain the original copyright notice and NOTICE file.
+
+#### Data Licensing
+
+- **Open geospatial standards used:** CityGML 3.0, OGC WFS
+- **Output data formats:** Open (GeoJSON, CityGML)
+- **Data format lock-in risk:** Low — all output formats are open standards with broad tooling support
+- **Bundled dataset licenses:** Not applicable; no datasets are bundled
+
+#### Community vs. Enterprise Split
+
+- Is there a community edition distinct from an enterprise edition? No
+- The repository contains a single edition under Apache-2.0 with no feature gating. Confirmed via [repository README](https://github.com/example/open-city-platform/blob/main/README.md).
+
+#### Openness & Licensing Score
+
+- **Score:** 5
+- **Rationale:** Permissive open-source licence (Apache-2.0) confirmed from primary source, all output formats use open OGC standards, and no enterprise tier exists.
+
+#### Open Questions
+
+None — license is clearly stated in the repository root and all claims were verified from primary sources.
