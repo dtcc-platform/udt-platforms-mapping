@@ -1,16 +1,4 @@
-### Requirement: Platform discovery prompt file exists
-The repository SHALL contain a file at `prompts/platform-discovery.md` that provides a self-contained prompt template for AI-assisted discovery of UDT platforms.
-
-#### Scenario: File is present and non-empty
-- **WHEN** a researcher navigates to `prompts/platform-discovery.md`
-- **THEN** the file exists and contains a complete, copy-pasteable prompt
-
-### Requirement: Discovery prompt embeds inclusion criteria
-The prompt template SHALL include all three inclusion criteria from `docs/methodology.md` — Explicit Urban Digital Twin, City-Scale Capabilities, and Adjacent Architecture or Governance — so the model can apply them without additional context.
-
-#### Scenario: Researcher pastes prompt without supplemental docs
-- **WHEN** a researcher copies the prompt and pastes it into an AI chat session without pasting `docs/methodology.md`
-- **THEN** the model has sufficient criteria to correctly classify a platform as in-scope or out-of-scope
+## MODIFIED Requirements
 
 ### Requirement: Discovery prompt requests structured output aligned with inventory
 The prompt template SHALL instruct the model to return one `##`-level Markdown section per platform containing two blocks:
@@ -46,19 +34,6 @@ The prompt template SHALL state that the response contains exactly three parts, 
 - **WHEN** an AI would otherwise add a `Sources`, `Notes`, or summary section after the platform sections
 - **THEN** it omits that extra content and ends the response after the last required platform section
 
-### Requirement: Discovery prompt response begins with a required summary table
-The prompt template SHALL instruct the model to output the summary table immediately after the metadata block and before any per-platform sections. The table is required and SHALL use the following columns: **Name**, **Link**, **License**, **Type**, **Arch**, **Open**, **City**, **Mature**, **Integ**, **Gov**, **Inclusion Criterion**.
-
-Score columns (Arch, Open, City, Mature, Integ, Gov) SHALL contain bare numbers (1–5) or `?` for unknown — no `/5` suffix.
-
-#### Scenario: Researcher opens a discovery response to start a comparison
-- **WHEN** a researcher opens a saved discovery response
-- **THEN** the summary table appears at the top (after the metadata block), before any per-platform detail sections, so rows can be copied immediately without scrolling
-
-#### Scenario: Rows are pasted into the comparison prompt
-- **WHEN** a researcher copies rows from the summary table and pastes them into `[PASTE_SELECTED_PLATFORMS_HERE]`
-- **THEN** the comparison prompt receives platform names, license, type, and six seed scores as context
-
 ### Requirement: Discovery prompt enforces agent-agnostic output structure
 The prompt template SHALL include a concrete example of the per-platform section structure and SHALL specify the following formatting constraints:
 
@@ -82,54 +57,6 @@ The prompt template SHALL state that no extra headings or sections are permitted
 #### Scenario: Model would normally add extra sections
 - **WHEN** an AI model would normally add a heading such as `## Sources` or `## Notes`
 - **THEN** the prompt instruction suppresses that and the response contains only the required headings
-
-### Requirement: Discovery prompt uses a parameterized search scope token
-The prompt template SHALL include a `[SEARCH_SCOPE]` placeholder that the researcher replaces with a specific domain, region, or technology focus before using the prompt. If the literal text `[SEARCH_SCOPE]` has not been replaced, the model SHALL treat the scope as: global city-scale Urban Digital Twin platforms and foundational building blocks (commercial and open-source).
-
-#### Scenario: Researcher customizes search scope
-- **WHEN** a researcher replaces `[SEARCH_SCOPE]` with a value such as "European city-scale platforms" or "platforms using CityGML"
-- **THEN** the model scopes its discovery results to that domain without other prompt changes needed
-
-#### Scenario: Researcher forgets to replace the scope token
-- **WHEN** a researcher pastes the prompt without replacing `[SEARCH_SCOPE]`
-- **THEN** the model defaults to a global UDT scope rather than erroring or producing a generic result
-
-
-### Requirement: Discovery prompt output begins with a model metadata block
-The prompt template SHALL instruct the model to begin its response with a fenced YAML code block containing provenance metadata, so that saved response files are self-documenting.
-
-The metadata block SHALL contain exactly three fields:
-- `model` — the AI model's name and version as reported by the model itself
-- `date` — the session date in `YYYY-MM-DD` format
-- `prompt` — the name of the prompt template used (`platform-discovery`)
-
-The metadata block SHALL appear before any other content in the response.
-
-#### Scenario: Response is saved as a file and opened later
-- **WHEN** a researcher opens a saved discovery response file
-- **THEN** the first visible element is the metadata block identifying the model, date, and prompt template
-
-#### Scenario: Model self-reports its name and version
-- **WHEN** the prompt instructs the model to fill in the `model` field
-- **THEN** the model populates the field with its own name and version to the best of its ability
-
-### Requirement: Discovery prompt usage header includes save-as filename instruction
-The prompt template's usage header SHALL include numbered step-by-step instructions telling the researcher to replace `[SEARCH_SCOPE]` with their focus area, paste the completed prompt into their AI session, and save the response using the filename pattern defined in `docs/methodology.md`, with a concrete example using the `discovery` prompt-type token (e.g., `responses/european-platforms-discovery.md`).
-
-#### Scenario: Researcher reads the usage header before pasting the prompt
-- **WHEN** a researcher reads the usage instructions at the top of `prompts/platform-discovery.md`
-- **THEN** they see numbered steps and the expected filename pattern before they begin the session
-
-### Requirement: Discovery prompt requires explicit uncertainty handling
-The prompt template SHALL instruct the model to state `?` when a dimension score cannot be assessed from available sources, and to never fabricate platform details, license names, or deployment claims.
-
-#### Scenario: Model cannot assess a dimension
-- **WHEN** an AI cannot find sufficient information to score a dimension
-- **THEN** the response uses `?` rather than guessing
-
-#### Scenario: Model cannot verify a platform detail
-- **WHEN** an AI cannot confirm a license name or deployment from primary sources
-- **THEN** the response states the information is unknown rather than fabricating it
 
 ### Requirement: Discovery prompt instructs use of primary sources
 The prompt template SHALL instruct the model to base its findings on primary sources only — official websites, public repositories, published papers, and official documentation.
