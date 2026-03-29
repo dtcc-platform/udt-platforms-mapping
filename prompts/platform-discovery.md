@@ -48,19 +48,6 @@ For each platform you identify:
 
 ---
 
-### Markdown Syntax Rules
-
-Your response will be saved as a Markdown file and must render correctly in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
-
-- Use only CommonMark / GFM syntax: `#` ATX headings, `**bold**`, `_italic_`, `[text](url)` links, fenced code blocks, pipe tables, `-` unordered lists, `1.` ordered lists
-- Cite sources as inline links only: `[Description](https://...)` — no numeric brackets (`[1]`), no footnotes (`[^1]`), no AI-specific citation formats
-- Do not use custom containers or admonitions (`:::`, `!!!`, `> [!NOTE]`, etc.)
-- Do not use extended syntax: no `==highlight==`, no `^superscript^`, no `~subscript~`
-- Do not embed raw HTML
-- Leave a blank line before and after every heading, table, and code block
-
----
-
 ### Markdown and Formatting Rules
 
 Your response will be saved as a Markdown file and must render identically in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
