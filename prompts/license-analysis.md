@@ -65,16 +65,27 @@ Work through each item:
 
 ---
 
-### Markdown Syntax Rules
+### Markdown and Formatting Rules
 
-Your response will be saved as a Markdown file and must render correctly in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
+Your response will be saved as a Markdown file and must render identically in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
 
-- Use only CommonMark / GFM syntax: `#` ATX headings, `**bold**`, `_italic_`, `[text](url)` links, fenced code blocks, pipe tables, `-` unordered lists, `1.` ordered lists
-- Cite sources as inline links only: `[Description](https://...)` — no numeric brackets (`[1]`), no footnotes (`[^1]`), no AI-specific citation formats
-- Do not use custom containers or admonitions (`:::`, `!!!`, `> [!NOTE]`, etc.)
-- Do not use extended syntax: no `==highlight==`, no `^superscript^`, no `~subscript~`
-- Do not embed raw HTML
-- Leave a blank line before and after every heading, table, and code block
+**Permitted syntax only:**
+- ATX headings: `#`, `##`, `###`, `####`
+- Emphasis: `**bold**`, `_italic_`
+- Links: `[text](url)` inline only
+- Lists: `-` unordered, `1.` ordered
+- Tables: GFM pipe tables
+- Code: fenced code blocks with ` ``` `
+
+**Prohibited syntax:**
+- Custom containers: `:::`, `!!!`, `> [!NOTE]`, `> [!WARNING]`
+- Extended syntax: `==highlight==`, `^superscript^`, `~subscript~`
+- Raw HTML
+- Numeric citations `[1]`, footnotes `[^1]`, AI-specific formats `【†source】`
+
+**Whitespace:** leave a blank line before and after every heading, table, and code block.
+
+**Score notation:** in the Score field, bare number only (1–5). Do not write `/5`.
 
 ---
 

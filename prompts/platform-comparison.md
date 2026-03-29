@@ -114,7 +114,6 @@ Who controls the roadmap (vendor, consortium, community, research institution), 
 Your response will be saved as a Markdown file and must render identically in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
 
 **Permitted syntax only:**
-
 - ATX headings: `#`, `##`, `###`, `####`
 - Emphasis: `**bold**`, `_italic_`
 - Links: `[text](url)` inline only
@@ -123,7 +122,6 @@ Your response will be saved as a Markdown file and must render identically in an
 - Code: fenced code blocks with `` ``` ``
 
 **Prohibited syntax:**
-
 - Custom containers: `:::`, `!!!`, `> [!NOTE]`, `> [!WARNING]`
 - Extended syntax: `==highlight==`, `^superscript^`, `~subscript~`
 - Raw HTML
@@ -132,7 +130,6 @@ Your response will be saved as a Markdown file and must render identically in an
 **Whitespace:** leave a blank line before and after every heading, table, and code block.
 
 **Score notation:**
-
 - In profile sections: `**Dimension Name (X/5):**` — e.g., `**Technical Architecture (4/5):**`
 - In the scoring table: bare number only — e.g., `4` — use `?` for unknown. Do not write `/5` in table cells.
 
