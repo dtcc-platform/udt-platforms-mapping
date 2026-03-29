@@ -311,7 +311,20 @@ One `###` profile per platform following the example structure above. Include al
 
 **Part 3 — Landscape Observations**
 
-- What gaps exist in the landscape?
-- Where does DTCC sit relative to comparable platforms?
-- Which platforms are most directly comparable to DTCC?
-- Which are complementary rather than competing?
+Use exactly the following four subheadings in this order, each followed by a bullet list. Use `####` for subheadings (not `###`, which is reserved for platform profiles in Part 2). Do not add or remove subheadings.
+
+#### Landscape Gaps
+
+- What capabilities or platform types are missing or underrepresented in this set?
+
+#### DTCC's Position
+
+- Where does DTCC sit relative to the platforms compared here?
+
+#### Comparable Platforms
+
+- Which platforms are most directly comparable to DTCC in purpose, architecture, or target use case?
+
+#### Complementary Platforms
+
+- Which platforms are complementary to DTCC rather than competing — i.e., tools DTCC could integrate with or build on?
