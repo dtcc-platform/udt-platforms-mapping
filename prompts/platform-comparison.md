@@ -5,11 +5,13 @@ Use this prompt to produce a structured, evidence-based comparison of UDT platfo
 1. Open the discovery response file for your research session
 2. Copy the rows you want to compare (including the header row) from the summary table
 3. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
-4. Paste the completed prompt into your AI session
+4. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
 
 > **Save response as:** `responses/<platform-a>-vs-<platform-b>-comparison.md` — e.g., `responses/cesium-vs-3dcitydb-comparison.md`. See `docs/methodology.md` for the full convention.
 
 ---
+
+> Paste into your AI session from this line onwards.
 
 ## Prompt
 

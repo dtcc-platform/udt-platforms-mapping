@@ -3,10 +3,12 @@
 Use this prompt to discover Urban Digital Twin (UDT) platforms for the research inventory.
 
 1. Replace `[SEARCH_SCOPE]` with your focus (e.g., "European city-scale platforms", "platforms using CityGML", "open-source UDT frameworks")
-2. Paste the completed prompt into your AI session
+2. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
 3. Save the response as `responses/<scope>-discovery.md` — e.g., `responses/european-platforms-discovery.md`. See `docs/methodology.md` for the full convention.
 
 ---
+
+> Paste into your AI session from this line onwards.
 
 ## Prompt
 
