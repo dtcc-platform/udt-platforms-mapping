@@ -18,6 +18,8 @@ Your task is to assess the software license and data licensing posture of the pl
 
 **Platform (from discovery summary table):**
 
+**Before proceeding:** If the placeholder below still contains the literal text `[PASTE_SELECTED_PLATFORM_HERE]`, stop and ask the user to supply the required data before continuing. Do not attempt to generate output without it.
+
 [PASTE_SELECTED_PLATFORM_HERE]
 
 Derive the platform name from the **Name** column. Use the **Link** column to locate the license source (check repository root for `LICENSE`/`COPYING`, SPDX identifier in package metadata, and official site documentation). Treat the **License** column value as a seed signal — verify it from primary sources and correct if needed.

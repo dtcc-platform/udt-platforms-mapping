@@ -21,6 +21,8 @@ Use **primary sources only** (official websites, public repositories, published 
 
 **Platforms to compare** (rows from the discovery summary table — include DTCC as a reference entry):
 
+**Before proceeding:** If the placeholder below still contains the literal text `[PASTE_SELECTED_PLATFORMS_HERE]`, stop and ask the user to supply the required data before continuing. Do not attempt to generate output without it.
+
 [PASTE_SELECTED_PLATFORMS_HERE]
 
 | Name                               | Link                                                                                                                          | License                                | Type                                         | Arch | Open | City | Mature | Integ | Gov | Inclusion Criterion                 |
