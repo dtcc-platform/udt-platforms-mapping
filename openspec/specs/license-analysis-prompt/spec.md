@@ -51,14 +51,10 @@ The prompt template SHALL instruct the model to address every item in the review
 - **THEN** each of the five checklist items from `docs/license-review.md` is addressed in the response
 
 ### Requirement: License analysis prompt output uses portable Markdown syntax
-The prompt template SHALL instruct the model to format its response using only CommonMark / GFM syntax, so that saved response files render correctly in any standard Markdown viewer without AI-specific formatting artifacts.
+The prompt template SHALL comply with the shared Markdown contract defined in `prompt-markdown-format`.
 
-The instruction SHALL appear under the section heading `### Markdown and Formatting Rules` and SHALL use the structured `**Permitted syntax only:**` / `**Prohibited syntax:**` format. It SHALL specify:
+In addition to that shared contract, the instruction SHALL appear under the section heading `### Markdown and Formatting Rules` and SHALL specify:
 
-- **Permitted syntax only:** ATX headings (`#`), `**bold**`, `_italic_`, `[text](url)` links, fenced code blocks, GFM pipe tables, `-` unordered lists, `1.` ordered lists
-- **Citation format:** inline links `[Description](https://...)` only — no numeric brackets (`[1]`), no footnotes (`[^1]`), no AI-specific formats
-- **Prohibited syntax:** custom containers (`:::`, `!!!`, `> [!NOTE]`), extended syntax (`==highlight==`, `^superscript^`, `~subscript~`), raw HTML
-- **Whitespace:** blank line before and after every heading, table, and code block
 - **Score notation:** in the Score field, bare number only (1–5) — do not write `/5`
 
 #### Scenario: Model uses AI-specific citation format

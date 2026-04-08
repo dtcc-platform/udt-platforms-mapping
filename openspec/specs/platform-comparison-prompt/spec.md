@@ -125,14 +125,10 @@ The prompt template SHALL include a description of DTCC (Digital Twin Cities Cen
 
 ### Requirement: Comparison prompt enforces agent-agnostic output structure
 
-The prompt template SHALL include a concrete example of the per-platform profile structure so any agent can reproduce the exact shape mechanically. The prompt SHALL also include a complete list of prohibited Markdown syntax to prevent agent-specific formatting artifacts.
+The prompt template SHALL include a concrete example of the per-platform profile structure so any agent can reproduce the exact shape mechanically. The prompt SHALL comply with the shared Markdown contract defined in `prompt-markdown-format`.
 
-The prompt SHALL specify:
+In addition to that shared contract, the prompt SHALL specify:
 
-- **Permitted syntax only:** ATX headings (`#`), `**bold**`, `_italic_`, `[text](url)` links, fenced code blocks, GFM pipe tables, `-` unordered lists, `1.` ordered lists
-- **Citation format:** inline links `[Description](https://...)` only — no numeric brackets (`[1]`), no footnotes (`[^1]`), no AI-specific citation formats (e.g., `【†source】`)
-- **Prohibited syntax:** custom containers (`:::`, `!!!`, `> [!NOTE]`), extended syntax (`==highlight==`, `^superscript^`, `~subscript~`), raw HTML
-- **Whitespace:** blank line before and after every heading, table, and code block
 - **Profile heading level:** every platform profile SHALL use `###` as the top-level heading so profiles nest consistently under part headings
 - **Score notation:** dimension scores SHALL always be written as `X/5` (e.g., `4/5`) — no other formats (`★★★★☆`, `4 out of 5`, `80%`, bold numbers) are permitted
 - **Score placement:** in profiles, scores SHALL appear inline with the dimension label as `**Dimension (X/5):**` — e.g., `**Technical Architecture (4/5):**`

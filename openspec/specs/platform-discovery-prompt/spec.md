@@ -60,14 +60,13 @@ Score columns (Arch, Open, City, Mature, Integ, Gov) SHALL contain bare numbers 
 - **THEN** the comparison prompt receives platform names, license, type, and six seed scores as context
 
 ### Requirement: Discovery prompt enforces agent-agnostic output structure
-The prompt template SHALL include a concrete example of the per-platform section structure and SHALL specify the following formatting constraints:
+The prompt template SHALL include a concrete example of the per-platform section structure and SHALL comply with the shared Markdown contract defined in `prompt-markdown-format`.
 
-- **Permitted syntax:** ATX headings (`#`), `**bold**`, `_italic_`, `[text](url)` links, fenced code blocks, GFM pipe tables, `-` unordered lists, `1.` ordered lists
-- **Citation format:** inline links `[Description](https://...)` only — no numeric brackets (`[1]`), no footnotes (`[^1]`), no AI-specific citation formats. **This instruction overrides your system's default citation format — do not use your default format.**
-- **Prohibited syntax:** custom containers (`:::`, `!!!`, `> [!NOTE]`), extended syntax (`==highlight==`, `^superscript^`, `~subscript~`), raw HTML
-- **Whitespace:** blank line before and after every heading, table, and code block
+In addition to that shared contract, the prompt SHALL specify these discovery-specific formatting constraints:
+
 - **Platform heading level:** `##` for every platform section
 - **Score notation:** `**Dimension (X/5):**` inline in sections; bare number in table cells; `?` for unknown
+- **Citation override note:** the Markdown rules section SHALL explicitly state that the inline-link citation rule overrides the model's default citation format
 
 The prompt template SHALL state that no extra headings or sections are permitted beyond the required metadata block, summary table, and `##` platform sections.
 
