@@ -25,8 +25,8 @@ flowchart TD
     scope["📋 01-scope.md\nInclusion criteria & seed list"]
     policy["📋 03-source-policy.md\nEvidence rules"]
 
-    disc["prompts/\nplatform-discovery.md"]
-    dresp["responses/\n*-discovery.md"]
+    disc["prompts/\nplatform-discovery.md\n― global scope ―"]
+    dresp["responses/\nglobal-platforms-discovery.md"]
     select["Select platforms\nfrom summary table"]
     comp["prompts/\nplatform-comparison.md"]
     cresp["responses/\n*-comparison.md"]
@@ -34,11 +34,12 @@ flowchart TD
     table["docs/\n05-platform-inventory.md"]
     lic["prompts/\nlicense-analysis.md\noptional"]
 
-    scope -->|"calibrate scope"| disc
+    scope -->|"inclusion criteria"| disc
     policy -->|"evidence rules"| disc
     policy -->|"evidence rules"| comp
     disc --> dresp
-    dresp -->|"copy selected rows"| comp
+    dresp --> select
+    select -->|"copy selected rows"| comp
     comp --> cresp
     cresp -->|"auto-scan"| inv
     inv -->|"paste rows"| table

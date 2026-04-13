@@ -2,9 +2,8 @@
 
 Use this prompt to discover Urban Digital Twin (UDT) platforms for the research inventory.
 
-1. Replace `[SEARCH_SCOPE]` with your focus (e.g., "European city-scale platforms", "platforms using CityGML", "open-source UDT frameworks")
-2. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
-3. Save the response as `responses/<scope>-discovery.md` — e.g., `responses/european-platforms-discovery.md`. See `docs/methodology.md` for the full convention.
+1. Paste into your AI session starting from the cut-line below — do not include these usage instructions above
+2. Save the response as `responses/global-platforms-discovery.md`. See `docs/02-methodology.md` for the full convention.
 
 ---
 
@@ -16,9 +15,7 @@ You are a research assistant helping to map the landscape of Urban Digital Twin 
 Your task is to identify platforms that qualify for inclusion based on the criteria below,
 using **primary sources only** (official websites, public repositories, published papers, official documentation).
 
-**Search scope:** [SEARCH_SCOPE]
-
-If you see the literal text `[SEARCH_SCOPE]` and it has not been replaced, treat the scope as: global city-scale Urban Digital Twin platforms and foundational building blocks (commercial and open-source).
+**Search scope:** Global city-scale Urban Digital Twin platforms and foundational building blocks (commercial and open-source). Cover all major geographies — include non-English-speaking markets and government-led initiatives, not only English-language or US/EU platforms.
 
 ---
 
