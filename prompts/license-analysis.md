@@ -13,6 +13,8 @@ This prompt can be used in an AI web research chat or an AI CLI session. In a we
 
 ---
 
+> Paste into your AI session from this line onwards.
+
 ## Prompt
 
 Before you begin:
