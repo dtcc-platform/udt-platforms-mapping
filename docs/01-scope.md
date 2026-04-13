@@ -35,6 +35,32 @@ A platform qualifies if it satisfies **at least one** of the following, evidence
 
 ---
 
+## Exclusion Criteria
+
+A platform is excluded if it falls into any of the following categories, even if it is technically capable of contributing to a UDT.
+
+### A. Spec or Standard
+
+**Excluded if:** The project's primary output is a data model specification, schema, or governance standard — not a runnable platform. Standards bodies and specification documents are out of scope; their implementations (e.g., an OGC-compliant server) may qualify separately.
+
+**Examples:** CityGML (OGC standard), IFC (buildingSMART standard), NGSI-LD (ETSI standard), OGC SensorThings API (specification).
+
+### B. Single Domain
+
+**Excluded if:** The platform is purpose-built for a single urban domain (e.g., building energy, traffic flow, air quality) with no stated intent or capability to integrate across multiple domains at city scale.
+
+**Examples:** SUMO (transport simulation), EnergyPlus (building energy), OpenNoise (acoustic modelling).
+
+### C. General Purpose
+
+**Excluded if:** The platform is a general-purpose cloud, IoT, GIS, or data platform with no explicit urban digital twin framing or positioning in official documentation.
+
+**Examples:** AWS IoT Core, Azure IoT Hub, Esri ArcGIS (base platform), InfluxDB, Apache Kafka.
+
+> **Note:** The labels `Spec or Standard`, `Single Domain`, and `General Purpose` are the canonical exclusion criterion values used in the `Criterion` column of discovery response summary tables.
+
+---
+
 ## Explicit Exclusions
 
 The following categories and named examples are **out of scope** under the moderate inclusion boundary:

@@ -100,11 +100,23 @@ prompt: platform-discovery
 
 Immediately after the metadata block, output the summary table covering all discovered platforms:
 
-| Name | Link | License | Type | Arch | Open | City | Mature | Integ | Gov | Inclusion Criterion |
-| ---- | ---- | ------- | ---- | ---- | ---- | ---- | ------ | ----- | --- | ------------------- |
+| Name | Link | License | Type | Arch | Open | City | Mature | Integ | Gov | Criterion |
+| ---- | ---- | ------- | ---- | ---- | ---- | ---- | ------ | ----- | --- | --------- |
 
-Use bare numbers (1–5) in score cells. Use `?` for unknown. Do not write `/5`.
-For `Inclusion Criterion`, use only one of these exact values: `Explicit UDT`, `City-Scale Capabilities`, `Adjacent Architecture or Governance`.
+Use bare numbers (1–5) in score cells for included platforms. Use `?` for unknown. Do not write `/5`.
+
+For `Criterion`, use only one of these exact values:
+
+- **Inclusion:** `Explicit UDT`, `City-Scale Capabilities`, `Adjacent Architecture or Governance`
+- **Exclusion:** `Spec or Standard`, `Single Domain`, `General Purpose`
+
+Platforms that do not meet any inclusion criterion SHALL appear in the summary table with `-1` in all six score columns (Arch, Open, City, Mature, Integ, Gov) and their exclusion criterion label in the `Criterion` column. Per-platform `##` sections are NOT required for excluded platforms — include them only if they add useful detail.
+
+Example excluded row:
+
+| Name | Link | License | Type | Arch | Open | City | Mature | Integ | Gov | Criterion |
+| ---- | ---- | ------- | ---- | ---- | ---- | ---- | ------ | ----- | --- | --------- |
+| SUMO | https://eclipse.dev/sumo/ | EPL-2.0 | Transport simulation | -1 | -1 | -1 | -1 | -1 | -1 | Single Domain |
 
 Then return one section per platform, ordered by relevance to city-scale digital twin use cases. Use a `##` heading for each platform name, followed by two blocks — identification fields, then six scored dimension fields:
 

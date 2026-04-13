@@ -1,15 +1,15 @@
 # Platform Inventory Prompt
 
-Use this prompt to curate `docs/05-platform-inventory.md` from all completed comparison response files.
+Use this prompt to curate `docs/05-platform-inventory.csv` from all discovery and comparison response files.
 
 **Requires:** An AI CLI with filesystem access — Claude Code, Codex CLI, or Gemini CLI.
 This prompt cannot be used in a web chat session (the model needs to read local files).
 
 1. Run this prompt in your AI CLI session — no input required
 2. The model will scan `responses/` automatically and produce inventory rows
-3. Paste the output rows into `docs/05-platform-inventory.md` below the existing header row
+3. Append the output rows to `docs/05-platform-inventory.csv` below the existing header row
 
-> **Save response as:** paste directly into `docs/05-platform-inventory.md` — do not save as a separate response file.
+> **Save response as:** append directly to `docs/05-platform-inventory.csv` — do not save as a separate response file.
 
 ---
 
@@ -19,7 +19,7 @@ This prompt cannot be used in a web chat session (the model needs to read local 
 
 You are a research assistant maintaining the UDT platform inventory for this project.
 
-Your task is to scan the `responses/` directory, extract scored platform rows from all comparison response files, and produce a consolidated table ready to paste into `docs/05-platform-inventory.md`.
+Your task is to scan the `responses/` directory, extract platform rows from all discovery and comparison response files, and produce consolidated CSV rows ready to append to `docs/05-platform-inventory.csv`.
 
 **Do not ask for file paths or user input.** Read `responses/` directly using your file tools.
 
@@ -29,15 +29,38 @@ Your task is to scan the `responses/` directory, extract scored platform rows fr
 
 Read all files in `responses/`. For each file:
 
-- Check whether it begins with a fenced YAML block (` ```yaml `) containing `prompt: platform-comparison`
-- If yes: it is a qualifying comparison response — proceed to Step 2
-- If the file has no YAML block, or the YAML block does not contain `prompt: platform-comparison`: skip the file silently
+- Check whether it begins with a fenced YAML block (` ```yaml `) containing a `prompt:` field
+- If `prompt: platform-discovery` → it is a **discovery response** — proceed to Step 2A
+- If `prompt: platform-comparison` → it is a **comparison response** — proceed to Step 2B
+- Any other value or no YAML block: skip the file silently
 
 ---
 
-### Step 2 — Extract metadata and rows
+### Step 2A — Extract rows from discovery responses
 
-For each qualifying file:
+For each discovery response:
+
+1. Read the YAML block and extract:
+   - `model` → value for the `Model` column
+   - `date` → value for the `Date` column
+
+2. Locate the **summary table** — the GFM pipe table that appears immediately after the metadata block. It contains a `Criterion` column (or `Inclusion Criterion` in older files).
+
+3. Extract every data row from that table (exclude the header row and separator row).
+
+4. For each row, output a CSV row with:
+   - `Phase` = `discovery`
+   - `Name` = platform name from the table
+   - `Link` = URL from the Link column — strip any Markdown link syntax `[text](url)` and keep the URL only
+   - `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov` = score columns from the summary table (`-1` for excluded platforms)
+   - `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra` = **always `-1`** for discovery rows (these scores are only produced at comparison phase)
+   - `Model`, `Date` = from YAML metadata
+
+---
+
+### Step 3 — Extract rows from comparison responses
+
+For each comparison response:
 
 1. Read the YAML block and extract:
    - `model` → value for the `Model` column
@@ -47,28 +70,35 @@ For each qualifying file:
 
 3. Extract every data row from that table (exclude the header row and separator row).
 
----
-
-### Step 3 — Reorder columns
-
-The output table must use exactly this column order:
-
-| Name | Link | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra | Model | Date |
-
-If the source table has columns in a different order, reorder them.
-Append `Model` and `Date` as the last two columns using the values from Step 2.
-
-Score cells must contain bare integers (1–5) or `?` for unknown. Do not write `/5` in table cells.
+4. For each row, output a CSV row with:
+   - `Phase` = `comparison`
+   - `Name`, `Link`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra` = from the Part 1 table
+   - `Link` = URL only — strip any Markdown link syntax
+   - `Model`, `Date` = from YAML metadata
 
 ---
 
-### Step 4 — Output
+### Step 4 — Reorder columns
 
-First, output a brief preamble (plain text, not a table row) stating:
-- Which files were processed (filenames only)
+Every output row must use exactly this column order:
+
+`Name`, `Link`, `Phase`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`, `Model`, `Date`
+
+Score cells must contain bare integers (1–5), `-1` (excluded or not applicable), or `?` for unknown. Do not write `/5`.
+
+---
+
+### Step 5 — Output
+
+First, output a brief preamble (plain text, not a CSV row) stating:
+- Which files were processed (filenames only), separated into discovery and comparison
 - How many rows were extracted in total
-- Which files were skipped and why (if any)
+- Which files were skipped and why (if any), including files with missing or unrecognised columns
 
-Then output the data rows only — no header row, no separator row, no surrounding prose.
+Then output the CSV data rows only — no header row, no surrounding prose.
 
-The rows must be valid GFM pipe table rows that align with the header already present in `docs/05-platform-inventory.md`.
+The rows must be valid CSV that aligns with the header already present in `docs/05-platform-inventory.csv`:
+
+```
+Name,Link,Phase,Arch,Open,City,Mature,Integ,Gov,Viz,DM,Sim,IoT,Std,Infra,Model,Date
+```

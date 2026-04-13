@@ -4,7 +4,7 @@
 
 Each platform is researched using primary sources only (see `docs/03-source-policy.md`).
 Findings are synthesized into `docs/review.md`.
-The canonical data record for each platform is its row in `docs/05-platform-inventory.md`.
+The canonical data record for each platform is its row in `docs/05-platform-inventory.csv`.
 
 ## Discovery to Comparison Workflow
 
@@ -30,7 +30,7 @@ flowchart TD
     comp["prompts/\nplatform-comparison.md"]
     cresp["responses/\n*-comparison.md"]
     inv["prompts/\nplatform-inventory.md\n― AI CLI only ―"]
-    table["docs/\n05-platform-inventory.md"]
+    table["docs/\n05-platform-inventory.csv"]
     lic["prompts/\nlicense-analysis.md\noptional"]
 
     scope -->|"inclusion criteria"| disc
@@ -39,7 +39,8 @@ flowchart TD
     select -->|"copy selected rows"| comp
     comp --> cresp
     cresp -->|"auto-scan"| inv
-    inv -->|"paste rows"| table
+    dresp -->|"auto-scan"| inv
+    inv -->|"append rows"| table
     dresp -.->|"per platform"| lic
 ```
 
