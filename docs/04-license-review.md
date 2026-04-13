@@ -2,13 +2,15 @@
 
 ## Purpose
 
-This document defines how to evaluate the licensing of UDT platforms. License assessment feeds into the **Openness & Licensing** dimension of the platform inventory.
+This document defines how to evaluate the licensing of UDT platforms.
+License assessment feeds into the **Openness & Licensing** dimension of the platform inventory.
 
 ## License Families
 
 ### Open Source
 
-Platforms where the source code is publicly available under an OSI-approved license. Key distinctions:
+Platforms where the source code is publicly available under an OSI-approved license.
+Key distinctions:
 
 | Type              | Examples             | Key Implication                                                                                         |
 | ----------------- | -------------------- | ------------------------------------------------------------------------------------------------------- |
@@ -20,19 +22,22 @@ Platforms where the source code is publicly available under an OSI-approved lice
 
 ### Open Core
 
-A hybrid model where a core platform is open source but significant features (enterprise integrations, hosted services, support) are proprietary. Common in commercial platforms with community editions.
+A hybrid model where a core platform is open source but significant features (enterprise integrations, hosted services, support) are proprietary.
+Common in commercial platforms with community editions.
 
 **What to look for:** Distinction between "Community Edition" and "Enterprise Edition"; features gated behind paid tiers; proprietary modules listed separately from the open-source core.
 
 ### Proprietary
 
-Source code is not publicly available. Usage is governed by a commercial license, SaaS terms of service, or government/institutional agreement.
+Source code is not publicly available.
+Usage is governed by a commercial license, SaaS terms of service, or government/institutional agreement.
 
 **What to look for:** No public repository; license terms require purchase or agreement; "contact us for pricing" for core functionality.
 
 ## Data Licensing
 
-Separate from software licensing, some platforms produce or consume open data. Note:
+Separate from software licensing, some platforms produce or consume open data.
+Note:
 
 - Whether the platform uses open geospatial standards (OGC, CityGML, IFC)
 - Whether output data is locked in a proprietary format

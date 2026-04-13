@@ -7,7 +7,7 @@ Use this prompt to produce a structured, evidence-based comparison of UDT platfo
 3. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
 4. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
 
-> **Save response as:** `responses/<platform-a>-vs-<platform-b>-comparison.md` — e.g., `responses/cesium-vs-3dcitydb-comparison.md`. See `docs/methodology.md` for the full convention.
+> **Save response as:** `responses/<platform-a>-vs-<platform-b>-comparison.md` — e.g., `responses/cesium-vs-3dcitydb-comparison.md`. See `docs/02-methodology.md` for the full convention.
 
 ---
 

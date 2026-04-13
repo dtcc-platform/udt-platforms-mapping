@@ -1,12 +1,11 @@
-# Platform Discovery Scope
+# Platform Scope
 
-This document operationalises the inclusion boundary for the UDT platform review. It translates the normative criteria in [`docs/methodology.md`](methodology.md) into concrete research guidance, provides explicit exclusion examples to calibrate the boundary, seeds the platform list with known qualifiers, and sets a target corpus size.
-
-**Normative reference:** [`docs/methodology.md`](methodology.md) — the inclusion criteria defined there are authoritative. This document is a working aid, not a replacement.
+Authoritative inclusion boundary for the UDT platform review.
+This review applies a **moderate** inclusion boundary: platforms that are purely adjacent (generic IoT platforms, general-purpose GIS tools without urban twin framing) are excluded even if they could theoretically be used in a UDT context.
 
 ---
 
-## Inclusion Criteria (Operational)
+## Inclusion Criteria
 
 A platform qualifies if it satisfies **at least one** of the following, evidenced by primary sources (official site, repository, published paper):
 
@@ -50,13 +49,15 @@ The following categories and named examples are **out of scope** under the moder
 | **IOTA / Helium**                       | Distributed IoT networks; no urban spatial or simulation capability                                                         |
 | **CityGML standard**                    | A data model standard (OGC), not a platform; implementations (e.g., 3D City DB) may qualify                                 |
 
-> **Borderline cases:** If a platform is adjacent but its primary positioning is clearly outside UDT, exclude it and note it as "adjacent but out of scope" in the session log. When uncertain, compare against the seed list below.
+> **Borderline cases:** If a platform is adjacent but its primary positioning is clearly outside UDT, exclude it and note it as "adjacent but out of scope" in the session log.
+> When uncertain, compare against the seed list below.
 
 ---
 
 ## Seed List
 
-Known platforms that qualify, distributed across the three inclusion criteria. Use these to anchor discovery sessions and calibrate the boundary for new candidates.
+Known platforms that qualify, distributed across the three inclusion criteria.
+Use these to anchor discovery sessions and calibrate the boundary for new candidates.
 
 ### Criterion 1 — Explicit Urban Digital Twin
 
@@ -86,6 +87,9 @@ Known platforms that qualify, distributed across the three inclusion criteria. U
 
 **Target:** 15–30 platforms.
 
-This range is a **planning heuristic**, not a hard constraint. The actual count will be determined by what the research finds. A corpus below 15 is likely under-sampled; above 30 risks including platforms that are too peripheral to be analytically useful.
+This range is a **planning heuristic**, not a hard constraint.
+The actual count will be determined by what the research finds.
+A corpus below 15 is likely under-sampled; above 30 risks including platforms that are too peripheral to be analytically useful.
 
-The seed list above contributes 7 confirmed platforms. Discovery sessions should aim to extend this to the target range by finding additional platforms across all three criteria, with particular attention to non-English-speaking markets and government-led initiatives not well represented in the seed list.
+The seed list above contributes 7 confirmed platforms.
+Discovery sessions should aim to extend this to the target range by finding additional platforms across all three criteria, with particular attention to non-English-speaking markets and government-led initiatives not well represented in the seed list.

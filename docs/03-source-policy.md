@@ -2,7 +2,8 @@
 
 ## Acceptable Source Types
 
-Sources are ranked by reliability. Prefer higher-ranked sources and only use lower-ranked ones when higher-ranked sources are unavailable or insufficient.
+Sources are ranked by reliability.
+Prefer higher-ranked sources and only use lower-ranked ones when higher-ranked sources are unavailable or insufficient.
 
 | Rank | Type                                   | Examples                                                                                        |
 | ---- | -------------------------------------- | ----------------------------------------------------------------------------------------------- |
@@ -45,7 +46,8 @@ If a source is paywalled:
 
 ## Unreliable or Contradictory Sources
 
-If a source contradicts a higher-ranked source, prefer the higher-ranked source and note the discrepancy in the search log. If the contradiction is significant, flag it in the `notes/` file for the platform.
+If a source contradicts a higher-ranked source, prefer the higher-ranked source and note the discrepancy in the search log.
+If the contradiction is significant, flag it in the `notes/` file for the platform.
 
 ## Source Storage
 
