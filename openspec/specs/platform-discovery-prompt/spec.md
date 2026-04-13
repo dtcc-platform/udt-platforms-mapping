@@ -82,18 +82,6 @@ The prompt template SHALL state that no extra headings or sections are permitted
 - **WHEN** an AI model would normally add a heading such as `## Sources` or `## Notes`
 - **THEN** the prompt instruction suppresses that and the response contains only the required headings
 
-### Requirement: Discovery prompt uses a parameterized search scope token
-The prompt template SHALL include a `[SEARCH_SCOPE]` placeholder that the researcher replaces with a specific domain, region, or technology focus before using the prompt. If the literal text `[SEARCH_SCOPE]` has not been replaced, the model SHALL treat the scope as: global city-scale Urban Digital Twin platforms and foundational building blocks (commercial and open-source).
-
-#### Scenario: Researcher customizes search scope
-- **WHEN** a researcher replaces `[SEARCH_SCOPE]` with a value such as "European city-scale platforms" or "platforms using CityGML"
-- **THEN** the model scopes its discovery results to that domain without other prompt changes needed
-
-#### Scenario: Researcher forgets to replace the scope token
-- **WHEN** a researcher pastes the prompt without replacing `[SEARCH_SCOPE]`
-- **THEN** the model defaults to a global UDT scope rather than erroring or producing a generic result
-
-
 ### Requirement: Discovery prompt output begins with a model metadata block
 The prompt template SHALL instruct the model to begin its response with a fenced YAML code block containing provenance metadata, so that saved response files are self-documenting.
 
@@ -113,11 +101,11 @@ The metadata block SHALL appear before any other content in the response.
 - **THEN** the model populates the field with its own name and version to the best of its ability
 
 ### Requirement: Discovery prompt usage header includes save-as filename instruction
-The prompt template's usage header SHALL include numbered step-by-step instructions telling the researcher to replace `[SEARCH_SCOPE]` with their focus area, paste the completed prompt into their AI session, and save the response using the filename pattern defined in `docs/methodology.md`, with a concrete example using the `discovery` prompt-type token (e.g., `responses/european-platforms-discovery.md`).
+The prompt template's usage header SHALL include numbered step-by-step instructions telling the researcher to paste the prompt into their AI session and save the response as `responses/global-platforms-discovery.md`. The reference to `docs/methodology.md` SHALL be updated to `docs/02-methodology.md`. The step to replace `[SEARCH_SCOPE]` SHALL be removed.
 
 #### Scenario: Researcher reads the usage header before pasting the prompt
 - **WHEN** a researcher reads the usage instructions at the top of `prompts/platform-discovery.md`
-- **THEN** they see numbered steps and the expected filename pattern before they begin the session
+- **THEN** they see two numbered steps (paste, save) with no placeholder replacement step, and the correct save-as filename `responses/global-platforms-discovery.md`
 
 ### Requirement: Discovery prompt requires explicit uncertainty handling
 The prompt template SHALL instruct the model to state `?` when a dimension score cannot be assessed from available sources, and to never fabricate platform details, license names, or deployment claims.
