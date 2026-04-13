@@ -20,6 +20,30 @@ The comparison prompt deepens them with full rubric-based research and primary s
 **Optional — License analysis:** For any platform in the discovery table, copy the header row and that platform's row and paste them into the `[PASTE_SELECTED_PLATFORM_HERE]` token in `prompts/license-analysis.md`.
 This can be run independently at any point — it does not need to precede or follow a comparison session.
 
+```mermaid
+flowchart TD
+    scope["📋 01-scope.md\nInclusion criteria & seed list"]
+    policy["📋 03-source-policy.md\nEvidence rules"]
+
+    disc["prompts/\nplatform-discovery.md"]
+    dresp["responses/\n*-discovery.md"]
+    select["Select platforms\nfrom summary table"]
+    comp["prompts/\nplatform-comparison.md"]
+    cresp["responses/\n*-comparison.md"]
+    inv["prompts/\nplatform-inventory.md\n― AI CLI only ―"]
+    table["docs/\n05-platform-inventory.md"]
+    lic["prompts/\nlicense-analysis.md\noptional"]
+
+    scope -->|"calibrate scope"| disc
+    policy -->|"evidence rules"| disc
+    policy -->|"evidence rules"| comp
+    disc --> dresp
+    dresp -->|"copy selected rows"| comp
+    comp --> cresp
+    cresp -->|"auto-scan"| inv
+    inv -->|"paste rows"| table
+    cresp -.->|"per platform"| lic
+```
 
 ## File Naming
 
