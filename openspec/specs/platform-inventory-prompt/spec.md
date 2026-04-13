@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Defines the requirements for the `prompts/platform-inventory.md` file — a self-contained AI prompt that scans all comparison response files in `responses/`, extracts Part 1 scoring rows, and outputs a GFM table ready to paste into the platform inventory document.
+Defines the requirements for the `prompts/platform-inventory.md` file — a self-contained AI CLI prompt that scans all discovery and comparison response files in `responses/`, extracts platform rows, and outputs CSV rows ready to append to `docs/05-platform-inventory.csv`.
 
 ## Requirements
 
 ### Requirement: Platform inventory prompt file exists
 
-The repository SHALL contain a file at `prompts/platform-inventory.md` that provides a self-contained prompt for producing a consolidated GFM inventory table from all comparison response files in `responses/`.
+The repository SHALL contain a file at `prompts/platform-inventory.md` that provides a self-contained prompt for producing consolidated CSV inventory rows from all qualifying response files in `responses/`.
 
 #### Scenario: File is present and non-empty
 
@@ -21,41 +21,66 @@ The prompt SHALL instruct the model to read all files in `responses/` without re
 
 #### Scenario: Researcher runs the prompt without specifying files
 
-- **WHEN** a researcher pastes the prompt into an AI session
+- **WHEN** a researcher pastes the prompt into an AI CLI session
 - **THEN** the model reads all files in `responses/` automatically, without asking for file paths
 
-#### Scenario: No comparison response files exist
+#### Scenario: No qualifying response files exist
 
-- **WHEN** the model scans `responses/` and finds no files with `prompt: platform-comparison` in their YAML block
-- **THEN** the model reports that no qualifying response files were found and produces no table
+- **WHEN** the model scans `responses/` and finds no files with `prompt: platform-discovery` or `prompt: platform-comparison` in their YAML block
+- **THEN** the model reports that no qualifying response files were found and produces no output
 
-### Requirement: Prompt identifies comparison responses by YAML metadata
+### Requirement: Prompt identifies qualifying files by YAML metadata
 
-The prompt SHALL instruct the model to identify qualifying files by the presence of a fenced YAML block at the top of the file containing `prompt: platform-comparison`. Files that do not contain this field SHALL be ignored.
+The prompt SHALL instruct the model to identify two classes of qualifying files:
+
+- **Discovery responses**: files whose YAML block contains `prompt: platform-discovery`
+- **Comparison responses**: files whose YAML block contains `prompt: platform-comparison`
+
+Files that do not contain either field SHALL be ignored silently.
 
 #### Scenario: Directory contains mixed response types
 
-- **WHEN** `responses/` contains both discovery and comparison response files
-- **THEN** only files with `prompt: platform-comparison` in their YAML block contribute rows to the output table
+- **WHEN** `responses/` contains discovery, comparison, and license response files
+- **THEN** only discovery and comparison files contribute rows to the output
 
 #### Scenario: File has no YAML block
 
 - **WHEN** a file in `responses/` has no fenced YAML block at the top
 - **THEN** the model skips that file without error
 
-### Requirement: Prompt extracts Part 1 scoring table rows
+### Requirement: Prompt extracts rows from discovery responses
 
-The prompt SHALL instruct the model to locate the Part 1 scoring table in each qualifying response file and extract every data row (excluding the header row).
+For discovery responses, the prompt SHALL instruct the model to locate the summary table (the GFM pipe table immediately after the metadata block) and extract every row — including excluded platforms (those with `-1` scores).
+
+Each extracted row SHALL be output as a CSV row with `Phase` set to `discovery`.
+
+The six functional category columns (`Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`) SHALL be set to `-1` for all discovery rows, because those scores are only produced at comparison phase.
+
+#### Scenario: Discovery response contains included and excluded platforms
+
+- **WHEN** the model reads a discovery response whose summary table includes rows with -1 scores (excluded platforms)
+- **THEN** the output includes CSV rows for both included and excluded platforms, all with Phase=`discovery`
+
+#### Scenario: Discovery row functional categories
+
+- **WHEN** a discovery row is output
+- **THEN** the Viz, DM, Sim, IoT, Std, and Infra columns contain `-1`
+
+### Requirement: Prompt extracts Part 1 scoring table rows from comparison responses
+
+For comparison responses, the prompt SHALL instruct the model to locate the Part 1 scoring table and extract every data row (excluding the header row).
+
+Each extracted row SHALL be output as a CSV row with `Phase` set to `comparison`.
 
 #### Scenario: Response contains a Part 1 table
 
-- **WHEN** a qualifying response file contains a Part 1 scoring table with platform rows
-- **THEN** the model extracts all data rows from that table
+- **WHEN** a qualifying comparison response file contains a Part 1 scoring table with platform rows
+- **THEN** the model extracts all data rows from that table with Phase=`comparison`
 
-#### Scenario: Part 1 table is missing from a qualifying file
+#### Scenario: Part 1 table is missing from a qualifying comparison file
 
-- **WHEN** a qualifying response file does not contain a Part 1 scoring table
-- **THEN** the model skips that file and notes the omission in its output
+- **WHEN** a qualifying comparison response file does not contain a Part 1 scoring table
+- **THEN** the model skips that file and notes the omission in its preamble output
 
 ### Requirement: Output table includes Model and Date columns from YAML metadata
 
@@ -63,46 +88,46 @@ Each output row SHALL include a `Model` column and a `Date` column populated fro
 
 #### Scenario: Researcher identifies which model produced a score
 
-- **WHEN** a researcher reads the inventory table
+- **WHEN** a researcher reads the inventory CSV
 - **THEN** every row contains the model name and research date from the response file it was extracted from
 
 #### Scenario: Same platform appears in multiple response files
 
 - **WHEN** the same platform name appears in two or more qualifying response files
-- **THEN** the output table contains one row per occurrence, each with its own Model and Date values
+- **THEN** the output contains one row per occurrence, each with its own Phase, Model, and Date values
 
-### Requirement: Output table schema matches the platform inventory
+### Requirement: Output CSV schema matches the platform inventory
 
-The output table SHALL use exactly the following column order:
+The output SHALL use exactly the following column order:
 
-`Name`, `Link`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`, `Model`, `Date`
+`Name`, `Link`, `Phase`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`, `Model`, `Date`
 
-Score cells SHALL contain bare integers (1–5) or `?` for unknown. No `/5` suffix in table cells.
+Score cells SHALL contain bare integers (1–5), `-1` (excluded/not-applicable), or `?` for unknown. No `/5` suffix. The `Link` column SHALL contain raw URLs only — no Markdown link syntax.
 
-#### Scenario: Researcher pastes output into the inventory
+#### Scenario: Researcher pastes output into the inventory CSV
 
-- **WHEN** a researcher copies the output table and pastes it into `docs/05-platform-inventory.md`
-- **THEN** the columns align with the existing inventory table header without modification
+- **WHEN** a researcher copies the output and appends it to `docs/05-platform-inventory.csv`
+- **THEN** the columns align with the existing header without modification
 
 #### Scenario: Source table uses a different column order
 
 - **WHEN** a Part 1 table in a response file has columns in a different order than the inventory schema
 - **THEN** the model reorders columns to match the inventory schema before outputting
 
-### Requirement: Prompt output is ready to paste into the inventory
+### Requirement: Prompt output is ready to append to the inventory CSV
 
-The prompt SHALL instruct the model to output only the GFM table rows (no header, no surrounding prose) so the researcher can paste them directly under the header row in `docs/05-platform-inventory.md`.
+The prompt SHALL instruct the model to output only CSV data rows (no header row, no surrounding prose after the preamble) so the researcher can paste them directly under the header row in `docs/05-platform-inventory.csv`.
 
 #### Scenario: Researcher pastes output without editing
 
-- **WHEN** a researcher copies the model's output and pastes it into `docs/05-platform-inventory.md` below the header row
-- **THEN** the resulting table renders correctly with no extra formatting or blank rows
+- **WHEN** a researcher copies the model's output and appends it to `docs/05-platform-inventory.csv` below the header row
+- **THEN** the resulting file parses correctly as a CSV with no extra formatting
 
 ### Requirement: Prompt usage header identifies the target file
 
-The prompt usage header SHALL state that the output is intended for `docs/05-platform-inventory.md` and instruct the researcher to paste the output below the existing header row.
+The prompt usage header SHALL state that the output is intended for `docs/05-platform-inventory.csv` and instruct the researcher to append the output below the existing header row.
 
 #### Scenario: Researcher reads usage instructions
 
 - **WHEN** a researcher opens `prompts/platform-inventory.md`
-- **THEN** the usage header tells them which file to paste into and how
+- **THEN** the usage header tells them the output file is `docs/05-platform-inventory.csv` and how to append the rows
