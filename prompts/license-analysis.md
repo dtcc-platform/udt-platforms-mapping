@@ -2,16 +2,27 @@
 
 Use this prompt to evaluate the licensing of a UDT platform.
 
+This prompt can be used in an AI web research chat or an AI CLI session. In a web chat, manually save the final Markdown response into `responses/`.
+
 1. Open the discovery response file for your research session
 2. Copy the header row and the platform row you want to analyse from the summary table
 3. Replace `[PASTE_SELECTED_PLATFORM_HERE]` with those rows
 4. Paste the completed prompt into your AI session
 
-> **Save response as:** `responses/<platform>-license.md` — e.g., `responses/cesium-license.md`. See `docs/methodology.md` for the full convention.
+> **Save response as:** `responses/<platform>-license.md` — e.g., `responses/cesium-license.md`. See `docs/02-methodology.md` for the full convention.
 
 ---
 
 ## Prompt
+
+Before you begin:
+
+- If your interface supports Research or Deep Research, use it.
+- Do your planning internally; do not show a research plan unless explicitly asked.
+- Return plain Markdown only.
+- Return only the final deliverable in the exact format below.
+- Do not add any product-native citation markers, sidebars, source appendices, methodology sections, executive summaries, or closing summaries.
+- If your interface would normally produce a separate report structure, suppress it and follow this prompt's output contract instead.
 
 You are a research assistant helping to evaluate the licensing of a UDT platform for a landscape review.
 Your task is to assess the software license and data licensing posture of the platform identified in the table below.
@@ -24,7 +35,7 @@ Your task is to assess the software license and data licensing posture of the pl
 
 Derive the platform name from the **Name** column. Use the **Link** column to locate the license source (check repository root for `LICENSE`/`COPYING`, SPDX identifier in package metadata, and official site documentation). Treat the **License** column value as a seed signal — verify it from primary sources and correct if needed.
 
-Use **primary sources only** (repository root, package metadata, official site documentation). Cite the source for every claim with an inline link `[Description](https://...)`. If you cannot confirm a license name, URL, or tier distinction from primary sources, state "unknown" or "unclear" — do not fabricate or infer without evidence.
+Use primary sources for all final license claims (repository root, package metadata, official site documentation). Cite the source for every claim with an inline link `[Description](https://...)`. If you cannot confirm a license name, URL, or tier distinction from primary sources, state "unknown" or "unclear" — do not fabricate or infer without evidence.
 
 ---
 
@@ -65,6 +76,13 @@ Work through each item:
 3. **Note any data format lock-in** — does the platform use open geospatial standards (OGC, CityGML, IFC)? Are output formats proprietary?
 4. **Check for community vs. enterprise tier split** — are significant features gated behind a paid tier?
 5. **Assign an Openness & Licensing score (1–5)** — use the rubric above with a one-sentence rationale
+
+Source policy:
+
+- Use this evidence priority order for license claims: repository root license files first, package metadata or SPDX declarations second, official product or documentation pages third, and legal or pricing pages as supporting context for proprietary or open-core tier distinctions.
+- Separate software licensing evidence from commercial packaging or paid-tier evidence.
+- You may use secondary sources only to discover a likely repository or official documentation location, not to support final license claims in the saved output.
+- If a paid tier, hosted service, bundled dataset licence, or edition split cannot be verified from primary sources, state `unknown` or `unclear`.
 
 ---
 

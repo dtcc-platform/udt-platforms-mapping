@@ -2,6 +2,8 @@
 
 Use this prompt to discover Urban Digital Twin (UDT) platforms for the research inventory.
 
+This prompt can be used in an AI web research chat or an AI CLI session. In a web chat, manually save the final Markdown response into `responses/`.
+
 1. Paste into your AI session starting from the cut-line below — do not include these usage instructions above
 2. Save the response as `responses/global-platforms-discovery.md`. See `docs/02-methodology.md` for the full convention.
 
@@ -11,9 +13,18 @@ Use this prompt to discover Urban Digital Twin (UDT) platforms for the research 
 
 ## Prompt
 
+Before you begin:
+
+- If your interface supports Research or Deep Research, use it.
+- Do your planning internally; do not show a research plan unless explicitly asked.
+- Return plain Markdown only.
+- Return only the final deliverable in the exact format below.
+- Do not add any product-native citation markers, sidebars, source appendices, methodology sections, or closing summaries.
+- If your interface would normally produce a separate report structure, suppress it and follow this prompt's output contract instead.
+
 You are a research assistant helping to map the landscape of Urban Digital Twin (UDT) platforms.
 Your task is to identify platforms that qualify for inclusion based on the criteria below,
-using **primary sources only** (official websites, public repositories, published papers, official documentation).
+using primary sources for all final factual claims (**official websites, public repositories, published papers, official documentation**).
 
 **Search scope:** Global city-scale Urban Digital Twin platforms and foundational building blocks (commercial and open-source). Cover all major geographies — include non-English-speaking markets and government-led initiatives, not only English-language or US/EU platforms.
 
@@ -45,6 +56,14 @@ For each platform you identify:
 3. Locate the software license (repository root, docs, or official site)
 4. Identify the organization behind the platform
 5. Assess the platform's maturity level (experimental / research / production-ready)
+
+Source policy:
+
+- You may use secondary sources only to discover candidate platforms.
+- Before including a platform in the final output, verify it against at least one primary source.
+- For license claims, prefer repository root license files, official documentation, or official product/legal pages.
+- If a primary source cannot support a factual claim, write `unknown` or `?`.
+- Prefer omission over weakly supported inclusion; do not imply global completeness.
 
 ---
 

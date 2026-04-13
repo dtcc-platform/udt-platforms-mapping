@@ -2,6 +2,8 @@
 
 Use this prompt to produce a structured, evidence-based comparison of UDT platforms.
 
+This prompt can be used in an AI web research chat or an AI CLI session. In a web chat, manually save the final Markdown response into `responses/`.
+
 1. Open the discovery response file for your research session
 2. Copy the rows you want to compare (including the header row) from the summary table
 3. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
@@ -15,41 +17,28 @@ Use this prompt to produce a structured, evidence-based comparison of UDT platfo
 
 ## Prompt
 
+Before you begin:
+
+- If your interface supports Research or Deep Research, use it.
+- Do your planning internally; do not show a research plan unless explicitly asked.
+- Return plain Markdown only.
+- Return only the final deliverable in the exact three-part format below.
+- Do not add any product-native citation markers, sidebars, source appendices, methodology sections, executive summaries, or closing summaries.
+- If your interface would normally produce a separate report structure, suppress it and follow this prompt's output contract instead.
+
 You are a research assistant helping to map the Urban Digital Twin (UDT) platform landscape for DTCC.
 
 **About DTCC (reference platform):** DTCC (Digital Twin Cities Centre) is a Swedish research centre developing an open-source, city-scale urban digital twin platform. It supports 3D modelling, simulation, and visualization using CityGML and IFC as core data models. DTCC is open-source, academically governed, and oriented toward interoperability with OGC standards.
 
-Use **primary sources only** (official websites, public repositories, published papers, official documentation). For every substantive claim, include a source reference. Distinguish inferred claims from verified facts. If you cannot find information, state "unknown" or "unclear" — do not fabricate URLs, license names, or deployment claims.
+Use primary sources for all final factual claims (**official websites, public repositories, published papers, official documentation**). For every substantive claim, include a source reference. Distinguish inferred claims from verified facts. If you cannot find information, state "unknown" or "unclear" — do not fabricate URLs, license names, or deployment claims.
 
 **Platforms to compare** (rows from the discovery summary table — include DTCC as a reference entry):
 
 **Before proceeding:** If the placeholder below still contains the literal text `[PASTE_SELECTED_PLATFORMS_HERE]`, stop and ask the user to supply the required data before continuing. Do not attempt to generate output without it.
 
-[PASTE_SELECTED_PLATFORMS_HERE]
+Treat the pasted table as the comparison scope boundary. Do not add comparison candidates beyond the pasted rows unless the user explicitly asks you to expand scope.
 
-| Name                               | Link                                                                                                                          | License                                | Type                                         | Arch | Open | City | Mature | Integ | Gov | Inclusion Criterion                 |
-| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | -------------------------------------------- | ---- | ---- | ---- | ------ | ----- | --- | ----------------------------------- |
-| virtualcitySYSTEMS VC Suite        | [vc.systems](https://vc.systems/en/)                                                                                          | Open-core (MIT + proprietary)          | Urban digital twin platform                  | 4    | 4    | 5    | 4      | 5     | 3   | Explicit UDT                        |
-| Dassault Systèmes 3DEXPERIENCity   | [3ds.com](https://www.3ds.com/virtual-twin/infrastructure-cities)                                                             | Proprietary                            | Virtual twin platform                        | 5    | 1    | 5    | 5      | 3     | 2   | Explicit UDT                        |
-| Esri ArcGIS Urban                  | [esri.com](https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview)                                                  | Proprietary                            | Urban planning platform                      | 4    | 2    | 5    | 5      | 4     | 2   | Explicit UDT                        |
-| Project PLATEAU                    | [mlit.go.jp](https://www.mlit.go.jp/plateau/en/)                                                                              | Apache-2.0                             | National urban digital twin program          | 4    | 5    | 5    | 5      | 4     | 4   | Explicit UDT                        |
-| 51WORLD                            | [51aes.com](https://www.51aes.com/?lang=en)                                                                                   | Proprietary                            | City-scale digital twin platform             | 4    | 1    | 5    | 4      | 3     | 2   | Explicit UDT                        |
-| Hexagon / Luciad                   | [hexagon.com](https://hexagon.com/go/sig/urban-digital-twin)                                                                  | Proprietary                            | Geospatial analytics platform                | 4    | 1    | 4    | 5      | 4     | 2   | Explicit UDT                        |
-| NVIDIA Omniverse                   | [nvidia.com](https://www.nvidia.com/en-us/industries/smart-cities-and-spaces/)                                                | Proprietary (free individual tier)     | Simulation and visualization platform        | 5    | 2    | 4    | 4      | 4     | 2   | Explicit UDT                        |
-| Bentley Systems iTwin              | [bentley.com](https://www.bentley.com/software/itwin-platform/)                                                               | Open-core (MIT iTwin.js + proprietary) | Infrastructure digital twin platform         | 5    | 3    | 4    | 5      | 5     | 3   | City-Scale Capabilities             |
-| Siemens                            | [siemens-advanta.com](https://www.siemens-advanta.com/capabilities/offers/digital-twin-services-for-building-campuses-cities) | Proprietary                            | Smart infrastructure platform                | 4    | 2    | 4    | 5      | 4     | 2   | City-Scale Capabilities             |
-| IES ICL                            | [iesve.com](https://www.iesve.com/icl)                                                                                        | Proprietary                            | Energy simulation platform                   | 4    | 1    | 4    | 4      | 3     | 2   | City-Scale Capabilities             |
-| FIWARE                             | [fiware.org](https://www.fiware.org/)                                                                                         | AGPL-3.0 (Orion-LD)                    | Smart city data platform                     | 3    | 4    | 4    | 5      | 5     | 4   | City-Scale Capabilities             |
-| Azure Digital Twins                | [azure.microsoft.com](https://github.com/Azure/opendigitaltwins-smartcities)                                                  | Proprietary PaaS / MIT (ontology)      | Cloud digital twin platform                  | 4    | 3    | 3    | 4      | 4     | 2   | City-Scale Capabilities             |
-| 3DCityDB                           | [3dcitydb.org](https://www.3dcitydb.org/)                                                                                     | Apache-2.0                             | Semantic 3D city geodatabase                 | 4    | 5    | 4    | 5      | 4     | 4   | City-Scale Capabilities             |
-| TerriaJS                           | [terria.io](https://github.com/TerriaJS/terriajs)                                                                             | Apache-2.0                             | Geospatial data exploration platform         | 3    | 5    | 4    | 4      | 5     | 3   | City-Scale Capabilities             |
-| CesiumJS                           | [cesium.com](https://cesium.com/platform/cesiumjs/)                                                                           | Apache-2.0                             | 3D geospatial visualization engine           | 4    | 5    | 4    | 5      | 5     | 3   | Adjacent Architecture or Governance |
-| deck.gl                            | [deck.gl](https://deck.gl/)                                                                                                   | MIT                                    | GPU-accelerated data visualization framework | 4    | 5    | 3    | 4      | 4     | 4   | Adjacent Architecture or Governance |
-| Unity                              | [unity.com](https://unity.com/)                                                                                               | Proprietary (tiered)                   | Real-time 3D engine                          | 5    | 1    | 4    | 5      | 4     | 2   | Adjacent Architecture or Governance |
-| Unreal Engine                      | [unrealengine.com](https://www.unrealengine.com/)                                                                             | Custom EULA (royalty-based)            | Real-time 3D engine                          | 5    | 2    | 4    | 5      | 4     | 2   | Adjacent Architecture or Governance |
-| 3D Tiles                           | [ogc.org](https://www.ogc.org/standards/3dtiles/)                                                                             | Apache-2.0 (OGC standard)              | Open geospatial streaming standard           | 4    | 5    | 5    | 5      | 5     | 4   | Adjacent Architecture or Governance |
-| CityJSON                           | [cityjson.org](https://www.cityjson.org/)                                                                                     | MIT                                    | 3D city model encoding standard              | 3    | 5    | 4    | 4      | 4     | 4   | Adjacent Architecture or Governance |
-| UK National Digital Twin Programme | [cdbb.cam.ac.uk](https://www.cdbb.cam.ac.uk/DFTG/GeminiPrinciples)                                                            | Open governance framework              | Governance framework                         | 2    | 4    | 3    | 4      | 3     | 5   | Adjacent Architecture or Governance |
+[PASTE_SELECTED_PLATFORMS_HERE]
 
 Compare every platform present in the pasted table, plus DTCC. Treat the pasted table as a discovery baseline — use the identification fields (Name, Link, License, Type) and the first-pass dimension scores as starting context. Your task is to deepen each dimension with primary source research and produce authoritative scores and analysis for all six dimensions.
 
@@ -202,8 +191,10 @@ Primary function: built environment, BIM/GIS integration, infrastructure lifecyc
 - **Cite sources.** Every factual claim must reference an official website, repository, documentation page, or published paper. Include URLs as inline links `[Description](https://...)`.
 - **Distinguish facts from inference.** If you are inferring a score or characteristic from indirect evidence, say so explicitly (e.g., "likely X based on [evidence]").
 - **Prefer primary sources.** Official project pages, GitHub/GitLab repos, LICENSE files, and official documentation over blog posts or third-party summaries.
+- **Use secondary sources only for discovery.** You may use a secondary source to find a likely repository, product page, or paper, but final factual claims and citations in the saved output must rely on primary sources.
 - **Do not fabricate.** If you cannot find information, state "unknown" or "unclear." Do not invent URLs, license names, or deployment claims.
 - **Be specific about uncertainty.** "Unknown" is better than a guess.
+- **Stay in scope.** Do not broaden the analysis with unsupported claims about the wider market beyond the selected platforms.
 
 ---
 
