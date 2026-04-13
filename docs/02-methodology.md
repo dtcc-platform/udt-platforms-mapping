@@ -23,7 +23,6 @@ This can be run independently at any point — it does not need to precede or fo
 ```mermaid
 flowchart TD
     scope["📋 01-scope.md\nInclusion criteria & seed list"]
-    policy["📋 03-source-policy.md\nEvidence rules"]
 
     disc["prompts/\nplatform-discovery.md\n― global scope ―"]
     dresp["responses/\nglobal-platforms-discovery.md"]
@@ -35,15 +34,13 @@ flowchart TD
     lic["prompts/\nlicense-analysis.md\noptional"]
 
     scope -->|"inclusion criteria"| disc
-    policy -->|"evidence rules"| disc
-    policy -->|"evidence rules"| comp
     disc --> dresp
     dresp --> select
     select -->|"copy selected rows"| comp
     comp --> cresp
     cresp -->|"auto-scan"| inv
     inv -->|"paste rows"| table
-    cresp -.->|"per platform"| lic
+    dresp -.->|"per platform"| lic
 ```
 
 ## File Naming
