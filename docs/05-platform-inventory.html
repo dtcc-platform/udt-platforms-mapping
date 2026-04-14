@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>UDT Platform Inventory</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+  <style>
+    :root, [data-mode="dark"] {
+      --bg:#0d1117; --surface:#161b22; --surface2:#21262d;
+      --border:#30363d; --text:#e6edf3; --muted:#8b949e; --accent:#79b8ff;
+    }
+    [data-mode="light"] {
+      --bg:#f6f8fa; --surface:#ffffff; --surface2:#f0f2f5;
+      --border:#d0d7de; --text:#1f2328; --muted:#636c76; --accent:#0969da;
+    }
+
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:-apple-system,'Segoe UI',system-ui,sans-serif;
+      font-size:13px; height:100vh; display:flex; flex-direction:column; overflow:hidden;
+    }
+
+    /* ── Header ────────────────────────────────────────── */
+    header {
+      padding:10px 20px; border-bottom:1px solid var(--border);
+      display:flex; align-items:center; gap:12px; flex-shrink:0; background:var(--surface);
+    }
+    header h1 { font-size:15px; font-weight:600; }
+    #status { color:var(--muted); font-size:12px; margin-left:auto; }
+
+    /* ── Control rows ──────────────────────────────────── */
+    .ctrl-row {
+      padding:7px 16px; border-bottom:1px solid var(--border);
+      display:flex; gap:14px; align-items:center; flex-wrap:wrap; flex-shrink:0;
+    }
+    .ctrl { display:flex; align-items:center; gap:6px; }
+    .ctrl label { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.06em; }
+
+    .btn-group { display:flex; }
+    .btn-group button {
+      background:var(--surface2); border:1px solid var(--border); color:var(--muted);
+      padding:3px 9px; cursor:pointer; font-size:12px; margin-left:-1px;
+    }
+    .btn-group button:first-child { border-radius:4px 0 0 4px; }
+    .btn-group button:last-child  { border-radius:0 4px 4px 0; }
+    .btn-group button.active { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600; }
+
+    select, input[type=text] {
+      background:var(--surface2); border:1px solid var(--border); color:var(--text);
+      padding:3px 8px; border-radius:4px; font-size:12px; outline:none;
+    }
+    select:focus, input[type=text]:focus { border-color:var(--accent); }
+
+    /* ── Dimension toggle row ──────────────────────────── */
+    #dim-row { flex-wrap:wrap; gap:6px; }
+    .dim-btn {
+      background:var(--surface2); border:1px solid var(--border); color:var(--muted);
+      padding:3px 9px; border-radius:4px; cursor:pointer; font-size:11px; font-weight:500;
+    }
+    .dim-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+    .dim-sep { width:1px; background:var(--border); align-self:stretch; margin:0 4px; }
+
+    /* ── Main layout ───────────────────────────────────── */
+    #app { display:none; flex:1; flex-direction:row; overflow:hidden; }
+
+    /* ── Platform sidebar ──────────────────────────────── */
+    #sidebar {
+      width:200px; flex-shrink:0; border-right:1px solid var(--border);
+      display:flex; flex-direction:column; overflow:hidden;
+    }
+    #sidebar-header {
+      padding:8px 12px; display:flex; align-items:center; justify-content:space-between;
+      border-bottom:1px solid var(--border); flex-shrink:0;
+    }
+    #sidebar-header span { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+    #sidebar-header div { display:flex; gap:4px; }
+    .mini-btn {
+      background:none; border:1px solid var(--border); color:var(--muted);
+      font-size:10px; padding:1px 6px; border-radius:3px; cursor:pointer;
+    }
+    .mini-btn:hover { border-color:var(--accent); color:var(--accent); }
+    #platform-list { overflow-y:auto; flex:1; padding:6px 0; }
+    .plat-item {
+      display:flex; align-items:center; gap:8px; padding:4px 12px;
+      cursor:pointer; transition:background .1s;
+    }
+    .plat-item:hover { background:color-mix(in srgb, var(--accent) 8%, transparent); }
+    .plat-item input[type=checkbox] { accent-color:var(--accent); cursor:pointer; flex-shrink:0; }
+    .plat-item span { font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+    /* ── Chart area ────────────────────────────────────── */
+    #chart-area {
+      flex:1; overflow:auto; display:flex; flex-direction:column;
+      gap:16px; padding:16px;
+    }
+    .chart-block { display:flex; flex-direction:column; gap:6px; }
+    .chart-title {
+      font-size:11px; font-weight:600; text-transform:uppercase;
+      letter-spacing:.06em; color:var(--muted); padding-bottom:4px;
+      border-bottom:1px solid var(--border);
+    }
+    #detail-block { display:none; }
+
+    /* ── Drop zone ─────────────────────────────────────── */
+    #dropzone {
+      flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:12px; color:var(--muted); border:2px dashed var(--border);
+      margin:24px; border-radius:8px; transition:border-color .15s, background .15s;
+    }
+    #dropzone.drag-over { border-color:var(--accent); background:color-mix(in srgb, var(--accent) 5%, transparent); }
+    #dropzone svg { opacity:.35; }
+    #dropzone p { font-size:14px; }
+    #file-btn {
+      background:var(--surface2); border:1px solid var(--border); color:var(--text);
+      padding:6px 14px; border-radius:4px; cursor:pointer; font-size:12px;
+    }
+    #file-btn:hover { border-color:var(--accent); color:var(--accent); }
+    #file-input { display:none; }
+
+    .vega-embed { background:transparent !important; }
+    .vega-embed details { display:none; }
+    .chart-block:hover .vega-embed details { display:block; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>UDT Platform Inventory</h1>
+  <span id="status"></span>
+</header>
+
+<!-- Controls: filters + theme (hidden until CSV loaded) -->
+<div class="ctrl-row" id="filter-row" style="display:none">
+  <div class="ctrl">
+    <label>Phase</label>
+    <div class="btn-group" id="phase-btns"><button class="active" data-val="">All</button></div>
+  </div>
+  <div class="ctrl">
+    <label>Model</label>
+    <select id="model-sel"><option value="">All (averaged)</option></select>
+  </div>
+  <div class="ctrl">
+    <label>Theme</label>
+    <select id="theme-sel">
+      <option value="">Custom dark</option>
+      <optgroup label="Light">
+        <option>excel</option><option>ggplot2</option><option>quartz</option>
+        <option>vox</option><option>fivethirtyeight</option><option>latimes</option>
+        <option>urbaninstitute</option><option>googlecharts</option>
+        <option>powerbi</option><option>carbonwhite</option>
+      </optgroup>
+      <optgroup label="Dark">
+        <option>dark</option><option>carbong100</option>
+      </optgroup>
+    </select>
+  </div>
+  <div class="ctrl">
+    <label>Search platforms</label>
+    <input type="text" id="search" placeholder="Filter…" style="width:130px">
+  </div>
+</div>
+
+<!-- Dimension toggle row (hidden until CSV loaded) -->
+<div class="ctrl-row" id="dim-row" style="display:none">
+  <span style="color:var(--muted);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0">Dimensions</span>
+  <div id="dim-toggles" style="display:flex;gap:5px;flex-wrap:wrap"></div>
+  <div class="dim-sep"></div>
+  <button class="mini-btn" id="dims-all">All</button>
+  <button class="mini-btn" id="dims-none">None</button>
+</div>
+
+<!-- Drop zone (pre-load) -->
+<div id="dropzone">
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+  </svg>
+  <p>Drop <code>05-platform-inventory.csv</code> here</p>
+  <span>or</span>
+  <button id="file-btn">Browse file…</button>
+  <input type="file" id="file-input" accept=".csv">
+</div>
+
+<!-- Main app layout -->
+<div id="app">
+  <!-- Platform selector sidebar -->
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <span>Platforms</span>
+      <div>
+        <button class="mini-btn" id="plats-all">All</button>
+        <button class="mini-btn" id="plats-none">None</button>
+      </div>
+    </div>
+    <div id="platform-list"></div>
+  </div>
+
+  <!-- Charts -->
+  <div id="chart-area">
+    <div class="chart-block" id="bar-block">
+      <div class="chart-title">Stacked score by platform — click a bar to inspect</div>
+      <div id="chart-bar"></div>
+    </div>
+    <div class="chart-block" id="detail-block">
+      <div class="chart-title" id="detail-title">Platform detail</div>
+      <div id="chart-detail"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════════
+// Constants
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const SCHEMA    = 'https://vega.github.io/schema/vega-lite/v6.json';
+const META_COLS = new Set(['Name','Link','Phase','Model','Date','Canonical']);
+const DARK_THEMES = new Set(['dark','carbong100','']);
+
+const DARK_CFG = {
+  background: 'transparent',
+  config: {
+    view:    { stroke: null },
+    axis:    { labelColor:'#8b949e', titleColor:'#8b949e', gridColor:'#21262d', domainColor:'#30363d', tickColor:'#30363d' },
+    legend:  { labelColor:'#8b949e', titleColor:'#8b949e', labelFontSize:10, titleFontSize:10 },
+    title:   { color:'#e6edf3', subtitleColor:'#8b949e', anchor:'start', fontSize:12 },
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Application state
+// ═══════════════════════════════════════════════════════════════════════════════
+
+let DATA              = null;           // { headers, dims, rows }
+let filters           = { phase:'', model:'', search:'' };
+let theme             = '';
+let selectedPlatforms = new Set();      // which platforms to show in the bar chart
+let selectedDims      = new Set();      // which dimensions to include in the stack
+let views             = { bar:null, detail:null };
+let inspectedPlatform = null;           // platform whose detail is shown
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Theme helpers
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const vlBase    = ()  => ({ $schema:SCHEMA, ...(theme ? {} : DARK_CFG) });
+const embedOpts = ()  => {
+  const o = { renderer:'svg', actions:{ export:true, source:false, editor:false, compiled:false } };
+  if (theme) o.theme = theme;
+  return o;
+};
+const applyPageTheme = () => {
+  document.documentElement.dataset.mode = DARK_THEMES.has(theme) ? 'dark' : 'light';
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CSV parsing — derived from headers, no hardcoding
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function parseCSV(text) {
+  const lines   = text.trim().split(/\r?\n/);
+  const headers = lines[0].split(',').map(h => h.trim());
+  const dims    = headers.filter(h => !META_COLS.has(h));
+  const useCanonical = headers.includes('Canonical');
+
+  const rows = lines.slice(1).flatMap(line => {
+    if (!line.trim()) return [];
+    const cols = line.split(',');
+    const r = {};
+    headers.forEach((h, i) => {
+      const raw = (cols[i] ?? '').trim();
+      r[h] = META_COLS.has(h) ? raw : (parseInt(raw) || -1);
+    });
+    r._name = useCanonical && r.Canonical ? r.Canonical : r.Name;
+    return r._name ? [r] : [];
+  });
+
+  return { headers, dims, rows };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Data transforms
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// Tidy long format, scores > 0 only.
+function toLong(rows) {
+  return rows.flatMap(r =>
+    DATA.dims.flatMap(d =>
+      r[d] > 0 ? [{ name:r._name, phase:r.Phase, model:r.Model, dim:d, value:r[d] }] : []
+    )
+  );
+}
+
+// Pre-aggregate to one mean value per (platform, dim) so tooltip and stacking
+// reflect per-model-averaged scores, not raw multi-run data.
+function aggregate(long) {
+  const acc = {};
+  long.forEach(d => {
+    const k = `${d.name}\x00${d.dim}`;
+    if (!acc[k]) acc[k] = { name:d.name, dim:d.dim, phase:d.phase, sum:0, cnt:0 };
+    acc[k].sum += d.value;
+    acc[k].cnt++;
+  });
+  return Object.values(acc).map(a => ({
+    name: a.name, dim: a.dim, phase: a.phase,
+    value: +(a.sum / a.cnt).toFixed(3),
+    runs:  a.cnt,
+  }));
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Spec builders
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ── Main: stacked bar chart ────────────────────────────────────────────────────
+function specStackedBar(agg) {
+  // Apply platform + dimension selection
+  const data = agg.filter(d => selectedPlatforms.has(d.name) && selectedDims.has(d.dim));
+
+  // Sort order: descending total score (pre-computed so sort is deterministic)
+  const totals = {};
+  data.forEach(d => { totals[d.name] = (totals[d.name] ?? 0) + d.value; });
+  const sortedNames = Object.entries(totals)
+    .sort((a, b) => b[1] - a[1])
+    .map(e => e[0]);
+
+  return {
+    ...vlBase(),
+    data: { values: data },
+    width: { step: 52 },
+    height: 360,
+    mark: { type:'bar', tooltip:true, cursor:'pointer' },
+    encoding: {
+      x: {
+        field: 'name', type: 'nominal', sort: sortedNames,
+        axis: { title:null, labelAngle:-35, labelFontSize:11, labelLimit:180 },
+      },
+      y: {
+        field: 'value', type: 'quantitative', stack: 'zero',
+        axis: { title:'Score (stacked mean)', labelFontSize:10 },
+      },
+      color: {
+        field: 'dim', type: 'nominal', sort: [...selectedDims],
+        scale: { scheme: 'tableau20' },
+        legend: { title:'Dimension', orient:'right', labelFontSize:11, symbolSize:120 },
+      },
+      tooltip: [
+        { field:'name',  type:'nominal',      title:'Platform' },
+        { field:'dim',   type:'nominal',      title:'Dimension' },
+        { field:'value', type:'quantitative', title:'Score (avg)', format:'.2f' },
+        { field:'runs',  type:'quantitative', title:'Model runs' },
+      ],
+    },
+  };
+}
+
+// ── Detail: bars per dimension + model-run dots ────────────────────────────────
+function specDetail(long, platform) {
+  const vals = long.filter(d => d.name === platform);
+  if (!vals.length) return null;
+
+  const phases = [...new Set(vals.map(d => d.phase))].join(' + ');
+  const models = [...new Set(vals.map(d => d.model))];
+
+  return {
+    ...vlBase(),
+    data: { values: vals },
+    width: 'container',
+    height: 200,
+    title: {
+      text: platform, fontSize:13, fontWeight:600,
+      subtitle: `${phases}  ·  models: ${models.join(', ')}`,
+      subtitleFontSize: 10,
+    },
+    layer: [
+      // CI error bar
+      {
+        mark: { type:'errorbar', extent:'ci', ticks:true },
+        encoding: {
+          x: { field:'dim', type:'nominal', sort:DATA.dims },
+          y: { field:'value', type:'quantitative' },
+        },
+      },
+      // Mean bar per dimension, color-encoded by score
+      {
+        mark: { type:'bar', tooltip:true },
+        encoding: {
+          x: {
+            field: 'dim', type: 'nominal', sort: DATA.dims,
+            axis: { title:null, labelFontSize:12 },
+          },
+          y: {
+            aggregate:'mean', field:'value', type:'quantitative',
+            scale: { domain:[0,5] },
+            axis: { title:'Score', tickCount:5, labelFontSize:10 },
+          },
+          color: {
+            aggregate:'mean', field:'value', type:'quantitative',
+            scale: { domain:[1,5], scheme:'redyellowgreen' }, legend:null,
+          },
+          tooltip: [
+            { field:'dim',              type:'nominal',      title:'Dimension' },
+            { aggregate:'mean', field:'value', type:'quantitative', title:'Mean',  format:'.2f' },
+            { aggregate:'min',  field:'value', type:'quantitative', title:'Min' },
+            { aggregate:'max',  field:'value', type:'quantitative', title:'Max' },
+            { aggregate:'count',field:'value', type:'quantitative', title:'Runs' },
+          ],
+        },
+      },
+      // Individual model-run dots, colored by model
+      {
+        mark: { type:'point', filled:true, size:55, opacity:0.9 },
+        encoding: {
+          x: { field:'dim',   type:'nominal', sort:DATA.dims },
+          y: { field:'value', type:'quantitative' },
+          color: {
+            field: 'model', type: 'nominal',
+            legend: { title:'Model', orient:'right' },
+          },
+          tooltip: [
+            { field:'model', type:'nominal',      title:'Model' },
+            { field:'dim',   type:'nominal',      title:'Dimension' },
+            { field:'value', type:'quantitative', title:'Score' },
+          ],
+        },
+      },
+    ],
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// File loading
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function readFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => onCSVLoaded(e.target.result);
+  reader.readAsText(file);
+}
+
+function onCSVLoaded(text) {
+  DATA = parseCSV(text);
+
+  // Show app chrome
+  document.getElementById('dropzone').style.display   = 'none';
+  document.getElementById('filter-row').style.display = 'flex';
+  document.getElementById('dim-row').style.display    = 'flex';
+  document.getElementById('app').style.display        = 'flex';
+
+  destroyViews();
+  populateFilterControls();
+  populateDimToggles();
+  populatePlatformList();   // also initialises selectedPlatforms
+  render();
+}
+
+document.getElementById('file-btn').onclick    = () => document.getElementById('file-input').click();
+document.getElementById('file-input').onchange = e => { if (e.target.files[0]) readFile(e.target.files[0]); };
+const dz = document.getElementById('dropzone');
+dz.addEventListener('dragover',  e => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', ()  => dz.classList.remove('drag-over'));
+dz.addEventListener('drop',      e  => {
+  e.preventDefault(); dz.classList.remove('drag-over');
+  if (e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0]);
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Controls — populated from data
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function populateFilterControls() {
+  // Phase buttons
+  const phases   = [...new Set(DATA.rows.map(r => r.Phase).filter(Boolean))].sort();
+  const phaseDiv = document.getElementById('phase-btns');
+  phaseDiv.innerHTML = '<button class="active" data-val="">All</button>' +
+    phases.map(p => `<button data-val="${p}">${p[0].toUpperCase()+p.slice(1)}</button>`).join('');
+  phaseDiv.querySelectorAll('button').forEach(b =>
+    b.addEventListener('click', () => {
+      filters.phase = b.dataset.val;
+      phaseDiv.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
+      refreshPlatformList(); render();
+    }));
+
+  // Model dropdown
+  const models = [...new Set(DATA.rows.map(r => r.Model).filter(Boolean))].sort();
+  const msel   = document.getElementById('model-sel');
+  msel.innerHTML = '<option value="">All (averaged)</option>' +
+    models.map(m => `<option value="${m}">${m}</option>`).join('');
+  msel.onchange = e => { filters.model = e.target.value; refreshPlatformList(); render(); };
+}
+
+function populateDimToggles() {
+  selectedDims = new Set(DATA.dims);
+  const wrap = document.getElementById('dim-toggles');
+  wrap.innerHTML = DATA.dims.map(d =>
+    `<button class="dim-btn active" data-dim="${d}">${d}</button>`
+  ).join('');
+  wrap.querySelectorAll('.dim-btn').forEach(b =>
+    b.addEventListener('click', () => {
+      const d = b.dataset.dim;
+      if (selectedDims.has(d)) selectedDims.delete(d); else selectedDims.add(d);
+      b.classList.toggle('active', selectedDims.has(d));
+      render();
+    }));
+
+  document.getElementById('dims-all').onclick  = () => {
+    selectedDims = new Set(DATA.dims);
+    wrap.querySelectorAll('.dim-btn').forEach(b => b.classList.add('active'));
+    render();
+  };
+  document.getElementById('dims-none').onclick = () => {
+    selectedDims = new Set();
+    wrap.querySelectorAll('.dim-btn').forEach(b => b.classList.remove('active'));
+    render();
+  };
+}
+
+// Build the platform checklist from currently-filtered unique platform names.
+function allFilteredPlatforms() {
+  const { phase, model, search } = filters;
+  const rows = DATA.rows.filter(r =>
+    (!phase  || r.Phase === phase) &&
+    (!model  || r.Model === model) &&
+    (!search || r._name.toLowerCase().includes(search.toLowerCase()))
+  );
+  // Unique names, sorted alphabetically
+  return [...new Set(rows.map(r => r._name))].sort();
+}
+
+function populatePlatformList() {
+  const platforms = allFilteredPlatforms();
+  selectedPlatforms = new Set(platforms);   // all selected by default
+  renderPlatformList(platforms);
+}
+
+function refreshPlatformList() {
+  const platforms = allFilteredPlatforms();
+  // Preserve existing selections that are still in scope
+  const next = new Set(platforms.filter(p => selectedPlatforms.has(p)));
+  if (next.size === 0) platforms.forEach(p => next.add(p)); // default: all
+  selectedPlatforms = next;
+  renderPlatformList(platforms);
+}
+
+function renderPlatformList(platforms) {
+  const list = document.getElementById('platform-list');
+  list.innerHTML = platforms.map(p => `
+    <label class="plat-item">
+      <input type="checkbox" value="${escHtml(p)}" ${selectedPlatforms.has(p) ? 'checked' : ''}>
+      <span title="${escHtml(p)}">${escHtml(p)}</span>
+    </label>
+  `).join('');
+  list.querySelectorAll('input[type=checkbox]').forEach(cb =>
+    cb.addEventListener('change', () => {
+      if (cb.checked) selectedPlatforms.add(cb.value); else selectedPlatforms.delete(cb.value);
+      render();
+    }));
+}
+
+document.getElementById('plats-all').onclick  = () => {
+  selectedPlatforms = new Set(allFilteredPlatforms());
+  renderPlatformList([...selectedPlatforms].sort());
+  render();
+};
+document.getElementById('plats-none').onclick = () => {
+  selectedPlatforms = new Set();
+  document.getElementById('platform-list').querySelectorAll('input').forEach(i => i.checked = false);
+  render();
+};
+
+// Theme
+document.getElementById('theme-sel').onchange = e => {
+  theme = e.target.value; applyPageTheme(); destroyViews(); if (DATA) render();
+};
+
+// Search (debounced)
+let searchTimer;
+document.getElementById('search').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => { filters.search = e.target.value; refreshPlatformList(); render(); }, 200);
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Render
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function destroyViews() {
+  Object.keys(views).forEach(k => { if (views[k]) { views[k].finalize(); views[k] = null; } });
+}
+
+async function render() {
+  // Build the full long table for the current filters (no platform/dim filter yet —
+  // that happens inside specStackedBar and specDetail).
+  const { phase, model, search } = filters;
+  const rows = DATA.rows.filter(r =>
+    (!phase  || r.Phase === phase) &&
+    (!model  || r.Model === model) &&
+    (!search || r._name.toLowerCase().includes(search.toLowerCase()))
+  );
+  const long = toLong(rows);
+  const agg  = aggregate(long);
+
+  const n = selectedPlatforms.size;
+  const d = selectedDims.size;
+  document.getElementById('status').textContent =
+    `${n} platform${n!==1?'s':''} · ${d} dimension${d!==1?'s':''}`;
+
+  await renderBar(agg);
+  await renderDetail(long);
+}
+
+async function renderBar(agg) {
+  const spec = specStackedBar(agg);
+  if (views.bar) {
+    views.bar.change('source_0', vega.changeset().remove(()=>true).insert(spec.data.values)).run();
+  } else {
+    const result = await vegaEmbed('#chart-bar', spec, embedOpts());
+    views.bar = result.view;
+    views.bar.addEventListener('click', (_ev, item) => {
+      if (!item?.datum?.name) return;
+      inspectedPlatform = inspectedPlatform === item.datum.name ? null : item.datum.name;
+      // Re-run renderDetail with fresh long data
+      const { phase, model, search } = filters;
+      const rows = DATA.rows.filter(r =>
+        (!phase  || r.Phase === phase) &&
+        (!model  || r.Model === model) &&
+        (!search || r._name.toLowerCase().includes(search.toLowerCase()))
+      );
+      renderDetail(toLong(rows));
+    });
+  }
+}
+
+async function renderDetail(long) {
+  const block = document.getElementById('detail-block');
+  if (!inspectedPlatform) { block.style.display = 'none'; views.detail = null; return; }
+
+  const spec = specDetail(long, inspectedPlatform);
+  if (!spec) { block.style.display = 'none'; return; }
+
+  document.getElementById('detail-title').textContent = `Detail — ${inspectedPlatform}`;
+  block.style.display = 'flex';
+
+  if (views.detail) {
+    views.detail.change('source_0', vega.changeset().remove(()=>true).insert(spec.data.values)).run();
+  } else {
+    const result = await vegaEmbed('#chart-detail', spec, embedOpts());
+    views.detail = result.view;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Utilities
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>

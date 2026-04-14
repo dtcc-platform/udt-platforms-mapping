@@ -35,19 +35,31 @@ The prompt template SHALL also instruct the model that the pasted table is the c
 - **WHEN** a researcher runs the prompt in a Research or Deep Research interface
 - **THEN** the model limits the comparison to the pasted platform rows and does not introduce extra platforms on its own
 
-### Requirement: Comparison prompt covers the six research dimensions with scoring
+### Requirement: Comparison prompt covers twelve dimensions with scoring
+The prompt template SHALL instruct the model to compare platforms across all twelve dimensions — the six research dimensions (Technical Architecture, Openness & Licensing, City-Scale Capability, Maturity & Adoption, Integration Posture, Governance) and the six functional categories (Visualization, Data Management, Simulation, IoT Sensing, Standards, Infrastructure) — and assign each platform a score of 1–5 per dimension using rubrics defined in the pasted scope content.
 
-The prompt template SHALL instruct the model to compare platforms across all six dimensions — technical architecture, openness and licensing, city-scale capability, platform maturity, integration posture, and governance model — and assign each platform a score of 1–5 per dimension using a rubric defined in the prompt. The rubric for each dimension SHALL be self-contained in the prompt so the model can apply it without additional context.
+The prompt SHALL state that rubrics are supplied via `[PASTE_SCOPE_HERE]` and are not embedded inline.
 
-#### Scenario: Response covers all dimensions with scores
-
+#### Scenario: Response covers all twelve dimensions with scores
 - **WHEN** an AI responds to the comparison prompt
-- **THEN** the response addresses each of the six dimensions for every platform and assigns a numeric 1–5 score with rationale
+- **THEN** the response addresses each of the twelve dimensions for every platform and assigns a numeric 1–5 score with rationale
 
 #### Scenario: Researcher compares scores across agents
-
 - **WHEN** a researcher runs the same comparison on two different AI agents
 - **THEN** both responses use the same dimension labels and scoring scale, making scores comparable
+
+### Requirement: Comparison prompt includes a [PASTE_SCOPE_HERE] guard
+The prompt template SHALL include a `[PASTE_SCOPE_HERE]` placeholder where the researcher pastes the full content of `docs/01-scope.md` before running a session. The placeholder SHALL be preceded by a guard instruction telling the model: _if `[PASTE_SCOPE_HERE]` still appears verbatim, stop and ask the user to paste `docs/01-scope.md` before continuing._
+
+The usage header SHALL be updated to include a step directing the researcher to paste `docs/01-scope.md` into the `[PASTE_SCOPE_HERE]` slot as the first preparation step.
+
+#### Scenario: Researcher runs the comparison without pasting scope
+- **WHEN** a researcher pastes the comparison prompt into an AI session without replacing `[PASTE_SCOPE_HERE]`
+- **THEN** the model stops and asks them to provide the scope content before producing any output
+
+#### Scenario: Researcher runs the comparison after pasting scope
+- **WHEN** a researcher pastes `docs/01-scope.md` content into the `[PASTE_SCOPE_HERE]` slot
+- **THEN** the model proceeds with all 13 rubrics available and produces a complete comparison response
 
 ### Requirement: Comparison prompt requests a three-part structured output
 
@@ -99,27 +111,6 @@ The prompt SHALL include a legend immediately below the Part 1 table instruction
 
 - **WHEN** an AI responds to the comparison prompt
 - **THEN** every platform row contains a numeric 1–5 score (or `?`) in every category column
-
-### Requirement: Comparison prompt defines functional category rubrics
-
-The prompt template SHALL define a 1–5 scoring rubric for each of the six functional categories. Each rubric SHALL be self-contained in the prompt and SHALL provide anchor descriptions for scores 1, 3, and 5 at minimum.
-
-The same rubrics SHALL appear in `docs/02-methodology.md` in a dedicated section alongside the existing workflow prose, so researchers have a stable reference without reading the full prompt.
-
-#### Scenario: AI scores a platform's visualization capability
-
-- **WHEN** an AI assigns a `Viz` score to a platform
-- **THEN** the score reflects the rubric anchors defined in the prompt — 5 for purpose-built primary visualization, 3 for moderate capability not the primary strength, 1 for absent or negligible
-
-#### Scenario: Researcher consults methodology for category definitions
-
-- **WHEN** a researcher opens `docs/02-methodology.md`
-- **THEN** a section lists all six functional category rubrics with their 1–5 anchor descriptions
-
-#### Scenario: Two agents score the same platform's functional category
-
-- **WHEN** a researcher runs the comparison prompt on two different AI agents
-- **THEN** both agents apply the same rubric anchors, producing comparable category scores
 
 ### Requirement: Comparison prompt includes DTCC as a required reference entry
 

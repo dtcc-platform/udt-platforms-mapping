@@ -1,121 +1,207 @@
-# Platform Scope
+# Platform Scope and Scoring Rubrics
 
-Authoritative inclusion boundary for the UDT platform review.
-This review applies a **moderate** inclusion boundary: platforms that are purely adjacent (generic IoT platforms, general-purpose GIS tools without urban twin framing) are excluded even if they could theoretically be used in a UDT context.
-
----
-
-## Inclusion Criteria
-
-A platform qualifies if it satisfies **at least one** of the following, evidenced by primary sources (official site, repository, published paper):
-
-### 1. Explicit Urban Digital Twin
-
-**Qualifies if:** The platform's own official documentation, product page, or repository description uses the term "digital twin" in an urban or city-scale context.
-
-**Sufficient evidence:** One of — product page headline, repository README, official paper abstract, or press release from the platform's own organisation.
-
-**Does not qualify on:** Third-party descriptions, analyst reports, or general-purpose platforms that _could_ be used as a UDT without being positioned as one.
-
-### 2. City-Scale Capabilities
-
-**Qualifies if:** The platform is purpose-built for one or more of: city-scale 3D visualisation, urban simulation, large-scale geospatial data management, or multi-domain urban analytics (buildings, transport, energy, climate, utilities).
-
-**Sufficient evidence:** Feature documentation or published use cases demonstrating city-scale deployment (not just single-building or campus-scale).
-
-**Does not qualify on:** Generic GIS tools, single-domain analytics platforms, or building-level BIM tools without demonstrated city-scale deployment.
-
-### 3. Adjacent Architecture or Governance
-
-**Qualifies if:** The platform is a foundational technical building block that is directly and commonly integrated into UDT systems — e.g., open standards implementations (CityGML, IFC, OGC API), enabling 3D visualisation engines with urban extensions, or infrastructure digital twin frameworks.
-
-**Sufficient evidence:** Published integrations with known UDT platforms, or explicit positioning as UDT infrastructure in official documentation.
-
-**Does not qualify on:** Standards bodies, specification documents, or frameworks whose primary use case is not UDT (e.g., general IoT platforms, ERP systems, cloud infrastructure).
+This file defines the relevance boundary for the UDT platform review and contains all scoring rubrics used during discovery and comparison sessions.
+Paste the full content of this file into the `[PASTE_SCOPE_HERE]` slot in any prompt before running a session.
 
 ---
 
-## Exclusion Criteria
+## What Is a UDT Platform?
 
-A platform is excluded if it falls into any of the following categories, even if it is technically capable of contributing to a UDT.
-
-### A. Spec or Standard
-
-**Excluded if:** The project's primary output is a data model specification, schema, or governance standard — not a runnable platform. Standards bodies and specification documents are out of scope; their implementations (e.g., an OGC-compliant server) may qualify separately.
-
-**Examples:** CityGML (OGC standard), IFC (buildingSMART standard), NGSI-LD (ETSI standard), OGC SensorThings API (specification).
-
-### B. Single Domain
-
-**Excluded if:** The platform is purpose-built for a single urban domain (e.g., building energy, traffic flow, air quality) with no stated intent or capability to integrate across multiple domains at city scale.
-
-**Examples:** SUMO (transport simulation), EnergyPlus (building energy), OpenNoise (acoustic modelling).
-
-### C. General Purpose
-
-**Excluded if:** The platform is a general-purpose cloud, IoT, GIS, or data platform with no explicit urban digital twin framing or positioning in official documentation.
-
-**Examples:** AWS IoT Core, Azure IoT Hub, Esri ArcGIS (base platform), InfluxDB, Apache Kafka.
-
-> **Note:** The labels `Spec or Standard`, `Single Domain`, and `General Purpose` are the canonical exclusion criterion values used in the `Criterion` column of discovery response summary tables.
+A **Urban Digital Twin (UDT) platform** is a software system for representing, managing, simulating, or visualising city-scale urban environments as a live or near-live digital counterpart. This review applies a **moderate** inclusion boundary: platforms purely adjacent to UDT use cases (generic IoT platforms, general-purpose GIS tools without urban twin framing) are out of scope even if they could theoretically be used in a UDT context.
 
 ---
 
-## Explicit Exclusions
+## Relevance Rubric
 
-The following categories and named examples are **out of scope** under the moderate inclusion boundary:
+Score each platform 0–5 to express its relevance to city-scale Urban Digital Twin use cases.
 
-| Platform / Category                     | Reason excluded                                                                                                             |
-| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **AWS IoT / Azure IoT Hub**             | Generic IoT platform; no city-scale spatial or 3D capability; not positioned as UDT infrastructure                          |
-| **SUMO (Simulation of Urban MObility)** | Single-domain transport simulation tool; does not cover the multi-domain scope of a UDT                                     |
-| **OpenStreetMap**                       | Geospatial data source / community project; not a platform for building or operating digital twins                          |
-| **FIWARE NGSI-LD standard**             | A specification / standard, not a platform; the FIWARE Orion Context Broker (platform) may qualify separately               |
-| **Esri ArcGIS**                         | General-purpose GIS; city-scale capable but not positioned as a UDT platform; would require explicit UDT framing to qualify |
-| **IOTA / Helium**                       | Distributed IoT networks; no urban spatial or simulation capability                                                         |
-| **CityGML standard**                    | A data model standard (OGC), not a platform; implementations (e.g., 3D City DB) may qualify                                 |
+| Score | Criteria                                                                                                                                                                                                     |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 5     | **Explicit UDT** — the platform's own official documentation, product page, or repository uses the term "digital twin" in an urban or city-scale context                                                     |
+| 4     | **City-Scale Capabilities** — purpose-built for city-scale 3D visualisation, urban simulation, large-scale geospatial data management, or multi-domain urban analytics; no explicit UDT framing required     |
+| 3     | **Adjacent Architecture** — a foundational building block commonly and directly integrated into UDT systems (open standards implementations, enabling visualisation engines, infrastructure twin frameworks) |
+| 2     | **Marginal** — tangential relevance; could contribute to a UDT but not designed for it and not commonly used in that context                                                                                 |
+| 1     | **Out of scope** — assessed and found outside the study boundary (single domain, general purpose, or spec/standard only)                                                                                     |
+| 0     | **Not assessed** — platform has not been evaluated against the rubric                                                                                                                                        |
 
-> **Borderline cases:** If a platform is adjacent but its primary positioning is clearly outside UDT, exclude it and note it as "adjacent but out of scope" in the session log.
-> When uncertain, compare against the seed list below.
+**Seed list calibration:**
 
----
+| Platform                          | Relevance | Notes                                                                       |
+| --------------------------------- | --------- | --------------------------------------------------------------------------- |
+| DTCC (Digital Twin Cities Centre) | 5         | Academic–municipal UDT; explicit digital twin positioning                   |
+| Virtual Singapore                 | 5         | National city-scale digital twin programme                                  |
+| Cesium                            | 3         | 3D geospatial visualisation engine; widely used as UDT rendering layer      |
+| 3D City DB                        | 4         | Open-source city model database (CityGML); city-scale geospatial management |
+| FIWARE Orion Context Broker       | 4         | Context data management; deployed in multiple smart city / UDT projects     |
+| iTwin                             | 3         | Infrastructure digital twin framework; explicit UDT integration positioning |
+| Eclipse Ditto                     | 3         | IoT device twin framework; used as the device layer in UDT architectures    |
 
-## Seed List
-
-Known platforms that qualify, distributed across the three inclusion criteria.
-Use these to anchor discovery sessions and calibrate the boundary for new candidates.
-
-### Criterion 1 — Explicit Urban Digital Twin
-
-| Platform                                                                 | Organisation                         | Notes                                                     |
-| ------------------------------------------------------------------------ | ------------------------------------ | --------------------------------------------------------- |
-| [DTCC (Digital Twin City Centre)](https://dtcc.chalmers.se)              | Chalmers / Rise / City of Gothenburg | Academic–municipal UDT; explicit digital twin positioning |
-| [Virtual Singapore](https://www.nrf.gov.sg/programmes/virtual-singapore) | Singapore NRF / GovTech              | National city-scale digital twin programme                |
-
-### Criterion 2 — City-Scale Capabilities
-
-| Platform                                                           | Organisation                   | Notes                                                                       |
-| ------------------------------------------------------------------ | ------------------------------ | --------------------------------------------------------------------------- |
-| [Cesium](https://cesium.com)                                       | Cesium GS                      | 3D geospatial visualisation engine; widely used as UDT rendering layer      |
-| [3D City DB](https://www.3dcitydb.org)                             | TU Munich / virtualcitySYSTEMS | Open-source city model database (CityGML); city-scale geospatial management |
-| [FIWARE Orion Context Broker](https://fiware-orion.readthedocs.io) | FIWARE Foundation              | Context data management; deployed in multiple smart city / UDT projects     |
-
-### Criterion 3 — Adjacent Architecture or Governance
-
-| Platform                                                  | Organisation       | Notes                                                                       |
-| --------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------- |
-| [iTwin](https://www.bentley.com/software/itwin-platform/) | Bentley Systems    | Infrastructure digital twin framework; explicit UDT integration positioning |
-| [Eclipse Ditto](https://eclipse.dev/ditto/)               | Eclipse Foundation | IoT device twin framework; used as the device layer in UDT architectures    |
+**Target corpus:** 15–30 platforms (planning heuristic, not a hard constraint).
 
 ---
 
-## Target Corpus
+## Research Dimensions
 
-**Target:** 15–30 platforms.
+Score each platform 0–5 per dimension using the rubrics below. Use `0` when a dimension has not been assessed at this phase.
 
-This range is a **planning heuristic**, not a hard constraint.
-The actual count will be determined by what the research finds.
-A corpus below 15 is likely under-sampled; above 30 risks including platforms that are too peripheral to be analytically useful.
+### 1. Technical Architecture (`Arch`)
 
-The seed list above contributes 7 confirmed platforms.
-Discovery sessions should aim to extend this to the target range by finding additional platforms across all three criteria, with particular attention to non-English-speaking markets and government-led initiatives not well represented in the seed list.
+Core technology stack, data models (CityGML, IFC, OGC standards, proprietary), component structure, deployment model, scalability approach.
+
+| Score | Criteria                                                                       |
+| ----- | ------------------------------------------------------------------------------ |
+| 5     | Fully modular, open standards (CityGML/IFC/OGC), cloud-native or self-hostable |
+| 4     | Mostly modular, supports open standards with some proprietary layers           |
+| 3     | Mixed architecture, partial standards support                                  |
+| 2     | Largely monolithic, limited open standards                                     |
+| 1     | Monolithic with proprietary data model, no open standards                      |
+| 0     | Not assessed                                                                   |
+
+### 2. Openness & Licensing (`Open`)
+
+Source availability, license type, contribution model, commercial restrictions, dual licensing, open data formats.
+
+| Score | Criteria                                                                                      |
+| ----- | --------------------------------------------------------------------------------------------- |
+| 5     | Permissive open-source (MIT/Apache/BSD) + open data formats, no SaaS dependency               |
+| 4     | Copyleft open-source, or open-core with substantial open component                            |
+| 3     | Open-core with significant proprietary features, or open source with restrictive data formats |
+| 2     | Primarily proprietary with limited open components or open APIs                               |
+| 1     | Fully proprietary, no public source, no open APIs                                             |
+| 0     | Not assessed                                                                                  |
+
+### 3. City-Scale Capability (`City`)
+
+Urban domains covered (buildings, infrastructure, mobility, energy, climate, water, noise), geographic extent, multi-domain analytics, real-time vs. batch.
+
+| Score | Criteria                                                         |
+| ----- | ---------------------------------------------------------------- |
+| 5     | Comprehensive multi-domain urban coverage at full city scale     |
+| 4     | Multi-domain coverage, strong city-scale support with minor gaps |
+| 3     | Several domains covered, city-scale with notable limitations     |
+| 2     | Limited domains or district/building scale only                  |
+| 1     | Single narrow domain or sub-city scale                           |
+| 0     | Not assessed                                                     |
+
+### 4. Maturity & Adoption (`Mature`)
+
+Development status, known city deployments (name cities if possible), release cadence, community activity.
+
+| Score | Criteria                                                            |
+| ----- | ------------------------------------------------------------------- |
+| 5     | Production-grade, multiple named city deployments, active community |
+| 4     | Production-ready, some city deployments or pilots, regular releases |
+| 3     | Stable but limited deployments, moderate activity                   |
+| 2     | Prototype or early production, few or no known deployments          |
+| 1     | Concept or prototype, no known deployments                          |
+| 0     | Not assessed                                                        |
+
+### 5. Integration Posture (`Integ`)
+
+Public APIs (REST, GraphQL, gRPC), plugin/extension ecosystem, data exchange standards, interoperability with other tools.
+
+| Score | Criteria                                                                    |
+| ----- | --------------------------------------------------------------------------- |
+| 5     | Rich public APIs, active plugin ecosystem, easy to compose with other tools |
+| 4     | Good APIs, some ecosystem, OGC-compliant interfaces                         |
+| 3     | Basic APIs, limited ecosystem, some interoperability                        |
+| 2     | Minimal public APIs, closed or limited integration                          |
+| 1     | Closed system, no public APIs                                               |
+| 0     | Not assessed                                                                |
+
+### 6. Governance Model (`Gov`)
+
+Who controls the roadmap (vendor, consortium, community, research institution), contribution model, funding model.
+
+| Score | Criteria                                                                              |
+| ----- | ------------------------------------------------------------------------------------- |
+| 5     | Open consortium or community governance, transparent decision-making, diverse funding |
+| 4     | Academic or public institution governance with open contribution                      |
+| 3     | Mixed governance, some community input                                                |
+| 2     | Single organisation control with limited community input                              |
+| 1     | Single corporate control, no community input                                          |
+| 0     | Not assessed                                                                          |
+
+---
+
+## Functional Categories
+
+Score each platform 0–5 per functional category using the rubrics below. Use `0` when a category has not been assessed at this phase.
+
+### 7. Visualization (`Viz`)
+
+Primary function: 3D rendering, GIS viewers, scene composition, visual output quality.
+
+| Score | Criteria                                                                                                |
+| ----- | ------------------------------------------------------------------------------------------------------- |
+| 5     | Purpose-built 3D visualization engine or viewer; primary purpose; real-time or near-real-time rendering |
+| 4     | Strong visualization capabilities; core feature set with significant investment                         |
+| 3     | Visualization present and useful but not the primary strength                                           |
+| 2     | Basic or incidental visualization (e.g., simple 2D map view, no 3D)                                     |
+| 1     | No meaningful visualization capability                                                                  |
+| 0     | Not assessed                                                                                            |
+
+### 8. Data Management (`DM`)
+
+Primary function: data ingestion, storage, twin models, semantic layers, data lifecycle.
+
+| Score | Criteria                                                                                                  |
+| ----- | --------------------------------------------------------------------------------------------------------- |
+| 5     | Purpose-built for city-scale data storage and management; semantic model, versioning, full data lifecycle |
+| 4     | Strong data management with semantic modelling or graph; multi-source ingestion                           |
+| 3     | Solid data management but limited semantic layer or scalability                                           |
+| 2     | Basic storage or data exchange; limited query or model capabilities                                       |
+| 1     | No meaningful data management role                                                                        |
+| 0     | Not assessed                                                                                              |
+
+### 9. Simulation (`Sim`)
+
+Primary function: urban simulation, physics, scenario modelling, what-if analysis.
+
+| Score | Criteria                                                                                       |
+| ----- | ---------------------------------------------------------------------------------------------- |
+| 5     | Purpose-built simulation engine; multi-domain urban physics, scenario comparison at city scale |
+| 4     | Strong simulation support across multiple urban domains                                        |
+| 3     | Simulation present for one or two domains; limited scenario tooling                            |
+| 2     | Basic scenario comparison or single-variable simulation                                        |
+| 1     | No simulation capability                                                                       |
+| 0     | Not assessed                                                                                   |
+
+### 10. IoT Sensing (`IoT`)
+
+Primary function: real-time data, sensor integration, device management, stream processing.
+
+| Score | Criteria                                                                                     |
+| ----- | -------------------------------------------------------------------------------------------- |
+| 5     | Purpose-built IoT platform; real-time ingestion, device registry, stream processing at scale |
+| 4     | Strong IoT support; real-time APIs, sensor integration, stream handling                      |
+| 3     | Connects to sensors but limited real-time processing                                         |
+| 2     | Basic real-time data hookup; manual or batch sensor feeds                                    |
+| 1     | No IoT or real-time sensing capability                                                       |
+| 0     | Not assessed                                                                                 |
+
+### 11. Standards (`Std`)
+
+Primary function: implementing or defining open standards, interoperability frameworks.
+
+| Score | Criteria                                                                                                      |
+| ----- | ------------------------------------------------------------------------------------------------------------- |
+| 5     | Primary purpose is defining or implementing open standards (OGC, ISO, W3C); governance role in standards body |
+| 4     | Strong standards implementation; multiple OGC/ISO standards as native data models                             |
+| 3     | Partial standards support; some open standards alongside proprietary models                                   |
+| 2     | Limited standards; primarily proprietary with token open format support                                       |
+| 1     | No meaningful open standards implementation                                                                   |
+| 0     | Not assessed                                                                                                  |
+
+### 12. Infrastructure (`Infra`)
+
+Primary function: built environment, BIM/GIS integration, infrastructure lifecycle management.
+
+| Score | Criteria                                                                                     |
+| ----- | -------------------------------------------------------------------------------------------- |
+| 5     | Purpose-built for infrastructure or BIM lifecycle; IFC, asset management, lifecycle tracking |
+| 4     | Strong infrastructure support; BIM integration, asset management, or civil engineering focus |
+| 3     | Infrastructure is one of several domains; partial BIM/GIS support                            |
+| 2     | Limited infrastructure scope; building-level only or minimal lifecycle management            |
+| 1     | No meaningful infrastructure or built environment focus                                      |
+| 0     | Not assessed                                                                                 |

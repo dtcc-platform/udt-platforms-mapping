@@ -4,10 +4,12 @@ Use this prompt to produce a structured, evidence-based comparison of UDT platfo
 
 This prompt can be used in an AI web research chat or an AI CLI session. In a web chat, manually save the final Markdown response into `responses/`.
 
-1. Open the discovery response file for your research session
-2. Copy the rows you want to compare (including the header row) from the summary table
-3. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
-4. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
+1. Open `docs/01-scope.md` and copy the full content
+2. Replace `[PASTE_SCOPE_HERE]` below with the copied content
+3. Open the discovery response file for your research session
+4. Copy the rows you want to compare (including the header row) from the summary table
+5. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
+6. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
 
 > **Save response as:** `responses/<platform-a>-vs-<platform-b>-comparison.md` — e.g., `responses/cesium-vs-3dcitydb-comparison.md`. See `docs/02-methodology.md` for the full convention.
 
@@ -32,6 +34,10 @@ You are a research assistant helping to map the Urban Digital Twin (UDT) platfor
 
 Use primary sources for all final factual claims (**official websites, public repositories, published papers, official documentation**). For every substantive claim, include a source reference. Distinguish inferred claims from verified facts. If you cannot find information, state "unknown" or "unclear" — do not fabricate URLs, license names, or deployment claims.
 
+**Before proceeding:** If the rubric block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `docs/01-scope.md` before continuing.
+
+[PASTE_SCOPE_HERE]
+
 **Platforms to compare** (rows from the discovery summary table — include DTCC as a reference entry):
 
 **Before proceeding:** If the placeholder below still contains the literal text `[PASTE_SELECTED_PLATFORMS_HERE]`, stop and ask the user to supply the required data before continuing. Do not attempt to generate output without it.
@@ -40,149 +46,7 @@ Treat the pasted table as the comparison scope boundary. Do not add comparison c
 
 [PASTE_SELECTED_PLATFORMS_HERE]
 
-Compare every platform present in the pasted table, plus DTCC. Treat the pasted table as a discovery baseline — use the identification fields (Name, Link, License, Type) and the first-pass dimension scores as starting context. Your task is to deepen each dimension with primary source research and produce authoritative scores and analysis for all six dimensions.
-
----
-
-### Research Dimensions
-
-Score each platform 1–5 per dimension using the rubrics below.
-
-**1. Technical Architecture**
-Core technology stack, data models (CityGML, IFC, OGC standards, proprietary), component structure, deployment model, scalability approach.
-
-| Score | Criteria                                                                       |
-| ----- | ------------------------------------------------------------------------------ |
-| 5     | Fully modular, open standards (CityGML/IFC/OGC), cloud-native or self-hostable |
-| 4     | Mostly modular, supports open standards with some proprietary layers           |
-| 3     | Mixed architecture, partial standards support                                  |
-| 2     | Largely monolithic, limited open standards                                     |
-| 1     | Monolithic with proprietary data model, no open standards                      |
-
-**2. Openness & Licensing**
-Source availability, license type, contribution model, commercial restrictions, dual licensing, open data formats.
-
-| Score | Criteria                                                                                      |
-| ----- | --------------------------------------------------------------------------------------------- |
-| 5     | Permissive open-source (MIT/Apache/BSD) + open data formats, no SaaS dependency               |
-| 4     | Copyleft open-source, or open-core with substantial open component                            |
-| 3     | Open-core with significant proprietary features, or open source with restrictive data formats |
-| 2     | Primarily proprietary with limited open components or open APIs                               |
-| 1     | Fully proprietary, no public source, no open APIs                                             |
-
-**3. City-Scale Capability**
-Urban domains covered (buildings, infrastructure, mobility, energy, climate, water, noise), geographic extent, multi-domain analytics, real-time vs. batch.
-
-| Score | Criteria                                                         |
-| ----- | ---------------------------------------------------------------- |
-| 5     | Comprehensive multi-domain urban coverage at full city scale     |
-| 4     | Multi-domain coverage, strong city-scale support with minor gaps |
-| 3     | Several domains covered, city-scale with notable limitations     |
-| 2     | Limited domains or district/building scale only                  |
-| 1     | Single narrow domain or sub-city scale                           |
-
-**4. Maturity & Adoption**
-Development status, known city deployments (name cities if possible), release cadence, community activity.
-
-| Score | Criteria                                                            |
-| ----- | ------------------------------------------------------------------- |
-| 5     | Production-grade, multiple named city deployments, active community |
-| 4     | Production-ready, some city deployments or pilots, regular releases |
-| 3     | Stable but limited deployments, moderate activity                   |
-| 2     | Prototype or early production, few or no known deployments          |
-| 1     | Concept or prototype, no known deployments                          |
-
-**5. Integration Posture**
-Public APIs (REST, GraphQL, gRPC), plugin/extension ecosystem, data exchange standards, interoperability with other tools.
-
-| Score | Criteria                                                                    |
-| ----- | --------------------------------------------------------------------------- |
-| 5     | Rich public APIs, active plugin ecosystem, easy to compose with other tools |
-| 4     | Good APIs, some ecosystem, OGC-compliant interfaces                         |
-| 3     | Basic APIs, limited ecosystem, some interoperability                        |
-| 2     | Minimal public APIs, closed or limited integration                          |
-| 1     | Closed system, no public APIs                                               |
-
-**6. Governance Model**
-Who controls the roadmap (vendor, consortium, community, research institution), contribution model, funding model.
-
-| Score | Criteria                                                                              |
-| ----- | ------------------------------------------------------------------------------------- |
-| 5     | Open consortium or community governance, transparent decision-making, diverse funding |
-| 4     | Academic or public institution governance with open contribution                      |
-| 3     | Mixed governance, some community input                                                |
-| 2     | Single organisation control with limited community input                              |
-| 1     | Single corporate control, no community input                                          |
-
-**Functional Categories**
-
-Score each platform 1–5 per functional category using the rubrics below.
-
-**7. Visualization** (`Viz`)
-Primary function: 3D rendering, GIS viewers, scene composition, visual output quality.
-
-| Score | Criteria                                                                                                |
-| ----- | ------------------------------------------------------------------------------------------------------- |
-| 5     | Purpose-built 3D visualization engine or viewer; primary purpose; real-time or near-real-time rendering |
-| 4     | Strong visualization capabilities; core feature set with significant investment                         |
-| 3     | Visualization present and useful but not the primary strength                                           |
-| 2     | Basic or incidental visualization (e.g., simple 2D map view, no 3D)                                     |
-| 1     | No meaningful visualization capability                                                                  |
-
-**8. Data Management** (`DM`)
-Primary function: data ingestion, storage, twin models, semantic layers, data lifecycle.
-
-| Score | Criteria                                                                                                  |
-| ----- | --------------------------------------------------------------------------------------------------------- |
-| 5     | Purpose-built for city-scale data storage and management; semantic model, versioning, full data lifecycle |
-| 4     | Strong data management with semantic modelling or graph; multi-source ingestion                           |
-| 3     | Solid data management but limited semantic layer or scalability                                           |
-| 2     | Basic storage or data exchange; limited query or model capabilities                                       |
-| 1     | No meaningful data management role                                                                        |
-
-**9. Simulation** (`Sim`)
-Primary function: urban simulation, physics, scenario modelling, what-if analysis.
-
-| Score | Criteria                                                                                       |
-| ----- | ---------------------------------------------------------------------------------------------- |
-| 5     | Purpose-built simulation engine; multi-domain urban physics, scenario comparison at city scale |
-| 4     | Strong simulation support across multiple urban domains                                        |
-| 3     | Simulation present for one or two domains; limited scenario tooling                            |
-| 2     | Basic scenario comparison or single-variable simulation                                        |
-| 1     | No simulation capability                                                                       |
-
-**10. IoT Sensing** (`IoT`)
-Primary function: real-time data, sensor integration, device management, stream processing.
-
-| Score | Criteria                                                                                     |
-| ----- | -------------------------------------------------------------------------------------------- |
-| 5     | Purpose-built IoT platform; real-time ingestion, device registry, stream processing at scale |
-| 4     | Strong IoT support; real-time APIs, sensor integration, stream handling                      |
-| 3     | Connects to sensors but limited real-time processing                                         |
-| 2     | Basic real-time data hookup; manual or batch sensor feeds                                    |
-| 1     | No IoT or real-time sensing capability                                                       |
-
-**11. Standards** (`Std`)
-Primary function: implementing or defining open standards, interoperability frameworks.
-
-| Score | Criteria                                                                                                      |
-| ----- | ------------------------------------------------------------------------------------------------------------- |
-| 5     | Primary purpose is defining or implementing open standards (OGC, ISO, W3C); governance role in standards body |
-| 4     | Strong standards implementation; multiple OGC/ISO standards as native data models                             |
-| 3     | Partial standards support; some open standards alongside proprietary models                                   |
-| 2     | Limited standards; primarily proprietary with token open format support                                       |
-| 1     | No meaningful open standards implementation                                                                   |
-
-**12. Infrastructure** (`Infra`)
-Primary function: built environment, BIM/GIS integration, infrastructure lifecycle management.
-
-| Score | Criteria                                                                                     |
-| ----- | -------------------------------------------------------------------------------------------- |
-| 5     | Purpose-built for infrastructure or BIM lifecycle; IFC, asset management, lifecycle tracking |
-| 4     | Strong infrastructure support; BIM integration, asset management, or civil engineering focus |
-| 3     | Infrastructure is one of several domains; partial BIM/GIS support                            |
-| 2     | Limited infrastructure scope; building-level only or minimal lifecycle management            |
-| 1     | No meaningful infrastructure or built environment focus                                      |
+Compare every platform present in the pasted table, plus DTCC. Treat the pasted table as a discovery baseline — use the identification fields (Name, Link, License, Type, Relevance) and the first-pass dimension scores as starting context. Your task is to deepen each dimension with primary source research and produce authoritative scores and analysis for all twelve dimensions.
 
 ---
 

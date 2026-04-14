@@ -5,78 +5,77 @@ The repository SHALL contain a file at `prompts/platform-discovery.md` that prov
 - **WHEN** a researcher navigates to `prompts/platform-discovery.md`
 - **THEN** the file exists and contains a complete, copy-pasteable prompt
 
-### Requirement: Discovery prompt embeds inclusion criteria
-The prompt template SHALL include all three inclusion criteria from `docs/methodology.md` — Explicit Urban Digital Twin, City-Scale Capabilities, and Adjacent Architecture or Governance — so the model can apply them without additional context.
-
-#### Scenario: Researcher pastes prompt without supplemental docs
-- **WHEN** a researcher copies the prompt and pastes it into an AI chat session without pasting `docs/methodology.md`
-- **THEN** the model has sufficient criteria to correctly classify a platform as in-scope or out-of-scope
-
 ### Requirement: Discovery prompt requests structured output aligned with inventory
 The prompt template SHALL instruct the model to return one `##`-level Markdown section per platform containing two blocks:
 
-1. **Identification block** — five labelled bullet fields: **Organization**, **Link**, **License**, **Type**, **Inclusion criterion**
-2. **Dimension block** — six labelled bullet fields, one per comparison dimension, each with an inline `X/5` score and a one-sentence rationale: **Technical Architecture (X/5)**, **Openness & Licensing (X/5)**, **City-Scale Capability (X/5)**, **Maturity & Adoption (X/5)**, **Integration Posture (X/5)**, **Governance (X/5)**
+1. **Identification block** — five labelled bullet fields: **Organization**, **Link**, **License**, **Type**, **Relevance**
+2. **Dimension block** — twelve labelled bullet fields, one per dimension and functional category, each with an inline `X/5` score and a one-sentence rationale: **Technical Architecture (X/5)**, **Openness & Licensing (X/5)**, **City-Scale Capability (X/5)**, **Maturity & Adoption (X/5)**, **Integration Posture (X/5)**, **Governance (X/5)**, **Visualization (X/5)**, **Data Management (X/5)**, **Simulation (X/5)**, **IoT Sensing (X/5)**, **Standards (X/5)**, **Infrastructure (X/5)**
 
-The score scale (1–5) SHALL match the comparison prompt's scoring scale. The prompt SHALL instruct agents to score by judgment — no rubric tables are required in the discovery prompt.
+The score scale (1–5) SHALL match the comparison prompt's scoring scale. The prompt SHALL instruct agents to score by judgment using the rubrics supplied via `[PASTE_SCOPE_HERE]`.
+
+The `Relevance` field SHALL contain a bare integer 0–5, not a named criterion label.
 
 The prompt template SHALL include a concrete example section demonstrating the exact field labels, score notation, and two-block structure.
-
-The prompt template SHALL define the only allowed values for **Inclusion criterion** as: `Explicit UDT`, `City-Scale Capabilities`, and `Adjacent Architecture or Governance`. The same canonical values SHALL be used in both the summary table and the per-platform sections.
 
 The prompt template SHALL state that the response contains exactly three parts, in order: the metadata block, the summary table, and the per-platform sections. It SHALL forbid extra top-level sections or trailing summary content outside that structure.
 
 #### Scenario: Response is used to populate inventory
 - **WHEN** an AI responds to the discovery prompt
-- **THEN** each platform section contains the five identification fields and six scored dimension fields, making all data directly transferable to platform-inventory.md
+- **THEN** each platform section contains the five identification fields (including a Relevance score) and twelve scored dimension fields, making all data directly transferable to the inventory CSV
 
 #### Scenario: Discovery scores feed into comparison
 - **WHEN** a researcher pastes rows from the discovery summary table into the comparison prompt
-- **THEN** the dimension scores from discovery provide a starting signal that comparison refines with its full rubrics
+- **THEN** all twelve dimension and category scores from discovery provide starting signals that comparison refines with deep research
 
 #### Scenario: Two agents respond to the same discovery prompt
-- **WHEN** a researcher runs the discovery prompt on ChatGPT and on Claude
+- **WHEN** a researcher runs the discovery prompt on two different AI agents
 - **THEN** both responses use identical field labels, score notation (`X/5`), and section structure
-
-#### Scenario: Model would normally shorten category labels
-- **WHEN** an AI would otherwise emit abbreviated or paraphrased inclusion labels
-- **THEN** it uses only `Explicit UDT`, `City-Scale Capabilities`, or `Adjacent Architecture or Governance`
-
-#### Scenario: Model would otherwise append a closing note
-- **WHEN** an AI would otherwise add a `Sources`, `Notes`, or summary section after the platform sections
-- **THEN** it omits that extra content and ends the response after the last required platform section
 
 ### Requirement: Discovery prompt response begins with a required summary table
 
 The prompt template SHALL instruct the model to output the summary table immediately after the metadata block and before any per-platform sections. The table is required and SHALL use the following columns:
 
-**Name**, **Link**, **License**, **Type**, **Arch**, **Open**, **City**, **Mature**, **Integ**, **Gov**, **Criterion**
+**Name**, **Link**, **License**, **Type**, **Relevance**, **Arch**, **Open**, **City**, **Mature**, **Integ**, **Gov**, **Viz**, **DM**, **Sim**, **IoT**, **Std**, **Infra**
 
-The `Criterion` column SHALL contain one of these exact values: the three inclusion criterion labels (`Explicit UDT`, `City-Scale Capabilities`, `Adjacent Architecture or Governance`) or one of the three exclusion criterion labels (`Spec or Standard`, `Single Domain`, `General Purpose`).
+The `Relevance` column SHALL contain a bare integer 0–5. A value of 0 means not assessed. Score columns (Arch through Infra) SHALL contain bare numbers 1–5 or `?` for unknown — no `/5` suffix. There is no `-1` sentinel; 0 in the Relevance column indicates an out-of-scope or unassessed platform.
 
-Score columns (Arch, Open, City, Mature, Integ, Gov) SHALL contain bare numbers (1–5) for included platforms, `-1` for excluded platforms, or `?` for unknown — no `/5` suffix.
-
-Excluded platforms SHALL appear in the summary table with `-1` in all six score columns and their exclusion criterion label in the `Criterion` column.
+Platforms with Relevance 0 or 1 MAY appear in the summary table but per-platform `##` sections are NOT required for them.
 
 #### Scenario: Researcher opens a discovery response to start a comparison
-
 - **WHEN** a researcher opens a saved discovery response
-- **THEN** the summary table appears at the top (after the metadata block), before any per-platform detail sections, with a `Criterion` column and any excluded platforms listed with `-1` scores
+- **THEN** the summary table appears at the top (after the metadata block) with a Relevance column and all twelve score columns
 
 #### Scenario: Rows are pasted into the comparison prompt
-
 - **WHEN** a researcher copies rows of included platforms from the summary table and pastes them into the comparison prompt
-- **THEN** the comparison prompt receives platform names, license, type, and six seed scores as context
+- **THEN** the comparison prompt receives all twelve seed scores plus the Relevance score as context
 
-#### Scenario: Discovery session identifies platforms outside the inclusion boundary
+#### Scenario: Discovery session identifies out-of-scope platforms
+- **WHEN** the model encounters platforms that are out of scope
+- **THEN** those platforms receive Relevance 0 or 1 in the summary table; there is no separate `-1` or named exclusion label
 
-- **WHEN** the model encounters platforms that do not meet any inclusion criterion
-- **THEN** those platforms appear in the summary table with `-1` scores in all score columns and their exclusion criterion label in the `Criterion` column
+### Requirement: Discovery prompt includes a [PASTE_SCOPE_HERE] guard
+The prompt template SHALL include a `[PASTE_SCOPE_HERE]` placeholder where the researcher pastes the full content of `docs/01-scope.md` before running a session. The placeholder SHALL be preceded by a guard instruction telling the model: _if `[PASTE_SCOPE_HERE]` still appears verbatim, stop and ask the user to paste `docs/01-scope.md` before continuing._
 
-#### Scenario: Excluded platforms have per-platform sections
+The usage header SHALL be updated to include a step directing the researcher to paste `docs/01-scope.md` into the `[PASTE_SCOPE_HERE]` slot as the first preparation step.
 
-- **WHEN** excluded platforms appear in the summary table
-- **THEN** per-platform `##` sections for excluded platforms are NOT required — they MAY be omitted; included platforms always have per-platform sections
+#### Scenario: Researcher runs the prompt without pasting scope
+- **WHEN** a researcher pastes the discovery prompt into an AI session without replacing `[PASTE_SCOPE_HERE]`
+- **THEN** the model stops and asks them to provide the scope content before producing any output
+
+#### Scenario: Researcher runs the prompt after pasting scope
+- **WHEN** a researcher pastes `docs/01-scope.md` content into the `[PASTE_SCOPE_HERE]` slot
+- **THEN** the model proceeds with all 13 rubrics available and produces a complete discovery response
+
+### Requirement: Discovery prompt does not request deep research
+The prompt template SHALL NOT instruct the model to use a Research or Deep Research mode. Discovery is a first-pass survey; depth of research is not required. Primary source requirements are relaxed compared to the comparison prompt — the model MAY use judgment and secondary sources to score dimensions, and SHOULD note when claims are approximate.
+
+#### Scenario: Discovery prompt is pasted into a Research-capable interface
+- **WHEN** a researcher uses the discovery prompt in an interface that supports Research mode
+- **THEN** the prompt does not activate Research mode; a lightweight first-pass response is produced
+
+#### Scenario: Model applies judgment-based scoring
+- **WHEN** an AI scores a platform during discovery
+- **THEN** it uses the rubrics from the pasted scope content and applies judgment; it does not need to verify every claim against a primary source
 
 ### Requirement: Discovery prompt enforces agent-agnostic output structure
 The prompt template SHALL include a concrete example of the per-platform section structure and SHALL comply with the shared Markdown contract defined in `prompt-markdown-format`.
@@ -86,7 +85,8 @@ In addition to that shared contract, the prompt SHALL specify these discovery-sp
 - **Platform heading level:** `##` for every platform section
 - **Score notation:** `**Dimension (X/5):**` inline in sections; bare number in table cells; `?` for unknown
 - **Citation override note:** the Markdown rules section SHALL explicitly state that the inline-link citation rule overrides the model's default citation format
-- **Research-mode suppression:** if the interface supports Research or Deep Research, the prompt SHALL instruct the model to do planning internally and return only the final deliverable, with no generated research plan, executive summary, `Sources` section, methodology section, or provider-specific report wrapper
+- **Citation override note:** the Markdown rules section SHALL explicitly state that the inline-link citation rule overrides the model's default citation format
+- **Research-mode suppression:** the prompt SHALL instruct the model to return only the final deliverable with no exposed research plan, executive summary, or provider-specific wrapper
 
 The prompt template SHALL state that no extra headings or sections are permitted beyond the required metadata block, summary table, and `##` platform sections.
 

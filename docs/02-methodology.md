@@ -8,11 +8,18 @@ The canonical data record for each platform is its row in `docs/05-platform-inve
 
 ## Discovery to Comparison Workflow
 
-1. Run a discovery session using `prompts/platform-discovery.md` and save the response to `responses/`
-2. Open the saved response and choose which platforms to compare
-3. Copy the rows you want to compare (including the header row) from the summary table
-4. Paste them into the `[PASTE_SELECTED_PLATFORMS_HERE]` token in `prompts/platform-comparison.md`
-5. Run the comparison session and save the response to `responses/`
+1. Open `docs/01-scope.md` and copy the full content
+2. Run a discovery session using `prompts/platform-discovery.md`:
+   - Paste the copied scope content into the `[PASTE_SCOPE_HERE]` slot
+   - Paste the prepared prompt into your AI session
+   - Save the response to `responses/`
+3. Open the saved response and choose which platforms to compare
+4. Run a comparison session using `prompts/platform-comparison.md`:
+   - Paste the copied scope content into the `[PASTE_SCOPE_HERE]` slot
+   - Copy the rows you want to compare (including the header row) from the discovery summary table
+   - Paste them into the `[PASTE_SELECTED_PLATFORMS_HERE]` token
+   - Paste the prepared prompt into your AI session
+   - Save the response to `responses/`
 
 Discovery dimension scores are judgment-based first-pass signals.
 The comparison prompt deepens them with full rubric-based research and primary source evidence — expect scores to shift.
@@ -22,18 +29,19 @@ This can be run independently at any point — it does not need to precede or fo
 
 ```mermaid
 flowchart TD
-    scope["📋 01-scope.md\nInclusion criteria & seed list"]
+    scope["📋 01-scope.md\nRubrics & seed list\n(paste as preamble)"]
 
-    disc["prompts/\nplatform-discovery.md\n― global scope ―"]
+    disc["prompts/\nplatform-discovery.md\n― first-pass ―"]
     dresp["responses/\nglobal-platforms-discovery.md"]
     select["Select platforms\nfrom summary table"]
-    comp["prompts/\nplatform-comparison.md"]
+    comp["prompts/\nplatform-comparison.md\n― deep research ―"]
     cresp["responses/\n*-comparison.md"]
     inv["prompts/\nplatform-inventory.md\n― AI CLI only ―"]
     table["docs/\n05-platform-inventory.csv"]
     lic["prompts/\nlicense-analysis.md\noptional"]
 
-    scope -->|"inclusion criteria"| disc
+    scope -->|"paste into [PASTE_SCOPE_HERE]"| disc
+    scope -->|"paste into [PASTE_SCOPE_HERE]"| comp
     disc --> dresp
     dresp --> select
     select -->|"copy selected rows"| comp
@@ -72,80 +80,20 @@ Git history preserves the previous version.
 
 Pattern: `<platform>.md` — one file per platform, updated as research evolves.
 
-## Functional Category Rubrics
+## CSV Column Reference
 
-The Part 1 scoring table includes six functional category columns in addition to the six research dimensions.
-Each category uses the same 1–5 integer scale — bare integer, `?` for unknown.
+The canonical inventory is at `docs/05-platform-inventory.csv`. Column order:
 
-**Column abbreviations:**
+`Name`, `Link`, `Phase`, `Relevance`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`, `Model`, `Date`
 
-| Abbreviation | Full name       | Description                                                |
-| ------------ | --------------- | ---------------------------------------------------------- |
-| Viz          | Visualization   | 3D rendering, GIS viewers, scene composition               |
-| DM           | Data Management | Data ingestion, storage, twin models, semantic layers      |
-| Sim          | Simulation      | Urban simulation, physics, scenario modelling              |
-| IoT          | IoT Sensing     | Real-time data, sensor integration, device management      |
-| Std          | Standards       | Open standards implementation, interoperability frameworks |
-| Infra        | Infrastructure  | Built environment, BIM/GIS, infrastructure lifecycle       |
+| Column     | Description                                                                    |
+| ---------- | ------------------------------------------------------------------------------ |
+| Name       | Platform name                                                                  |
+| Link       | Primary URL (raw, no Markdown syntax)                                          |
+| Phase      | Prompt type that produced the row: `discovery` or `comparison`                 |
+| Relevance  | 0–5 relevance score per rubric in `docs/01-scope.md`; 0 = not assessed         |
+| Arch–Infra | Dimension and functional category scores (0–5); 0 = not assessed at this phase |
+| Model      | AI model that produced the row                                                 |
+| Date       | Session date (YYYY-MM-DD)                                                      |
 
-**Rubrics:**
-
-**Visualization (Viz)**
-
-| Score | Criteria                                                                                                |
-| ----- | ------------------------------------------------------------------------------------------------------- |
-| 5     | Purpose-built 3D visualization engine or viewer; primary purpose; real-time or near-real-time rendering |
-| 4     | Strong visualization capabilities; core feature set with significant investment                         |
-| 3     | Visualization present and useful but not the primary strength                                           |
-| 2     | Basic or incidental visualization (e.g., simple 2D map view, no 3D)                                     |
-| 1     | No meaningful visualization capability                                                                  |
-
-**Data Management (DM)**
-
-| Score | Criteria                                                                                                  |
-| ----- | --------------------------------------------------------------------------------------------------------- |
-| 5     | Purpose-built for city-scale data storage and management; semantic model, versioning, full data lifecycle |
-| 4     | Strong data management with semantic modelling or graph; multi-source ingestion                           |
-| 3     | Solid data management but limited semantic layer or scalability                                           |
-| 2     | Basic storage or data exchange; limited query or model capabilities                                       |
-| 1     | No meaningful data management role                                                                        |
-
-**Simulation (Sim)**
-
-| Score | Criteria                                                                                       |
-| ----- | ---------------------------------------------------------------------------------------------- |
-| 5     | Purpose-built simulation engine; multi-domain urban physics, scenario comparison at city scale |
-| 4     | Strong simulation support across multiple urban domains                                        |
-| 3     | Simulation present for one or two domains; limited scenario tooling                            |
-| 2     | Basic scenario comparison or single-variable simulation                                        |
-| 1     | No simulation capability                                                                       |
-
-**IoT Sensing (IoT)**
-
-| Score | Criteria                                                                                     |
-| ----- | -------------------------------------------------------------------------------------------- |
-| 5     | Purpose-built IoT platform; real-time ingestion, device registry, stream processing at scale |
-| 4     | Strong IoT support; real-time APIs, sensor integration, stream handling                      |
-| 3     | Connects to sensors but limited real-time processing                                         |
-| 2     | Basic real-time data hookup; manual or batch sensor feeds                                    |
-| 1     | No IoT or real-time sensing capability                                                       |
-
-**Standards (Std)**
-
-| Score | Criteria                                                                                                      |
-| ----- | ------------------------------------------------------------------------------------------------------------- |
-| 5     | Primary purpose is defining or implementing open standards (OGC, ISO, W3C); governance role in standards body |
-| 4     | Strong standards implementation; multiple OGC/ISO standards as native data models                             |
-| 3     | Partial standards support; some open standards alongside proprietary models                                   |
-| 2     | Limited standards; primarily proprietary with token open format support                                       |
-| 1     | No meaningful open standards implementation                                                                   |
-
-**Infrastructure (Infra)**
-
-| Score | Criteria                                                                                     |
-| ----- | -------------------------------------------------------------------------------------------- |
-| 5     | Purpose-built for infrastructure or BIM lifecycle; IFC, asset management, lifecycle tracking |
-| 4     | Strong infrastructure support; BIM integration, asset management, or civil engineering focus |
-| 3     | Infrastructure is one of several domains; partial BIM/GIS support                            |
-| 2     | Limited infrastructure scope; building-level only or minimal lifecycle management            |
-| 1     | No meaningful infrastructure or built environment focus                                      |
+Score columns use integers 0–5 or `?` for unknown. There is no `-1` sentinel.

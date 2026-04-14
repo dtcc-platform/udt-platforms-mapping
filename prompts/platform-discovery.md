@@ -4,8 +4,10 @@ Use this prompt to discover Urban Digital Twin (UDT) platforms for the research 
 
 This prompt can be used in an AI web research chat or an AI CLI session. In a web chat, manually save the final Markdown response into `responses/`.
 
-1. Paste into your AI session starting from the cut-line below — do not include these usage instructions above
-2. Save the response as `responses/global-platforms-discovery.md`. See `docs/02-methodology.md` for the full convention.
+1. Open `docs/01-scope.md` and copy the full content
+2. Replace `[PASTE_SCOPE_HERE]` below with the copied content
+3. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
+4. Save the response as `responses/global-platforms-discovery.md`. See `docs/02-methodology.md` for the full convention.
 
 ---
 
@@ -15,7 +17,6 @@ This prompt can be used in an AI web research chat or an AI CLI session. In a we
 
 Before you begin:
 
-- If your interface supports Research or Deep Research, use it.
 - Do your planning internally; do not show a research plan unless explicitly asked.
 - Return plain Markdown only.
 - Return only the final deliverable in the exact format below.
@@ -23,27 +24,14 @@ Before you begin:
 - If your interface would normally produce a separate report structure, suppress it and follow this prompt's output contract instead.
 
 You are a research assistant helping to map the landscape of Urban Digital Twin (UDT) platforms.
-Your task is to identify platforms that qualify for inclusion based on the criteria below,
-using primary sources for all final factual claims (**official websites, public repositories, published papers, official documentation**).
+Your task is to identify platforms that qualify for inclusion based on the scope and rubrics below,
+using primary sources to verify claims where possible.
+
+**Before proceeding:** If the rubric block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `docs/01-scope.md` before continuing.
+
+[PASTE_SCOPE_HERE]
 
 **Search scope:** Global city-scale Urban Digital Twin platforms and foundational building blocks (commercial and open-source). Cover all major geographies — include non-English-speaking markets and government-led initiatives, not only English-language or US/EU platforms.
-
----
-
-### Inclusion Criteria
-
-A platform is included if it satisfies **at least one** of the following:
-
-**1. Explicit Urban Digital Twin**
-The platform explicitly presents itself as an urban or city-scale digital twin. It uses the term "digital twin" in official documentation, product descriptions, or marketing, and is scoped to urban environments (cities, districts, or built infrastructure at city scale).
-
-**2. City-Scale Capabilities**
-The platform provides capabilities commonly used to build or operate urban digital twins, even if it does not use the term "digital twin." This includes platforms for city-scale 3D visualization, urban simulation, large-scale geospatial data management, or multi-domain urban analytics (buildings, transport, energy, climate).
-
-**3. Adjacent Architecture or Governance**
-The platform is a foundational building block commonly integrated into UDT systems — for example, open standards implementations (CityGML, IFC, OGC standards), enabling visualization engines (Cesium, Unity, Unreal with urban extensions), or infrastructure digital twin frameworks (iTwin). Exclude standalone smart city IoT platforms, transport simulation tools, or standards bodies unless they are directly used as UDT building blocks.
-
-**Scope boundary:** Apply a moderate inclusion boundary. Exclude platforms that are purely adjacent (e.g., generic IoT platforms, general-purpose GIS tools without urban twin framing), even if they could theoretically be used in a UDT context.
 
 ---
 
@@ -51,17 +39,17 @@ The platform is a foundational building block commonly integrated into UDT syste
 
 For each platform you identify:
 
-1. Verify it meets at least one inclusion criterion using primary sources
-2. Note which criterion it satisfies
+1. Verify it meets a Relevance score of 3 or higher using the rubric above
+2. Assign a Relevance score (0–5) per the rubric
 3. Locate the software license (repository root, docs, or official site)
 4. Identify the organization behind the platform
 5. Assess the platform's maturity level (experimental / research / production-ready)
+6. Score all 12 dimensions and functional categories (0–5) by judgment; use 0 if a dimension cannot be assessed at this phase
 
 Source policy:
 
-- You may use secondary sources only to discover candidate platforms.
-- Before including a platform in the final output, verify it against at least one primary source.
-- For license claims, prefer repository root license files, official documentation, or official product/legal pages.
+- You may use secondary sources to discover candidate platforms.
+- For final factual claims, prefer primary sources — but judgment-based scoring from available evidence is acceptable at this phase.
 - If a primary source cannot support a factual claim, write `unknown` or `?`.
 - Prefer omission over weakly supported inclusion; do not imply global completeness.
 
@@ -119,25 +107,14 @@ prompt: platform-discovery
 
 Immediately after the metadata block, output the summary table covering all discovered platforms:
 
-| Name | Link | License | Type | Arch | Open | City | Mature | Integ | Gov | Criterion |
-| ---- | ---- | ------- | ---- | ---- | ---- | ---- | ------ | ----- | --- | --------- |
+| Name | Link | License | Type | Relevance | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
+| ---- | ---- | ------- | ---- | --------- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
 
-Use bare numbers (1–5) in score cells for included platforms. Use `?` for unknown. Do not write `/5`.
+Use bare numbers in score cells for included platforms. Use `?` for unknown. Do not write `/5`.
 
-For `Criterion`, use only one of these exact values:
+`Relevance` is a bare integer 0–5. Platforms with Relevance 0 or 1 are out of scope; their score columns may contain `0` or `?`. Per-platform `##` sections are NOT required for platforms with Relevance 0 or 1 — include them only if they add useful detail.
 
-- **Inclusion:** `Explicit UDT`, `City-Scale Capabilities`, `Adjacent Architecture or Governance`
-- **Exclusion:** `Spec or Standard`, `Single Domain`, `General Purpose`
-
-Platforms that do not meet any inclusion criterion SHALL appear in the summary table with `-1` in all six score columns (Arch, Open, City, Mature, Integ, Gov) and their exclusion criterion label in the `Criterion` column. Per-platform `##` sections are NOT required for excluded platforms — include them only if they add useful detail.
-
-Example excluded row:
-
-| Name | Link | License | Type | Arch | Open | City | Mature | Integ | Gov | Criterion |
-| ---- | ---- | ------- | ---- | ---- | ---- | ---- | ------ | ----- | --- | --------- |
-| SUMO | https://eclipse.dev/sumo/ | EPL-2.0 | Transport simulation | -1 | -1 | -1 | -1 | -1 | -1 | Single Domain |
-
-Then return one section per platform, ordered by relevance to city-scale digital twin use cases. Use a `##` heading for each platform name, followed by two blocks — identification fields, then six scored dimension fields:
+Then return one section per platform (Relevance 3–5), ordered by Relevance score descending. Use a `##` heading for each platform name, followed by two blocks — identification fields, then scored dimension fields:
 
 ```
 ## <Platform Name>
@@ -146,30 +123,34 @@ Then return one section per platform, ordered by relevance to city-scale digital
 - **Link:** [<short label>](<primary-url>)
 - **License:** <exact license name, e.g. Apache-2.0, MIT — open-source / proprietary / open-core> ([primary source](<url>))
 - **Type:** <e.g., visualization engine, data platform, simulation framework, standards implementation> ([primary source](<url>))
-- **Inclusion criterion:** <Explicit UDT / City-Scale Capabilities / Adjacent Architecture or Governance>
+- **Relevance:** <0–5 score per rubric>
 
-- **Technical Architecture (X/5):** <one sentence with at least one inline link to a primary source — core stack, data models, modularity>
-- **Openness & Licensing (X/5):** <one sentence with at least one inline link to a primary source — source availability, license type, SaaS dependency>
-- **City-Scale Capability (X/5):** <one sentence with at least one inline link to a primary source — domains covered, geographic extent>
-- **Maturity & Adoption (X/5):** <one sentence with at least one inline link to a primary source — development status, known deployments>
-- **Integration Posture (X/5):** <one sentence with at least one inline link to a primary source — APIs, standards, interoperability>
-- **Governance (X/5):** <one sentence with at least one inline link to a primary source — who controls the roadmap, funding model>
+- **Technical Architecture (X/5):** <one sentence — core stack, data models, modularity>
+- **Openness & Licensing (X/5):** <one sentence — source availability, license type, SaaS dependency>
+- **City-Scale Capability (X/5):** <one sentence — domains covered, geographic extent>
+- **Maturity & Adoption (X/5):** <one sentence — development status, known deployments>
+- **Integration Posture (X/5):** <one sentence — APIs, standards, interoperability>
+- **Governance (X/5):** <one sentence — who controls the roadmap, funding model>
+- **Visualization (X/5):** <one sentence — 3D rendering, GIS viewer, scene composition>
+- **Data Management (X/5):** <one sentence — data ingestion, storage, semantic layers>
+- **Simulation (X/5):** <one sentence — urban simulation, scenario modelling>
+- **IoT Sensing (X/5):** <one sentence — real-time data, sensor integration>
+- **Standards (X/5):** <one sentence — open standards implementation, interoperability frameworks>
+- **Infrastructure (X/5):** <one sentence — BIM/GIS, built environment, infrastructure lifecycle>
 ```
 
-For factual claims in the identification bullets and scored dimension bullets, cite primary sources with inline Markdown links `[Description](https://...)`.
-If you cannot support a factual claim with a primary source, write `unknown` or `?` instead of citing a secondary source or guessing.
-
-Score each dimension 1–5 by judgment using the same scale as the comparison prompt. Do not fabricate — state `?` if a dimension cannot be assessed from available sources.
+Where possible, include inline Markdown links `[Description](https://...)` for factual claims.
+If you cannot support a factual claim with a source, write `unknown` or `?` instead of guessing.
 
 **Example:**
 
-#### Example Platform
+## Example Platform
 
 - **Organization:** Open City Foundation ([About](https://example-platform.org/about))
 - **Link:** [example-platform.org](https://example-platform.org)
 - **License:** Apache-2.0 — open-source ([License](https://example-platform.org/license))
 - **Type:** 3D geospatial data platform ([Product](https://example-platform.org/product))
-- **Inclusion criterion:** City-Scale Capabilities
+- **Relevance:** 4
 
 - **Technical Architecture (4/5):** Modular microservices with native CityGML support and OGC-compliant APIs; Docker/Kubernetes deployment ([Architecture](https://example-platform.org/architecture)).
 - **Openness & Licensing (5/5):** Apache-2.0, fully self-hostable, no SaaS dependency, open data formats throughout ([License](https://example-platform.org/license)).
@@ -177,3 +158,9 @@ Score each dimension 1–5 by judgment using the same scale as the comparison pr
 - **Maturity & Adoption (4/5):** Production-ready; known deployments in Amsterdam and Helsinki; active community ([Deployments](https://example-platform.org/deployments)).
 - **Integration Posture (4/5):** REST and GraphQL APIs, OGC WFS/WCS compliant, plugin SDK available ([API docs](https://example-platform.org/api)).
 - **Governance (5/5):** Governed by an open multi-institution consortium; EU Horizon funded ([Governance](https://example-platform.org/governance)).
+- **Visualization (3/5):** Integrated 3D viewer; useful but not the primary function ([Docs](https://example-platform.org/viz)).
+- **Data Management (5/5):** Purpose-built city-scale semantic data store with versioning ([Docs](https://example-platform.org/data)).
+- **Simulation (1/5):** No built-in simulation capability; relies on external tools.
+- **IoT Sensing (2/5):** Basic sensor data ingestion; no real-time stream processing ([Docs](https://example-platform.org/iot)).
+- **Standards (4/5):** Native CityGML and OGC WFS/WCS support; partial IFC ingestion ([Docs](https://example-platform.org/standards)).
+- **Infrastructure (3/5):** Covers building and infrastructure geometry; limited BIM lifecycle management.
