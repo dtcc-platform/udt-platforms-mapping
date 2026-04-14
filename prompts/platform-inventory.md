@@ -44,7 +44,7 @@ For each discovery response:
    - `model` → value for the `Model` column
    - `date` → value for the `Date` column
 
-2. Locate the **summary table** — the GFM pipe table that appears immediately after the metadata block. It contains a `Criterion` column (or `Inclusion Criterion` in older files).
+2. Locate the **summary table** — the GFM pipe table that appears immediately after the metadata block.
 
 3. Extract every data row from that table (exclude the header row and separator row).
 
@@ -52,8 +52,8 @@ For each discovery response:
    - `Phase` = `discovery`
    - `Name` = platform name from the table
    - `Link` = URL from the Link column — strip any Markdown link syntax `[text](url)` and keep the URL only
-   - `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov` = score columns from the summary table (`-1` for excluded platforms)
-   - `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra` = **always `-1`** for discovery rows (these scores are only produced at comparison phase)
+   - `Relevance` = Relevance score from the table
+   - `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra` = all 12 score columns from the summary table; use the value as-is (`0` if absent or unscored)
    - `Model`, `Date` = from YAML metadata
 
 ---
@@ -82,9 +82,9 @@ For each comparison response:
 
 Every output row must use exactly this column order:
 
-`Name`, `Link`, `Phase`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`, `Model`, `Date`
+`Name`, `Link`, `Phase`, `Relevance`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`, `Model`, `Date`
 
-Score cells must contain bare integers (1–5), `-1` (excluded or not applicable), or `?` for unknown. Do not write `/5`.
+Score cells must contain bare integers (`0`–`5`) or `?` for unknown. `0` means not assessed at this phase. Do not write `/5`. The `-1` sentinel is no longer used.
 
 ---
 
@@ -100,5 +100,5 @@ Then output the CSV data rows only — no header row, no surrounding prose.
 The rows must be valid CSV that aligns with the header already present in `docs/05-platform-inventory.csv`:
 
 ```
-Name,Link,Phase,Arch,Open,City,Mature,Integ,Gov,Viz,DM,Sim,IoT,Std,Infra,Model,Date
+Name,Link,Phase,Relevance,Arch,Open,City,Mature,Integ,Gov,Viz,DM,Sim,IoT,Std,Infra,Model,Date
 ```

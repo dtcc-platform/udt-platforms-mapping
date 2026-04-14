@@ -1,108 +1,40 @@
 Name,Link,Phase,Relevance,Arch,Open,City,Mature,Integ,Gov,Viz,DM,Sim,IoT,Std,Infra,Model,Date
-DTCC (ref.),https://www.dtcc.chalmers.se/,comparison,0,4,5,4,2,4,4,3,3,3,3,5,4,gpt-4,2026-03-29
-virtualcitySYSTEMS VC Suite,https://vc.systems/en/,comparison,0,4,4,5,5,5,2,5,5,5,4,5,4,gpt-4,2026-03-29
-Dassault Systèmes 3DEXPERIENCity,https://www.3ds.com/virtual-twin/infrastructure-cities,comparison,0,4,1,5,5,3,2,5,3,5,3,3,4,gpt-4,2026-03-29
-Esri ArcGIS Urban,https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview,comparison,0,4,1,4,5,4,2,4,3,3,3,3,2,gpt-4,2026-03-29
-Project PLATEAU,https://www.mlit.go.jp/plateau/en/,comparison,0,4,5,5,5,4,4,4,5,3,3,5,4,gpt-4,2026-03-29
-51WORLD,https://www.51aes.com/?lang=en,comparison,0,4,1,5,4,3,2,4,4,4,3,2,3,gpt-4,2026-03-29
-Hexagon / Luciad,https://hexagon.com/go/sig/urban-digital-twin,comparison,0,4,1,4,5,4,2,5,5,3,2,4,5,gpt-4,2026-03-29
-NVIDIA Omniverse,https://www.nvidia.com/en-us/industries/smart-cities-and-spaces/,comparison,0,5,2,4,4,4,2,5,3,5,4,3,3,gpt-4,2026-03-29
-Bentley Systems iTwin,https://www.bentley.com/software/itwin-platform/,comparison,0,5,3,4,5,5,3,4,4,4,4,4,5,gpt-4,2026-03-29
-Siemens Advanta (Smart Cities),https://www.siemens-advanta.com/capabilities/offers/digital-twin-services-for-building-campuses-cities,comparison,0,4,2,4,5,4,2,3,4,4,5,3,5,gpt-4,2026-03-29
-IES ICL (Virtual Environment),https://www.iesve.com/icl,comparison,0,4,1,3,5,3,2,2,3,5,2,3,3,gpt-4,2026-03-29
-FIWARE (Orion-LD),https://www.fiware.org/,comparison,0,3,4,4,5,5,4,2,5,3,5,4,3,gpt-4,2026-03-29
-Azure Digital Twins,https://github.com/Azure/opendigitaltwins-smartcities,comparison,0,4,3,3,4,4,2,2,4,2,4,3,3,gpt-4,2026-03-29
-3DCityDB,https://www.3dcitydb.org/,comparison,0,5,5,4,5,4,4,2,5,3,2,5,4,gpt-4,2026-03-29
-TerriaJS,https://github.com/TerriaJS/terriajs,comparison,0,3,5,4,4,5,3,4,2,1,1,4,2,gpt-4,2026-03-29
-CesiumJS,https://cesium.com/platform/cesiumjs/,comparison,0,4,5,4,5,5,3,5,2,1,1,3,2,gpt-4,2026-03-29
-deck.gl,https://deck.gl/,comparison,0,4,5,3,4,4,4,5,2,1,1,2,1,gpt-4,2026-03-29
-Unity,https://unity.com/,comparison,0,5,1,4,5,4,2,5,2,3,2,2,3,gpt-4,2026-03-29
-Unreal Engine,https://www.unrealengine.com/,comparison,0,5,2,4,5,4,2,5,2,3,2,2,3,gpt-4,2026-03-29
-3D Tiles (OGC),https://www.ogc.org/standards/3dtiles/,comparison,0,4,5,5,5,5,4,4,4,2,1,5,3,gpt-4,2026-03-29
-CityJSON,https://www.cityjson.org/,comparison,0,3,5,4,4,4,4,2,4,2,1,5,3,gpt-4,2026-03-29
-UK Nat’l Digital Twin (Gemini),https://www.cdbb.cam.ac.uk/DFTG/GeminiPrinciples,comparison,0,2,4,3,4,3,5,1,2,2,1,3,2,gpt-4,2026-03-29
-DTCC,https://dtcc.chalmers.se/,comparison,0,4,5,4,2,3,4,3,3,4,2,4,3,claude-sonnet-4-6,2026-04-11
-virtualcitySYSTEMS VC Suite,https://vc.systems/en/,comparison,0,5,4,5,4,5,3,4,5,3,2,5,3,claude-sonnet-4-6,2026-04-11
-Dassault Systèmes 3DEXPERIENCity,https://www.3ds.com/virtual-twin/infrastructure-cities,comparison,0,4,1,5,5,3,2,5,4,5,3,2,4,claude-sonnet-4-6,2026-04-11
-Esri ArcGIS Urban,https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview,comparison,0,4,2,5,5,4,2,4,4,3,2,3,3,claude-sonnet-4-6,2026-04-11
-Project PLATEAU,https://www.mlit.go.jp/plateau/en/,comparison,0,4,5,5,5,4,4,4,4,2,1,5,3,claude-sonnet-4-6,2026-04-11
-51WORLD,https://www.51aes.com/?lang=en,comparison,0,4,1,5,4,3,1,5,3,3,2,1,3,claude-sonnet-4-6,2026-04-11
-Hexagon / Luciad,https://hexagon.com/go/sig/urban-digital-twin,comparison,0,4,1,4,5,4,2,4,4,3,3,3,3,claude-sonnet-4-6,2026-04-11
-NVIDIA Omniverse,https://www.nvidia.com/en-us/industries/smart-cities-and-spaces/,comparison,0,5,2,4,4,4,2,5,3,5,2,2,3,claude-sonnet-4-6,2026-04-11
-Bentley Systems iTwin,https://www.bentley.com/software/itwin-platform/,comparison,0,5,3,4,5,5,2,4,4,3,4,3,5,claude-sonnet-4-6,2026-04-11
-Siemens (smart infrastructure),https://www.siemens-advanta.com/capabilities/offers/digital-twin-services-for-building-campuses-cities,comparison,0,4,1,4,5,4,2,3,3,4,4,2,4,claude-sonnet-4-6,2026-04-11
-IES ICL,https://www.iesve.com/icl,comparison,0,3,1,4,4,3,2,2,4,4,1,2,2,claude-sonnet-4-6,2026-04-11
-FIWARE,https://www.fiware.org/,comparison,0,3,4,4,5,5,4,1,4,3,5,4,1,claude-sonnet-4-6,2026-04-11
-Azure Digital Twins,https://azure.microsoft.com/en-us/products/digital-twins/,comparison,0,4,2,3,4,4,1,2,3,4,2,2,2,claude-sonnet-4-6,2026-04-11
-3DCityDB,https://www.3dcitydb.org/,comparison,0,4,5,4,5,4,4,1,5,1,1,5,3,claude-sonnet-4-6,2026-04-11
-TerriaJS,https://github.com/TerriaJS/terriajs,comparison,0,3,5,4,4,5,3,4,1,1,1,3,1,claude-sonnet-4-6,2026-04-11
-CesiumJS,https://cesium.com/platform/cesiumjs/,comparison,0,4,5,4,5,5,3,5,1,1,1,4,1,claude-sonnet-4-6,2026-04-11
-deck.gl,https://deck.gl/,comparison,0,4,5,3,4,4,4,5,1,1,1,2,1,claude-sonnet-4-6,2026-04-11
-Unity,https://unity.com/,comparison,0,5,1,4,5,4,2,5,1,5,1,1,1,claude-sonnet-4-6,2026-04-11
-Unreal Engine,https://www.unrealengine.com/,comparison,0,5,2,4,5,4,2,5,1,5,1,1,1,claude-sonnet-4-6,2026-04-11
-3D Tiles,https://www.ogc.org/standards/3dtiles/,comparison,0,4,5,5,5,5,4,1,1,1,1,5,1,claude-sonnet-4-6,2026-04-11
-CityJSON,https://www.cityjson.org/,comparison,0,3,5,4,4,4,4,1,1,1,1,5,1,claude-sonnet-4-6,2026-04-11
-UK National Digital Twin Programme,https://www.cdbb.cam.ac.uk/DFTG/GeminiPrinciples,comparison,0,2,4,3,4,3,5,1,1,1,1,3,2,claude-sonnet-4-6,2026-04-11
-DTCC,https://dtcc.chalmers.se/,comparison,0,5,5,4,3,4,4,4,4,5,3,5,4,Gemini 3 Flash,2026-04-07
-virtualcitySYSTEMS,https://vc.systems/en/,comparison,0,4,3,5,5,5,2,5,5,3,4,5,4,Gemini 3 Flash,2026-04-07
-Dassault Systèmes,https://www.3ds.com/virtual-twin/infrastructure-cities,comparison,0,5,1,5,5,3,1,5,5,5,4,3,5,Gemini 3 Flash,2026-04-07
-Esri ArcGIS Urban,https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview,comparison,0,4,2,5,5,4,1,5,4,3,3,4,4,Gemini 3 Flash,2026-04-07
-Project PLATEAU,https://www.mlit.go.jp/plateau/en/,comparison,0,4,5,5,5,4,4,4,5,4,3,5,4,Gemini 3 Flash,2026-04-07
-51WORLD,https://www.51aes.com/?lang=en,comparison,0,4,1,5,4,3,1,5,4,4,4,3,3,Gemini 3 Flash,2026-04-07
-Hexagon / Luciad,https://hexagon.com/go/sig/urban-digital-twin,comparison,0,4,1,5,5,4,1,5,5,3,5,4,4,Gemini 3 Flash,2026-04-07
-NVIDIA Omniverse,https://www.nvidia.com/en-us/industries/smart-cities-and-spaces/,comparison,0,5,2,4,4,4,1,5,3,5,4,4,3,Gemini 3 Flash,2026-04-07
-Bentley iTwin,https://www.bentley.com/software/itwin-platform/,comparison,0,5,3,5,5,5,2,5,5,4,4,5,5,Gemini 3 Flash,2026-04-07
-Siemens Advanta,https://www.siemens-advanta.com/capabilities/offers/digital-twin-services-for-building-campuses-cities,comparison,0,4,2,4,5,4,1,4,4,3,5,3,4,Gemini 3 Flash,2026-04-07
-IES ICL,https://www.iesve.com/icl,comparison,0,4,1,4,4,3,1,4,3,5,4,3,4,Gemini 3 Flash,2026-04-07
-FIWARE,https://www.fiware.org/,comparison,0,4,5,4,5,5,5,2,5,2,5,5,2,Gemini 3 Flash,2026-04-07
-Azure Digital Twins,https://azure.microsoft.com/en-us/products/digital-twins,comparison,0,4,3,3,4,4,1,2,5,2,5,4,2,Gemini 3 Flash,2026-04-07
-3DCityDB,https://www.3dcitydb.org/,comparison,0,5,5,5,5,4,4,3,5,2,3,5,3,Gemini 3 Flash,2026-04-07
-TerriaJS,https://terria.io/,comparison,0,4,5,4,5,5,3,5,3,2,4,5,2,Gemini 3 Flash,2026-04-07
-CesiumJS,https://cesium.com/platform/cesiumjs/,comparison,0,4,5,5,5,5,2,5,3,2,3,5,3,Gemini 3 Flash,2026-04-07
-deck.gl,https://deck.gl/,comparison,0,4,5,4,5,5,4,5,2,1,3,4,1,Gemini 3 Flash,2026-04-07
-Unity,https://unity.com/,comparison,0,4,1,4,5,4,1,5,2,4,4,2,3,Gemini 3 Flash,2026-04-07
-Unreal Engine,https://www.unrealengine.com/,comparison,0,4,2,4,5,4,1,5,2,5,4,3,3,Gemini 3 Flash,2026-04-07
-3D Tiles,https://www.ogc.org/standards/3dtiles/,comparison,0,5,5,5,5,5,5,5,3,1,2,5,2,Gemini 3 Flash,2026-04-07
-CityJSON,https://www.cityjson.org/,comparison,0,5,5,4,4,4,4,3,4,1,1,5,2,Gemini 3 Flash,2026-04-07
-UK Nat. DT Prog,https://www.cdbb.cam.ac.uk/DFTG/GeminiPrinciples,comparison,0,2,4,3,4,3,5,1,4,1,1,5,2,Gemini 3 Flash,2026-04-07
-Hexagon Urban Digital Twin,https://hexagon.com/go/sig/urban-digital-twin,discovery,0,4,2,4,4,4,2,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-Virtual Singapore,https://www.tech.gov.sg/technews/5-things-to-know-about-virtual-singapore/,discovery,0,4,1,5,4,3,4,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-Tokyo Digital Twin Project,https://info.tokyo-digitaltwin.metro.tokyo.lg.jp/,discovery,0,4,2,5,4,4,4,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-Project PLATEAU,https://www.mlit.go.jp/plateau/en/,discovery,0,5,5,5,5,5,5,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-ArcGIS Urban,https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview,discovery,0,4,1,4,5,4,2,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-3DEXPERIENCity,https://www.3ds.com/virtual-twin/infrastructure-cities,discovery,0,4,1,4,4,3,2,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-Bentley iTwin Platform,https://www.bentley.com/software/itwin-platform/,discovery,0,5,2,3,5,5,3,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-Cesium,https://cesium.com/platform/,discovery,0,5,4,4,5,5,4,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-TerriaJS,https://terria.com/open-source,discovery,0,4,5,4,4,5,4,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-3DCityDB,https://github.com/3dcitydb/3dcitydb,discovery,0,5,5,4,4,5,4,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-DTCC Platform,https://www.dtcc.chalmers.se/,discovery,0,4,5,4,3,4,4,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-vCity,https://www.vcity.tech/,discovery,0,4,2,4,3,3,3,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-SUMO,https://eclipse.dev/sumo/,discovery,0,0,0,0,0,0,0,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-FIWARE,https://www.fiware.org/,discovery,0,0,0,0,0,0,0,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-Unreal Engine,https://www.unrealengine.com/license,discovery,0,0,0,0,0,0,0,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-13
-CesiumJS / Cesium ion,https://cesium.com,discovery,0,5,4,4,5,5,4,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Bentley iTwin Platform,https://www.bentley.com/software/itwin-platform/,discovery,0,5,3,4,5,5,3,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-3D City Database (3DCityDB),https://www.3dcitydb.org,discovery,0,4,5,4,5,5,4,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Project PLATEAU (MLIT Japan),https://www.mlit.go.jp/plateau/en/,discovery,0,4,4,5,4,4,5,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-TerriaJS / Terria,https://terria.io,discovery,0,4,4,5,5,4,3,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Hexagon Urban Digital Twin (M.App Enterprise),https://hexagon.com/go/sig/urban-digital-twin,discovery,0,4,1,5,4,3,2,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Dassault Systèmes 3DEXPERIENCE (3DEXPERIENCity),https://www.3ds.com/industries/cities-public-services/,discovery,0,4,1,4,4,3,2,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Siemens Xcelerator (City/District Digital Twin),https://www.siemens.com/global/en/company/digital-transformation/,discovery,0,4,1,4,4,3,2,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-NVIDIA Omniverse (Smart City Blueprint),https://developer.nvidia.com/omniverse,discovery,0,5,2,4,4,4,2,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Virtual City Systems (VC Map / VC Suite),https://vc.systems/en/,discovery,0,4,3,4,4,4,3,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-FIWARE Orion Context Broker,https://github.com/telefonicaid/fiware-orion,discovery,0,3,5,3,5,4,3,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Esri ArcGIS Urban / ArcGIS Platform,https://www.esri.com/en-us/digital-twin/overview,discovery,0,4,1,5,5,4,2,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-VU.CITY,https://www.vu.city,discovery,0,3,1,4,4,2,2,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Microsoft Azure Digital Twins,https://azure.microsoft.com/en-us/products/digital-twins/,discovery,0,4,1,3,5,5,2,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Unreal Engine (Epic Games),https://www.unrealengine.com/digital-twins,discovery,0,5,2,3,4,4,2,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Cityzenith SmartWorldOS,https://cityzenith.com,discovery,0,2,1,3,2,2,1,0,0,0,0,0,0,Claude Sonnet 4.6,2026-04-13
-Cesium,https://cesium.com,discovery,0,5,5,5,5,5,4,0,0,0,0,0,0,Gemini 3 Flash,2026-04-13
-Bentley iTwin,https://www.bentley.com/software/itwin/,discovery,0,5,4,5,5,4,3,0,0,0,0,0,0,Gemini 3 Flash,2026-04-13
-3DCityDB,https://www.3dcitydb.org/,discovery,0,4,5,4,5,5,4,0,0,0,0,0,0,Gemini 3 Flash,2026-04-13
-VC Map,https://vc.systems/en/solutions/vc-map/,discovery,0,4,5,4,4,4,2,0,0,0,0,0,0,Gemini 3 Flash,2026-04-13
-TerriaJS,https://terria.io/,discovery,0,4,5,5,5,4,4,0,0,0,0,0,0,Gemini 3 Flash,2026-04-13
-Esri ArcGIS Urban,https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview,discovery,0,4,1,5,5,3,2,0,0,0,0,0,0,Gemini 3 Flash,2026-04-13
-SuperMap,https://www.supermap.com/en-us/,discovery,0,4,1,5,5,4,2,0,0,0,0,0,0,Gemini 3 Flash,2026-04-13
-NVIDIA Omniverse,https://www.nvidia.com/en-us/omniverse/solutions/digital-twins/,discovery,0,5,2,4,3,4,2,0,0,0,0,0,0,Gemini 3 Flash,2026-04-13
-SUMO,https://eclipse.dev/sumo/,discovery,0,0,0,0,0,0,0,0,0,0,0,0,0,Gemini 3 Flash,2026-04-13
-CityGML,https://www.ogc.org/standard/citygml/,discovery,0,0,0,0,0,0,0,0,0,0,0,0,0,Gemini 3 Flash,2026-04-13
+DTCC (Digital Twin Cities Centre),https://dtcc.chalmers.se,discovery,5,4,5,4,3,3,4,3,4,3,2,4,3,claude-sonnet-4-6,2026-04-14
+Virtual Singapore,https://www.nrf.gov.sg/programmes/virtual-singapore,discovery,5,4,1,5,5,2,2,5,4,4,3,3,4,claude-sonnet-4-6,2026-04-14
+Bentley iTwin Platform,https://www.bentley.com/software/itwin-platform/,discovery,5,4,2,4,5,4,2,4,4,4,3,4,5,claude-sonnet-4-6,2026-04-14
+Esri ArcGIS Urban,https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview,discovery,5,3,1,5,5,4,1,5,4,4,2,3,4,claude-sonnet-4-6,2026-04-14
+Siemens Xcelerator / City Twin,https://xcelerator.siemens.com,discovery,5,4,2,5,4,4,2,4,4,5,4,4,4,claude-sonnet-4-6,2026-04-14
+Cityzenith SmartWorldPro,https://www.cityzenith.com,discovery,5,3,1,5,3,3,1,5,4,4,4,2,3,claude-sonnet-4-6,2026-04-14
+Replica,https://replicahq.com,discovery,5,3,1,4,4,3,2,4,3,5,3,2,2,claude-sonnet-4-6,2026-04-14
+Cityflows / Urban Simulation Platform (Ito World),https://www.itoworld.com,discovery,5,3,1,4,4,3,2,4,3,5,3,2,2,claude-sonnet-4-6,2026-04-14
+Autodesk Tandem,https://tandem.autodesk.com,discovery,5,3,1,3,4,4,2,3,4,3,3,4,5,claude-sonnet-4-6,2026-04-14
+Mobility Data Specification (MDS) / UrbanOS,https://github.com/smartcitiesdata/smartcitiesdata,discovery,5,4,5,4,3,4,4,2,4,2,4,4,2,claude-sonnet-4-6,2026-04-14
+FIWARE Orion Context Broker,https://fiware-orion.readthedocs.io,discovery,4,4,5,3,5,5,4,1,5,1,5,4,1,claude-sonnet-4-6,2026-04-14
+3DCityDB,https://www.3dcitydb.org,discovery,4,5,5,4,5,4,4,2,5,1,2,5,3,claude-sonnet-4-6,2026-04-14
+Cesium,https://cesium.com,discovery,3,4,4,3,5,4,3,5,2,1,1,4,2,claude-sonnet-4-6,2026-04-14
+Eclipse Ditto,https://www.eclipse.org/ditto/,discovery,3,4,4,2,4,5,4,1,5,1,5,3,1,claude-sonnet-4-6,2026-04-14
+Eclipse MOSAIC,https://eclipse.dev/mosaic/,discovery,3,4,4,3,3,4,4,1,3,5,2,3,2,claude-sonnet-4-6,2026-04-14
+OGC SensorThings API,https://www.ogc.org/standard/sensorthings/,discovery,3,4,5,2,5,5,5,1,3,1,5,5,1,claude-sonnet-4-6,2026-04-14
+OpenDRIVE / ASAM standards ecosystem,https://www.asam.net/standards/detail/opendrive/,discovery,3,3,4,2,4,4,3,1,2,4,3,5,2,claude-sonnet-4-6,2026-04-14
+SUMO (Simulation of Urban MObility),https://eclipse.dev/sumo/,discovery,3,3,5,3,5,4,4,1,2,5,3,3,1,claude-sonnet-4-6,2026-04-14
+GeoServer / GeoNetwork,https://geoserver.org,discovery,3,4,4,3,5,5,4,2,5,1,1,5,2,claude-sonnet-4-6,2026-04-14
+AWS IoT TwinMaker,https://aws.amazon.com/iot-twinmaker/,discovery,3,3,1,2,4,4,1,2,4,3,5,2,3,claude-sonnet-4-6,2026-04-14
+Azure Digital Twins,https://azure.microsoft.com/en-us/products/digital-twins,discovery,3,3,1,2,4,5,1,2,5,2,5,3,2,claude-sonnet-4-6,2026-04-14
+NVIDIA Omniverse,https://www.nvidia.com/en-us/omniverse/,discovery,3,4,2,3,4,4,2,5,3,5,3,3,3,claude-sonnet-4-6,2026-04-14
+Unreal Engine (with City Sample / Houdini),https://www.unrealengine.com,discovery,3,3,3,3,5,4,2,5,2,4,2,2,2,claude-sonnet-4-6,2026-04-14
+Mapbox,https://www.mapbox.com,discovery,2,3,2,2,5,4,2,4,2,0,0,2,0,claude-sonnet-4-6,2026-04-14
+ThingsBoard,https://thingsboard.io,discovery,2,3,4,1,4,4,3,1,4,1,5,2,1,claude-sonnet-4-6,2026-04-14
+DTCC,https://www.dtcc.chalmers.se/,discovery,5,5,5,4,3,4,4,4,4,4,2,3,4,GPT-5.4 Thinking,2026-04-14
+Virtual Singapore,https://www.tech.gov.sg/technews/5-things-to-know-about-virtual-singapore/,discovery,5,3,1,5,5,2,4,5,4,4,4,2,4,GPT-5.4 Thinking,2026-04-14
+DUET,https://www.digitalurbantwins.com/,discovery,5,4,2,5,4,3,5,4,4,4,3,3,3,GPT-5.4 Thinking,2026-04-14
+Snap4City,https://www.snap4city.org/,discovery,5,4,4,5,4,5,4,4,4,3,5,4,4,GPT-5.4 Thinking,2026-04-14
+3DCityDB,https://www.3dcitydb.org/,discovery,4,5,5,4,4,4,4,2,5,1,1,5,4,GPT-5.4 Thinking,2026-04-14
+FIWARE Orion-LD,https://github.com/fiware/context.orion-ld,discovery,4,4,4,4,5,5,5,1,5,1,5,5,2,GPT-5.4 Thinking,2026-04-14
+ArcGIS Urban,https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview,discovery,4,3,2,4,5,4,1,4,4,3,1,2,3,GPT-5.4 Thinking,2026-04-14
+OpenRemote,https://openremote.io/smart-city-mobility/,discovery,4,4,4,4,4,4,2,3,4,2,5,3,3,GPT-5.4 Thinking,2026-04-14
+CesiumJS,https://cesium.com/platform/cesiumjs/,discovery,3,5,5,3,5,5,2,5,2,2,3,4,2,GPT-5.4 Thinking,2026-04-14
+Bentley iTwin Platform,https://www.bentley.com/software/itwin-platform/,discovery,3,4,2,4,5,5,1,4,4,3,2,3,5,GPT-5.4 Thinking,2026-04-14
+Eclipse Ditto,https://eclipse.dev/ditto/,discovery,3,4,4,2,4,4,5,1,4,1,5,3,1,GPT-5.4 Thinking,2026-04-14
+NVIDIA Omniverse,https://www.nvidia.com/en-us/omniverse/,discovery,3,4,2,3,4,4,1,5,2,5,2,4,3,GPT-5.4 Thinking,2026-04-14
+Autodesk Tandem,https://www.autodesk.com/products/tandem/overview,discovery,2,0,0,0,0,0,0,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-14
+AWS IoT TwinMaker,https://aws.amazon.com/iot-twinmaker/,discovery,2,0,0,0,0,0,0,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-14
