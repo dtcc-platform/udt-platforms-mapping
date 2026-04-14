@@ -370,29 +370,32 @@ prompt: platform-comparison
 
 **Part 1 — Scoring Table**
 
-One row per platform in the pasted table, six dimension score columns, six functional category score columns, plus name and link:
+One row per platform in the pasted table, a reassessed Relevance score, six dimension score columns, and six functional category score columns:
 
-| Name | Link | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
-| ---- | ---- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
+| Name | Link | Relevance | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
+| ---- | ---- | --------- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
 
 Use bare numbers (1–5) in score cells. Use `?` for unknown. Do not write `/5`.
 
+For `Relevance`: reassess each platform using the rubric from the pasted scope content. Treat the discovery row's score as a starting point — revise it upward or downward if primary-source evidence warrants it. If you revise a score, note the reason briefly in the per-platform profile.
+
 **Column legend:**
 
-| Abbreviation | Full name              | Description                                                      |
-| ------------ | ---------------------- | ---------------------------------------------------------------- |
-| Arch         | Technical Architecture | Core tech stack, data models, deployment model, scalability      |
-| Open         | Openness & Licensing   | Source availability, license type, contribution model            |
-| City         | City-Scale Capability  | Urban domains covered, geographic extent, multi-domain analytics |
-| Mature       | Maturity & Adoption    | Development status, known city deployments, community activity   |
-| Integ        | Integration Posture    | Public APIs, plugin ecosystem, interoperability                  |
-| Gov          | Governance Model       | Who controls the roadmap, contribution and funding model         |
-| Viz          | Visualization          | 3D rendering, GIS viewers, scene composition                     |
-| DM           | Data Management        | Data ingestion, storage, twin models, semantic layers            |
-| Sim          | Simulation             | Urban simulation, physics, scenario modelling                    |
-| IoT          | IoT Sensing            | Real-time data, sensor integration, device management            |
-| Std          | Standards              | Open standards implementation, interoperability frameworks       |
-| Infra        | Infrastructure         | Built environment, BIM/GIS, infrastructure lifecycle             |
+| Abbreviation | Full name              | Description                                                                              |
+| ------------ | ---------------------- | ---------------------------------------------------------------------------------------- |
+| Relevance    | Relevance              | Scope classification 1–5; reassessed from primary sources (may differ from discovery)   |
+| Arch         | Technical Architecture | Core tech stack, data models, deployment model, scalability                              |
+| Open         | Openness & Licensing   | Source availability, license type, contribution model                                    |
+| City         | City-Scale Capability  | Urban domains covered, geographic extent, multi-domain analytics                         |
+| Mature       | Maturity & Adoption    | Development status, known city deployments, community activity                           |
+| Integ        | Integration Posture    | Public APIs, plugin ecosystem, interoperability                                          |
+| Gov          | Governance Model       | Who controls the roadmap, contribution and funding model                                 |
+| Viz          | Visualization          | 3D rendering, GIS viewers, scene composition                                             |
+| DM           | Data Management        | Data ingestion, storage, twin models, semantic layers                                    |
+| Sim          | Simulation             | Urban simulation, physics, scenario modelling                                            |
+| IoT          | IoT Sensing            | Real-time data, sensor integration, device management                                    |
+| Std          | Standards              | Open standards implementation, interoperability frameworks                               |
+| Infra        | Infrastructure         | Built environment, BIM/GIS, infrastructure lifecycle                                     |
 
 **Part 2 — Platform Profiles**
 

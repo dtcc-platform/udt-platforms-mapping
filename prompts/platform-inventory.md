@@ -72,7 +72,7 @@ For each comparison response:
 
 4. For each row, output a CSV row with:
    - `Phase` = `comparison`
-   - `Name`, `Link`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra` = from the Part 1 table
+   - `Name`, `Link`, `Relevance`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra` = from the Part 1 table
    - `Link` = URL only — strip any Markdown link syntax
    - `Model`, `Date` = from YAML metadata
 
