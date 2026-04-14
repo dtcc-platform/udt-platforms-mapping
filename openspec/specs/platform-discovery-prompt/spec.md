@@ -5,11 +5,28 @@ The repository SHALL contain a file at `prompts/platform-discovery.md` that prov
 - **WHEN** a researcher navigates to `prompts/platform-discovery.md`
 - **THEN** the file exists and contains a complete, copy-pasteable prompt
 
-### Requirement: Discovery prompt requests structured output aligned with inventory
-The prompt template SHALL instruct the model to return one `##`-level Markdown section per platform containing two blocks:
+### Requirement: Discovery prompt includes DTCC as a required research entry
+The prompt template SHALL instruct the model to include DTCC (Digital Twin Cities Centre) as a required research target in every discovery session, in addition to all other platforms discovered during the session. DTCC SHALL be researched from primary sources (dtcc.chalmers.se, official GitHub repository) the same way as any other platform.
 
-1. **Identification block** — five labelled bullet fields: **Organization**, **Link**, **License**, **Type**, **Relevance**
-2. **Dimension block** — twelve labelled bullet fields, one per dimension and functional category, each with an inline `X/5` score and a one-sentence rationale: **Technical Architecture (X/5)**, **Openness & Licensing (X/5)**, **City-Scale Capability (X/5)**, **Maturity & Adoption (X/5)**, **Integration Posture (X/5)**, **Governance (X/5)**, **Visualization (X/5)**, **Data Management (X/5)**, **Simulation (X/5)**, **IoT Sensing (X/5)**, **Standards (X/5)**, **Infrastructure (X/5)**
+DTCC SHALL appear as a full per-platform section (Relevance 3–5 tier, complete identification block and all 12 dimension fields) and as a row in the summary table. The instruction to include DTCC SHALL be explicit in the prompt — not optional or researcher-dependent.
+
+#### Scenario: Researcher runs a discovery session
+- **WHEN** an AI responds to the discovery prompt
+- **THEN** a DTCC per-platform section appears in the response with a full identification block and 12-dimension scoring, regardless of what other platforms were discovered
+
+#### Scenario: DTCC's information has changed since a previous session
+- **WHEN** a researcher runs a new discovery session
+- **THEN** the model researches DTCC from primary sources and reflects current information, rather than relying on a static description embedded in a prompt
+
+#### Scenario: Researcher prepares rows for comparison
+- **WHEN** a researcher selects rows from the discovery summary table to paste into the comparison prompt
+- **THEN** the DTCC row is available in the summary table and can be selected and pasted alongside other platforms in the same operation
+
+### Requirement: Discovery prompt requests structured output aligned with inventory
+The prompt template SHALL instruct the model to return one `##`-level Markdown section per platform containing:
+
+- **For Relevance 3–5 platforms** (in scope): full two-block structure — identification fields (Organization, Link, License, Type, Relevance) plus all 12 scored dimension fields.
+- **For Relevance 1–2 platforms** (out of scope): identification fields only (Organization, Link, License, Type, Relevance) plus a single **Reason** field (one sentence explaining why the platform is out of scope). No dimension scoring required.
 
 The score scale (1–5) SHALL match the comparison prompt's scoring scale. The prompt SHALL instruct agents to score by judgment using the rubrics supplied via `[PASTE_SCOPE_HERE]`.
 
@@ -19,9 +36,23 @@ The prompt template SHALL include a concrete example section demonstrating the e
 
 The prompt template SHALL state that the response contains exactly three parts, in order: the metadata block, the summary table, and the per-platform sections. It SHALL forbid extra top-level sections or trailing summary content outside that structure.
 
+All discovered platforms SHALL appear in the summary table regardless of Relevance score. The summary table SHALL be ordered by Relevance score descending (5 first, 0 last). Relevance 1–2 per-platform sections SHALL appear after all Relevance 3–5 sections.
+
+The prompt template SHALL instruct the model that the research instruction "Verify it meets a Relevance score of 3 or higher" is replaced by "Score all discovered platforms on the Relevance rubric and include all in the summary table."
+
+DTCC SHALL appear as a required entry with a full per-platform section. The prompt SHALL explicitly instruct the model to include DTCC in addition to all discovered platforms.
+
 #### Scenario: Response is used to populate inventory
 - **WHEN** an AI responds to the discovery prompt
-- **THEN** each platform section contains the five identification fields (including a Relevance score) and twelve scored dimension fields, making all data directly transferable to the inventory CSV
+- **THEN** each platform section — including DTCC — contains the five identification fields (including a Relevance score) and twelve scored dimension fields, making all data directly transferable to the inventory CSV
+
+#### Scenario: Future session re-discovers a previously rejected platform
+- **WHEN** a researcher runs a new discovery session and the model finds a platform that was previously assessed as Relevance 1–2
+- **THEN** the prior session's response contains a record of the rejection reason, allowing the researcher to recognise it as previously assessed
+
+#### Scenario: Discovery session identifies many out-of-scope candidates
+- **WHEN** the model discovers 10 platforms of which 4 are Relevance 1–2
+- **THEN** all 10 appear in the summary table; the 4 out-of-scope entries have brief sections with a Reason field; the 6 in-scope entries have full 12-dimension sections
 
 #### Scenario: Discovery scores feed into comparison
 - **WHEN** a researcher pastes rows from the discovery summary table into the comparison prompt
@@ -29,7 +60,11 @@ The prompt template SHALL state that the response contains exactly three parts, 
 
 #### Scenario: Two agents respond to the same discovery prompt
 - **WHEN** a researcher runs the discovery prompt on two different AI agents
-- **THEN** both responses use identical field labels, score notation (`X/5`), and section structure
+- **THEN** both responses use identical field labels, score notation (`X/5`), and section structure; both include a DTCC section
+
+#### Scenario: DTCC section appears even when DTCC is not found by search
+- **WHEN** an AI's web search does not surface DTCC during discovery
+- **THEN** the model still includes a DTCC section by researching it directly from primary sources as instructed
 
 ### Requirement: Discovery prompt response begins with a required summary table
 
@@ -37,21 +72,21 @@ The prompt template SHALL instruct the model to output the summary table immedia
 
 **Name**, **Link**, **License**, **Type**, **Relevance**, **Arch**, **Open**, **City**, **Mature**, **Integ**, **Gov**, **Viz**, **DM**, **Sim**, **IoT**, **Std**, **Infra**
 
-The `Relevance` column SHALL contain a bare integer 0–5. A value of 0 means not assessed. Score columns (Arch through Infra) SHALL contain bare numbers 1–5 or `?` for unknown — no `/5` suffix. There is no `-1` sentinel; 0 in the Relevance column indicates an out-of-scope or unassessed platform.
+The summary table SHALL include all discovered platforms. Platforms with Relevance 0 (not assessed) SHALL NOT appear — 0 is reserved for CSV rows that have not been evaluated, not for platforms found during a session. Every platform the model discovers and includes in the response SHALL have a Relevance score of at least 1.
 
-Platforms with Relevance 0 or 1 MAY appear in the summary table but per-platform `##` sections are NOT required for them.
+The `Relevance` column SHALL contain a bare integer 1–5 for all rows in a discovery response. Score columns (Arch through Infra) SHALL contain bare numbers 1–5 or `?` for in-scope platforms (Relevance 3–5); they MAY contain `0` for out-of-scope platforms (Relevance 1–2) where dimension scoring was not performed.
 
 #### Scenario: Researcher opens a discovery response to start a comparison
 - **WHEN** a researcher opens a saved discovery response
-- **THEN** the summary table appears at the top (after the metadata block) with a Relevance column and all twelve score columns
+- **THEN** the summary table contains all discovered platforms; out-of-scope platforms are visually distinguishable by their low Relevance score and `0` dimension scores
+
+#### Scenario: Researcher copies rows for comparison
+- **WHEN** a researcher selects platforms to paste into the comparison prompt
+- **THEN** they can easily skip Relevance 1–2 rows by filtering on the Relevance column
 
 #### Scenario: Rows are pasted into the comparison prompt
 - **WHEN** a researcher copies rows of included platforms from the summary table and pastes them into the comparison prompt
 - **THEN** the comparison prompt receives all twelve seed scores plus the Relevance score as context
-
-#### Scenario: Discovery session identifies out-of-scope platforms
-- **WHEN** the model encounters platforms that are out of scope
-- **THEN** those platforms receive Relevance 0 or 1 in the summary table; there is no separate `-1` or named exclusion label
 
 ### Requirement: Discovery prompt includes a [PASTE_SCOPE_HERE] guard
 The prompt template SHALL include a `[PASTE_SCOPE_HERE]` placeholder where the researcher pastes the full content of `docs/01-scope.md` before running a session. The placeholder SHALL be preceded by a guard instruction telling the model: _if `[PASTE_SCOPE_HERE]` still appears verbatim, stop and ask the user to paste `docs/01-scope.md` before continuing._

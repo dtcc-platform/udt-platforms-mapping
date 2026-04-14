@@ -7,7 +7,7 @@ This prompt can be used in an AI web research chat or an AI CLI session. In a we
 1. Open `docs/01-scope.md` and copy the full content
 2. Replace `[PASTE_SCOPE_HERE]` below with the copied content
 3. Open the discovery response file for your research session
-4. Copy the rows you want to compare (including the header row) from the summary table
+4. Copy the rows you want to compare (including the header row) from the summary table — **include the DTCC row** so Part 3 landscape observations can orient around DTCC
 5. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
 6. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
 
@@ -30,23 +30,21 @@ Before you begin:
 
 You are a research assistant helping to map the Urban Digital Twin (UDT) platform landscape for DTCC.
 
-**About DTCC (reference platform):** DTCC (Digital Twin Cities Centre) is a Swedish research centre developing an open-source, city-scale urban digital twin platform. It supports 3D modelling, simulation, and visualization using CityGML and IFC as core data models. DTCC is open-source, academically governed, and oriented toward interoperability with OGC standards.
-
 Use primary sources for all final factual claims (**official websites, public repositories, published papers, official documentation**). For every substantive claim, include a source reference. Distinguish inferred claims from verified facts. If you cannot find information, state "unknown" or "unclear" — do not fabricate URLs, license names, or deployment claims.
 
 **Before proceeding:** If the rubric block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `docs/01-scope.md` before continuing.
 
 [PASTE_SCOPE_HERE]
 
-**Platforms to compare** (rows from the discovery summary table — include DTCC as a reference entry):
+**Platforms to compare** (rows from the discovery summary table — the DTCC row must be included to enable Part 3 landscape observations):
 
 **Before proceeding:** If the placeholder below still contains the literal text `[PASTE_SELECTED_PLATFORMS_HERE]`, stop and ask the user to supply the required data before continuing. Do not attempt to generate output without it.
 
-Treat the pasted table as the comparison scope boundary. Do not add comparison candidates beyond the pasted rows unless the user explicitly asks you to expand scope.
+Treat the pasted table as the comparison scope boundary. Do not add comparison candidates beyond the pasted rows unless the user explicitly asks you to expand scope. Treat the DTCC row from the pasted table as the reference platform for Part 3 landscape observations.
 
 [PASTE_SELECTED_PLATFORMS_HERE]
 
-Compare every platform present in the pasted table, plus DTCC. Treat the pasted table as a discovery baseline — use the identification fields (Name, Link, License, Type, Relevance) and the first-pass dimension scores as starting context. Your task is to deepen each dimension with primary source research and produce authoritative scores and analysis for all twelve dimensions.
+Compare every platform present in the pasted table. Treat the pasted table as a discovery baseline — use the identification fields (Name, Link, License, Type, Relevance) and the first-pass dimension scores as starting context. Your task is to deepen each dimension with primary source research and produce authoritative scores and analysis for all twelve dimensions.
 
 ---
 
@@ -140,7 +138,7 @@ prompt: platform-comparison
 
 **Part 1 — Scoring Table**
 
-One row per platform (including DTCC), six dimension score columns, six functional category score columns, plus name and link:
+One row per platform in the pasted table, six dimension score columns, six functional category score columns, plus name and link:
 
 | Name | Link | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
 | ---- | ---- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
