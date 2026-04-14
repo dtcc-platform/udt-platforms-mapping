@@ -1,3 +1,5 @@
+## MODIFIED Requirements
+
 ### Requirement: docs/01-scope.md contains all 13 scoring rubrics as the canonical source
 `docs/01-scope.md` SHALL contain the Relevance rubric plus all 12 dimension and functional category rubrics (Arch, Open, City, Mature, Integ, Gov, Viz, DM, Sim, IoT, Std, Infra). This file is the single canonical source for all rubric definitions; the prompt files consume its content via the `[PASTE_SCOPE_HERE]` mechanism.
 
@@ -11,16 +13,6 @@ The **Openness & Licensing (`Open`)** rubric SHALL define the following criteria
 | 2 | Primarily proprietary with limited open components or open APIs |
 | 1 | Fully proprietary, no public source, no open APIs |
 | 0 | Not assessed |
-
-The file SHALL retain brief prose context explaining what a UDT platform is and the purpose of the study, so it remains useful as a standalone onboarding document.
-
-#### Scenario: Researcher reads scope before starting a discovery session
-- **WHEN** a researcher opens `docs/01-scope.md` before running the discovery prompt
-- **THEN** they find the Relevance 0–5 rubric, all 12 dimension/category rubrics, and brief context on what qualifies as a UDT platform
-
-#### Scenario: Researcher prepares a prompt session
-- **WHEN** a researcher is about to run a discovery or comparison session
-- **THEN** they paste the full content of `docs/01-scope.md` into the `[PASTE_SCOPE_HERE]` slot in the prompt
 
 #### Scenario: Researcher updates a rubric
 - **WHEN** a researcher changes the criteria for a dimension score level
@@ -37,19 +29,3 @@ The file SHALL retain brief prose context explaining what a UDT platform is and 
 #### Scenario: Scorer assesses a platform with proprietary export formats
 - **WHEN** a scorer encounters a platform that is open-source but only exports in proprietary binary formats with no OGC/CityGML/IFC alternative
 - **THEN** the rubric at level 3 clarifies this counts as "restrictive data formats" and scores as 3, not 5
-
-### Requirement: Scope document provides a seed list of known qualifying platforms
-The scope document SHALL include a seed list of at least six platforms already known to qualify, anchored to Relevance scores using the new rubric (each entry annotated with its Relevance level).
-
-The seed list SHALL include at minimum: Cesium (Relevance 3), iTwin (Relevance 3), DTCC (Relevance 5), Eclipse Ditto (Relevance 3), FIWARE (Relevance 3), Virtual Singapore (Relevance 5).
-
-#### Scenario: Researcher starts a discovery session
-- **WHEN** a researcher begins a new discovery session
-- **THEN** the seed list gives them baseline examples calibrated to the Relevance scale
-
-### Requirement: Scope document states a target corpus size
-The scope document SHALL state a target range for the number of platforms in the review corpus (15–30 platforms), framed as a planning heuristic rather than a hard constraint.
-
-#### Scenario: Researcher assesses when to stop discovery
-- **WHEN** a researcher has accumulated a set of platforms
-- **THEN** the scope document's target range helps them judge whether the corpus is sufficiently representative

@@ -61,14 +61,14 @@ Core technology stack, data models (CityGML, IFC, OGC standards, proprietary), c
 
 Source availability, license type, contribution model, commercial restrictions, dual licensing, open data formats.
 
-| Score | Criteria                                                                                      |
-| ----- | --------------------------------------------------------------------------------------------- |
-| 5     | Permissive open-source (MIT/Apache/BSD) + open data formats, no SaaS dependency               |
-| 4     | Copyleft open-source, or open-core with substantial open component                            |
-| 3     | Open-core with significant proprietary features, or open source with restrictive data formats |
-| 2     | Primarily proprietary with limited open components or open APIs                               |
-| 1     | Fully proprietary, no public source, no open APIs                                             |
-| 0     | Not assessed                                                                                  |
+| Score | Criteria                                                                                                                                                                    |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 5     | Permissive open-source (MIT/Apache/BSD) + open data formats (OGC standards, CityGML, IFC, or equivalent), no SaaS dependency                                                |
+| 4     | Copyleft open-source (strong: GPL — derivatives must be open; weak: LGPL/MPL — linking permitted without triggering copyleft), or open-core with substantial open component |
+| 3     | Open-core with significant proprietary features, or open source with restrictive data formats (proprietary export formats with no open standard alternative)                |
+| 2     | Primarily proprietary with limited open components or open APIs                                                                                                             |
+| 1     | Fully proprietary, no public source, no open APIs                                                                                                                           |
+| 0     | Not assessed                                                                                                                                                                |
 
 ### 3. City-Scale Capability (`City`)
 

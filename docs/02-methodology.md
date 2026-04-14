@@ -24,9 +24,6 @@ The canonical data record for each platform is its row in `docs/05-platform-inve
 Discovery dimension scores are judgment-based first-pass signals.
 The comparison prompt deepens them with full rubric-based research and primary source evidence — expect scores to shift.
 
-**Optional — License analysis:** For any platform in the discovery table, copy the header row and that platform's row and paste them into the `[PASTE_SELECTED_PLATFORM_HERE]` token in `prompts/license-analysis.md`.
-This can be run independently at any point — it does not need to precede or follow a comparison session.
-
 ```mermaid
 flowchart TD
     scope["📋 01-scope.md\nRubrics & seed list\n(paste as preamble)"]
@@ -38,7 +35,6 @@ flowchart TD
     cresp["responses/\n*-comparison.md"]
     inv["prompts/\nplatform-inventory.md\n― AI CLI only ―"]
     table["docs/\n05-platform-inventory.csv"]
-    lic["prompts/\nlicense-analysis.md\noptional"]
 
     scope -->|"paste into [PASTE_SCOPE_HERE]"| disc
     scope -->|"paste into [PASTE_SCOPE_HERE]"| comp
@@ -49,7 +45,6 @@ flowchart TD
     cresp -->|"auto-scan"| inv
     dresp -->|"auto-scan"| inv
     inv -->|"append rows"| table
-    dresp -.->|"per platform"| lic
 ```
 
 ## File Naming
@@ -64,11 +59,10 @@ Pattern: `<platform>-<prompt-type>.md`
 | Token           | Values                                                |
 | --------------- | ----------------------------------------------------- |
 | `<platform>`    | kebab-case platform name, e.g. `cesium`, `3d-city-db` |
-| `<prompt-type>` | `discovery`, `comparison`, or `license`               |
+| `<prompt-type>` | `discovery` or `comparison`                           |
 
 Examples:
 
-- `cesium-license.md`
 - `cesium-vs-dtcc-comparison.md` — two platforms joined with `vs`
 - `cesium-et-al-comparison.md` — more than two platforms
 - `european-platforms-discovery.md` — broad discovery session; use a scope descriptor instead of a platform name
