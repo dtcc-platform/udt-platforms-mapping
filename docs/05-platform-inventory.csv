@@ -1,5 +1,5 @@
 Name,Link,Phase,Relevance,Arch,Open,City,Mature,Integ,Gov,Viz,DM,Sim,IoT,Std,Infra,Model,Date
-DTCC (Digital Twin Cities Centre),https://dtcc.chalmers.se,discovery,5,4,5,4,3,3,4,3,4,3,2,4,3,claude-sonnet-4-6,2026-04-14
+DTCC,https://dtcc.chalmers.se,discovery,5,4,5,4,3,3,4,3,4,3,2,4,3,claude-sonnet-4-6,2026-04-14
 Virtual Singapore,https://www.nrf.gov.sg/programmes/virtual-singapore,discovery,5,4,1,5,5,2,2,5,4,4,3,3,4,claude-sonnet-4-6,2026-04-14
 Bentley iTwin Platform,https://www.bentley.com/software/itwin-platform/,discovery,5,4,2,4,5,4,2,4,4,4,3,4,5,claude-sonnet-4-6,2026-04-14
 Esri ArcGIS Urban,https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview,discovery,5,3,1,5,5,4,1,5,4,4,2,3,4,claude-sonnet-4-6,2026-04-14
@@ -38,3 +38,65 @@ Eclipse Ditto,https://eclipse.dev/ditto/,discovery,3,4,4,2,4,4,5,1,4,1,5,3,1,GPT
 NVIDIA Omniverse,https://www.nvidia.com/en-us/omniverse/,discovery,3,4,2,3,4,4,1,5,2,5,2,4,3,GPT-5.4 Thinking,2026-04-14
 Autodesk Tandem,https://www.autodesk.com/products/tandem/overview,discovery,2,0,0,0,0,0,0,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-14
 AWS IoT TwinMaker,https://aws.amazon.com/iot-twinmaker/,discovery,2,0,0,0,0,0,0,0,0,0,0,0,0,GPT-5.4 Thinking,2026-04-14
+DTCC,https://dtcc.chalmers.se,discovery,5,5,5,4,3,4,4,3,4,5,2,4,4,gemini-2.5-flash-preview-09-2025,2026-04-15
+Virtual Singapore,https://www.nrf.gov.sg/programmes/virtual-singapore,discovery,5,4,1,5,5,3,1,5,4,5,4,3,4,gemini-2.5-flash-preview-09-2025,2026-04-15
+3DCityDB,https://www.3dcitydb.org/,discovery,4,5,5,5,5,4,4,2,5,1,1,5,3,gemini-2.5-flash-preview-09-2025,2026-04-15
+FIWARE Orion,https://www.fiware.org/developers/catalogue/,discovery,4,4,5,3,5,5,5,1,5,1,5,5,2,gemini-2.5-flash-preview-09-2025,2026-04-15
+DUET,https://www.digitaltwincities.eu/,discovery,4,4,4,4,3,4,4,4,4,4,4,4,3,gemini-2.5-flash-preview-09-2025,2026-04-15
+CityZenith SmartWorldPro,https://cityzenith.com/,discovery,4,3,2,4,4,3,1,5,4,4,4,3,4,gemini-2.5-flash-preview-09-2025,2026-04-15
+Cesium,https://cesium.com,discovery,3,4,5,4,5,5,2,5,3,2,3,5,3,gemini-2.5-flash-preview-09-2025,2026-04-15
+iTwin,https://www.itwinjs.org/,discovery,3,5,4,3,5,5,1,4,5,3,4,4,5,gemini-2.5-flash-preview-09-2025,2026-04-15
+Eclipse Ditto,https://www.eclipse.dev/ditto/,discovery,3,4,5,2,4,4,5,1,4,1,5,3,1,gemini-2.5-flash-preview-09-2025,2026-04-15
+Siradel S-Twin,https://www.siradel.com/solutions/smart-city/s-twin/,discovery,3,3,2,4,4,3,1,5,3,4,3,3,3,gemini-2.5-flash-preview-09-2025,2026-04-15
+OpenGEH,https://github.com/OpenGEH,discovery,2,0,0,0,0,0,0,0,0,0,0,0,0,gemini-2.5-flash-preview-09-2025,2026-04-15
+Unreal Engine,https://www.unrealengine.com,discovery,2,0,0,0,0,0,0,0,0,0,0,0,0,gemini-2.5-flash-preview-09-2025,2026-04-15
+DTCC,https://dtcc.chalmers.se,comparison,5,4,5,4,3,3,4,3,4,3,2,4,3,GPT-5.2 Thinking,2026-04-14
+Virtual Singapore,https://www.nrf.gov.sg/programmes/virtual-singapore,comparison,5,4,1,5,5,2,2,5,4,4,3,3,4,GPT-5.2 Thinking,2026-04-14
+Bentley iTwin Platform,https://www.bentley.com/software/itwin-platform/,comparison,3,4,2,4,5,4,2,4,4,3,3,4,5,GPT-5.2 Thinking,2026-04-14
+Esri ArcGIS Urban,https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview,comparison,5,3,1,5,5,4,1,5,4,4,2,3,4,GPT-5.2 Thinking,2026-04-14
+Siemens Xcelerator / City Twin,https://xcelerator.siemens.com,comparison,5,4,2,5,4,4,2,4,4,5,4,4,4,GPT-5.2 Thinking,2026-04-14
+Cityzenith SmartWorldPro,https://www.cityzenith.com,comparison,5,3,1,5,3,3,1,5,4,4,4,2,3,GPT-5.2 Thinking,2026-04-14
+Replica,https://replicahq.com,comparison,4,3,1,4,4,3,2,3,3,5,3,2,2,GPT-5.2 Thinking,2026-04-14
+Cityflows / Urban Simulation Platform (Ito World),https://www.itoworld.com,comparison,2,3,1,3,4,3,2,2,3,2,3,2,2,GPT-5.2 Thinking,2026-04-14
+Autodesk Tandem,https://tandem.autodesk.com,comparison,3,3,1,2,4,4,2,3,4,2,3,3,5,GPT-5.2 Thinking,2026-04-14
+Mobility Data Specification (MDS) / UrbanOS,https://github.com/smartcitiesdata/smartcitiesdata,comparison,4,5,5,4,3,4,4,2,4,2,4,4,2,GPT-5.2 Thinking,2026-04-14
+FIWARE Orion Context Broker,https://fiware-orion.readthedocs.io,comparison,4,4,5,3,5,5,4,1,5,1,5,4,1,GPT-5.2 Thinking,2026-04-14
+3DCityDB,https://www.3dcitydb.org,comparison,4,5,5,4,5,4,4,2,5,1,2,5,3,GPT-5.2 Thinking,2026-04-14
+Cesium,https://cesium.com,comparison,3,4,4,3,5,4,3,5,2,1,1,4,2,GPT-5.2 Thinking,2026-04-14
+Eclipse Ditto,https://www.eclipse.org/ditto/,comparison,3,4,4,2,4,5,4,1,5,1,5,3,1,GPT-5.2 Thinking,2026-04-14
+Eclipse MOSAIC,https://eclipse.dev/mosaic/,comparison,3,4,4,3,3,4,4,1,3,5,2,3,2,GPT-5.2 Thinking,2026-04-14
+OGC SensorThings API,https://www.ogc.org/standard/sensorthings/,comparison,3,4,5,2,5,5,5,1,3,1,5,5,1,GPT-5.2 Thinking,2026-04-14
+OpenDRIVE / ASAM standards ecosystem,https://www.asam.net/standards/detail/opendrive/,comparison,3,3,4,2,4,4,3,1,2,4,3,5,2,GPT-5.2 Thinking,2026-04-14
+SUMO (Simulation of Urban MObility),https://eclipse.dev/sumo/,comparison,3,3,5,3,5,4,4,2,2,5,3,3,1,GPT-5.2 Thinking,2026-04-14
+GeoServer / GeoNetwork,https://geoserver.org,comparison,3,4,4,3,5,5,4,2,5,1,1,5,2,GPT-5.2 Thinking,2026-04-14
+AWS IoT TwinMaker,https://aws.amazon.com/iot-twinmaker/,comparison,3,3,1,2,4,4,1,3,4,2,5,2,3,GPT-5.2 Thinking,2026-04-14
+Azure Digital Twins,https://azure.microsoft.com/en-us/products/digital-twins,comparison,3,3,1,2,4,5,1,2,5,2,5,3,2,GPT-5.2 Thinking,2026-04-14
+NVIDIA Omniverse,https://www.nvidia.com/en-us/omniverse/,comparison,3,4,2,3,4,4,2,5,3,5,3,3,3,GPT-5.2 Thinking,2026-04-14
+Unreal Engine (with City Sample / Houdini),https://www.unrealengine.com,comparison,3,3,2,3,5,4,2,5,2,3,2,2,2,GPT-5.2 Thinking,2026-04-14
+Mapbox,https://www.mapbox.com,comparison,2,3,2,2,5,4,2,4,2,1,1,2,1,GPT-5.2 Thinking,2026-04-14
+ThingsBoard,https://thingsboard.io,comparison,2,3,4,1,4,4,3,2,4,1,5,2,1,GPT-5.2 Thinking,2026-04-14
+DTCC,https://dtcc.chalmers.se,comparison,5,4,5,4,3,4,4,3,4,4,3,4,4,deep-research-report-expert-v2,2026-04-15
+Virtual Singapore,https://www.nrf.gov.sg/programmes/virtual-singapore,comparison,5,4,1,5,5,2,2,5,4,5,4,3,4,deep-research-report-expert-v2,2026-04-15
+Bentley iTwin Platform,https://www.bentley.com/software/itwin-platform/,comparison,5,5,4,4,5,5,2,4,5,4,4,5,5,deep-research-report-expert-v2,2026-04-15
+Esri ArcGIS Urban,https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview,comparison,5,4,2,5,5,4,1,5,5,4,3,4,4,deep-research-report-expert-v2,2026-04-15
+Siemens Xcelerator / City Twin,https://xcelerator.siemens.com,comparison,5,5,2,5,5,4,2,4,5,5,5,4,4,deep-research-report-expert-v2,2026-04-15
+Cityzenith SmartWorldPro,https://www.cityzenith.com,comparison,5,3,1,5,3,3,1,5,4,4,4,2,3,deep-research-report-expert-v2,2026-04-15
+Replica,https://replicahq.com,comparison,5,3,1,5,4,3,2,4,5,5,2,2,2,deep-research-report-expert-v2,2026-04-15
+Cityflows (Ito World),https://www.itoworld.com,comparison,5,3,1,4,4,3,2,4,3,5,4,3,2,deep-research-report-expert-v2,2026-04-15
+Autodesk Tandem,https://tandem.autodesk.com,comparison,4,4,1,3,4,4,2,4,5,3,4,4,5,deep-research-report-expert-v2,2026-04-15
+Mobility Data Specification (MDS) / UrbanOS,https://github.com/UrbanOS-Public/smartcitiesdata,comparison,5,5,5,4,3,5,4,2,5,2,5,5,2,deep-research-report-expert-v2,2026-04-15
+FIWARE Orion Context Broker,https://fiware-orion.readthedocs.io,comparison,4,5,5,3,5,5,5,1,5,1,5,5,1,deep-research-report-expert-v2,2026-04-15
+3DCityDB,https://www.3dcitydb.org,comparison,4,5,5,5,5,4,4,2,5,1,1,5,3,deep-research-report-expert-v2,2026-04-15
+Cesium,https://cesium.com,comparison,4,5,4,4,5,5,3,5,3,1,2,5,3,deep-research-report-expert-v2,2026-04-15
+Eclipse Ditto,https://www.eclipse.org/ditto/,comparison,3,4,4,2,5,5,4,1,5,1,5,4,1,deep-research-report-expert-v2,2026-04-15
+Eclipse MOSAIC,https://eclipse.dev/mosaic/,comparison,4,4,4,4,4,4,4,2,3,5,3,3,2,deep-research-report-expert-v2,2026-04-15
+OGC SensorThings API,https://www.ogc.org/standard/sensorthings/,comparison,3,5,5,2,5,5,5,1,4,1,5,5,1,deep-research-report-expert-v2,2026-04-15
+OpenDRIVE / ASAM,https://www.asam.net/standards/detail/opendrive/,comparison,3,3,4,3,5,4,3,1,3,4,2,5,2,deep-research-report-expert-v2,2026-04-15
+SUMO (Simulation of Urban MObility),https://eclipse.dev/sumo/,comparison,4,4,5,4,5,4,4,2,3,5,2,4,1,deep-research-report-expert-v2,2026-04-15
+GeoServer / GeoNetwork,https://geoserver.org,comparison,3,4,4,3,5,5,4,2,5,1,2,5,2,deep-research-report-expert-v2,2026-04-15
+AWS IoT TwinMaker,https://aws.amazon.com/iot-twinmaker/,comparison,3,4,1,3,4,5,1,4,4,3,5,3,3,deep-research-report-expert-v2,2026-04-15
+Azure Digital Twins,https://azure.microsoft.com/en-us/products/digital-twins,comparison,4,4,1,4,5,5,1,3,5,2,5,4,3,deep-research-report-expert-v2,2026-04-15
+NVIDIA Omniverse,https://www.nvidia.com/en-us/omniverse/,comparison,4,5,2,4,4,5,2,5,4,5,4,4,4,deep-research-report-expert-v2,2026-04-15
+Unreal Engine,https://www.unrealengine.com,comparison,4,4,3,4,5,5,2,5,3,5,4,3,3,deep-research-report-expert-v2,2026-04-15
+Mapbox,https://www.mapbox.com,comparison,3,4,2,3,5,5,1,5,3,2,3,4,2,deep-research-report-expert-v2,2026-04-15
+ThingsBoard,https://thingsboard.io,comparison,3,4,4,3,5,5,3,3,4,1,5,4,2,deep-research-report-expert-v2,2026-04-15

@@ -248,33 +248,12 @@ Primary function: built environment, BIM/GIS integration, infrastructure lifecyc
 
 Treat the pasted table as the comparison scope boundary. Do not add comparison candidates beyond the pasted rows unless the user explicitly asks you to expand scope. Treat the DTCC row from the pasted table as the reference platform for Part 3 landscape observations.
 
-| Name                                              | Link                                                             | License                              | Type                                      | Relevance | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
-| ------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------ | ----------------------------------------- | --------- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
-| DTCC (Digital Twin Cities Centre)                 | https://dtcc.chalmers.se                                         | Apache-2.0                           | UDT research platform                     | 5         | 4    | 5    | 4    | 3      | 3     | 4   | 3   | 4  | 3   | 2   | 4   | 3     |
-| Virtual Singapore                                 | https://www.nrf.gov.sg/programmes/virtual-singapore              | Proprietary (govt)                   | National city-scale digital twin          | 5         | 4    | 1    | 5    | 5      | 2     | 2   | 5   | 4  | 4   | 3   | 3   | 4     |
-| Bentley iTwin Platform                            | https://www.bentley.com/software/itwin-platform/                 | Open-core / proprietary              | Infrastructure digital twin platform      | 5         | 4    | 2    | 4    | 5      | 4     | 2   | 4   | 4  | 4   | 3   | 4   | 5     |
-| Esri ArcGIS Urban                                 | https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview | Proprietary (SaaS)                   | Urban planning & city digital twin        | 5         | 3    | 1    | 5    | 5      | 4     | 1   | 5   | 4  | 4   | 2   | 3   | 4     |
-| Siemens Xcelerator / City Twin                    | https://xcelerator.siemens.com                                   | Proprietary (open-core)              | City simulation & digital twin suite      | 5         | 4    | 2    | 5    | 4      | 4     | 2   | 4   | 4  | 5   | 4   | 4   | 4     |
-| Cityzenith SmartWorldPro                          | https://www.cityzenith.com                                       | Proprietary                          | Urban digital twin platform               | 5         | 3    | 1    | 5    | 3      | 3     | 1   | 5   | 4  | 4   | 4   | 2   | 3     |
-| Replica                                           | https://replicahq.com                                            | Proprietary (SaaS)                   | City-scale urban mobility digital twin    | 5         | 3    | 1    | 4    | 4      | 3     | 2   | 4   | 3  | 5   | 3   | 2   | 2     |
-| Cityflows / Urban Simulation Platform (Ito World) | https://www.itoworld.com                                         | Proprietary                          | Urban mobility simulation & analytics     | 5         | 3    | 1    | 4    | 4      | 3     | 2   | 4   | 3  | 5   | 3   | 2   | 2     |
-| Autodesk Tandem                                   | https://tandem.autodesk.com                                      | Proprietary (SaaS)                   | Facility/city digital twin platform       | 5         | 3    | 1    | 3    | 4      | 4     | 2   | 3   | 4  | 3   | 3   | 4   | 5     |
-| Mobility Data Specification (MDS) / UrbanOS       | https://github.com/smartcitiesdata/smartcitiesdata               | Apache-2.0                           | Open smart city data platform             | 5         | 4    | 5    | 4    | 3      | 4     | 4   | 2   | 4  | 2   | 4   | 4   | 2     |
-| FIWARE Orion Context Broker                       | https://fiware-orion.readthedocs.io                              | Apache-2.0                           | Context data management / smart city      | 4         | 4    | 5    | 3    | 5      | 5     | 4   | 1   | 5  | 1   | 5   | 4   | 1     |
-| 3DCityDB                                          | https://www.3dcitydb.org                                         | Apache-2.0                           | City model database (CityGML)             | 4         | 5    | 5    | 4    | 5      | 4     | 4   | 2   | 5  | 1   | 2   | 5   | 3     |
-| Cesium                                            | https://cesium.com                                               | Apache-2.0 / proprietary (CesiumIon) | 3D geospatial visualisation engine        | 3         | 4    | 4    | 3    | 5      | 4     | 3   | 5   | 2  | 1   | 1   | 4   | 2     |
-| Eclipse Ditto                                     | https://www.eclipse.org/ditto/                                   | EPL-2.0                              | IoT device twin framework                 | 3         | 4    | 4    | 2    | 4      | 5     | 4   | 1   | 5  | 1   | 5   | 3   | 1     |
-| Eclipse MOSAIC                                    | https://eclipse.dev/mosaic/                                      | EPL-2.0                              | Urban mobility & smart city simulation    | 3         | 4    | 4    | 3    | 3      | 4     | 4   | 1   | 3  | 5   | 2   | 3   | 2     |
-| OGC SensorThings API                              | https://www.ogc.org/standard/sensorthings/                       | Open standard                        | IoT/sensor integration standard           | 3         | 4    | 5    | 2    | 5      | 5     | 5   | 1   | 3  | 1   | 5   | 5   | 1     |
-| OpenDRIVE / ASAM standards ecosystem              | https://www.asam.net/standards/detail/opendrive/                 | Open standard (ASAM)                 | Road network / mobility twin standard     | 3         | 3    | 4    | 2    | 4      | 4     | 3   | 1   | 2  | 4   | 3   | 5   | 2     |
-| SUMO (Simulation of Urban MObility)               | https://eclipse.dev/sumo/                                        | EPL-2.0                              | Urban traffic simulation engine           | 3         | 3    | 5    | 3    | 5      | 4     | 4   | 1   | 2  | 5   | 3   | 3   | 1     |
-| GeoServer / GeoNetwork                            | https://geoserver.org                                            | GPL-2.0                              | Open geospatial data server               | 3         | 4    | 4    | 3    | 5      | 5     | 4   | 2   | 5  | 1   | 1   | 5   | 2     |
-| AWS IoT TwinMaker                                 | https://aws.amazon.com/iot-twinmaker/                            | Proprietary (SaaS)                   | Cloud IoT & digital twin service          | 3         | 3    | 1    | 2    | 4      | 4     | 1   | 2   | 4  | 3   | 5   | 2   | 3     |
-| Azure Digital Twins                               | https://azure.microsoft.com/en-us/products/digital-twins         | Proprietary (SaaS)                   | Cloud digital twin graph service          | 3         | 3    | 1    | 2    | 4      | 5     | 1   | 2   | 5  | 2   | 5   | 3   | 2     |
-| NVIDIA Omniverse                                  | https://www.nvidia.com/en-us/omniverse/                          | Proprietary (open-core)              | 3D simulation & digital twin rendering    | 3         | 4    | 2    | 3    | 4      | 4     | 2   | 5   | 3  | 5   | 3   | 3   | 3     |
-| Unreal Engine (with City Sample / Houdini)        | https://www.unrealengine.com                                     | Proprietary (EULA)                   | Real-time 3D engine used in UDT rendering | 3         | 3    | 3    | 3    | 5      | 4     | 2   | 5   | 2  | 4   | 2   | 2   | 2     |
-| Mapbox                                            | https://www.mapbox.com                                           | Proprietary (open-core)              | 2D/3D map visualisation platform          | 2         | 3    | 2    | 2    | 5      | 4     | 2   | 4   | 2  | 0   | 0   | 2   | 0     |
-| ThingsBoard                                       | https://thingsboard.io                                           | Apache-2.0 / proprietary             | IoT platform (not UDT-specific)           | 2         | 3    | 4    | 1    | 4      | 4     | 3   | 1   | 4  | 1   | 5   | 2   | 1     |
+| Name                                              | Link                           | License                 | Type                                   | Relevance | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
+| ------------------------------------------------- | ------------------------------ | ----------------------- | -------------------------------------- | --------- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
+| Siemens Xcelerator / City Twin                    | https://xcelerator.siemens.com | Proprietary (open-core) | City simulation & digital twin suite   | 5         | 4    | 2    | 5    | 4      | 4     | 2   | 4   | 4  | 5   | 4   | 4   | 4     |
+| Cityzenith SmartWorldPro                          | https://www.cityzenith.com     | Proprietary             | Urban digital twin platform            | 5         | 3    | 1    | 5    | 3      | 3     | 1   | 5   | 4  | 4   | 4   | 2   | 3     |
+| Replica                                           | https://replicahq.com          | Proprietary (SaaS)      | City-scale urban mobility digital twin | 5         | 3    | 1    | 4    | 4      | 3     | 2   | 4   | 3  | 5   | 3   | 2   | 2     |
+| Cityflows / Urban Simulation Platform (Ito World) | https://www.itoworld.com       | Proprietary             | Urban mobility simulation & analytics  | 5         | 3    | 1    | 4    | 4      | 3     | 2   | 4   | 3  | 5   | 3   | 2   | 2     |
 
 Compare every platform present in the pasted table. Treat the pasted table as a discovery baseline — use the identification fields (Name, Link, License, Type, Relevance) and the first-pass dimension scores as starting context. Your task is to deepen each dimension with primary source research and produce authoritative scores and analysis for all twelve dimensions.
 
@@ -381,21 +360,21 @@ For `Relevance`: reassess each platform using the rubric from the pasted scope c
 
 **Column legend:**
 
-| Abbreviation | Full name              | Description                                                                              |
-| ------------ | ---------------------- | ---------------------------------------------------------------------------------------- |
-| Relevance    | Relevance              | Scope classification 1–5; reassessed from primary sources (may differ from discovery)   |
-| Arch         | Technical Architecture | Core tech stack, data models, deployment model, scalability                              |
-| Open         | Openness & Licensing   | Source availability, license type, contribution model                                    |
-| City         | City-Scale Capability  | Urban domains covered, geographic extent, multi-domain analytics                         |
-| Mature       | Maturity & Adoption    | Development status, known city deployments, community activity                           |
-| Integ        | Integration Posture    | Public APIs, plugin ecosystem, interoperability                                          |
-| Gov          | Governance Model       | Who controls the roadmap, contribution and funding model                                 |
-| Viz          | Visualization          | 3D rendering, GIS viewers, scene composition                                             |
-| DM           | Data Management        | Data ingestion, storage, twin models, semantic layers                                    |
-| Sim          | Simulation             | Urban simulation, physics, scenario modelling                                            |
-| IoT          | IoT Sensing            | Real-time data, sensor integration, device management                                    |
-| Std          | Standards              | Open standards implementation, interoperability frameworks                               |
-| Infra        | Infrastructure         | Built environment, BIM/GIS, infrastructure lifecycle                                     |
+| Abbreviation | Full name              | Description                                                                           |
+| ------------ | ---------------------- | ------------------------------------------------------------------------------------- |
+| Relevance    | Relevance              | Scope classification 1–5; reassessed from primary sources (may differ from discovery) |
+| Arch         | Technical Architecture | Core tech stack, data models, deployment model, scalability                           |
+| Open         | Openness & Licensing   | Source availability, license type, contribution model                                 |
+| City         | City-Scale Capability  | Urban domains covered, geographic extent, multi-domain analytics                      |
+| Mature       | Maturity & Adoption    | Development status, known city deployments, community activity                        |
+| Integ        | Integration Posture    | Public APIs, plugin ecosystem, interoperability                                       |
+| Gov          | Governance Model       | Who controls the roadmap, contribution and funding model                              |
+| Viz          | Visualization          | 3D rendering, GIS viewers, scene composition                                          |
+| DM           | Data Management        | Data ingestion, storage, twin models, semantic layers                                 |
+| Sim          | Simulation             | Urban simulation, physics, scenario modelling                                         |
+| IoT          | IoT Sensing            | Real-time data, sensor integration, device management                                 |
+| Std          | Standards              | Open standards implementation, interoperability frameworks                            |
+| Infra        | Infrastructure         | Built environment, BIM/GIS, infrastructure lifecycle                                  |
 
 **Part 2 — Platform Profiles**
 
