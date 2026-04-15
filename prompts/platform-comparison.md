@@ -26,7 +26,7 @@ Before you begin:
 - Return plain Markdown only.
 - Return only the final deliverable in the exact three-part format below.
 - Do not add any product-native citation markers, sidebars, source appendices, methodology sections, executive summaries, or closing summaries.
-- If your interface would normally produce a separate report structure, suppress it and follow this prompt's output contract instead.
+- The main body of your response MUST be the three-part structure below. If your interface wraps it in a report shell or summary, that is fine — but the three parts must appear as the primary content.
 
 You are a research assistant helping to map the Urban Digital Twin (UDT) platform landscape for DTCC.
 
