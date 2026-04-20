@@ -7,7 +7,8 @@ Paste the full content of this file into the `[PASTE_SCOPE_HERE]` slot in any pr
 
 ## What Is a UDT Platform?
 
-A **Urban Digital Twin (UDT) platform** is a software system for representing, managing, simulating, or visualising city-scale urban environments as a live or near-live digital counterpart. This review applies a **moderate** inclusion boundary: platforms purely adjacent to UDT use cases (generic IoT platforms, general-purpose GIS tools without urban twin framing) are out of scope even if they could theoretically be used in a UDT context.
+A **Urban Digital Twin (UDT) platform** is a software system for representing, managing, simulating, or visualising city-scale urban environments as a live or near-live digital counterpart.
+Search broadly: the boundary includes enabling layers and infrastructure twins — device twin frameworks, BIM engines, urban simulation layers, city-scale geospatial stores — as well as full UDT platforms. Use the Relevance rubric below to score and filter candidates after discovery.
 
 ---
 
