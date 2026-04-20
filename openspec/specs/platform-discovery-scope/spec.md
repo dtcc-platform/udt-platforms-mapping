@@ -13,6 +13,16 @@ The **Openness & Licensing (`Open`)** rubric SHALL define the following criteria
 | 1     | Fully proprietary, no public source, no open APIs                                                                                                                           |
 | 0     | Not assessed                                                                                                                                                                |
 
+The file SHALL open with a project goal statement framing the work as **UDT ecosystem mapping** — not a platform review. The goal statement SHALL make clear that the study covers all three ecosystem layers: core platforms, infrastructure backbones, and domain-specific analytics/simulation tools.
+
+The file SHALL define the three ecosystem layers with controlled vocabulary values used in the inventory `Layer` column:
+
+| Layer value       | Definition |
+| ----------------- | ---------- |
+| `core-platform`   | A full urban digital twin platform — integrates data, simulation, and visualisation at city scale |
+| `backbone`        | Infrastructure or enabling layer commonly composed into UDT stacks (data stores, context brokers, rendering engines, standards frameworks) |
+| `domain-module`   | A domain-specific analytics, simulation, or sensing tool that operates as a component within a UDT architecture |
+
 The file SHALL retain a brief prose section defining what a UDT platform is. This section's purpose is to frame discovery search queries — it SHALL describe what to look for (search boundary), not what to exclude. Exclusion decisions SHALL be delegated entirely to the Relevance rubric. The definition SHALL NOT contain explicit exclusion language such as "are out of scope" or "out of scope even if".
 
 The definition SHALL name enabling-layer and infrastructure-twin platforms as positive examples of what falls within the search boundary, so that borderline candidates (e.g., device twin frameworks, infrastructure twin engines) surface during discovery and are evaluated by the rubric rather than filtered before scoring.
@@ -20,7 +30,12 @@ The definition SHALL name enabling-layer and infrastructure-twin platforms as po
 #### Scenario: Researcher reads scope before starting a discovery session
 
 - **WHEN** a researcher opens `docs/01-scope.md` before running the discovery prompt
-- **THEN** they find the Relevance 0–5 rubric, all 12 dimension/category rubrics, and a brief search-boundary definition of what a UDT platform is
+- **THEN** they find the project goal statement, the three-layer taxonomy, the Relevance 0–5 rubric, all 12 dimension/category rubrics, and a brief search-boundary definition
+
+#### Scenario: Discovery AI uses the layer taxonomy to classify platforms
+
+- **WHEN** a discovery AI reads the scope file
+- **THEN** it assigns a `Layer` value (`core-platform`, `backbone`, or `domain-module`) to each discovered platform using the taxonomy table
 
 #### Scenario: Discovery AI uses the definition to frame search queries
 
@@ -76,3 +91,19 @@ The scope document SHALL state a target range for the number of platforms in the
 
 - **WHEN** a researcher has accumulated a set of platforms
 - **THEN** the scope document's target range helps them judge whether the corpus is sufficiently representative
+
+### Requirement: Scope document defines the ecosystem layer taxonomy
+
+The scope document SHALL include a dedicated section defining the three ecosystem layers and their controlled vocabulary values (`core-platform`, `backbone`, `domain-module`). This section SHALL explain that `Layer` is assigned during discovery, is revisable during comparison, and that a blank value means unassessed.
+
+The section SHALL clarify that Layer and Relevance are orthogonal: a `domain-module` can still be in scope (Relevance 3) or out of scope (Relevance 1); the layer describes architectural role, not inclusion status.
+
+#### Scenario: Researcher assigns a layer during inventory entry
+
+- **WHEN** a researcher adds a platform row to the inventory CSV
+- **THEN** they assign one of `core-platform`, `backbone`, or `domain-module` to the `Layer` column using the definitions in the scope document
+
+#### Scenario: Researcher filters inventory by layer
+
+- **WHEN** a researcher filters the inventory CSV by `Layer`
+- **THEN** they can separately view core platforms, backbone components, and domain tools without any change to the Relevance or scoring columns

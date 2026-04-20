@@ -34,16 +34,16 @@ Use primary sources for all final factual claims (**official websites, public re
 
 **Before proceeding:** If the rubric block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `docs/01-scope.md` before continuing.
 
-# Platform Scope and Scoring Rubrics
+# UDT Ecosystem Mapping — Scope and Scoring Rubrics
 
-This file defines the relevance boundary for the UDT platform review and contains all scoring rubrics used during discovery and comparison sessions.
+This file defines the scope and all scoring rubrics for the **Urban Digital Twin (UDT) ecosystem mapping** study. The goal is to map the full UDT ecosystem — covering core platforms, infrastructure backbones, and domain-specific analytics and simulation tools — not merely to review platforms that self-identify as digital twins.
 Paste the full content of this file into the `[PASTE_SCOPE_HERE]` slot in any prompt before running a session.
 
 ---
 
-## What Is a UDT Platform?
+## What Is in Scope?
 
-A **Urban Digital Twin (UDT) platform** is a software system for representing, managing, simulating, or visualising city-scale urban environments as a live or near-live digital counterpart. This review applies a **moderate** inclusion boundary: platforms purely adjacent to UDT use cases (generic IoT platforms, general-purpose GIS tools without urban twin framing) are out of scope even if they could theoretically be used in a UDT context.
+Search across all three ecosystem layers. The study covers any software system that **represents, manages, simulates, visualises, or provides foundational infrastructure for** city-scale urban environments. This includes full urban digital twin platforms (`core-platform`), enabling infrastructure layers (`backbone`), and domain-specific simulation and analytics tools (`domain-module`). Use the Relevance rubric to score and filter candidates.
 
 ---
 
@@ -351,30 +351,33 @@ prompt: platform-comparison
 
 One row per platform in the pasted table, a reassessed Relevance score, six dimension score columns, and six functional category score columns:
 
-| Name | Link | Relevance | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
-| ---- | ---- | --------- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
+| Name | Link | Layer | Relevance | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
+| ---- | ---- | ----- | --------- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
 
 Use bare numbers (1–5) in score cells. Use `?` for unknown. Do not write `/5`.
 
 For `Relevance`: reassess each platform using the rubric from the pasted scope content. Treat the discovery row's score as a starting point — revise it upward or downward if primary-source evidence warrants it. If you revise a score, note the reason briefly in the per-platform profile.
 
+For `Layer`: reassess the ecosystem layer assignment using the layer taxonomy from the pasted scope content. Treat the discovery row's `Layer` value as a starting point. If deep research reveals that the platform's primary architectural role differs (e.g., initially tagged `core-platform` but is primarily an analytics module), revise the `Layer` value and explain the reclassification in the per-platform profile.
+
 **Column legend:**
 
-| Abbreviation | Full name              | Description                                                                           |
-| ------------ | ---------------------- | ------------------------------------------------------------------------------------- |
-| Relevance    | Relevance              | Scope classification 1–5; reassessed from primary sources (may differ from discovery) |
-| Arch         | Technical Architecture | Core tech stack, data models, deployment model, scalability                           |
-| Open         | Openness & Licensing   | Source availability, license type, contribution model                                 |
-| City         | City-Scale Capability  | Urban domains covered, geographic extent, multi-domain analytics                      |
-| Mature       | Maturity & Adoption    | Development status, known city deployments, community activity                        |
-| Integ        | Integration Posture    | Public APIs, plugin ecosystem, interoperability                                       |
-| Gov          | Governance Model       | Who controls the roadmap, contribution and funding model                              |
-| Viz          | Visualization          | 3D rendering, GIS viewers, scene composition                                          |
-| DM           | Data Management        | Data ingestion, storage, twin models, semantic layers                                 |
-| Sim          | Simulation             | Urban simulation, physics, scenario modelling                                         |
-| IoT          | IoT Sensing            | Real-time data, sensor integration, device management                                 |
-| Std          | Standards              | Open standards implementation, interoperability frameworks                            |
-| Infra        | Infrastructure         | Built environment, BIM/GIS, infrastructure lifecycle                                  |
+| Abbreviation | Full name              | Description                                                                                         |
+| ------------ | ---------------------- | --------------------------------------------------------------------------------------------------- |
+| Layer        | Ecosystem Layer        | Architectural role: `core-platform`, `backbone`, or `domain-module`; revisable from primary sources |
+| Relevance    | Relevance              | Scope classification 1–5; reassessed from primary sources (may differ from discovery)               |
+| Arch         | Technical Architecture | Core tech stack, data models, deployment model, scalability                                         |
+| Open         | Openness & Licensing   | Source availability, license type, contribution model                                               |
+| City         | City-Scale Capability  | Urban domains covered, geographic extent, multi-domain analytics                                    |
+| Mature       | Maturity & Adoption    | Development status, known city deployments, community activity                                      |
+| Integ        | Integration Posture    | Public APIs, plugin ecosystem, interoperability                                                     |
+| Gov          | Governance Model       | Who controls the roadmap, contribution and funding model                                            |
+| Viz          | Visualization          | 3D rendering, GIS viewers, scene composition                                                        |
+| DM           | Data Management        | Data ingestion, storage, twin models, semantic layers                                               |
+| Sim          | Simulation             | Urban simulation, physics, scenario modelling                                                       |
+| IoT          | IoT Sensing            | Real-time data, sensor integration, device management                                               |
+| Std          | Standards              | Open standards implementation, interoperability frameworks                                          |
+| Infra        | Infrastructure         | Built environment, BIM/GIS, infrastructure lifecycle                                                |
 
 **Part 2 — Platform Profiles**
 

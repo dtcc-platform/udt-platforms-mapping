@@ -1,14 +1,33 @@
-# Platform Scope and Scoring Rubrics
+# UDT Ecosystem Mapping — Scope and Scoring Rubrics
 
-This file defines the relevance boundary for the UDT platform review and contains all scoring rubrics used during discovery and comparison sessions.
+This file defines the scope and all scoring rubrics for the **Urban Digital Twin (UDT) ecosystem mapping** study. The goal is to map the full UDT ecosystem — covering core platforms, infrastructure backbones, and domain-specific analytics and simulation tools — not merely to review platforms that self-identify as digital twins.
 Paste the full content of this file into the `[PASTE_SCOPE_HERE]` slot in any prompt before running a session.
 
 ---
 
-## What Is a UDT Platform?
+## Ecosystem Layer Taxonomy
 
-A **Urban Digital Twin (UDT) platform** is a software system for representing, managing, simulating, or visualising city-scale urban environments as a live or near-live digital counterpart.
-Search broadly: the boundary includes enabling layers and infrastructure twins — device twin frameworks, BIM engines, urban simulation layers, city-scale geospatial stores — as well as full UDT platforms. Use the Relevance rubric below to score and filter candidates after discovery.
+Every platform in the study is assigned a **Layer** value that describes its primary architectural role in a UDT stack. Layer and Relevance are orthogonal: a `domain-module` can be in scope (Relevance 3) or out of scope (Relevance 1); the layer describes role, not inclusion status. A blank `Layer` means the platform has not yet been assessed.
+
+| Layer value     | Definition                                                                                                                                                                       |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `core-platform` | A full urban digital twin platform — integrates data management, simulation, and visualisation at city scale                                                                     |
+| `backbone`      | Infrastructure or enabling layer commonly composed into UDT stacks (data stores, context brokers, rendering engines, standards frameworks, cloud twin services)                  |
+| `domain-module` | A domain-specific analytics, simulation, or sensing tool that operates as a component within a UDT architecture (e.g. mobility simulators, climate risk toolkits, energy models) |
+
+Layer is assigned during discovery as a provisional value and may be revised during comparison when deeper evidence is available.
+
+---
+
+## What Is in Scope?
+
+Search across all three ecosystem layers. The study covers any software system that **represents, manages, simulates, visualises, or provides foundational infrastructure for** city-scale urban environments. This includes:
+
+- Full urban digital twin platforms (`core-platform`)
+- Enabling infrastructure layers: rendering engines, city model databases, context brokers, cloud twin services, open standards implementations (`backbone`)
+- Domain-specific simulation and analytics tools used as components within UDT architectures (`domain-module`)
+
+Do not limit discovery to platforms that use the term "digital twin" — many backbone and domain tools qualify without that framing. Use the Relevance rubric below to score and filter candidates after discovery.
 
 ---
 

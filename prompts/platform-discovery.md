@@ -23,23 +23,44 @@ Before you begin:
 - Do not add any product-native citation markers, sidebars, source appendices, methodology sections, or closing summaries.
 - The main body of your response MUST be the three-part structure below. If your interface wraps it in a report shell or summary, that is fine — but the three parts must appear as the primary content.
 
-You are a research assistant helping to map the landscape of Urban Digital Twin (UDT) platforms.
-Your task is to identify platforms that qualify for inclusion based on the scope and rubrics below,
-using primary sources to verify claims where possible.
+You are a research assistant helping to map the full **Urban Digital Twin (UDT) ecosystem** — core platforms, infrastructure backbones, and domain-specific analytics and simulation tools.
+Your task is to discover platforms across all three ecosystem layers (defined in the scope below) and score them using the rubrics provided.
+Use primary sources to verify claims where possible.
+
+**Search across all three ecosystem layers.** Do not limit discovery to platforms that self-identify as "digital twin" systems. Backbone components (rendering engines, city model databases, context brokers, cloud twin services) and domain modules (mobility simulators, climate risk toolkits, energy models) are in scope and should appear in your response with the appropriate `Layer` value.
 
 **Before proceeding:** If the rubric block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `docs/01-scope.md` before continuing.
 
-# Platform Scope and Scoring Rubrics
+# UDT Ecosystem Mapping — Scope and Scoring Rubrics
 
-This file defines the relevance boundary for the UDT platform review and contains all scoring rubrics used during discovery and comparison sessions.
+This file defines the scope and all scoring rubrics for the **Urban Digital Twin (UDT) ecosystem mapping** study. The goal is to map the full UDT ecosystem — covering core platforms, infrastructure backbones, and domain-specific analytics and simulation tools — not merely to review platforms that self-identify as digital twins.
 Paste the full content of this file into the `[PASTE_SCOPE_HERE]` slot in any prompt before running a session.
 
 ---
 
-## What Is a UDT Platform?
+## Ecosystem Layer Taxonomy
 
-A **Urban Digital Twin (UDT) platform** is a software system for representing, managing, simulating, or visualising city-scale urban environments as a live or near-live digital counterpart.
-Search broadly: the boundary includes enabling layers and infrastructure twins — device twin frameworks, BIM engines, urban simulation layers, city-scale geospatial stores — as well as full UDT platforms. Use the Relevance rubric below to score and filter candidates after discovery.
+Every platform in the study is assigned a **Layer** value that describes its primary architectural role in a UDT stack. Layer and Relevance are orthogonal: a `domain-module` can be in scope (Relevance 3) or out of scope (Relevance 1); the layer describes role, not inclusion status. A blank `Layer` means the platform has not yet been assessed.
+
+| Layer value     | Definition |
+| --------------- | ---------- |
+| `core-platform` | A full urban digital twin platform — integrates data management, simulation, and visualisation at city scale |
+| `backbone`      | Infrastructure or enabling layer commonly composed into UDT stacks (data stores, context brokers, rendering engines, standards frameworks, cloud twin services) |
+| `domain-module` | A domain-specific analytics, simulation, or sensing tool that operates as a component within a UDT architecture (e.g. mobility simulators, climate risk toolkits, energy models) |
+
+Layer is assigned during discovery as a provisional value and may be revised during comparison when deeper evidence is available.
+
+---
+
+## What Is in Scope?
+
+Search across all three ecosystem layers. The study covers any software system that **represents, manages, simulates, visualises, or provides foundational infrastructure for** city-scale urban environments. This includes:
+
+- Full urban digital twin platforms (`core-platform`)
+- Enabling infrastructure layers: rendering engines, city model databases, context brokers, cloud twin services, open standards implementations (`backbone`)
+- Domain-specific simulation and analytics tools used as components within UDT architectures (`domain-module`)
+
+Do not limit discovery to platforms that use the term "digital twin" — many backbone and domain tools qualify without that framing. Use the Relevance rubric below to score and filter candidates after discovery.
 
 ---
 
@@ -318,8 +339,8 @@ prompt: platform-discovery
 
 Immediately after the metadata block, output the summary table covering all discovered platforms:
 
-| Name | Link | License | Type | Relevance | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
-| ---- | ---- | ------- | ---- | --------- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
+| Name | Link | License | Type | Layer | Relevance | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
+| ---- | ---- | ------- | ---- | ----- | --------- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
 
 Use bare numbers in score cells. Use `?` for unknown. Do not write `/5`.
 
@@ -338,6 +359,7 @@ Then return one section per platform, ordered by Relevance score descending (Rel
 - **Link:** [<short label>](<primary-url>)
 - **License:** <exact license name, e.g. Apache-2.0, MIT — open-source / proprietary / open-core> ([primary source](<url>))
 - **Type:** <e.g., visualization engine, data platform, simulation framework, standards implementation> ([primary source](<url>))
+- **Layer:** <core-platform | backbone | domain-module>
 - **Relevance:** <0–5 score per rubric>
 
 - **Technical Architecture (X/5):** <one sentence — core stack, data models, modularity>
@@ -365,6 +387,7 @@ If you cannot support a factual claim with a source, write `unknown` or `?` inst
 - **Link:** [example-platform.org](https://example-platform.org)
 - **License:** Apache-2.0 — open-source ([License](https://example-platform.org/license))
 - **Type:** 3D geospatial data platform ([Product](https://example-platform.org/product))
+- **Layer:** backbone
 - **Relevance:** 4
 
 - **Technical Architecture (4/5):** Modular microservices with native CityGML support and OGC-compliant APIs; Docker/Kubernetes deployment ([Architecture](https://example-platform.org/architecture)).
@@ -389,6 +412,7 @@ If you cannot support a factual claim with a source, write `unknown` or `?` inst
 - **Link:** [<label>](<url>)
 - **License:** <license>
 - **Type:** <type>
+- **Layer:** <core-platform | backbone | domain-module>
 - **Relevance:** <1 or 2>
 - **Reason:** <one sentence — why this platform is out of scope>
 ```
