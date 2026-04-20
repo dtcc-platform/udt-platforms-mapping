@@ -1,5 +1,9 @@
 ### Requirement: docs/01-scope.md contains all 13 scoring rubrics as the canonical source
 
+> **RETIRED** — `docs/01-scope.md` is retired. The single combined scope file is replaced by two phase-specific files: `docs/01-discovery-scope.md` (Layer criteria table) and `docs/01-comparison-scope.md` (12 dimension rubrics). Having one file serve both phases created coupling and required both prompts to embed the full 13-rubric set.
+>
+> Migration: Create `docs/01-discovery-scope.md` (see `platform-discovery-scope-file` spec) and `docs/01-comparison-scope.md` (see `platform-comparison-scope-file` spec). Delete `docs/01-scope.md`.
+
 `docs/01-scope.md` SHALL contain the Relevance rubric plus all 12 dimension and functional category rubrics (Arch, Open, City, Mature, Integ, Gov, Viz, DM, Sim, IoT, Std, Infra). This file is the single canonical source for all rubric definitions; the prompt files consume its content via the `[PASTE_SCOPE_HERE]` mechanism.
 
 The **Openness & Licensing (`Open`)** rubric SHALL define the following criteria per level, with data format and copyleft terms made explicit:
@@ -74,6 +78,10 @@ The definition SHALL name enabling-layer and infrastructure-twin platforms as po
 
 ### Requirement: Scope document provides a seed list of known qualifying platforms
 
+> **RETIRED** — The seed list was anchored to Relevance scores (e.g. "Cesium — Relevance 3"). Relevance is retired. The Layer criteria table in `docs/01-discovery-scope.md` is self-contained and requires no calibration examples.
+>
+> Migration: Remove the seed list entirely. No replacement.
+
 The scope document SHALL include a seed list of at least six platforms already known to qualify, anchored to Relevance scores using the new rubric (each entry annotated with its Relevance level).
 
 The seed list SHALL include at minimum: Cesium (Relevance 3), iTwin (Relevance 3), DTCC (Relevance 5), Eclipse Ditto (Relevance 3), FIWARE (Relevance 3), Virtual Singapore (Relevance 5).
@@ -85,6 +93,10 @@ The seed list SHALL include at minimum: Cesium (Relevance 3), iTwin (Relevance 3
 
 ### Requirement: Scope document states a target corpus size
 
+> **RETIRED** — Target corpus size (15–30) was a heuristic tied to the platform review framing. The study is now ecosystem mapping with no fixed corpus target — discovery runs until the researcher judges coverage is sufficient.
+>
+> Migration: Remove the target corpus statement. No replacement.
+
 The scope document SHALL state a target range for the number of platforms in the review corpus (15–30 platforms), framed as a planning heuristic rather than a hard constraint.
 
 #### Scenario: Researcher assesses when to stop discovery
@@ -93,6 +105,10 @@ The scope document SHALL state a target range for the number of platforms in the
 - **THEN** the scope document's target range helps them judge whether the corpus is sufficiently representative
 
 ### Requirement: Scope document defines the ecosystem layer taxonomy
+
+> **RETIRED** — Superseded by the `platform-discovery-scope-file` spec which defines a tighter, criteria-backed Layer table in `docs/01-discovery-scope.md`.
+>
+> Migration: The new `docs/01-discovery-scope.md` replaces this requirement.
 
 The scope document SHALL include a dedicated section defining the three ecosystem layers and their controlled vocabulary values (`core-platform`, `backbone`, `domain-module`). This section SHALL explain that `Layer` is assigned during discovery, is revisable during comparison, and that a blank value means unassessed.
 

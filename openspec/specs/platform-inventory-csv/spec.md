@@ -20,19 +20,19 @@ The repository SHALL contain a CSV file at `docs/05-platform-inventory.csv` inst
 - **WHEN** a researcher navigates to `docs/05-platform-inventory.md`
 - **THEN** the file does not exist; the canonical inventory is at `docs/05-platform-inventory.csv`
 
-### Requirement: Inventory CSV header includes a Phase column
+### Requirement: Inventory CSV contains comparison rows only
 
-The CSV header row SHALL include a `Phase` column that distinguishes the prompt type at which a platform row was produced: `discovery` for rows extracted from discovery responses, `comparison` for rows extracted from comparison responses. The value reflects which prompt produced the row, not a research quality level.
+The CSV SHALL contain only rows produced by comparison sessions. Discovery outputs live exclusively in `responses/` markdown files. Rows with `Phase=discovery` from the previous schema SHALL be removed during migration.
 
-#### Scenario: Researcher filters by prompt type
+#### Scenario: Researcher completes a discovery session
 
-- **WHEN** a researcher filters the CSV by Phase
-- **THEN** they can separately view first-pass discovery scores and deep comparison scores for the same platform
+- **WHEN** a researcher finishes a discovery session and saves the response
+- **THEN** the response is saved as a markdown file in `responses/`; no rows are added to the CSV at this stage
 
-#### Scenario: Same platform appears at both phases
+#### Scenario: Researcher completes a comparison session
 
-- **WHEN** both a discovery response and a comparison response exist for the same platform
-- **THEN** the inventory contains two rows for that platform — one with Phase=`discovery` and one with Phase=`comparison`
+- **WHEN** a researcher finishes a comparison session
+- **THEN** they extract the Part 1 table rows and append them to the CSV with the correct column order
 
 ### Requirement: Inventory CSV Link column contains URLs only
 
@@ -47,35 +47,25 @@ The `Link` column in the inventory CSV SHALL contain raw URLs (e.g., `https://ce
 
 The CSV SHALL use exactly this column order:
 
-`Name`, `Link`, `Phase`, `Layer`, `Relevance`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`, `Model`, `Date`
+`Name`, `Link`, `Layer`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`, `Model`, `Date`
 
-The `Layer` column SHALL appear immediately after `Phase` and before `Relevance`. Its values SHALL be one of: `core-platform`, `backbone`, `domain-module`, or blank/`0` for unassessed.
+The `Relevance` column is retired and SHALL NOT appear in the header or any row. The `Phase` column is retired and SHALL NOT appear — the CSV is comparison-only by definition.
 
-The `Relevance` column SHALL appear immediately after `Layer` and before the twelve score columns. Its values SHALL be integers 0–5. Existing rows that predate this change SHALL have `Relevance` set to `0` (not assessed) until manually updated.
+The `Layer` column SHALL appear immediately after `Link`. Its values SHALL be one of: `core-platform`, `backbone`, `domain-module`. It carries the Layer value assigned during discovery and is not reassessed during comparison.
 
-Score columns (Arch through Infra) SHALL use integers 0–5, where `0` means not assessed at this phase, or `?` for unknown. The `-1` sentinel is no longer used.
+Score columns (Arch through Infra) SHALL use integers 1–5, or `?` for unknown.
 
 #### Scenario: Researcher pastes new rows into the CSV
 
-- **WHEN** a researcher appends rows produced by `prompts/platform-inventory.md`
-- **THEN** the columns align with the header, including the `Layer` column in position 4 and `Relevance` column in position 5
+- **WHEN** a researcher appends rows produced by the comparison prompt
+- **THEN** the columns align with the header: Name, Link, Layer, then 12 dimension columns, Model, Date
 
-#### Scenario: Discovery row in the inventory
+#### Scenario: Researcher opens the CSV to review comparison results
 
-- **WHEN** a researcher reads a row with Phase=`discovery`
-- **THEN** the `Layer` column contains a provisional layer assignment and functional category columns (Viz, DM, Sim, IoT, Std, Infra) contain `0` (not assessed at this phase)
+- **WHEN** a researcher opens `docs/05-platform-inventory.csv`
+- **THEN** every row is a comparison result with a Layer value and 12 dimension scores; there are no discovery-only rows and no Relevance column
 
-#### Scenario: Out-of-scope platform row in the inventory
-
-- **WHEN** a researcher reads a row for an out-of-scope platform
-- **THEN** the `Relevance` column contains `0` or `1`, the `Layer` column contains the assigned layer or blank, and score columns contain `0`; there is no `-1` value anywhere in the row
-
-#### Scenario: Researcher filters inventory by layer
+#### Scenario: Researcher filters by Layer
 
 - **WHEN** a researcher filters the CSV by the `Layer` column
-- **THEN** they can view only `core-platform` rows, only `backbone` rows, or only `domain-module` rows independently
-
-#### Scenario: Comparison session revises a layer assignment
-
-- **WHEN** a researcher adds a comparison row for a platform with a revised `Layer` value
-- **THEN** the comparison row contains the updated layer value; the discovery row retains the original provisional assignment
+- **THEN** they can view comparison results for `core-platform`, `backbone`, or `domain-module` platforms independently
