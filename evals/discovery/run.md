@@ -37,9 +37,20 @@ For each expected platform in the fixture, and for each response file:
   - Layer differs → record `✓ found (Layer: <actual value>)`
 - If not found: record `✗ missing`
 
-This is a recall check only. Do not flag or report platforms that appear in responses but are not in the fixture.
+This is a recall check only. Do not flag or report platforms that appear in responses but are not in the fixture in this step.
 
-### Step 4 — Write the report
+### Step 4 — Collect novel finds
+
+For each response file, identify platforms in its summary table that do not match any benchmark entry (using the same match logic from Step 3 — canonical Name plus Aliases, case-insensitive substring). These are novel finds for that model.
+
+For each novel find, record:
+- Name (from the response summary table `Name` column)
+- Link (from the response summary table `Link` column)
+- Layer (from the response summary table `Layer` column)
+- Why tricky: leave blank
+- Aliases: leave blank
+
+### Step 5 — Write the report
 
 Write the report to `evals/discovery/reports/coverage.md`. Overwrite it if it already exists.
 
@@ -66,8 +77,29 @@ Write the report to that path with this structure:
 | Model     | Found | Missing | Wrong layer |
 | --------- | ----- | ------- | ----------- |
 | <model-1> | X/N   | Y       | Z           |
+
+---
+
+## Novel Finds — not in benchmark
+
+Platforms discovered by models but not in evals/discovery/benchmark.md.
+Review and add to the benchmark if in-scope, filling in the Why tricky column before pasting.
+
+### <model-1>
+
+| Name | Link | Expected Layer | Why tricky | Aliases |
+| ---- | ---- | -------------- | ---------- | ------- |
+| <name> | <link> | <layer> | | |
+
+### <model-2>
+
+| Name | Link | Expected Layer | Why tricky | Aliases |
+| ---- | ---- | -------------- | ---------- | ------- |
+| <name> | <link> | <layer> | | |
 ```
 
-Use the `model` field from each response's YAML metadata as the column/row header — not the filename.
+Use the `model` field from each response's YAML metadata as the column/row header and section heading — not the filename.
+
+Include all layers in Novel Finds (core-platform, backbone, domain-module, excluded). If a model has no novel finds, omit its `###` section.
 
 After writing the file, confirm the path where it was saved.
