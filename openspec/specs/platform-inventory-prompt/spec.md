@@ -2,31 +2,31 @@
 
 ## Purpose
 
-Defines the requirements for the `prompts/platform-inventory.md` file — a self-contained AI CLI prompt that scans all discovery and comparison response files in `responses/`, extracts platform rows, and outputs CSV rows ready to append to `docs/05-platform-inventory.csv`.
+Defines the requirements for the `reflect/discovery/reporting/prompt.md` file — a self-contained AI CLI prompt that scans all discovery response files in `observe/discovery/`, extracts platform rows, and produces the consolidated ecosystem CSV and HTML.
 
 ## Requirements
 
 ### Requirement: Platform inventory prompt file exists
 
-The repository SHALL contain a file at `prompts/platform-inventory.md` that provides a self-contained prompt for producing consolidated CSV inventory rows from all qualifying response files in `responses/`.
+The repository SHALL contain a file at `reflect/discovery/reporting/prompt.md` that provides a self-contained prompt for producing the consolidated ecosystem CSV and HTML from all qualifying response files in `observe/discovery/`.
 
 #### Scenario: File is present and non-empty
 
-- **WHEN** a researcher navigates to `prompts/platform-inventory.md`
+- **WHEN** a researcher navigates to `reflect/discovery/reporting/prompt.md`
 - **THEN** the file exists and contains a complete, copy-pasteable prompt with no required user input
 
-### Requirement: Prompt auto-scans the responses directory
+### Requirement: Prompt auto-scans the observe/discovery directory
 
-The prompt SHALL instruct the model to read all files in `responses/` without requiring the researcher to specify file paths or names.
+The prompt SHALL instruct the model to read all files in `observe/discovery/` without requiring the researcher to specify file paths or names.
 
 #### Scenario: Researcher runs the prompt without specifying files
 
 - **WHEN** a researcher pastes the prompt into an AI CLI session
-- **THEN** the model reads all files in `responses/` automatically, without asking for file paths
+- **THEN** the model reads all files in `observe/discovery/` automatically, without asking for file paths
 
 #### Scenario: No qualifying response files exist
 
-- **WHEN** the model scans `responses/` and finds no files with `prompt: platform-discovery` or `prompt: platform-comparison` in their YAML block
+- **WHEN** the model scans `observe/discovery/` and finds no files with `prompt: platform-discovery` in their YAML block
 - **THEN** the model reports that no qualifying response files were found and produces no output
 
 ### Requirement: Prompt identifies qualifying files by YAML metadata
@@ -142,11 +142,11 @@ The prompt SHALL instruct the model to output only CSV data rows (no header row,
 - **WHEN** a researcher copies the model's output and appends it to `docs/05-platform-inventory.csv` below the header row
 - **THEN** the resulting file parses correctly as a CSV with no extra formatting
 
-### Requirement: Prompt usage header identifies the target file
+### Requirement: Prompt usage header identifies the target files
 
-The prompt usage header SHALL state that the output is intended for `docs/05-platform-inventory.csv` and instruct the researcher to append the output below the existing header row.
+The prompt usage header SHALL state that the outputs are `reflect/discovery/reporting/ecosystem.csv` and `reflect/discovery/reporting/ecosystem-map.html` and instruct the researcher to save them in that folder.
 
 #### Scenario: Researcher reads usage instructions
 
-- **WHEN** a researcher opens `prompts/platform-inventory.md`
-- **THEN** the usage header tells them the output file is `docs/05-platform-inventory.csv` and how to append the rows
+- **WHEN** a researcher opens `reflect/discovery/reporting/prompt.md`
+- **THEN** the usage header tells them the output files are `ecosystem.csv` and `ecosystem-map.html` in `reflect/discovery/reporting/`

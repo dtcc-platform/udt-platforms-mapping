@@ -2,16 +2,16 @@
 
 Use this prompt to produce a structured, evidence-based comparison of UDT platforms.
 
-This prompt can be used in an AI web research chat or an AI CLI session. In a web chat, manually save the final Markdown response into `responses/`.
+This prompt can be used in an AI web research chat or an AI CLI session. In a web chat, manually save the final Markdown response into `observe/rating/`.
 
-1. Open `docs/01-comparison-scope.md` and copy the full content
+1. Open `plan/rating/scope.md` and copy the full content
 2. Replace `[PASTE_SCOPE_HERE]` below with the copied content
 3. Open the discovery response file for your research session
 4. Copy the rows you want to compare (including the header row) from the summary table — **include the DTCC row** so Part 3 landscape observations can orient around DTCC
 5. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
 6. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
 
-> **Save response as:** `responses/<platform-a>-vs-<platform-b>-comparison.md` — e.g., `responses/cesium-vs-3dcitydb-comparison.md`. See `docs/02-methodology.md` for the full convention.
+> **Save response as:** `observe/rating/<model-name>.md`
 
 ---
 
@@ -32,7 +32,7 @@ You are a research assistant helping to map the Urban Digital Twin (UDT) platfor
 
 Use primary sources for all final factual claims (**official websites, public repositories, published papers, official documentation**). For every substantive claim, include a source reference. Distinguish inferred claims from verified facts. If you cannot find information, state "unknown" or "unclear" — do not fabricate URLs, license names, or deployment claims.
 
-**Before proceeding:** If the scope block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `docs/01-comparison-scope.md` before continuing.
+**Before proceeding:** If the scope block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `plan/rating/scope.md` before continuing.
 
 [PASTE_SCOPE_HERE]
 

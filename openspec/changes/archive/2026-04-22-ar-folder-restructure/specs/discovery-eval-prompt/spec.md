@@ -1,8 +1,4 @@
-## Purpose
-
-Defines the eval prompt file (`reflect/discovery/benchmarking/prompt.md`) — a Claude Code CLI prompt that performs a recall check against all discovery response files, comparing them against the fixture to produce a coverage report.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: reflect/discovery/benchmarking/prompt.md exists as a Claude Code CLI eval prompt
 
@@ -37,8 +33,3 @@ The prompt SHALL be runnable by a researcher telling Claude Code: "run the disco
 
 - **WHEN** a researcher adds a new file to `observe/discovery/`
 - **THEN** the next eval run automatically includes it without any changes to the eval prompt
-
-#### Scenario: Researcher runs eval after updating the fixture
-
-- **WHEN** a researcher adds a new expected platform to `reflect/discovery/benchmarking/benchmark.md` and reruns the eval
-- **THEN** the new platform appears in the coverage report for all models, showing found or missing

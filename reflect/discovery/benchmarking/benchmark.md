@@ -2,7 +2,7 @@
 
 This file is the recall benchmark for UDT ecosystem discovery sessions. It lists platforms expected to appear in discovery responses that are at risk of being missed.
 
-**How to use:** Run `evals/discovery/run.md` via Claude Code to check all `responses/global-platforms-discovery-*.md` files against this list.
+**How to use:** Run `reflect/discovery/benchmarking/prompt.md` via Claude Code to check all `observe/discovery/*.md` files against this list.
 
 **How to add an entry:** Add a row to the table. Fill in `Tags` with one or more comma-separated tags from the tag legend below. Add known name variants to `Aliases` (comma-separated) when a model uses a different name and causes a false negative.
 

@@ -2,12 +2,12 @@
 
 Use this prompt to discover Urban Digital Twin (UDT) platforms and classify them by ecosystem layer.
 
-This prompt can be used in an AI web research chat or an AI CLI session. For more thorough Layer classification — including reassessment of a specific platform's layer assignment — run this prompt in a deep research interface. In a web chat, manually save the final Markdown response into `responses/`.
+This prompt can be used in an AI web research chat or an AI CLI session. For more thorough Layer classification — including reassessment of a specific platform's layer assignment — run this prompt in a deep research interface. In a web chat, manually save the final Markdown response into `observe/discovery/`.
 
-1. Open `docs/01-discovery-scope.md` and copy the full content
+1. Open `plan/discovery/scope.md` and copy the full content
 2. Replace `[PASTE_SCOPE_HERE]` below with the copied content
 3. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
-4. Save the response as `responses/global-platforms-discovery.md`. See `docs/02-methodology.md` for the full convention.
+4. Save the response as `observe/discovery/<model-name>.md`
 
 ---
 
@@ -27,7 +27,7 @@ You are a research assistant helping to map the full **Urban Digital Twin (UDT) 
 Your task is to discover platforms across all ecosystem layers and classify each one using the Layer criteria provided in the scope below.
 Use primary sources to verify claims where possible.
 
-**Before proceeding:** If the scope block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `docs/01-discovery-scope.md` before continuing.
+**Before proceeding:** If the scope block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `plan/discovery/scope.md` before continuing.
 
 # UDT Ecosystem Discovery — Layer Classification
 

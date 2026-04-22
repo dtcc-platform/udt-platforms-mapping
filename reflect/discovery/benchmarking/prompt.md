@@ -2,7 +2,7 @@
 
 This is a Claude Code CLI prompt. Run it by telling Claude Code:
 
-> "Run the discovery eval" or "Run evals/discovery/run.md"
+> "Run the discovery eval" or "Run reflect/discovery/benchmarking/prompt.md"
 
 Claude Code will use its file tools to execute the steps below automatically.
 
@@ -14,7 +14,7 @@ You are running a recall check on UDT platform discovery responses. Follow these
 
 ### Step 1 — Load the fixture
 
-Read `evals/discovery/benchmark.md`. Extract all expected platforms from the single table with:
+Read `reflect/discovery/benchmarking/benchmark.md`. Extract all expected platforms from the single table with:
 
 - Platform name (from the `Name` column)
 - Link (from the `Link` column)
@@ -24,7 +24,7 @@ Read `evals/discovery/benchmark.md`. Extract all expected platforms from the sin
 
 ### Step 2 — Find all discovery responses
 
-Glob all files matching `responses/global-platforms-discovery-*.md`. For each file:
+Glob all files matching `observe/discovery/*.md`. For each file:
 
 - Read the YAML metadata block at the top (between the `` ```yaml `` fences) and extract the `model` field — this is the column header for that model in the report
 - Parse the summary table (the pipe table immediately after the metadata block) and collect all platform names from the `Name` column
@@ -56,14 +56,14 @@ For each novel find, record:
 
 ### Step 5 — Write the report
 
-Write the report to `evals/discovery/reports/coverage.md`. Overwrite it if it already exists.
+Write the report to `reflect/discovery/benchmarking/coverage.md`. Overwrite it if it already exists.
 
 Write the report to that path with this structure:
 
 ```
 # Discovery Coverage Report — YYYY-MM-DD
 
-**Fixture:** evals/discovery/benchmark.md
+**Fixture:** reflect/discovery/benchmarking/benchmark.md
 **Responses tested:** N files
 
 ---
@@ -78,7 +78,7 @@ Write the report to that path with this structure:
 
 ## Novel Finds — not in benchmark
 
-Platforms discovered by models but not in evals/discovery/benchmark.md.
+Platforms discovered by models but not in reflect/discovery/benchmarking/benchmark.md.
 Review and add to the benchmark if in-scope, filling in the Tags column before pasting.
 
 ### <model-1>

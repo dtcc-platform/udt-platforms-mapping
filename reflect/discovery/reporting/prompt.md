@@ -1,15 +1,13 @@
 # Platform Inventory Prompt
 
-Use this prompt to curate `docs/05-platform-inventory.csv` from all discovery and comparison response files.
+Use this prompt to produce `reflect/discovery/reporting/ecosystem.csv` and `reflect/discovery/reporting/ecosystem-map.html` from all discovery response files in `observe/discovery/`.
 
 **Requires:** An AI CLI with filesystem access — Claude Code, Codex CLI, or Gemini CLI.
 This prompt cannot be used in a web chat session (the model needs to read local files).
 
 1. Run this prompt in your AI CLI session — no input required
-2. The model will scan `responses/` automatically and produce inventory rows
-3. Append the output rows to `docs/05-platform-inventory.csv` below the existing header row
-
-> **Save response as:** append directly to `docs/05-platform-inventory.csv` — do not save as a separate response file.
+2. The model will scan `observe/discovery/` automatically and produce ecosystem data
+3. Save outputs to `reflect/discovery/reporting/ecosystem.csv` and `reflect/discovery/reporting/ecosystem-map.html`
 
 ---
 
@@ -19,15 +17,15 @@ This prompt cannot be used in a web chat session (the model needs to read local 
 
 You are a research assistant maintaining the UDT platform inventory for this project.
 
-Your task is to scan the `responses/` directory, extract platform rows from all discovery and comparison response files, and produce consolidated CSV rows ready to append to `docs/05-platform-inventory.csv`.
+Your task is to scan the `observe/discovery/` directory, extract platform rows from all discovery response files, and produce `ecosystem.csv` and `ecosystem-map.html` in `reflect/discovery/reporting/`.
 
-**Do not ask for file paths or user input.** Read `responses/` directly using your file tools.
+**Do not ask for file paths or user input.** Read `observe/discovery/` directly using your file tools.
 
 ---
 
 ### Step 1 — Identify qualifying files
 
-Read all files in `responses/`. For each file:
+Read all files in `observe/discovery/`. For each file:
 
 - Check whether it begins with a fenced YAML block (` ```yaml `) containing a `prompt:` field
 - If `prompt: platform-discovery` → it is a **discovery response** — proceed to Step 2A
@@ -97,7 +95,7 @@ First, output a brief preamble (plain text, not a CSV row) stating:
 
 Then output the CSV data rows only — no header row, no surrounding prose.
 
-The rows must be valid CSV that aligns with the header already present in `docs/05-platform-inventory.csv`:
+The rows must be valid CSV that aligns with the header in `reflect/discovery/reporting/ecosystem.csv`:
 
 ```
 Name,Link,Phase,Relevance,Arch,Open,City,Mature,Integ,Gov,Viz,DM,Sim,IoT,Std,Infra,Model,Date

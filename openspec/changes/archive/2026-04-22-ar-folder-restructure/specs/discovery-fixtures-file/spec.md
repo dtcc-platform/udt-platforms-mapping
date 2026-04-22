@@ -1,8 +1,4 @@
-## Purpose
-
-Defines the canonical recall benchmark file (`reflect/discovery/benchmarking/benchmark.md`) used to evaluate discovery session coverage. The fixture lists platforms expected to appear in discovery responses that are at risk of being missed.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: reflect/discovery/benchmarking/benchmark.md exists as the recall benchmark
 
@@ -21,3 +17,11 @@ The file SHALL NOT define scoring rubrics, discovery instructions, or Layer crit
 
 - **WHEN** the eval prompt runs
 - **THEN** it reads `reflect/discovery/benchmarking/benchmark.md` and extracts all expected platforms with their Tags, expected Layer, and Aliases
+
+## REMOVED Requirements
+
+### Requirement: evals/discovery/reports/ directory exists for generated coverage reports
+
+**Reason:** The AR restructure eliminates the `evals/` folder and the nested `reports/` subdirectory. Coverage reports now live directly at `reflect/discovery/benchmarking/coverage.md`.
+
+**Migration:** Coverage report is now at `reflect/discovery/benchmarking/coverage.md`. No subdirectory is used.

@@ -1,10 +1,4 @@
-# Spec: platform-discovery-scope-file
-
-## Purpose
-
-TBD — Defines the requirements for `plan/discovery/scope.md`, the scope reference file for discovery sessions. Researchers paste its full content into the `[PASTE_SCOPE_HERE]` slot in the discovery prompt before running a session.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: plan/discovery/scope.md exists and contains the Layer criteria table
 

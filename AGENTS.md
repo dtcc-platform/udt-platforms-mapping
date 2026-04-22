@@ -10,7 +10,7 @@ Treat the change as **OpenSpec-first** when any of the following are true:
 
 - The request changes behavior, workflow, policy, or output contracts.
 - The request adds, removes, restructures, or refactors content under `openspec/`.
-- The request changes prompt structure, prompt contracts, or research workflow in `prompts/` or `docs/`.
+- The request changes prompt structure, prompt contracts, or research workflow in `act/`, `plan/`, `observe/`, or `reflect/`.
 - The user mentions proposals, specs, design, tasks, change management, or OpenSpec explicitly.
 
 Treat the change as a **direct edit** when any of the following are true:

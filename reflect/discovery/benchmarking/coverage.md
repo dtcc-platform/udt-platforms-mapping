@@ -1,6 +1,6 @@
 # Discovery Coverage Report — 2026-04-21
 
-**Fixture:** evals/discovery/benchmark.md
+**Fixture:** reflect/discovery/benchmarking/benchmark.md
 **Responses tested:** 3 files
 
 ---
@@ -50,7 +50,7 @@
 
 ## Novel Finds — not in benchmark
 
-Platforms discovered by models but not in evals/discovery/benchmark.md.
+Platforms discovered by models but not in reflect/discovery/benchmarking/benchmark.md.
 Review and add to the benchmark if in-scope, filling in the Tags column before pasting.
 
 ### Claude Opus 4.7
