@@ -39,9 +39,6 @@ flowchart TD
 | `docs/`        | Scope, methodology, source policy, license review approach, and the canonical platform inventory             |
 | `prompts/`     | Prompt templates for AI-assisted platform discovery, comparison, inventory curation, and license analysis    |
 | `responses/`   | Raw AI responses saved for reference and verification                                                        |
-| `search_logs/` | Session logs — one file per platform, updated as research evolves                                            |
-| `sources/`     | Raw research material — license files, screenshots, exports, downloaded docs                                 |
-| `notes/`       | Freeform researcher notes, observations, and working drafts                                                  |
 
 ## Key Documents
 

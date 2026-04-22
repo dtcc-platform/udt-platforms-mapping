@@ -47,8 +47,4 @@ If a source is paywalled:
 ## Unreliable or Contradictory Sources
 
 If a source contradicts a higher-ranked source, prefer the higher-ranked source and note the discrepancy in the search log.
-If the contradiction is significant, flag it in the `notes/` file for the platform.
-
-## Source Storage
-
-Raw source material (downloaded PDFs, license files, screenshots) is stored in `sources/<platform-name>/`. File names should be descriptive: `<platform>-license-2026.txt`, `<platform>-architecture-diagram.png`.
+If the contradiction is significant, note the discrepancy in the comparison or inventory response file for that platform.

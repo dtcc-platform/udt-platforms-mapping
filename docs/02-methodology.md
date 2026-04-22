@@ -70,10 +70,6 @@ Examples:
 If a session is re-run for the same platform and prompt type, overwrite the file.
 Git history preserves the previous version.
 
-### Session logs (`search_logs/`)
-
-Pattern: `<platform>.md` — one file per platform, updated as research evolves.
-
 ## CSV Column Reference
 
 The canonical inventory is at `docs/05-platform-inventory.csv`. Column order:
