@@ -34,7 +34,7 @@ No files SHALL live at the phase root level — all content is inside a cycle su
 #### Scenario: Researcher prepares a rating session
 
 - **WHEN** a researcher prepares to run a rating prompt
-- **THEN** they find the scope at `plan/rating/scope.md` and the source policy at `plan/rating/source-policy.md`
+- **THEN** they find the scope at `plan/rating/rubrics.md` and the source policy at `plan/rating/source-policy.md`
 
 ### Requirement: act/ holds one prompt.md per cycle
 

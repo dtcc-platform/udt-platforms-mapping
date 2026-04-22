@@ -50,9 +50,9 @@ The prompt SHALL state that rubrics are supplied via `[PASTE_SCOPE_HERE]` and ar
 
 ### Requirement: Comparison prompt includes a [PASTE_SCOPE_HERE] guard
 
-The prompt template SHALL include a `[PASTE_SCOPE_HERE]` placeholder where the researcher pastes the full content of `plan/rating/scope.md` before running a session. The placeholder SHALL be preceded by a guard instruction telling the model: if `[PASTE_SCOPE_HERE]` still appears verbatim, stop and ask the user to paste `plan/rating/scope.md` before continuing.
+The prompt template SHALL include a `[PASTE_SCOPE_HERE]` placeholder where the researcher pastes the full content of `plan/rating/rubrics.md` before running a session. The placeholder SHALL be preceded by a guard instruction telling the model: if `[PASTE_SCOPE_HERE]` still appears verbatim, stop and ask the user to paste `plan/rating/rubrics.md` before continuing.
 
-The usage header SHALL direct the researcher to paste `plan/rating/scope.md` — not `plan/discovery/scope.md` or `docs/01-discovery-scope.md`.
+The usage header SHALL direct the researcher to paste `plan/rating/rubrics.md` — not `plan/discovery/scope.md` or `docs/01-discovery-scope.md`.
 
 #### Scenario: Researcher runs the comparison without pasting scope
 
@@ -61,7 +61,7 @@ The usage header SHALL direct the researcher to paste `plan/rating/scope.md` —
 
 #### Scenario: Researcher runs the comparison after pasting scope
 
-- **WHEN** a researcher pastes `plan/rating/scope.md` content into the `[PASTE_SCOPE_HERE]` slot
+- **WHEN** a researcher pastes `plan/rating/rubrics.md` content into the `[PASTE_SCOPE_HERE]` slot
 - **THEN** the model proceeds with all 12 dimension rubrics available and produces a complete comparison response
 
 ### Requirement: Comparison prompt requests a three-part structured output

@@ -13,7 +13,7 @@ The prompt template SHALL include a `[PASTE_SCOPE_HERE]` placeholder where the r
 
 The usage header SHALL direct the researcher to paste `plan/discovery/scope.md` — not any other scope file.
 
-The discovery prompt SHALL NOT embed or reference dimension rubrics (Arch, Open, City, etc.). Those are defined in `plan/rating/scope.md` and belong to the rating phase only.
+The discovery prompt SHALL NOT embed or reference dimension rubrics (Arch, Open, City, etc.). Those are defined in `plan/rating/rubrics.md` and belong to the rating phase only.
 
 #### Scenario: Researcher runs the prompt without pasting scope
 

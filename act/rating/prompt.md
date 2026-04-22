@@ -4,7 +4,7 @@ Use this prompt to produce a structured, evidence-based comparison of UDT platfo
 
 This prompt can be used in an AI web research chat or an AI CLI session. In a web chat, manually save the final Markdown response into `observe/rating/`.
 
-1. Open `plan/rating/scope.md` and copy the full content
+1. Open `plan/rating/rubrics.md` and copy the full content
 2. Replace `[PASTE_SCOPE_HERE]` below with the copied content
 3. Open the discovery response file for your research session
 4. Copy the rows you want to compare (including the header row) from the summary table — **include the DTCC row** so Part 3 landscape observations can orient around DTCC
@@ -32,7 +32,7 @@ You are a research assistant helping to map the Urban Digital Twin (UDT) platfor
 
 Use primary sources for all final factual claims (**official websites, public repositories, published papers, official documentation**). For every substantive claim, include a source reference. Distinguish inferred claims from verified facts. If you cannot find information, state "unknown" or "unclear" — do not fabricate URLs, license names, or deployment claims.
 
-**Before proceeding:** If the scope block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `plan/rating/scope.md` before continuing.
+**Before proceeding:** If the scope block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `plan/rating/rubrics.md` before continuing.
 
 [PASTE_SCOPE_HERE]
 
