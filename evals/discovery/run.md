@@ -51,8 +51,8 @@ For each novel find, record:
 - Name (from the response summary table `Name` column)
 - Link (from the response summary table `Link` column)
 - Layer (from the response summary table `Layer` column)
-- Why tricky: leave blank
 - Aliases: leave blank
+- Tags: leave blank
 
 ### Step 5 — Write the report
 
@@ -87,18 +87,18 @@ Write the report to that path with this structure:
 ## Novel Finds — not in benchmark
 
 Platforms discovered by models but not in evals/discovery/benchmark.md.
-Review and add to the benchmark if in-scope, filling in the Why tricky column before pasting.
+Review and add to the benchmark if in-scope, filling in the Tags column before pasting.
 
 ### <model-1>
 
-| Name | Link | Expected Layer | Why tricky | Aliases |
-| ---- | ---- | -------------- | ---------- | ------- |
+| Name | Link | Layer | Aliases | Tags |
+| ---- | ---- | ----- | ------- | ---- |
 | <name> | <link> | <layer> | | |
 
 ### <model-2>
 
-| Name | Link | Expected Layer | Why tricky | Aliases |
-| ---- | ---- | -------------- | ---------- | ------- |
+| Name | Link | Layer | Aliases | Tags |
+| ---- | ---- | ----- | ------- | ---- |
 | <name> | <link> | <layer> | | |
 ```
 
