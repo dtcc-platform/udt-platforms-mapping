@@ -1,4 +1,4 @@
-# Discovery Coverage Report — 2026-04-20
+# Discovery Coverage Report — 2026-04-22
 
 **Fixture:** tests/discovery-fixtures.md
 **Responses tested:** 3 files
@@ -82,6 +82,6 @@
 
 | Model            | Found | Missing | Wrong layer |
 | ---------------- | ----- | ------- | ----------- |
-| Claude Opus 4.7  | 30/38 | 8       | 1           |
+| Claude Opus 4.7  | 31/38 | 7       | 1           |
 | GPT-5.4 Thinking | 14/38 | 24      | 0           |
 | Gemini 3 Flash   | 9/38  | 29      | 0           |

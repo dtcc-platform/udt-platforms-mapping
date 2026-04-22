@@ -19,6 +19,7 @@ Read `tests/discovery-fixtures.md`. Extract all expected platforms with:
 - Platform name (from the `Name` column)
 - Link (from the `Link` column)
 - Expected Layer (from the `Expected Layer` column)
+- Aliases (from the `Aliases` column — split on `,` and trim each entry; may be empty)
 
 ### Step 2 — Find all discovery responses
 
@@ -29,7 +30,8 @@ Glob all files matching `responses/global-platforms-discovery-*.md`. For each fi
 ### Step 3 — Check recall for each expected platform
 
 For each expected platform in the fixture, and for each response file:
-- Search for the platform name case-insensitively in the response's summary table `Name` column
+- Build a match set: the canonical `Name` plus all entries from `Aliases`
+- Search case-insensitively: the platform is **found** if any member of the match set appears as a substring of any `Name` value in the response's summary table
 - If found: check whether the `Layer` column value matches the expected Layer
   - Match → record `✓ found`
   - Layer differs → record `✓ found (Layer: <actual value>)`
