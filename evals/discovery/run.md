@@ -68,19 +68,11 @@ Write the report to that path with this structure:
 
 ---
 
-## Tag: <tag>
+## Recall
 
-| Platform | Layer | <model-1> | <model-2> | <model-3> |
-| -------- | ----- | --------- | --------- | --------- |
-| <name>   | <layer> | ✓ found | ✗ missing | ✗ missing |
-
----
-
-## Summary
-
-| Model     | Found | Missing | Wrong layer |
-| --------- | ----- | ------- | ----------- |
-| <model-1> | X/N   | Y       | Z           |
+| Platform | Layer | Tags | <model-1> | <model-2> | <model-3> |
+| -------- | ----- | ---- | --------- | --------- | --------- |
+| <name>   | <layer> | <tag> | ✓ found | ✗ missing | ✗ missing |
 
 ---
 
@@ -100,11 +92,19 @@ Review and add to the benchmark if in-scope, filling in the Tags column before p
 | Name | Link | Layer | Aliases | Tags |
 | ---- | ---- | ----- | ------- | ---- |
 | <name> | <link> | <layer> | | |
+
+---
+
+## Summary
+
+| Model     | Found | Missing | Wrong layer | Novel Finds |
+| --------- | ----- | ------- | ----------- | ----------- |
+| <model-1> | X/N   | Y       | Z           | W           |
 ```
 
-Group the recall section by `Tags` value — one `## Tag: <tag>` section per tag, ordered: `baseline`, `government-led`, `niche-commercial`, `no-dt-framing`, `niche-oss`.
+Rows in the recall table are ordered as in the benchmark (baseline first, then government-led, niche-commercial, no-dt-framing, niche-oss). Do not add per-tag section headings.
 
-Use the `model` field from each response's YAML metadata as the column/row header and section heading — not the filename.
+Use the `model` field from each response's YAML metadata as the column/row header — not the filename.
 
 Include all layers in Novel Finds (core-platform, backbone, domain-module, excluded). If a model has no novel finds, omit its `###` section.
 

@@ -1,8 +1,4 @@
-## Purpose
-
-Defines the eval prompt file (`evals/discovery/run.md`) — a Claude Code CLI prompt that performs a recall check against all discovery response files, comparing them against the fixture to produce a coverage report.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: evals/discovery/run.md exists as a Claude Code CLI eval prompt
 
