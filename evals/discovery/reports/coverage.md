@@ -1,6 +1,6 @@
 # Discovery Coverage Report — 2026-04-22
 
-**Fixture:** tests/discovery-fixtures.md
+**Fixture:** evals/discovery/benchmark.md
 **Responses tested:** 3 files
 
 ---

@@ -1,12 +1,12 @@
 ## Purpose
 
-Defines the rules for the `Aliases` column in fixture gap-category tables (`tests/discovery-fixtures.md`). The Aliases column allows the eval prompt to match platforms by known variant names, eliminating false negatives caused by a model using an alternative name for a platform instead of the canonical one.
+Defines the rules for the `Aliases` column in fixture gap-category tables (`evals/discovery/benchmark.md`). The Aliases column allows the eval prompt to match platforms by known variant names, eliminating false negatives caused by a model using an alternative name for a platform instead of the canonical one.
 
 ## Requirements
 
 ### Requirement: Fixture tables include an optional Aliases column for known name variants
 
-Each gap-category table in `tests/discovery-fixtures.md` SHALL include an `Aliases` column as its last column. The column header SHALL be exactly `Aliases`.
+Each gap-category table in `evals/discovery/benchmark.md` SHALL include an `Aliases` column as its last column. The column header SHALL be exactly `Aliases`.
 
 For each platform row, the `Aliases` cell SHALL contain either:
 - A comma-separated list of one or more alternative names by which the platform may appear in a discovery response summary table (e.g., `CityEnergyAnalyst, CEA`), OR
@@ -19,7 +19,7 @@ The `Aliases` column is maintained by researchers: when a model is found to use 
 #### Scenario: Researcher records a variant name discovered during eval review
 
 - **WHEN** a researcher reviews a coverage report and notices a model used "CityEnergyAnalyst" while the fixture has "City Energy Analyst", causing a false negative
-- **THEN** the researcher adds `CityEnergyAnalyst` to the `Aliases` cell for that platform row in `tests/discovery-fixtures.md`
+- **THEN** the researcher adds `CityEnergyAnalyst` to the `Aliases` cell for that platform row in `evals/discovery/benchmark.md`
 
 #### Scenario: Platform has no known aliases
 

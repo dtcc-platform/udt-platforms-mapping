@@ -1,8 +1,8 @@
-# Discovery Test Fixtures
+# Discovery Recall Benchmark
 
 This file is the recall benchmark for UDT ecosystem discovery sessions. It lists platforms that are expected to appear in discovery responses, grouped by the discovery failure mode (gap category) that makes them easy to miss.
 
-**How to use:** Run `tests/eval-discovery.md` via Claude Code to check all `responses/global-platforms-discovery-*.md` files against this list.
+**How to use:** Run `evals/discovery/run.md` via Claude Code to check all `responses/global-platforms-discovery-*.md` files against this list.
 
 **How to add an entry:** When a known in-scope platform is found to be missing from a discovery response, add a row to the appropriate gap category. If no category fits, create a new `## Gap:` section. When a model uses a variant name that causes a false negative, add that variant to the `Aliases` cell (comma-separated).
 

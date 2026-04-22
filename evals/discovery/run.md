@@ -2,7 +2,7 @@
 
 This is a Claude Code CLI prompt. Run it by telling Claude Code:
 
-> "Run the discovery eval" or "Run tests/eval-discovery.md"
+> "Run the discovery eval" or "Run evals/discovery/run.md"
 
 Claude Code will use its file tools to execute the steps below automatically.
 
@@ -14,7 +14,7 @@ You are running a recall check on UDT platform discovery responses. Follow these
 
 ### Step 1 — Load the fixture
 
-Read `tests/discovery-fixtures.md`. Extract all expected platforms with:
+Read `evals/discovery/benchmark.md`. Extract all expected platforms with:
 - Gap category name (the `## Gap:` heading text)
 - Platform name (from the `Name` column)
 - Link (from the `Link` column)
@@ -41,14 +41,14 @@ This is a recall check only. Do not flag or report platforms that appear in resp
 
 ### Step 4 — Write the report
 
-Write the report to `tests/reports/coverage.md`. Overwrite it if it already exists.
+Write the report to `evals/discovery/reports/coverage.md`. Overwrite it if it already exists.
 
 Write the report to that path with this structure:
 
 ```
 # Discovery Coverage Report — YYYY-MM-DD
 
-**Fixture:** tests/discovery-fixtures.md
+**Fixture:** evals/discovery/benchmark.md
 **Responses tested:** N files
 
 ---
