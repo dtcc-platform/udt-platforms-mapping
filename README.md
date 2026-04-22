@@ -10,19 +10,19 @@ This repository follows an **action research** loop with two independent researc
 PLAN → ACT → OBSERVE → REFLECT
 ```
 
-| Phase       | What happens                                                    |
-| ----------- | --------------------------------------------------------------- |
-| **Plan**    | Define scope, criteria, and source policy for the cycle         |
-| **Act**     | Run the prompt against AI models                                |
-| **Observe** | Save raw model responses                                        |
-| **Reflect** | Benchmark recall, synthesise findings, visualise the ecosystem  |
+| Phase       | What happens                                                   |
+| ----------- | -------------------------------------------------------------- |
+| **Plan**    | Define scope, criteria, and source policy for the cycle        |
+| **Act**     | Run the prompt against AI models                               |
+| **Observe** | Save raw model responses                                       |
+| **Reflect** | Benchmark recall, synthesise findings, visualise the ecosystem |
 
 ## Cycles
 
-| Cycle         | Question                                          |
-| ------------- | ------------------------------------------------- |
-| `discovery`   | Which UDT platforms exist across the ecosystem?   |
-| `rating`      | How do platforms compare on key dimensions?       |
+| Cycle       | Question                                        |
+| ----------- | ----------------------------------------------- |
+| `discovery` | Which UDT platforms exist across the ecosystem? |
+| `rating`    | How do platforms compare on key dimensions?     |
 
 ## Folder Structure
 

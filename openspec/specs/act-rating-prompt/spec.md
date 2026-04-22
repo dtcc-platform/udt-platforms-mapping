@@ -1,10 +1,10 @@
 ### Requirement: Platform comparison prompt file exists
 
-The repository SHALL contain a file at `prompts/platform-comparison.md` that provides a self-contained prompt template for AI-assisted side-by-side comparison of two or more UDT platforms.
+The repository SHALL contain a file at `act/rating/prompt.md` that provides a self-contained prompt template for AI-assisted side-by-side comparison of two or more UDT platforms.
 
 #### Scenario: File is present and non-empty
 
-- **WHEN** a researcher navigates to `prompts/platform-comparison.md`
+- **WHEN** a researcher navigates to `act/rating/prompt.md`
 - **THEN** the file exists and contains a complete, copy-pasteable prompt
 
 ### Requirement: Comparison prompt uses a single selection table token
@@ -50,9 +50,9 @@ The prompt SHALL state that rubrics are supplied via `[PASTE_SCOPE_HERE]` and ar
 
 ### Requirement: Comparison prompt includes a [PASTE_SCOPE_HERE] guard
 
-The prompt template SHALL include a `[PASTE_SCOPE_HERE]` placeholder where the researcher pastes the full content of `docs/01-comparison-scope.md` before running a session. The placeholder SHALL be preceded by a guard instruction telling the model: if `[PASTE_SCOPE_HERE]` still appears verbatim, stop and ask the user to paste `docs/01-comparison-scope.md` before continuing.
+The prompt template SHALL include a `[PASTE_SCOPE_HERE]` placeholder where the researcher pastes the full content of `plan/rating/scope.md` before running a session. The placeholder SHALL be preceded by a guard instruction telling the model: if `[PASTE_SCOPE_HERE]` still appears verbatim, stop and ask the user to paste `plan/rating/scope.md` before continuing.
 
-The usage header SHALL direct the researcher to paste `docs/01-comparison-scope.md` — not `docs/01-scope.md` or `docs/01-discovery-scope.md`.
+The usage header SHALL direct the researcher to paste `plan/rating/scope.md` — not `plan/discovery/scope.md` or `docs/01-discovery-scope.md`.
 
 #### Scenario: Researcher runs the comparison without pasting scope
 
@@ -61,7 +61,7 @@ The usage header SHALL direct the researcher to paste `docs/01-comparison-scope.
 
 #### Scenario: Researcher runs the comparison after pasting scope
 
-- **WHEN** a researcher pastes `docs/01-comparison-scope.md` content into the `[PASTE_SCOPE_HERE]` slot
+- **WHEN** a researcher pastes `plan/rating/scope.md` content into the `[PASTE_SCOPE_HERE]` slot
 - **THEN** the model proceeds with all 12 dimension rubrics available and produces a complete comparison response
 
 ### Requirement: Comparison prompt requests a three-part structured output
@@ -249,18 +249,18 @@ The metadata block SHALL appear before any other content in the response.
 
 ### Requirement: Comparison prompt usage header includes save-as filename instruction
 
-The prompt template's usage header SHALL include an instruction telling the researcher what filename to use when saving the AI response, referencing the pattern defined in `docs/02-methodology.md`.
+The prompt template's usage header SHALL include an instruction telling the researcher what filename to use when saving the AI response, referencing the save path `observe/rating/<model-name>.md`.
 
-The instruction SHALL show a concrete example filename using the `comparison` prompt-type token and the `vs` join convention for two platforms (e.g., `responses/<platform-a>-vs-<platform-b>-comparison.md`).
+The instruction SHALL show a concrete example filename using the `comparison` prompt-type token and the `vs` join convention for two platforms (e.g., `observe/rating/<model-name>.md`).
 
 The usage header SHALL also include a step directing the researcher to paste into their AI session starting from the cut-line (the blockquote `> Paste into your AI session from this line onwards.`), not from the top of the file.
 
-The usage header SHALL state that the prompt can be used in either an AI web research chat or an AI CLI session. For web chat use, it SHALL tell the researcher to manually save the final Markdown response into `responses/`.
+The usage header SHALL state that the prompt can be used in either an AI web research chat or an AI CLI session. For web chat use, it SHALL tell the researcher to manually save the final Markdown response into `observe/rating/`.
 
 #### Scenario: Researcher reads the usage header before pasting the prompt
 
-- **WHEN** a researcher reads the usage instructions at the top of `prompts/platform-comparison.md`
-- **THEN** they see the expected filename pattern, a concrete example, an explicit step telling them to paste from the cut-line onwards, and an explicit note that web-chat sessions require manual save/export into `responses/`
+- **WHEN** a researcher reads the usage instructions at the top of `act/rating/prompt.md`
+- **THEN** they see the expected filename pattern, a concrete example, an explicit step telling them to paste from the cut-line onwards, and an explicit note that web-chat sessions require manual save/export into `observe/rating/`
 
 #### Scenario: Researcher pastes only the AI-facing section
 
