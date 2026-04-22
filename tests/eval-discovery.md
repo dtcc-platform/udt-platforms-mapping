@@ -39,7 +39,7 @@ This is a recall check only. Do not flag or report platforms that appear in resp
 
 ### Step 4 — Write the report
 
-Determine today's date as `YYYY-MM-DD`. Check whether `tests/reports/YYYY-MM-DD-coverage.md` already exists. If it does, use `YYYY-MM-DD-coverage-2.md` (increment suffix until a free name is found).
+Write the report to `tests/reports/coverage.md`. Overwrite it if it already exists.
 
 Write the report to that path with this structure:
 

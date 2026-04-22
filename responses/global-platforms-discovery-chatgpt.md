@@ -1,176 +1,163 @@
 ```yaml
-model: GPT-5.3
-date: 2026-04-20
+model: GPT-5.4 Thinking
+date: 2026-04-21
 prompt: platform-discovery
 ```
 
-| Name                              | Link                                                                                                                 | License                  | Type                         | Relevance | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
-| --------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------- | --------- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
-| DTCC (Digital Twin Cities Centre) | [https://dtcc.chalmers.se](https://dtcc.chalmers.se)                                                                 | Mixed (open + research)  | UDT platform                 | 5         | 4    | 4    | 5    | 3      | 4     | 4   | 4   | 4  | 4   | 3   | 4   | 4     |
-| Virtual Singapore                 | [https://www.nrf.gov.sg/programmes/virtual-singapore](https://www.nrf.gov.sg/programmes/virtual-singapore)           | Proprietary (government) | National UDT platform        | 5         | 4    | 2    | 5    | 5      | 3     | 4   | 5   | 4  | 4   | 3   | 4   | 4     |
-| Azure Digital Twins               | [https://azure.microsoft.com/en-us/products/digital-twins](https://azure.microsoft.com/en-us/products/digital-twins) | Proprietary              | Digital twin platform        | 4         | 4    | 2    | 4    | 5      | 5     | 2   | 2   | 5  | 3   | 5   | 3   | 3     |
-| Bentley iTwin                     | [https://www.bentley.com/software/itwin/](https://www.bentley.com/software/itwin/)                                   | Proprietary              | Infrastructure twin platform | 3         | 4    | 2    | 4    | 5      | 4     | 2   | 4   | 4  | 3   | 2   | 3   | 5     |
-| Cesium                            | [https://cesium.com](https://cesium.com)                                                                             | Apache-2.0               | 3D geospatial engine         | 3         | 5    | 5    | 4    | 5      | 5     | 4   | 5   | 3  | 2   | 2   | 4   | 3     |
-| FIWARE Orion Context Broker       | [https://fiware-orion.readthedocs.io](https://fiware-orion.readthedocs.io)                                           | AGPL-3.0                 | Context data platform        | 4         | 4    | 4    | 4    | 5      | 5     | 5   | 1   | 5  | 2   | 5   | 5   | 3     |
-| 3D City DB                        | [https://www.3dcitydb.org](https://www.3dcitydb.org)                                                                 | Apache-2.0               | City model database          | 4         | 5    | 5    | 4    | 4      | 4     | 4   | 2   | 5  | 1   | 1   | 5   | 4     |
-| Eclipse Ditto                     | [https://www.eclipse.org/ditto](https://www.eclipse.org/ditto)                                                       | EPL-2.0                  | IoT digital twin framework   | 3         | 4    | 5    | 3    | 5      | 5     | 5   | 1   | 4  | 2   | 5   | 4   | 2     |
+| Name                | Link                                                                                                                                                        | Layer         | Reason                    |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------- |
+| DTCC                | [dtcc.chalmers.se](https://www.dtcc.chalmers.se/)                                                                                                           | core-platform |                           |
+| Virtual Singapore   | [smartnation.gov.sg](https://www.smartnation.gov.sg/why-smart-nation/initiatives/virtual-singapore/)                                                        | core-platform |                           |
+| 3DEXPERIENCity      | [3ds.com](https://www.3ds.com/virtual-twin/infrastructure-cities)                                                                                           | core-platform |                           |
+| Virtual Gothenburg  | [goteborg.se](https://goteborg.se/wps/portal/start/goteborg-vaxer/sa-planeras-staden/goteborgs-digitala-tvilling/in-english-about-gothenburgs-digital-twin) | core-platform |                           |
+| Cesium              | [cesium.com](https://cesium.com/platform/)                                                                                                                  | backbone      |                           |
+| iTwin Platform      | [developer.bentley.com](https://developer.bentley.com/)                                                                                                     | backbone      |                           |
+| FIWARE              | [fiware.org](https://www.fiware.org/)                                                                                                                       | backbone      |                           |
+| 3DCityDB            | [3dcitydb.org](https://www.3dcitydb.org/)                                                                                                                   | backbone      |                           |
+| ArcGIS Urban        | [esri.com](https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview)                                                                                | domain-module |                           |
+| MATSim              | [matsim.org](https://matsim.org/)                                                                                                                           | domain-module |                           |
+| UrbanSim            | [udst.github.io](https://udst.github.io/urbansim/)                                                                                                          | domain-module |                           |
+| City Energy Analyst | [cityenergyanalyst.com](https://www.cityenergyanalyst.com/)                                                                                                 | domain-module |                           |
+| ENVI-met            | [envi-met.com](https://envi-met.com/)                                                                                                                       | domain-module |                           |
+| A/B Street          | [abstreet.uk](https://abstreet.uk/)                                                                                                                         | domain-module |                           |
+| GeoDatalytics       | [github.com/OpenGeoscience/geodatalytics](https://github.com/OpenGeoscience/geodatalytics)                                                                  | domain-module |                           |
+| Azure Digital Twins | [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/digital-twins/overview)                                                                       | excluded      | general-purpose twin PaaS |
+| Unreal Engine       | [unrealengine.com](https://www.unrealengine.com/digital-twins)                                                                                              | excluded      | general-purpose 3D engine |
 
-## DTCC (Digital Twin Cities Centre)
+## DTCC
 
-- **Organization:** Chalmers University of Technology ([DTCC](https://dtcc.chalmers.se))
-- **Link:** [dtcc.chalmers.se](https://dtcc.chalmers.se)
-- **License:** Mixed — open-source components + research platform ([GitHub](https://github.com/dtcc-platform))
-- **Type:** Urban digital twin platform ([DTCC](https://dtcc.chalmers.se))
-- **Relevance:** 5
-- **Technical Architecture (4/5):** Modular platform integrating geospatial data, simulations, and analytics; supports multiple data sources and pipelines.
-- **Openness & Licensing (4/5):** Combination of open-source components and research-driven development; not fully permissive.
-- **City-Scale Capability (5/5):** Explicitly designed for city-scale multi-domain decision support (mobility, environment, planning).
-- **Maturity & Adoption (3/5):** Active research platform with pilot collaborations; not yet widely deployed in production cities.
-- **Integration Posture (4/5):** Integrates heterogeneous datasets and simulation tools; API posture evolving.
-- **Governance (4/5):** Academic-public initiative with collaborative governance and public funding.
-- **Visualization (4/5):** Strong 3D and geospatial visualization capabilities integrated into workflows.
-- **Data Management (4/5):** Multi-source ingestion and management; supports semantic and geospatial layers.
-- **Simulation (4/5):** Scenario-based simulations across urban domains.
-- **IoT Sensing (3/5):** Supports real-time and sensor data integration but not IoT-first.
-- **Standards (4/5):** Uses geospatial standards and interoperable formats.
-- **Infrastructure (4/5):** Covers built environment and infrastructure within broader urban context.
+- **Organization:** [Digital Twin Cities Centre](https://www.dtcc.chalmers.se/) / Chalmers University of Technology
+- **Link:** [DTCC Platform](https://www.dtcc.chalmers.se/)
+- **License:** MIT — open-source ([GitHub](https://github.com/dtcc-platform/dtcc))
+- **Type:** Open-source environment for creating, simulating, and visualizing digital twins of cities ([DTCC](https://www.dtcc.chalmers.se/))
+- **Layer:** core-platform
 
 ## Virtual Singapore
 
-- **Organization:** National Research Foundation Singapore ([NRF](https://www.nrf.gov.sg/programmes/virtual-singapore))
-- **Link:** [Virtual Singapore](https://www.nrf.gov.sg/programmes/virtual-singapore)
-- **License:** Proprietary (government platform)
-- **Type:** National urban digital twin ([NRF](https://www.nrf.gov.sg/programmes/virtual-singapore))
-- **Relevance:** 5
-- **Technical Architecture (4/5):** Integrated 3D city model platform combining simulation, data integration, and visualization.
-- **Openness & Licensing (2/5):** Government-controlled platform with limited openness.
-- **City-Scale Capability (5/5):** Full national-scale city model with multi-domain analytics.
-- **Maturity & Adoption (5/5):** Production-grade with real deployments in Singapore.
-- **Integration Posture (3/5):** Some APIs and research access; not broadly open.
-- **Governance (4/5):** Government-led with institutional collaboration.
-- **Visualization (5/5):** High-fidelity 3D visualization of entire city.
-- **Data Management (4/5):** Centralized multi-domain urban data platform.
-- **Simulation (4/5):** Supports urban scenario simulations (mobility, environment).
-- **IoT Sensing (3/5):** Integrates sensor data but not primarily IoT-focused.
-- **Standards (4/5):** Uses geospatial standards alongside proprietary models.
-- **Infrastructure (4/5):** Strong built environment and infrastructure representation.
+- **Organization:** [Government of Singapore](https://www.smartnation.gov.sg/why-smart-nation/initiatives/virtual-singapore/) with [Singapore Land Authority](https://www.sla.gov.sg/geospatial/)
+- **Link:** [Virtual Singapore](https://www.smartnation.gov.sg/why-smart-nation/initiatives/virtual-singapore/)
+- **License:** unknown
+- **Type:** National city-scale digital twin and collaborative 3D platform for simulation and planning ([Virtual Singapore](https://www.smartnation.gov.sg/why-smart-nation/initiatives/virtual-singapore/))
+- **Layer:** core-platform
 
-## Azure Digital Twins
+## 3DEXPERIENCity
 
-- **Organization:** Microsoft ([Product](https://azure.microsoft.com/en-us/products/digital-twins))
-- **Link:** [Azure Digital Twins](https://azure.microsoft.com/en-us/products/digital-twins)
-- **License:** Proprietary
-- **Type:** Digital twin platform
-- **Relevance:** 4
-- **Technical Architecture (4/5):** Graph-based twin modeling with cloud-native architecture and APIs.
-- **Openness & Licensing (2/5):** Fully proprietary SaaS platform.
-- **City-Scale Capability (4/5):** Can model city-scale systems but requires composition.
-- **Maturity & Adoption (5/5):** Widely used in production across industries.
-- **Integration Posture (5/5):** Strong APIs and integration with Azure ecosystem.
-- **Governance (2/5):** Controlled by Microsoft.
-- **Visualization (2/5):** Limited native visualization; relies on external tools.
-- **Data Management (5/5):** Strong graph-based twin data management.
-- **Simulation (3/5):** Supports simulation via integration.
-- **IoT Sensing (5/5):** Deep integration with IoT services.
-- **Standards (3/5):** Uses DTDL and some open standards.
-- **Infrastructure (3/5):** Applicable to infrastructure but not specialized.
+- **Organization:** [Dassault Systèmes](https://www.3ds.com/)
+- **Link:** [Infrastructure & Cities](https://www.3ds.com/virtual-twin/infrastructure-cities)
+- **License:** proprietary — commercial ([3DEXPERIENCE terms](https://www.3ds.com/terms/software-terms))
+- **Type:** City virtual twin platform combining 3D modeling, collaboration, and simulation for infrastructure and cities ([Infrastructure & Cities](https://www.3ds.com/virtual-twin/infrastructure-cities))
+- **Layer:** core-platform
 
-## FIWARE Orion Context Broker
+## Virtual Gothenburg
 
-- **Organization:** FIWARE Foundation ([Docs](https://fiware-orion.readthedocs.io))
-- **Link:** [FIWARE Orion](https://fiware-orion.readthedocs.io)
-- **License:** AGPL-3.0
-- **Type:** Context data platform
-- **Relevance:** 4
-- **Technical Architecture (4/5):** Context broker using NGSI APIs for real-time data exchange.
-- **Openness & Licensing (4/5):** Open-source with copyleft license.
-- **City-Scale Capability (4/5):** Widely used in smart city deployments.
-- **Maturity & Adoption (5/5):** Production deployments in multiple cities.
-- **Integration Posture (5/5):** Strong API ecosystem and interoperability.
-- **Governance (5/5):** Open foundation governance.
-- **Visualization (1/5):** No native visualization.
-- **Data Management (5/5):** Real-time context data management core.
-- **Simulation (2/5):** Limited simulation capabilities.
-- **IoT Sensing (5/5):** Strong IoT integration.
-- **Standards (5/5):** Implements NGSI and OGC-aligned standards.
-- **Infrastructure (3/5):** Supports infrastructure via data layer.
-
-## 3D City DB
-
-- **Organization:** 3D City Database Project ([Site](https://www.3dcitydb.org))
-- **Link:** [3dcitydb.org](https://www.3dcitydb.org)
-- **License:** Apache-2.0
-- **Type:** City model database
-- **Relevance:** 4
-- **Technical Architecture (5/5):** Relational database schema for CityGML with extensions.
-- **Openness & Licensing (5/5):** Fully open-source with permissive license.
-- **City-Scale Capability (4/5):** Designed for large-scale city models.
-- **Maturity & Adoption (4/5):** Used in multiple research and city projects.
-- **Integration Posture (4/5):** Supports OGC standards and integration tools.
-- **Governance (4/5):** Academic-led open project.
-- **Visualization (2/5):** Limited native visualization.
-- **Data Management (5/5):** Strong semantic and spatial data management.
-- **Simulation (1/5):** No simulation capability.
-- **IoT Sensing (1/5):** No IoT support.
-- **Standards (5/5):** Native CityGML support.
-- **Infrastructure (4/5):** Strong built environment representation.
-
-## Bentley iTwin
-
-- **Organization:** Bentley Systems ([Product](https://www.bentley.com/software/itwin/))
-- **Link:** [iTwin](https://www.bentley.com/software/itwin/)
-- **License:** Proprietary
-- **Type:** Infrastructure digital twin platform
-- **Relevance:** 3
-- **Technical Architecture (4/5):** Cloud-based platform integrating BIM and infrastructure data.
-- **Openness & Licensing (2/5):** Proprietary with some open APIs.
-- **City-Scale Capability (4/5):** Supports large infrastructure and city-scale systems.
-- **Maturity & Adoption (5/5):** Widely used in infrastructure projects.
-- **Integration Posture (4/5):** APIs and integrations with engineering tools.
-- **Governance (2/5):** Vendor-controlled.
-- **Visualization (4/5):** Strong infrastructure visualization.
-- **Data Management (4/5):** Robust infrastructure data handling.
-- **Simulation (3/5):** Simulation via integrations.
-- **IoT Sensing (2/5):** Limited IoT integration.
-- **Standards (3/5):** Partial open standards support.
-- **Infrastructure (5/5):** Core strength in infrastructure lifecycle.
+- **Organization:** [City of Gothenburg, City Planning Authority](https://goteborg.se/wps/portal/start/goteborg-vaxer/sa-planeras-staden/goteborgs-digitala-tvilling/in-english-about-gothenburgs-digital-twin)
+- **Link:** [Virtual Gothenburg](https://goteborg.se/wps/portal/start/goteborg-vaxer/sa-planeras-staden/goteborgs-digitala-tvilling/in-english-about-gothenburgs-digital-twin)
+- **License:** unknown
+- **Type:** Municipal digital twin of the whole city for visualization, real-time control, and simulated future scenarios ([Gothenburg](https://goteborg.se/wps/portal/start/goteborg-vaxer/sa-planeras-staden/goteborgs-digitala-tvilling/in-english-about-gothenburgs-digital-twin))
+- **Layer:** core-platform
 
 ## Cesium
 
-- **Organization:** Cesium GS ([Site](https://cesium.com))
-- **Link:** [cesium.com](https://cesium.com)
-- **License:** Apache-2.0
-- **Type:** 3D geospatial visualization engine
-- **Relevance:** 3
-- **Technical Architecture (5/5):** WebGL-based engine with 3D Tiles and streaming architecture.
-- **Openness & Licensing (5/5):** Fully open-source core.
-- **City-Scale Capability (4/5):** Supports global-scale 3D visualization.
-- **Maturity & Adoption (5/5):** Widely used in industry and research.
-- **Integration Posture (5/5):** Strong APIs and ecosystem.
-- **Governance (4/5):** Company-led with open-source core.
-- **Visualization (5/5):** Core strength.
-- **Data Management (3/5):** Limited to visualization layer.
-- **Simulation (2/5):** No native simulation.
-- **IoT Sensing (2/5):** Indirect support.
-- **Standards (4/5):** Supports 3D Tiles and geospatial standards.
-- **Infrastructure (3/5):** Visualization of infrastructure.
+- **Organization:** [Cesium GS, Inc.](https://cesium.com/)
+- **Link:** [Cesium Platform](https://cesium.com/platform/)
+- **License:** Apache-2.0 — open-source core for CesiumJS; proprietary commercial cloud services for Cesium ion ([Cesium Platform](https://cesium.com/platform/), [CesiumJS](https://cesium.com/platform/cesiumjs/))
+- **Type:** 3D geospatial platform and streaming/visualization foundation for building applications ([Cesium Platform](https://cesium.com/platform/))
+- **Layer:** backbone
 
-## Eclipse Ditto
+## iTwin Platform
 
-- **Organization:** Eclipse Foundation ([Project](https://www.eclipse.org/ditto))
-- **Link:** [eclipse.org/ditto](https://www.eclipse.org/ditto)
-- **License:** EPL-2.0
-- **Type:** IoT digital twin framework
-- **Relevance:** 3
-- **Technical Architecture (4/5):** Microservices-based IoT twin framework with APIs.
-- **Openness & Licensing (5/5):** Open-source under EPL.
-- **City-Scale Capability (3/5):** Device-level twins scalable to urban systems.
-- **Maturity & Adoption (5/5):** Production-ready with active community.
-- **Integration Posture (5/5):** Strong APIs and messaging integration.
-- **Governance (5/5):** Open foundation governance.
-- **Visualization (1/5):** No visualization.
-- **Data Management (4/5):** Strong device twin data handling.
-- **Simulation (2/5):** Limited simulation.
-- **IoT Sensing (5/5):** Core strength.
-- **Standards (4/5):** Uses open IoT standards.
-- **Infrastructure (2/5):** Limited built environment focus.
+- **Organization:** [Bentley Systems](https://www.bentley.com/)
+- **Link:** [iTwin Platform](https://developer.bentley.com/)
+- **License:** proprietary — commercial ([Developer Terms](https://developer.bentley.com/terms-of-service/), [Pricing](https://developer.bentley.com/pricing/))
+- **Type:** API and services platform for building digital twin applications from engineering, reality, and sensor data ([iTwin Platform](https://developer.bentley.com/))
+- **Layer:** backbone
+
+## FIWARE
+
+- **Organization:** [FIWARE Foundation e.V.](https://www.fiware.org/)
+- **Link:** [FIWARE](https://www.fiware.org/)
+- **License:** AGPL-3.0 for Orion-LD context broker — open-source ([Orion-LD](https://github.com/fiware/context.orion-ld))
+- **Type:** Open standards-based context data management framework centered on a context broker for interoperable smart-city systems ([FIWARE](https://www.fiware.org/), [Orion-LD](https://github.com/fiware/context.orion-ld))
+- **Layer:** backbone
+
+## 3DCityDB
+
+- **Organization:** [3DCityDB Team](https://3dcitydb-docs.readthedocs.io/en/latest/)
+- **Link:** [3DCityDB](https://www.3dcitydb.org/)
+- **License:** Apache-2.0 — open-source ([License](https://3dcitydb-docs.readthedocs.io/en/latest/overview/license.html))
+- **Type:** CityGML-based 3D city database and toolkit for storing, managing, and exporting semantic city models ([GitHub](https://github.com/3dcitydb/3dcitydb))
+- **Layer:** backbone
+
+## ArcGIS Urban
+
+- **Organization:** [Esri](https://www.esri.com/)
+- **Link:** [ArcGIS Urban](https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview)
+- **License:** proprietary — commercial ([Trial](https://www.esri.com/en-us/arcgis/products/arcgis-urban/trial), [Licensing](https://doc.arcgis.com/en/urban/latest/get-started/get-started-setting-up.htm))
+- **Type:** Web-based 3D urban planning and scenario analysis solution for zoning, land use, and development projects ([ArcGIS Urban](https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview))
+- **Layer:** domain-module
+
+## MATSim
+
+- **Organization:** [MATSim Association](https://matsim.org/association/)
+- **Link:** [MATSim](https://matsim.org/)
+- **License:** unknown
+- **Type:** Open-source framework for large-scale agent-based transport simulation ([MATSim](https://matsim.org/))
+- **Layer:** domain-module
+
+## UrbanSim
+
+- **Organization:** [Urban Data Science Toolkit (UDST)](https://docs.udst.org/)
+- **Link:** [UrbanSim](https://udst.github.io/urbansim/)
+- **License:** BSD-3-Clause — open-source ([GitHub](https://github.com/UDST/urbansim))
+- **Type:** Platform for statistical simulation of cities and regions, including land use, development, and demographics ([GitHub](https://github.com/UDST/urbansim))
+- **Layer:** domain-module
+
+## City Energy Analyst
+
+- **Organization:** [Architecture and Building Systems](https://github.com/architecture-building-systems), ETH Zurich
+- **Link:** [City Energy Analyst](https://www.cityenergyanalyst.com/)
+- **License:** MIT — open-source ([GitHub](https://github.com/architecture-building-systems/CityEnergyAnalyst))
+- **Type:** Urban building energy simulation platform for low-carbon city and district energy planning ([GitHub](https://github.com/architecture-building-systems/CityEnergyAnalyst))
+- **Layer:** domain-module
+
+## ENVI-met
+
+- **Organization:** [ENVI-met GmbH](https://envi-met.com/)
+- **Link:** [ENVI-met](https://envi-met.com/)
+- **License:** proprietary — commercial ([Pricing](https://envi-met.com/pricing/))
+- **Type:** High-resolution 3D urban microclimate modeling software for climate-adaptive planning ([ENVI-met](https://envi-met.com/))
+- **Layer:** domain-module
+
+## A/B Street
+
+- **Organization:** [A/B Street project](https://github.com/a-b-street)
+- **Link:** [A/B Street](https://abstreet.uk/)
+- **License:** Apache-2.0 — open-source ([GitHub](https://github.com/a-b-street/abstreet))
+- **Type:** Transportation planning and traffic simulation software focused on walking, biking, transit, and street redesign scenarios ([GitHub](https://github.com/a-b-street/abstreet))
+- **Layer:** domain-module
+
+## GeoDatalytics
+
+- **Organization:** [Kitware Inc.](https://www.kitware.com/) in collaboration with [Northeastern University Sustainability and Data Sciences Lab](https://sdslab.io/)
+- **Link:** [GeoDatalytics](https://github.com/OpenGeoscience/geodatalytics)
+- **License:** Apache-2.0 — open-source ([GitHub](https://github.com/OpenGeoscience/geodatalytics))
+- **Type:** Urban visualization and data analysis toolkit for resilience, climate risk, and infrastructure impacts ([GitHub](https://github.com/OpenGeoscience/geodatalytics))
+- **Layer:** domain-module
+
+## Azure Digital Twins
+
+- **Organization:** [Microsoft](https://www.microsoft.com/)
+- **Link:** [Azure Digital Twins](https://learn.microsoft.com/en-us/azure/digital-twins/overview)
+- **License:** proprietary — commercial
+- **Type:** Digital twin platform as a service for modeling connected environments ([Azure Digital Twins](https://learn.microsoft.com/en-us/azure/digital-twins/overview))
+- **Layer:** excluded
+- **Reason:** General-purpose digital twin cloud service rather than an urban-specific platform or urban backbone.
+
+## Unreal Engine
+
+- **Organization:** [Epic Games](https://www.epicgames.com/)
+- **Link:** [Unreal Engine digital twins](https://www.unrealengine.com/digital-twins)
+- **License:** proprietary — commercial ([License](https://www.unrealengine.com/eula/unreal))
+- **Type:** Real-time 3D engine used in digital twin visualization workflows ([Digital Twins](https://www.unrealengine.com/digital-twins))
+- **Layer:** excluded
+- **Reason:** General-purpose 3D engine that can be used in urban twins but is not itself an urban digital twin platform or urban-specialized backbone.

@@ -29,7 +29,23 @@ Use primary sources to verify claims where possible.
 
 **Before proceeding:** If the scope block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `docs/01-discovery-scope.md` before continuing.
 
-[PASTE_SCOPE_HERE]
+# UDT Ecosystem Discovery — Layer Classification
+
+This file defines the Layer classification system used in the **discovery phase** of the UDT ecosystem mapping study.
+Paste the full content of this file into the `[PASTE_SCOPE_HERE]` slot in the discovery prompt before running a session.
+
+---
+
+## Layer Criteria
+
+Assign each discovered platform exactly one Layer value using the observable criteria below. All four values are valid outputs from a discovery session.
+
+| Layer           | Definition                                    | Criteria                                                                                          |
+| --------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `core-platform` | Full UDT platform                             | Official docs claim city-scale digital twin; owns data + simulation + visualisation as one system |
+| `backbone`      | Enabling infrastructure layer                 | Designed to be composed into other systems; API/SDK is primary interface, not end-user UI         |
+| `domain-module` | Domain-specific urban analytics or simulation | Covers one urban domain (mobility, energy, climate…); outputs consumed by a larger UDT stack      |
+| `excluded`      | Outside the study boundary                    | None of the above apply; note reason in one sentence                                              |
 
 **Search scope:** Global city-scale Urban Digital Twin platforms and foundational building blocks (commercial and open-source). Cover all major geographies — include non-English-speaking markets and government-led initiatives, not only English-language or US/EU platforms. Do not limit discovery to platforms that self-identify as "digital twin" systems — backbone components and domain modules qualify and should appear with the appropriate `Layer` value.
 

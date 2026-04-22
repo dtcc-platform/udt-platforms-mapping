@@ -19,3 +19,4 @@ venv/
 .env.local
 dprint.json
 .claude/settings.local.json
+.helix/
