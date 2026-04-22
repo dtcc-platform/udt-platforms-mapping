@@ -14,25 +14,28 @@ You are running a recall check on UDT platform discovery responses. Follow these
 
 ### Step 1 — Load the fixture
 
-Read `evals/discovery/benchmark.md`. Extract all expected platforms with:
-- Gap category name (the `## Gap:` heading text)
+Read `evals/discovery/benchmark.md`. Extract all expected platforms from the single table with:
+
 - Platform name (from the `Name` column)
 - Link (from the `Link` column)
-- Expected Layer (from the `Expected Layer` column)
+- Expected layer (from the `Layer` column)
 - Aliases (from the `Aliases` column — split on `,` and trim each entry; may be empty)
+- Tags (from the `Tags` column — for grouping in the report)
 
 ### Step 2 — Find all discovery responses
 
 Glob all files matching `responses/global-platforms-discovery-*.md`. For each file:
-- Read the YAML metadata block at the top (between the ` ```yaml ` fences) and extract the `model` field — this is the column header for that model in the report
+
+- Read the YAML metadata block at the top (between the `` ```yaml `` fences) and extract the `model` field — this is the column header for that model in the report
 - Parse the summary table (the pipe table immediately after the metadata block) and collect all platform names from the `Name` column
 
 ### Step 3 — Check recall for each expected platform
 
 For each expected platform in the fixture, and for each response file:
+
 - Build a match set: the canonical `Name` plus all entries from `Aliases`
 - Search case-insensitively: the platform is **found** if any member of the match set appears as a substring of any `Name` value in the response's summary table
-- If found: check whether the `Layer` column value matches the expected Layer
+- If found: check whether the response `Layer` column value matches the benchmark `Layer`
   - Match → record `✓ found`
   - Layer differs → record `✓ found (Layer: <actual value>)`
 - If not found: record `✗ missing`
@@ -44,6 +47,7 @@ This is a recall check only. Do not flag or report platforms that appear in resp
 For each response file, identify platforms in its summary table that do not match any benchmark entry (using the same match logic from Step 3 — canonical Name plus Aliases, case-insensitive substring). These are novel finds for that model.
 
 For each novel find, record:
+
 - Name (from the response summary table `Name` column)
 - Link (from the response summary table `Link` column)
 - Layer (from the response summary table `Layer` column)
@@ -64,11 +68,11 @@ Write the report to that path with this structure:
 
 ---
 
-## Gap: <gap category name>
+## Tag: <tag>
 
-| Platform | Expected Layer | <model-1> | <model-2> | <model-3> |
-| -------- | -------------- | --------- | --------- | --------- |
-| <name>   | <layer>        | ✓ found   | ✗ missing | ✗ missing |
+| Platform | Layer | <model-1> | <model-2> | <model-3> |
+| -------- | ----- | --------- | --------- | --------- |
+| <name>   | <layer> | ✓ found | ✗ missing | ✗ missing |
 
 ---
 
@@ -97,6 +101,8 @@ Review and add to the benchmark if in-scope, filling in the Why tricky column be
 | ---- | ---- | -------------- | ---------- | ------- |
 | <name> | <link> | <layer> | | |
 ```
+
+Group the recall section by `Tags` value — one `## Tag: <tag>` section per tag, ordered: `baseline`, `government-led`, `niche-commercial`, `no-dt-framing`, `niche-oss`.
 
 Use the `model` field from each response's YAML metadata as the column/row header and section heading — not the filename.
 
