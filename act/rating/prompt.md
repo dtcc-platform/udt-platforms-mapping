@@ -1,21 +1,27 @@
-# Platform Comparison Prompt
+# Platform Rating Prompt
 
-Use this prompt to produce a structured, evidence-based comparison of UDT platforms.
+Run this prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI). Tell the CLI: **"Run `act/rating/prompt.md`"**. The CLI will ask you whether to run in CLI or Web mode and handle the rest.
 
-This prompt can be used in an AI web research chat or an AI CLI session. In a web chat, manually save the final Markdown response into `observe/rating/`.
+## Required Inputs
 
-1. Open `plan/rating/rubrics.md` and copy the full content
-2. Replace `[PASTE_SCOPE_HERE]` below with the copied content
-3. Open the discovery response file for your research session
-4. Copy the rows you want to compare (including the header row) from the summary table — **include the DTCC row** so Part 3 landscape observations can orient around DTCC
-5. Replace `[PASTE_SELECTED_PLATFORMS_HERE]` with those rows
-6. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
+- `plan/rating/rubrics.md` — dimension rubrics used for 1–5 scoring
+- `plan/rating/platforms.md` — the platforms to compare (comparison scope boundary, must include DTCC)
+- `plan/rating/source-policy.md` — acceptable source types and citation conventions
 
-> **Save response as:** `observe/rating/<model-name>.md`
+## Run Modes
+
+Before executing the prompt body below, ask the user:
+
+> Run as CLI or Web?
+
+Then proceed based on the answer:
+
+- **CLI** — Read each file listed under **Required Inputs** and execute the prompt body, using rubrics as the scoring criteria, the platforms table as the comparison scope, and source-policy as the source/citation contract. Save the response to `observe/rating/cli-<model-short>.md`.
+- **Web** — Produce a fully resolved prompt: inline the content of each file listed under **Required Inputs** at the top of the prompt under a heading naming the file (e.g., `## plan/rating/rubrics.md`), then append the prompt body below. Output the resolved prompt as a single copy-ready block with no wrapper, narration, or BEGIN/END markers. Append a short note after the resolved block telling the user to paste it into a web chat (Research or Deep Research interfaces are preferred) and save the response to `observe/rating/web-<model-short>.md`.
+
+If the user has not specified a mode, ask before proceeding — do not guess.
 
 ---
-
-> Paste into your AI session from this line onwards.
 
 ## Prompt
 
@@ -30,35 +36,11 @@ Before you begin:
 
 You are a research assistant helping to map the Urban Digital Twin (UDT) platform landscape for DTCC.
 
-Use primary sources for all final factual claims (**official websites, public repositories, published papers, official documentation**). For every substantive claim, include a source reference. Distinguish inferred claims from verified facts. If you cannot find information, state "unknown" or "unclear" — do not fabricate URLs, license names, or deployment claims.
+Apply the source policy from the required inputs for all final factual claims. Use the rubrics from the required inputs to score every platform on all twelve dimensions. Treat the platforms table from the required inputs as the complete, authoritative comparison scope.
 
-**Before proceeding:** If the scope block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `plan/rating/rubrics.md` before continuing.
+**Platforms to compare:** Use the rows in `plan/rating/platforms.md`. Compare every platform in that file. Do not add comparison candidates beyond those rows unless the user explicitly asks you to expand scope. Treat the DTCC row as the reference platform for Part 3 landscape observations — DTCC MUST be present in `plan/rating/platforms.md`; if it is absent, stop and ask the user to add it before producing any output.
 
-[PASTE_SCOPE_HERE]
-
-**Platforms to compare** (rows from the discovery summary table — the DTCC row must be included to enable Part 3 landscape observations):
-
-**Before proceeding:** If the placeholder below still contains the literal text `[PASTE_SELECTED_PLATFORMS_HERE]`, stop and ask the user to supply the required data before continuing. Do not attempt to generate output without it.
-
-Treat the pasted table as the comparison scope boundary. Do not add comparison candidates beyond the pasted rows unless the user explicitly asks you to expand scope. Treat the DTCC row from the pasted table as the reference platform for Part 3 landscape observations.
-
-| Name                            | Link | Layer |
-| ------------------------------- | ---- | ----- |
-| [PASTE_SELECTED_PLATFORMS_HERE] |      |       |
-
-Compare every platform present in the pasted table. The `Layer` value from each discovery row is the authoritative layer assignment — carry it into Part 1 unchanged. Your task is to score all twelve dimensions with primary source research and produce authoritative scores and analysis for all twelve dimensions.
-
----
-
-### Research Instructions
-
-- **Cite sources.** Every factual claim must reference an official website, repository, documentation page, or published paper. Include URLs as inline links `[Description](https://...)`.
-- **Distinguish facts from inference.** If you are inferring a score or characteristic from indirect evidence, say so explicitly (e.g., "likely X based on [evidence]").
-- **Prefer primary sources.** Official project pages, GitHub/GitLab repos, LICENSE files, and official documentation over blog posts or third-party summaries.
-- **Use secondary sources only for discovery.** You may use a secondary source to find a likely repository, product page, or paper, but final factual claims and citations in the saved output must rely on primary sources.
-- **Do not fabricate.** If you cannot find information, state "unknown" or "unclear." Do not invent URLs, license names, or deployment claims.
-- **Be specific about uncertainty.** "Unknown" is better than a guess.
-- **Stay in scope.** Do not broaden the analysis with unsupported claims about the wider market beyond the selected platforms.
+The `Layer` value from each row in `plan/rating/platforms.md` is the authoritative layer assignment — carry it into Part 1 unchanged. Do not reassess or revise Layer. Your task is to score all twelve dimensions with primary source research and produce authoritative scores and analysis.
 
 ---
 
@@ -140,7 +122,7 @@ prompt: platform-comparison
 
 **Part 1 — Scoring Table**
 
-One row per platform in the pasted table, six dimension score columns, and six functional category score columns. The `Layer` column carries the value from the discovery row — do not reassess or revise it.
+One row per platform in `plan/rating/platforms.md`, six dimension score columns, and six functional category score columns. The `Layer` column carries the value from the platforms row — do not reassess or revise it.
 
 | Name | Link | Layer | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
 | ---- | ---- | ----- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |

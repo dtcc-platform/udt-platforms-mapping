@@ -25,7 +25,7 @@ Your task is to scan the `observe/discovery/` directory, extract platform rows f
 
 ### Step 1 — Identify qualifying files
 
-Read all files in `observe/discovery/`. For each file:
+Read all files in `observe/discovery/`. Response files are prefixed with `cli-` or `web-` indicating the interface that produced the response (e.g., `web-claude.md`, `cli-claude-code.md`) — process both. For each file:
 
 - Check whether it begins with a fenced YAML block (` ```yaml `) containing a `prompt:` field
 - If `prompt: platform-discovery` → it is a **discovery response** — proceed to Step 2A

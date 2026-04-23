@@ -1,4 +1,4 @@
-# Discovery Coverage Report — 2026-04-21
+# Discovery Coverage Report — 2026-04-23
 
 **Fixture:** reflect/discovery/benchmarking/benchmark.md
 **Responses tested:** 3 files

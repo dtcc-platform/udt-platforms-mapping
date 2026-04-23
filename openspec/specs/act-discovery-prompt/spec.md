@@ -1,3 +1,9 @@
+# Spec: act-discovery-prompt
+
+## Purpose
+
+Defines the platform discovery prompt template at `act/discovery/prompt.md` — structure, required inputs, run modes, output contract, and save-as conventions for discovery sessions.
+## Requirements
 ### Requirement: Platform discovery prompt file exists
 
 The repository SHALL contain a file at `act/discovery/prompt.md` that provides a self-contained prompt template for AI-assisted discovery of UDT platforms.
@@ -7,24 +13,6 @@ The repository SHALL contain a file at `act/discovery/prompt.md` that provides a
 - **WHEN** a researcher navigates to `act/discovery/prompt.md`
 - **THEN** the file exists and contains a complete, copy-pasteable prompt
 
-### Requirement: Discovery prompt pastes plan/discovery/scope.md only
-
-The prompt template SHALL include a `[PASTE_SCOPE_HERE]` placeholder where the researcher pastes the full content of `plan/discovery/scope.md` before running a session. The placeholder SHALL be preceded by a guard instruction telling the model: if `[PASTE_SCOPE_HERE]` still appears verbatim, stop and ask the user to paste `plan/discovery/scope.md` before continuing.
-
-The usage header SHALL direct the researcher to paste `plan/discovery/scope.md` — not any other scope file.
-
-The discovery prompt SHALL NOT embed or reference dimension rubrics (Arch, Open, City, etc.). Those are defined in `plan/rating/rubrics.md` and belong to the rating phase only.
-
-#### Scenario: Researcher runs the prompt without pasting scope
-
-- **WHEN** a researcher pastes the discovery prompt into an AI session without replacing `[PASTE_SCOPE_HERE]`
-- **THEN** the model stops and asks them to provide the discovery scope content before producing any output
-
-#### Scenario: Researcher runs the prompt after pasting scope
-
-- **WHEN** a researcher pastes `plan/discovery/scope.md` content into the `[PASTE_SCOPE_HERE]` slot
-- **THEN** the model proceeds with the Layer criteria table available and produces a complete discovery response
-
 ### Requirement: Discovery prompt requests Layer classification output only
 
 The prompt template SHALL instruct the model to return one `##`-level Markdown section per platform containing identification fields and a Layer assignment. No dimension scoring is required or expected.
@@ -33,16 +21,16 @@ The prompt template SHALL instruct the model to return one `##`-level Markdown s
 
 **For excluded platforms** (`excluded`): identification fields plus a single **Reason** field — one sentence explaining why the platform is outside the study boundary.
 
-The `Layer` field SHALL contain exactly one of: `core-platform`, `backbone`, `domain-module`, or `excluded`, assigned using the criteria table from the pasted scope content.
+The `Layer` field SHALL contain exactly one of: `core-platform`, `backbone`, `domain-module`, or `excluded`, assigned using the Layer criteria from the required inputs.
 
 The prompt template SHALL include a concrete example section demonstrating the exact field labels and Layer field placement for both in-scope and excluded platforms.
 
 The prompt template SHALL state that the response contains exactly three parts, in order: the metadata block, the summary table, and the per-platform sections.
 
-#### Scenario: Response is used to select platforms for comparison
+#### Scenario: Response is used to select platforms for rating
 
 - **WHEN** an AI responds to the discovery prompt
-- **THEN** each in-scope platform section contains Organization, Link, License, Type, and Layer — enough to select platforms for a comparison session
+- **THEN** each in-scope platform section contains Organization, Link, License, Type, and Layer — enough for the researcher to copy the relevant rows into `plan/rating/platforms.md`
 
 #### Scenario: Discovery session finds an excluded platform
 
@@ -140,14 +128,19 @@ The metadata block SHALL appear before any other content in the response.
 
 ### Requirement: Discovery prompt usage header includes save-as filename instruction
 
-The prompt template's usage header SHALL include numbered step-by-step instructions telling the researcher to paste the prompt into their AI session and save the response to `observe/discovery/<model-name>.md`. File names SHALL NOT include the cycle type prefix.
+The prompt template's usage header SHALL direct the researcher to run the prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI) that asks the CLI-or-Web question on their behalf. The header SHALL NOT instruct the researcher to manually paste scope content or copy from a cut-line — that mechanic is retired.
 
-The usage header SHALL also state that the prompt can be used either in an AI web research chat or in an AI CLI session. For web chat use, it SHALL tell the researcher to manually save the final Markdown response into `observe/discovery/`.
+The header SHALL state the save-as path convention: `observe/discovery/cli-<model-short>.md` for CLI-mode responses, `observe/discovery/web-<model-short>.md` for Web-mode responses. File names SHALL NOT include the cycle type — the folder provides that context; the `cli-` / `web-` prefix is the interface authority.
 
-#### Scenario: Researcher reads the usage header before pasting the prompt
+#### Scenario: Researcher opens the discovery prompt file
 
-- **WHEN** a researcher reads the usage instructions at the top of `act/discovery/prompt.md`
-- **THEN** they see the correct save-as path `observe/discovery/<model-name>.md` and an explicit note that web-chat sessions require manual save into `observe/discovery/`
+- **WHEN** a researcher opens `act/discovery/prompt.md`
+- **THEN** the usage header tells them to run the prompt via their AI CLI and explains the CLI-or-Web ask — it does not include cut-line blockquotes or numbered paste instructions
+
+#### Scenario: Researcher saves a web-chat response
+
+- **WHEN** a researcher runs the prompt in Web mode and saves the web-chat response
+- **THEN** the save-as filename follows `observe/discovery/web-<model-short>.md`
 
 ### Requirement: Discovery prompt requires explicit uncertainty handling
 The prompt template SHALL instruct the model to state `?` when a dimension score cannot be assessed from available sources, and to never fabricate platform details, license names, or deployment claims.
@@ -188,4 +181,41 @@ The prompt template MAY allow secondary sources to be used only for candidate di
 #### Scenario: Platform detail sections contain factual prose
 - **WHEN** an AI writes factual content in the identification and scored dimension bullets
 - **THEN** those factual sentences include inline Markdown links to primary sources
+
+### Requirement: Discovery prompt declares plan/discovery/scope.md as a required input
+
+The prompt template SHALL include a `## Required Inputs` section listing `plan/discovery/scope.md` as the input file that provides the Layer classification criteria.
+
+The entry SHALL take the form:
+
+- `plan/discovery/scope.md` — Layer classification criteria
+
+No other files are declared inputs of the discovery prompt.
+
+#### Scenario: AI CLI opens the discovery prompt
+
+- **WHEN** the AI CLI reads `act/discovery/prompt.md`
+- **THEN** it finds `plan/discovery/scope.md` in the Required Inputs section and knows to read that file (CLI mode) or inline it (Web mode)
+
+### Requirement: Discovery prompt supports CLI and Web run modes
+
+The prompt template SHALL comply with the `prompt-run-modes` capability. It SHALL include a `## Run Modes` section instructing the AI to ask the researcher "Run as CLI or Web?" before executing the prompt body.
+
+- In **CLI mode**, the AI reads `plan/discovery/scope.md`, executes the prompt body with that content available as Layer criteria, and saves the response to `observe/discovery/cli-<model-short>.md`
+- In **Web mode**, the AI produces a fully resolved prompt with the content of `plan/discovery/scope.md` inlined at the top under a heading naming the file, followed by the prompt body; the researcher pastes the resolved prompt into a web chat and saves the response to `observe/discovery/web-<model-short>.md`
+
+#### Scenario: Researcher chooses CLI mode
+
+- **WHEN** the researcher answers "CLI"
+- **THEN** the AI reads `plan/discovery/scope.md`, produces a discovery response, and saves it to `observe/discovery/cli-<model-short>.md`
+
+#### Scenario: Researcher chooses Web mode
+
+- **WHEN** the researcher answers "Web"
+- **THEN** the AI emits a resolved prompt with the scope content inlined at the top, ready to paste into a web chat, and notes the save-as path `observe/discovery/web-<model-short>.md`
+
+#### Scenario: Researcher runs the discovery prompt for deep research
+
+- **WHEN** the researcher wants a more thorough Layer classification and chooses Web mode
+- **THEN** the resolved prompt is designed to be pasted into a deep research interface; the scope is fully inlined so the deep-research model has the Layer criteria without needing file access
 

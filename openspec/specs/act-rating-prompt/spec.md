@@ -1,3 +1,9 @@
+# Spec: act-rating-prompt
+
+## Purpose
+
+Defines the platform rating prompt template at `act/rating/prompt.md` — structure, required inputs, run modes, scoring contract, three-part output, and save-as conventions for rating sessions.
+## Requirements
 ### Requirement: Platform comparison prompt file exists
 
 The repository SHALL contain a file at `act/rating/prompt.md` that provides a self-contained prompt template for AI-assisted side-by-side comparison of two or more UDT platforms.
@@ -7,62 +13,21 @@ The repository SHALL contain a file at `act/rating/prompt.md` that provides a se
 - **WHEN** a researcher navigates to `act/rating/prompt.md`
 - **THEN** the file exists and contains a complete, copy-pasteable prompt
 
-### Requirement: Comparison prompt uses a single selection table token
-
-The prompt template SHALL include a single `[PASTE_SELECTED_PLATFORMS_HERE]` placeholder token where the researcher pastes the rows they want to compare from the discovery response summary table, including the header row. The model SHALL treat every data row in the pasted table as a comparison target.
-
-The placeholder SHALL be preceded by the canonical guard instruction specifying `[PASTE_SELECTED_PLATFORMS_HERE]` as the token to check for, instructing the model to stop and ask the user for the table if the placeholder is still present.
-
-The prompt template SHALL also instruct the model that the pasted table is the comparison scope boundary and that it MUST NOT add new comparison candidates outside the pasted rows unless the user explicitly asks for that expansion. When both instructions are present, the guard instruction SHALL appear before the scope-boundary instruction, and the scope-boundary instruction SHALL appear immediately before the placeholder.
-
-#### Scenario: Researcher customizes platforms to compare
-
-- **WHEN** a researcher copies two rows (plus the header) from a discovery summary table and pastes them into `[PASTE_SELECTED_PLATFORMS_HERE]`
-- **THEN** the model produces a comparison specifically for those two platforms
-
-#### Scenario: Researcher compares more than two platforms
-
-- **WHEN** a researcher copies three or more rows (plus the header) into `[PASTE_SELECTED_PLATFORMS_HERE]`
-- **THEN** the model produces a comparison covering all pasted platforms without requiring any other prompt changes
-
-#### Scenario: Prompt is used via @file reference without filling in the placeholder
-
-- **WHEN** a model receives the prompt with the literal text `[PASTE_SELECTED_PLATFORMS_HERE]` still present
-- **THEN** the model stops and asks the user to paste the platform rows before continuing, and does not generate any comparison output
-
-#### Scenario: Research-mode interface tries to broaden scope
-
-- **WHEN** a researcher runs the prompt in a Research or Deep Research interface
-- **THEN** the model limits the comparison to the pasted platform rows and does not introduce extra platforms on its own
-
 ### Requirement: Comparison prompt covers twelve dimensions with scoring
-The prompt template SHALL instruct the model to compare platforms across all twelve dimensions — the six research dimensions (Technical Architecture, Openness & Licensing, City-Scale Capability, Maturity & Adoption, Integration Posture, Governance) and the six functional categories (Visualization, Data Management, Simulation, IoT Sensing, Standards, Infrastructure) — and assign each platform a score of 1–5 per dimension using rubrics defined in the pasted scope content.
 
-The prompt SHALL state that rubrics are supplied via `[PASTE_SCOPE_HERE]` and are not embedded inline.
+The prompt template SHALL instruct the model to compare platforms across all twelve dimensions — the six research dimensions (Technical Architecture, Openness & Licensing, City-Scale Capability, Maturity & Adoption, Integration Posture, Governance) and the six functional categories (Visualization, Data Management, Simulation, IoT Sensing, Standards, Infrastructure) — and assign each platform a score of 1–5 per dimension using the rubrics from the required inputs.
+
+The prompt SHALL state that rubrics are supplied via the `plan/rating/rubrics.md` required input and are not embedded inline in the prompt body.
 
 #### Scenario: Response covers all twelve dimensions with scores
-- **WHEN** an AI responds to the comparison prompt
-- **THEN** the response addresses each of the twelve dimensions for every platform and assigns a numeric 1–5 score with rationale
+
+- **WHEN** an AI responds to the rating prompt
+- **THEN** the response addresses each of the twelve dimensions for every platform and assigns a numeric 1–5 score with rationale, using the rubrics from `plan/rating/rubrics.md`
 
 #### Scenario: Researcher compares scores across agents
-- **WHEN** a researcher runs the same comparison on two different AI agents
+
+- **WHEN** a researcher runs the same rating on two different AI agents
 - **THEN** both responses use the same dimension labels and scoring scale, making scores comparable
-
-### Requirement: Comparison prompt includes a [PASTE_SCOPE_HERE] guard
-
-The prompt template SHALL include a `[PASTE_SCOPE_HERE]` placeholder where the researcher pastes the full content of `plan/rating/rubrics.md` before running a session. The placeholder SHALL be preceded by a guard instruction telling the model: if `[PASTE_SCOPE_HERE]` still appears verbatim, stop and ask the user to paste `plan/rating/rubrics.md` before continuing.
-
-The usage header SHALL direct the researcher to paste `plan/rating/rubrics.md` — not `plan/discovery/scope.md` or `docs/01-discovery-scope.md`.
-
-#### Scenario: Researcher runs the comparison without pasting scope
-
-- **WHEN** a researcher pastes the comparison prompt into an AI session without replacing `[PASTE_SCOPE_HERE]`
-- **THEN** the model stops and asks them to provide the comparison scope content before producing any output
-
-#### Scenario: Researcher runs the comparison after pasting scope
-
-- **WHEN** a researcher pastes `plan/rating/rubrics.md` content into the `[PASTE_SCOPE_HERE]` slot
-- **THEN** the model proceeds with all 12 dimension rubrics available and produces a complete comparison response
 
 ### Requirement: Comparison prompt requests a three-part structured output
 
@@ -119,31 +84,24 @@ The prompt SHALL include a legend immediately below the Part 1 table instruction
 
 ### Requirement: Comparison prompt includes DTCC as a required reference entry
 
-The prompt template SHALL NOT include a hardcoded description of DTCC. Instead, the prompt SHALL instruct the model to treat the DTCC row from the pasted discovery table as the reference platform for landscape observations in Part 3.
+The prompt template SHALL NOT include a hardcoded description of DTCC. Instead, the prompt SHALL instruct the model to treat the DTCC row in `plan/rating/platforms.md` as the reference platform for landscape observations in Part 3.
 
-The prompt SHALL note that the researcher MUST include the DTCC row when selecting platforms to paste into `[PASTE_SELECTED_PLATFORMS_HERE]`, so that Part 3 can orient landscape observations around DTCC.
+The prompt SHALL note that the DTCC row MUST be present in `plan/rating/platforms.md` for Part 3 landscape observations to orient around DTCC — this requirement is documented in the `plan-rating-platforms` capability.
 
-The prompt SHALL retain the requirement that every response positions the landscape relative to DTCC — the change is only in how DTCC's profile data enters the prompt (via the pasted table row, not via a hardcoded block).
+#### Scenario: Response positions DTCC in the landscape
 
-#### Scenario: Response is used to position DTCC in the landscape
-
-- **WHEN** an AI responds to the comparison prompt with the DTCC row included in the pasted table
+- **WHEN** an AI responds to the rating prompt with DTCC present in `plan/rating/platforms.md`
 - **THEN** DTCC appears as a platform entry and the landscape observations section explicitly addresses where DTCC sits relative to comparable and complementary platforms
-
-#### Scenario: Researcher pastes DTCC row from discovery into comparison
-
-- **WHEN** a researcher copies the DTCC row from the discovery summary table and includes it in the platforms pasted into `[PASTE_SELECTED_PLATFORMS_HERE]`
-- **THEN** the model uses that row's scores and metadata as DTCC's profile for the comparison, with no separate hardcoded block needed
 
 #### Scenario: DTCC platform evolves and description drifts
 
 - **WHEN** DTCC's capabilities change between research sessions
-- **THEN** the researcher re-runs discovery to get an updated DTCC row and pastes that updated row into comparison, rather than needing to edit the comparison prompt itself
+- **THEN** the researcher re-runs discovery to get an updated DTCC row and updates `plan/rating/platforms.md`, rather than editing `act/rating/prompt.md`
 
-#### Scenario: Researcher omits the DTCC row from the pasted table
+#### Scenario: Researcher omits DTCC from platforms.md
 
-- **WHEN** a researcher pastes platforms into comparison without including the DTCC row
-- **THEN** Part 3 landscape observations (DTCC's Position, Comparable Platforms, Complementary Platforms) cannot orient around DTCC; the comparison prompt should note that the DTCC row must be included
+- **WHEN** a researcher runs the rating prompt without a DTCC row in `plan/rating/platforms.md`
+- **THEN** Part 3 landscape observations (DTCC's Position, Comparable Platforms, Complementary Platforms) cannot orient around DTCC; the prompt surfaces the missing DTCC row as a scope error
 
 ### Requirement: Comparison prompt enforces agent-agnostic output structure
 
@@ -249,20 +207,54 @@ The metadata block SHALL appear before any other content in the response.
 
 ### Requirement: Comparison prompt usage header includes save-as filename instruction
 
-The prompt template's usage header SHALL include an instruction telling the researcher what filename to use when saving the AI response, referencing the save path `observe/rating/<model-name>.md`.
+The prompt template's usage header SHALL direct the researcher to run the prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI) that asks the CLI-or-Web question on their behalf. The header SHALL NOT instruct the researcher to manually paste rubrics or selection rows, or to copy from a cut-line — that mechanic is retired.
 
-The instruction SHALL show a concrete example filename using the `comparison` prompt-type token and the `vs` join convention for two platforms (e.g., `observe/rating/<model-name>.md`).
+The header SHALL state the save-as path convention: `observe/rating/cli-<model-short>.md` for CLI-mode responses, `observe/rating/web-<model-short>.md` for Web-mode responses. File names SHALL NOT include the cycle type — the folder provides that context; the `cli-` / `web-` prefix is the interface authority.
 
-The usage header SHALL also include a step directing the researcher to paste into their AI session starting from the cut-line (the blockquote `> Paste into your AI session from this line onwards.`), not from the top of the file.
+#### Scenario: Researcher opens the rating prompt file
 
-The usage header SHALL state that the prompt can be used in either an AI web research chat or an AI CLI session. For web chat use, it SHALL tell the researcher to manually save the final Markdown response into `observe/rating/`.
+- **WHEN** a researcher opens `act/rating/prompt.md`
+- **THEN** the usage header tells them to run the prompt via their AI CLI and explains the CLI-or-Web ask — it does not include cut-line blockquotes or numbered paste instructions
 
-#### Scenario: Researcher reads the usage header before pasting the prompt
+#### Scenario: Researcher saves a web-chat response
 
-- **WHEN** a researcher reads the usage instructions at the top of `act/rating/prompt.md`
-- **THEN** they see the expected filename pattern, a concrete example, an explicit step telling them to paste from the cut-line onwards, and an explicit note that web-chat sessions require manual save/export into `observe/rating/`
+- **WHEN** a researcher runs the prompt in Web mode and saves the web-chat response
+- **THEN** the save-as filename follows `observe/rating/web-<model-short>.md`
 
-#### Scenario: Researcher pastes only the AI-facing section
+### Requirement: Rating prompt declares rubrics, platforms, and source-policy as required inputs
 
-- **WHEN** a researcher follows the usage instructions and pastes from the cut-line onwards into a fresh AI session
-- **THEN** the model receives no human-facing usage steps, only the AI prompt body, and produces the comparison report without confusion
+The prompt template SHALL include a `## Required Inputs` section listing three files:
+
+- `plan/rating/rubrics.md` — dimension rubrics used for scoring
+- `plan/rating/platforms.md` — the comparison scope (rows of Name, Link, Layer)
+- `plan/rating/source-policy.md` — acceptable source types and citation conventions
+
+All three files SHALL be treated as inputs in both CLI and Web modes. In particular, `source-policy.md` is inlined into the resolved prompt in Web mode so that deep-research web interfaces operate under the project's source policy.
+
+#### Scenario: AI CLI opens the rating prompt
+
+- **WHEN** the AI CLI reads `act/rating/prompt.md`
+- **THEN** it finds `plan/rating/rubrics.md`, `plan/rating/platforms.md`, and `plan/rating/source-policy.md` in the Required Inputs section
+
+#### Scenario: Rating prompt runs in Web deep research
+
+- **WHEN** a researcher runs the rating prompt in Web mode and pastes the resolved prompt into a deep-research interface
+- **THEN** the source-policy content is part of the resolved prompt and constrains the deep-research model's source selection
+
+### Requirement: Rating prompt supports CLI and Web run modes
+
+The prompt template SHALL comply with the `prompt-run-modes` capability. It SHALL include a `## Run Modes` section instructing the AI to ask the researcher "Run as CLI or Web?" before executing the prompt body.
+
+- In **CLI mode**, the AI reads all three required inputs, executes the prompt body, and saves the response to `observe/rating/cli-<model-short>.md`
+- In **Web mode**, the AI produces a fully resolved prompt with the content of all three required inputs inlined at the top (each under a heading naming the file), followed by the prompt body; the researcher pastes the resolved prompt into a web chat and saves the response to `observe/rating/web-<model-short>.md`
+
+#### Scenario: Researcher chooses CLI mode
+
+- **WHEN** the researcher answers "CLI"
+- **THEN** the AI reads rubrics.md, platforms.md, and source-policy.md, produces a rating response, and saves it to `observe/rating/cli-<model-short>.md`
+
+#### Scenario: Researcher chooses Web mode for deep research
+
+- **WHEN** the researcher answers "Web" and pastes the resolved prompt into a deep-research interface
+- **THEN** the resolved prompt includes inlined rubrics, platforms, and source policy; the deep-research model has everything it needs without file access
+

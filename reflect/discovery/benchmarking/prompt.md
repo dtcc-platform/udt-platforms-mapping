@@ -24,9 +24,9 @@ Read `reflect/discovery/benchmarking/benchmark.md`. Extract all expected platfor
 
 ### Step 2 — Find all discovery responses
 
-Glob all files matching `observe/discovery/*.md`. For each file:
+Glob all files matching `observe/discovery/*.md`. Response files are prefixed with `cli-` or `web-` indicating the interface that produced the response (e.g., `web-claude.md`, `cli-claude-code.md`) — glob both. For each file:
 
-- Read the YAML metadata block at the top (between the `` ```yaml `` fences) and extract the `model` field — this is the column header for that model in the report
+- Read the YAML metadata block at the top (between the `` ```yaml `` fences) and extract the `model` field — this is the column header for that model in the report. The filename prefix (`cli-` / `web-`) identifies the interface; the `model` field remains the authoritative column header.
 - Parse the summary table (the pipe table immediately after the metadata block) and collect all platform names from the `Name` column
 
 ### Step 3 — Check recall for each expected platform

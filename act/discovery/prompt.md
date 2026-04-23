@@ -1,17 +1,25 @@
 # Platform Discovery Prompt
 
-Use this prompt to discover Urban Digital Twin (UDT) platforms and classify them by ecosystem layer.
+Run this prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI). Tell the CLI: **"Run `act/discovery/prompt.md`"**. The CLI will ask you whether to run in CLI or Web mode and handle the rest.
 
-This prompt can be used in an AI web research chat or an AI CLI session. For more thorough Layer classification — including reassessment of a specific platform's layer assignment — run this prompt in a deep research interface. In a web chat, manually save the final Markdown response into `observe/discovery/`.
+## Required Inputs
 
-1. Open `plan/discovery/scope.md` and copy the full content
-2. Replace `[PASTE_SCOPE_HERE]` below with the copied content
-3. Paste into your AI session starting from the cut-line below (the `> Paste into your AI session from this line onwards.` blockquote) — do not include these usage instructions above
-4. Save the response as `observe/discovery/<model-name>.md`
+- `plan/discovery/scope.md` — Layer classification criteria for the discovery cycle
+
+## Run Modes
+
+Before executing the prompt body below, ask the user:
+
+> Run as CLI or Web?
+
+Then proceed based on the answer:
+
+- **CLI** — Read each file listed under **Required Inputs** and execute the prompt body, using the file contents as the Layer criteria. Save the response to `observe/discovery/cli-<model-short>.md`.
+- **Web** — Produce a fully resolved prompt: inline the content of each file listed under **Required Inputs** at the top of the prompt under a heading naming the file (e.g., `## plan/discovery/scope.md`), then append the prompt body below. Output the resolved prompt as a single copy-ready block with no wrapper, narration, or BEGIN/END markers. Append a short note after the resolved block telling the user to paste it into a web chat (a deep research interface is preferred for thorough Layer classification) and save the response to `observe/discovery/web-<model-short>.md`.
+
+If the user has not specified a mode, ask before proceeding — do not guess.
 
 ---
-
-> Paste into your AI session from this line onwards.
 
 ## Prompt
 
@@ -24,28 +32,12 @@ Before you begin:
 - The main body of your response MUST be the three-part structure below. If your interface wraps it in a report shell or summary, that is fine — but the three parts must appear as the primary content.
 
 You are a research assistant helping to map the full **Urban Digital Twin (UDT) ecosystem** — core platforms, infrastructure backbones, and domain-specific analytics and simulation tools.
-Your task is to discover platforms across all ecosystem layers and classify each one using the Layer criteria provided in the scope below.
+Your task is to discover platforms across all ecosystem layers and classify each one using the Layer criteria from the required inputs.
 Use primary sources to verify claims where possible.
-
-**Before proceeding:** If the scope block below still contains the literal text `[PASTE_SCOPE_HERE]`, stop and ask the user to paste `plan/discovery/scope.md` before continuing.
 
 # UDT Ecosystem Discovery — Layer Classification
 
-This file defines the Layer classification system used in the **discovery phase** of the UDT ecosystem mapping study.
-Paste the full content of this file into the `[PASTE_SCOPE_HERE]` slot in the discovery prompt before running a session.
-
----
-
-## Layer Criteria
-
-Assign each discovered platform exactly one Layer value using the observable criteria below. All four values are valid outputs from a discovery session.
-
-| Layer           | Definition                                    | Criteria                                                                                          |
-| --------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `core-platform` | Full UDT platform                             | Official docs claim city-scale digital twin; owns data + simulation + visualisation as one system |
-| `backbone`      | Enabling infrastructure layer                 | Designed to be composed into other systems; API/SDK is primary interface, not end-user UI         |
-| `domain-module` | Domain-specific urban analytics or simulation | Covers one urban domain (mobility, energy, climate…); outputs consumed by a larger UDT stack      |
-| `excluded`      | Outside the study boundary                    | None of the above apply; note reason in one sentence                                              |
+Apply the Layer criteria supplied in the required inputs (`plan/discovery/scope.md`) to every platform you discover. All four Layer values (`core-platform`, `backbone`, `domain-module`, `excluded`) are valid outputs from a discovery session.
 
 **Search scope:** Global city-scale Urban Digital Twin platforms and foundational building blocks (commercial and open-source). Cover all major geographies — include non-English-speaking markets and government-led initiatives, not only English-language or US/EU platforms. Do not limit discovery to platforms that self-identify as "digital twin" systems — backbone components and domain modules qualify and should appear with the appropriate `Layer` value.
 
@@ -62,7 +54,7 @@ For each platform you identify (including DTCC):
 1. Locate the software license (repository root, docs, or official site)
 2. Identify the organization behind the platform
 3. Assess the platform's type (e.g., visualization engine, data platform, simulation framework)
-4. Assign a `Layer` value using the criteria table from the pasted scope content
+4. Assign a `Layer` value using the Layer criteria from the required inputs
 
 Source policy:
 

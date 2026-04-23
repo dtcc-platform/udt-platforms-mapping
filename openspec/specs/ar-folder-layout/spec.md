@@ -3,9 +3,7 @@
 ## Purpose
 
 TBD — Defines the top-level folder structure for the repository, organised as action research phases (`plan/`, `act/`, `observe/`, `reflect/`) with one subfolder per research cycle (`discovery/`, `rating/`).
-
 ## Requirements
-
 ### Requirement: Repository is organised as action research phases at top level
 
 The repository SHALL use four top-level folders matching the action research phases: `plan/`, `act/`, `observe/`, and `reflect/`. Each phase folder SHALL contain exactly one subfolder per research cycle. The only research cycles are `discovery/` and `rating/`.
@@ -49,10 +47,22 @@ No files SHALL live at the phase root level — all content is inside a cycle su
 
 `observe/discovery/` SHALL contain raw discovery response files from AI models. `observe/rating/` SHALL contain raw rating response files. Response files sit directly in the cycle folder with no `responses/` subfolder. File names SHALL NOT include the cycle type — the folder provides that context.
 
-#### Scenario: Researcher saves a discovery response
+File names SHALL be prefixed with either `cli-` or `web-` indicating the interface that produced the response, followed by a short model identifier (for example, `web-claude.md`, `cli-claude-code.md`). The prefix is the single authority on which interface produced the response; the YAML metadata block inside the file SHALL NOT carry a separate `interface` field.
 
-- **WHEN** a researcher saves a model's discovery response
-- **THEN** it goes to `observe/discovery/<model-name>.md` — not `observe/discovery/responses/global-platforms-discovery-<model>.md`
+#### Scenario: Researcher saves a discovery response produced in a web chat
+
+- **WHEN** a researcher saves a model's discovery response produced in a web chat
+- **THEN** it goes to `observe/discovery/web-<model-short>.md` — with the `web-` prefix identifying the interface
+
+#### Scenario: AI saves a discovery response produced in CLI mode
+
+- **WHEN** an AI CLI runs `act/discovery/prompt.md` in CLI mode and produces a response
+- **THEN** the AI saves it to `observe/discovery/cli-<model-short>.md`
+
+#### Scenario: Researcher scans the observe/ folder by interface
+
+- **WHEN** a researcher lists `observe/discovery/`
+- **THEN** they can tell at a glance which files came from CLI sessions and which came from web chats, without opening them
 
 ### Requirement: reflect/ holds benchmarking and reporting per cycle
 
@@ -94,3 +104,4 @@ Each subfolder follows the same pattern: a `prompt.md` that drives the work, out
 
 - **WHEN** a researcher runs the discovery cycle a second time with a different model
 - **THEN** the README explains they should use a feature branch, save the response to `observe/discovery/`, and commit with a conventional message
+
