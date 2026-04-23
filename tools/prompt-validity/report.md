@@ -5,14 +5,14 @@
 
 ## Summary
 
-| Prompt | Status | Governing Spec | Shared Contracts | Required Inputs | Reason |
-| ------ | ------ | -------------- | ---------------- | --------------- | ------ |
-| `act/discovery/prompt.md` | `valid` | `openspec/specs/act-discovery-prompt/spec.md` | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/discovery/scope.md` | Prompt, spec, and required input declaration are aligned |
-| `act/rating/prompt.md` | `review-needed` | `openspec/specs/act-rating-prompt/spec.md` | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/rating/rubrics.md`, `plan/rating/platforms.md`, `plan/rating/source-policy.md` | Governing spec is newer than the prompt |
-| `reflect/discovery/benchmarking/prompt.md` | `valid` | `openspec/specs/reflect-discovery-benchmarking-prompt/spec.md` | `openspec/specs/reflect-discovery-benchmarking-coverage/spec.md` | `reflect/discovery/benchmarking/benchmark.md`, `observe/discovery/*.md` | Prompt and governing contracts are aligned |
-| `reflect/discovery/reporting/prompt.md` | `invalid` | `openspec/specs/reflect-discovery-reporting-prompt/spec.md` | `openspec/specs/reflect-discovery-reporting-ecosystem/spec.md` | `observe/discovery/*.md` | Live prompt contradicts its governing spec and output contract |
-| `reflect/rating/benchmarking/prompt.md` | `review-needed` | `none` | `none` | `observe/rating/*.md` | Stub prompt has no governing spec yet |
-| `reflect/rating/reporting/prompt.md` | `review-needed` | `none` | `none` | `observe/rating/*.md` | Stub prompt has no governing spec yet |
+| Prompt                                     | Status          | Governing Spec                                                 | Shared Contracts                                                                           | Required Inputs                                                                      | Reason                                                         |
+| ------------------------------------------ | --------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| `act/discovery/prompt.md`                  | `valid`         | `openspec/specs/act-discovery-prompt/spec.md`                  | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/discovery/scope.md`                                                            | Prompt, spec, and required input declaration are aligned       |
+| `act/rating/prompt.md`                     | `valid`         | `openspec/specs/act-rating-prompt/spec.md`                     | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/rating/rubrics.md`, `plan/rating/platforms.md`, `plan/rating/source-policy.md` | Prompt refreshed to match current governing spec               |
+| `reflect/discovery/benchmarking/prompt.md` | `valid`         | `openspec/specs/reflect-discovery-benchmarking-prompt/spec.md` | `openspec/specs/reflect-discovery-benchmarking-coverage/spec.md`                           | `reflect/discovery/benchmarking/benchmark.md`, `observe/discovery/*.md`              | Prompt and governing contracts are aligned                     |
+| `reflect/discovery/reporting/prompt.md`    | `invalid`       | `openspec/specs/reflect-discovery-reporting-prompt/spec.md`    | `openspec/specs/reflect-discovery-reporting-ecosystem/spec.md`                             | `observe/discovery/*.md`                                                             | Live prompt contradicts its governing spec and output contract |
+| `reflect/rating/benchmarking/prompt.md`    | `review-needed` | `none`                                                         | `none`                                                                                     | `observe/rating/*.md`                                                                | Stub prompt has no governing spec yet                          |
+| `reflect/rating/reporting/prompt.md`       | `review-needed` | `none`                                                         | `none`                                                                                     | `observe/rating/*.md`                                                                | Stub prompt has no governing spec yet                          |
 
 ## act/discovery/prompt.md
 
@@ -30,17 +30,18 @@
 
 ## act/rating/prompt.md
 
-- **Status:** `review-needed`
+- **Status:** `valid`
 - **Governing spec:** `openspec/specs/act-rating-prompt/spec.md`
 - **Shared contracts:** `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md`
 - **Required inputs:** `plan/rating/rubrics.md`, `plan/rating/platforms.md`, `plan/rating/source-policy.md`
 - **Freshness dependencies checked:** `openspec/specs/act-rating-prompt/spec.md`, `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md`
-- **Prompt git reference:** `07592f5 2026-04-23 feat: replace prompt paste mechanic with CLI/Web run modes`
+- **Prompt git reference:** `working tree updated after 07592f5 2026-04-23 feat: replace prompt paste mechanic with CLI/Web run modes`
 - **Newer dependency references:** `0c98d0c 2026-04-23 fix(specs): align rating specs with current inputs`
 - **Findings:**
   - The prompt declares all three required input files and they exist.
-  - The governing spec is newer than the prompt file, so the prompt needs freshness review.
-  - The newer spec change was small and may already be reflected in prompt behavior, but the audit treats chronological freshness as `review-needed` rather than `valid`.
+  - The prompt now explicitly states that the `Layer` value comes from the corresponding row in `plan/rating/platforms.md`, matching the current baseline spec wording.
+  - The prompt now explicitly overrides default citation behavior and requires `[Description](https://...)` inline links.
+  - The prompt has been refreshed after the governing spec update, so it no longer needs freshness review.
   - A newer `plan/rating/platforms.md` alone would not change this status because per-run data is ignored for freshness.
 
 ## reflect/discovery/benchmarking/prompt.md

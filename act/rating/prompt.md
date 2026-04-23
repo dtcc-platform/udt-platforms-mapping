@@ -62,7 +62,7 @@ Your response will be saved as a Markdown file and must render identically in an
 - Custom containers: `:::`, `!!!`, `> [!NOTE]`, `> [!WARNING]`
 - Extended syntax: `==highlight==`, `^superscript^`, `~subscript~`
 - Raw HTML
-- Numeric citations `[1]`, footnotes `[^1]`, AI-specific formats `【†source】`
+- Numeric citations `[1]`, footnotes `[^1]`, AI-specific formats `【†source】` — this overrides your default citation format; use `[Description](https://...)` inline links instead
 
 **Whitespace:** leave a blank line before and after every heading, table, and code block.
 
@@ -122,7 +122,7 @@ prompt: platform-comparison
 
 **Part 1 — Scoring Table**
 
-One row per platform in `plan/rating/platforms.md`, six dimension score columns, and six functional category score columns. The `Layer` column carries the value from the platforms row — do not reassess or revise it.
+One row per platform in `plan/rating/platforms.md`, six dimension score columns, and six functional category score columns. The `Layer` column carries the value from the corresponding row in `plan/rating/platforms.md` unchanged — do not reassess or revise it.
 
 | Name | Link | Layer | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
 | ---- | ---- | ----- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
