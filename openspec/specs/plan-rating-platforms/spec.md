@@ -66,7 +66,7 @@ The file SHALL include a row for DTCC (Digital Twin Cities Centre) so the rating
 
 ### Requirement: platforms.md is per-run data, not a slow-moving definition
 
-`plan/rating/platforms.md` SHALL be treated as per-cycle-run data, distinct in nature from `plan/rating/scope.md`, `plan/rating/rubrics.md`, and `plan/rating/source-policy.md`, which SHALL be treated as slow-moving definitions shared across cycle runs.
+`plan/rating/platforms.md` SHALL be treated as per-cycle-run data, distinct in nature from `plan/rating/rubrics.md` and `plan/rating/source-policy.md`, which SHALL be treated as slow-moving definitions shared across cycle runs.
 
 The file's header paragraph SHALL state this distinction so readers understand that `platforms.md` iterates per run while its sibling files are comparatively stable. The git history of `plan/rating/platforms.md` SHALL serve as the authoritative record of which platforms were compared in each cycle run — reviewers SHALL consult `git log plan/rating/platforms.md` to answer "what did we compare in cycle N?" questions.
 
@@ -79,4 +79,3 @@ The file's header paragraph SHALL state this distinction so readers understand t
 
 - **WHEN** a reviewer wants to know the exact set of platforms compared in a previous rating cycle run
 - **THEN** `git log plan/rating/platforms.md` and the diffs between runs are the authoritative answer
-

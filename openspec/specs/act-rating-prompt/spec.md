@@ -61,7 +61,7 @@ The prompt template SHALL instruct the model to produce output in exactly three 
 
 The Part 1 scoring table SHALL include a `Layer` column and the six dimension columns and six functional category columns. It SHALL NOT include a `Relevance` column — Relevance is retired.
 
-The `Layer` column SHALL appear immediately after `Link`. It SHALL carry the Layer value from the pasted discovery row unchanged. The comparison AI SHALL NOT reassess or revise the Layer assignment — Layer is owned by the discovery phase.
+The `Layer` column SHALL appear immediately after `Link`. It SHALL carry the Layer value from the corresponding row in `plan/rating/platforms.md` unchanged. The comparison AI SHALL NOT reassess or revise the Layer assignment — Layer is owned by the discovery phase.
 
 Each score column SHALL use the same 1–5 integer scoring format — bare integer, `?` for unknown, no `/5` suffix in table cells.
 
@@ -79,7 +79,7 @@ The prompt SHALL include a legend immediately below the Part 1 table instruction
 
 #### Scenario: Layer value is carried through unchanged
 
-- **WHEN** a discovery row with `Layer=backbone` is pasted into the comparison prompt
+- **WHEN** `plan/rating/platforms.md` contains a platform row with `Layer=backbone`
 - **THEN** the Part 1 table contains `backbone` in the Layer column for that platform; the comparison AI does not reassess or revise it
 
 ### Requirement: Comparison prompt includes DTCC as a required reference entry
@@ -257,4 +257,3 @@ The prompt template SHALL comply with the `prompt-run-modes` capability. It SHAL
 
 - **WHEN** the researcher answers "Web" and pastes the resolved prompt into a deep-research interface
 - **THEN** the resolved prompt includes inlined rubrics, platforms, and source policy; the deep-research model has everything it needs without file access
-
