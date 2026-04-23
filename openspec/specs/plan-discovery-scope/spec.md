@@ -2,13 +2,13 @@
 
 ## Purpose
 
-TBD — Defines the requirements for `plan/discovery/scope.md`, the scope reference file for discovery sessions. Researchers paste its full content into the `[PASTE_SCOPE_HERE]` slot in the discovery prompt before running a session.
+Defines the requirements for `plan/discovery/scope.md`, the scope reference file for discovery sessions. Discovery runs consume it through the prompt's declared required inputs in CLI mode or inline it automatically in Web mode.
 
 ## Requirements
 
 ### Requirement: plan/discovery/scope.md exists and contains the Layer criteria table
 
-The repository SHALL contain a file at `plan/discovery/scope.md`. This file is the sole scope reference for discovery sessions — researchers paste its full content into the `[PASTE_SCOPE_HERE]` slot in the discovery prompt before running a session.
+The repository SHALL contain a file at `plan/discovery/scope.md`. This file is the sole scope reference for discovery sessions and SHALL be listed under the discovery prompt's required inputs.
 
 The file SHALL contain exactly one classification table with four rows and three columns: `Layer`, `Definition`, and `Criteria`. The rows SHALL be:
 
@@ -26,7 +26,7 @@ The file SHALL include a brief header explaining its purpose: it defines the Lay
 #### Scenario: Researcher prepares a discovery session
 
 - **WHEN** a researcher is about to run a discovery session
-- **THEN** they paste the full content of `plan/discovery/scope.md` into the `[PASTE_SCOPE_HERE]` slot in the discovery prompt
+- **THEN** the AI CLI reads `plan/discovery/scope.md` in CLI mode or inlines it in Web mode before executing the discovery prompt
 
 #### Scenario: Discovery AI classifies a full UDT platform
 
@@ -51,4 +51,4 @@ The file SHALL include a brief header explaining its purpose: it defines the Lay
 #### Scenario: Researcher updates the Layer criteria
 
 - **WHEN** a researcher needs to refine the criteria for a layer
-- **THEN** they edit `plan/discovery/scope.md` only; the discovery prompt receives the updated table at run time via the paste step
+- **THEN** they edit `plan/discovery/scope.md` only; the discovery prompt receives the updated table at run time through its required-inputs workflow

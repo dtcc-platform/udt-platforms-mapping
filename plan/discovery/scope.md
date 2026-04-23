@@ -1,7 +1,7 @@
 # UDT Ecosystem Discovery — Layer Classification
 
 This file defines the Layer classification system used in the **discovery phase** of the UDT ecosystem mapping study.
-Paste the full content of this file into the `[PASTE_SCOPE_HERE]` slot in the discovery prompt before running a session.
+Discovery runs consume this file through the prompt's declared required inputs in CLI mode, or inline it automatically in Web mode.
 
 ---
 

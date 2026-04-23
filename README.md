@@ -1,34 +1,128 @@
 # udt-platforms-map
 
-A structured research repository for mapping the Urban Digital Twin (UDT) ecosystem, using action research methodology to discover, evaluate, and visualise platforms similar or adjacent to DTCC.
+A structured research repository for mapping the Urban Digital Twin (UDT) ecosystem around DTCC using an Action Research workflow.
 
-## Methodology
+## Why This Repository Exists
 
-This repository follows an **action research** loop with two independent research cycles. Each cycle runs the same four phases:
+This repository is designed to make the research workflow trustworthy.
 
-```
-PLAN → ACT → OBSERVE → REFLECT
-```
+- Final outputs are cheap to generate; durable value comes from preserving scope decisions, prompt contracts, raw observations, and later reflections.
+- Researchers may do the research work themselves or delegate it to an AI agent at any phase, but the workflow stays inspectable either way.
+- Research intent is primarily recorded in the `plan/` files and git history.
+- Agent-facing prompt behavior is governed through `openspec/` and git, so prompt evolution is documented rather than improvised.
+- Changes in the UDT ecosystem are tracked through committed observations, benchmark updates, and iteration history.
 
-| Phase       | What happens                                                   |
-| ----------- | -------------------------------------------------------------- |
-| **Plan**    | Define scope, criteria, and source policy for the cycle        |
-| **Act**     | Run the prompt against AI models                               |
-| **Observe** | Save raw model responses                                       |
-| **Reflect** | Benchmark recall, synthesise findings, visualise the ecosystem |
+The goal is not to optimize for one-off prompt generation. The goal is to preserve mature thinking, explicit intentions, and repeatable research practice over time.
 
-## Cycles
+## Repository At A Glance
+
+This repository follows two Action Research cycles:
 
 | Cycle       | Question                                        |
 | ----------- | ----------------------------------------------- |
 | `discovery` | Which UDT platforms exist across the ecosystem? |
 | `rating`    | How do platforms compare on key dimensions?     |
 
-## Folder Structure
-
-Everything lives at `phase/cycle/`:
+Each cycle uses the same four phases:
 
 ```
+PLAN → ACT → OBSERVE → REFLECT
+```
+
+| Phase       | What happens                                                 |
+| ----------- | ------------------------------------------------------------ |
+| **Plan**    | Define scope, rubrics, source policy, and current run inputs |
+| **Act**     | Run the prompt against a model or agent                      |
+| **Observe** | Save the raw response exactly as produced                    |
+| **Reflect** | Benchmark, synthesize, and produce higher-level outputs      |
+
+## Fast Paths
+
+Use these when you want to get oriented quickly.
+
+| I want to...                           | Start here                                 |
+| -------------------------------------- | ------------------------------------------ |
+| run discovery                          | `act/discovery/prompt.md`                  |
+| choose platforms for comparison        | `plan/rating/platforms.md`                 |
+| run rating                             | `act/rating/prompt.md`                     |
+| benchmark discovery recall             | `reflect/discovery/benchmarking/prompt.md` |
+| inspect the current discovery criteria | `plan/discovery/scope.md`                  |
+| inspect rating rubrics                 | `plan/rating/rubrics.md`                   |
+| change any prompt contract             | `openspec/specs/` and `openspec/changes/`  |
+
+## How To Work In This Repo
+
+### 1. Understand the current cycle state
+
+Read the relevant `plan/` files first.
+
+- Discovery runs use `plan/discovery/scope.md`.
+- Rating runs use `plan/rating/rubrics.md`, `plan/rating/platforms.md`, and `plan/rating/source-policy.md`.
+- `plan/rating/platforms.md` is per-run data for the current comparison set.
+
+### 2. Run act-phase prompts through an AI CLI
+
+Act-phase prompts are executed through an AI CLI such as Claude Code, Codex CLI, or Gemini CLI.
+
+Tell the CLI to run the prompt file directly:
+
+```text
+Run act/discovery/prompt.md
+Run act/rating/prompt.md
+```
+
+The CLI asks:
+
+> Run as CLI or Web?
+
+- `CLI`: the AI reads the declared input files from the repository and writes the result to `observe/<cycle>/cli-<model-short>.md`.
+- `Web`: the AI emits a fully resolved prompt with required inputs inlined; paste that into a web chat and save the result to `observe/<cycle>/web-<model-short>.md`.
+
+There are no placeholder tokens, no cut-lines, and no manual paste steps in the current workflow.
+
+### 3. Save raw outputs under `observe/`
+
+Raw responses belong directly in:
+
+- `observe/discovery/`
+- `observe/rating/`
+
+File names follow:
+
+```text
+cli-<model-short>.md
+web-<model-short>.md
+```
+
+The `cli-` or `web-` prefix is the authority on which interface produced the file.
+
+### 4. Reflect on results
+
+Discovery benchmarking is currently implemented.
+
+```text
+Run reflect/discovery/benchmarking/prompt.md
+```
+
+That prompt reads all files in `observe/discovery/`, checks them against `reflect/discovery/benchmarking/benchmark.md`, and writes `reflect/discovery/benchmarking/coverage.md`.
+
+## Traceability Model
+
+Different kinds of knowledge are intentionally stored in different places.
+
+| What is being tracked                       | Primary location                          |
+| ------------------------------------------- | ----------------------------------------- |
+| research scope, criteria, and run intent    | `plan/`                                   |
+| prompt behavior and prompt contract changes | `openspec/specs/` and `openspec/changes/` |
+| raw model output                            | `observe/`                                |
+| evaluation and synthesis                    | `reflect/`                                |
+| iteration history across all of the above   | git                                       |
+
+## Folder Structure
+
+Everything lives under `phase/cycle/`:
+
+```text
 plan/
   discovery/      scope.md
   rating/         scope.md, source-policy.md, rubrics.md, platforms.md
@@ -38,85 +132,84 @@ act/
   rating/         prompt.md
 
 observe/
-  discovery/      cli-<model>.md | web-<model>.md  (raw discovery responses)
-  rating/         cli-<model>.md | web-<model>.md  (raw rating responses)
+  discovery/      cli-<model>.md | web-<model>.md
+  rating/         cli-<model>.md | web-<model>.md
 
 reflect/
   discovery/
     benchmarking/ benchmark.md, prompt.md, coverage.md
     reporting/    prompt.md, ecosystem.csv, ecosystem-map.html
   rating/
-    benchmarking/ prompt.md  (stub — pending design)
-    reporting/    prompt.md  (stub — pending design)
+    benchmarking/ prompt.md
+    reporting/    prompt.md
 ```
 
-## Design
+## Naming Conventions
 
-### Run modes replace the paste workflow
+Every file and folder follows an explicit convention.
 
-Act-phase prompts (`act/discovery/prompt.md`, `act/rating/prompt.md`) are executed through an AI CLI (Claude Code, Codex CLI, Gemini CLI). The CLI reads the prompt and asks:
+### Folder names
 
-> Run as CLI or Web?
+| Level             | Values                                  | Notes                                  |
+| ----------------- | --------------------------------------- | -------------------------------------- |
+| Phase             | `plan/`, `act/`, `observe/`, `reflect/` | Fixed set for the Action Research loop |
+| Cycle             | `discovery/`, `rating/`                 | Fixed set for the two research cycles  |
+| Reflect subfolder | `benchmarking/`, `reporting/`           | Under each `reflect/<cycle>/`          |
 
-- **CLI** — the AI reads the prompt's declared input files directly from the repository, runs the prompt, and saves the response to `observe/<cycle>/cli-<model>.md`.
-- **Web** — the AI assembles a fully resolved prompt (declared inputs inlined at the top under per-file headings, then the prompt body) and emits it as a single copy-ready block. The researcher pastes it into a web chat (Research / Deep Research interfaces are preferred) and saves the response to `observe/<cycle>/web-<model>.md`.
+### File names
 
-Each act-phase prompt declares its inputs in a `## Required Inputs` section — a flat Markdown list of repository-relative paths. There are no placeholder tokens, no cut-lines, and no manual pasting of scope content.
+| Location                        | Pattern                                            | Example                                      |
+| ------------------------------- | -------------------------------------------------- | -------------------------------------------- |
+| `plan/<cycle>/` definitions     | `scope.md`, `rubrics.md`, `source-policy.md`       | `plan/rating/rubrics.md`                     |
+| `plan/rating/` per-run data     | `platforms.md`                                     | `plan/rating/platforms.md`                   |
+| `act/<cycle>/`                  | `prompt.md`                                        | `act/discovery/prompt.md`                    |
+| `observe/<cycle>/` responses    | `<interface>-<model-short>.md`                     | `web-claude.md`, `cli-codex.md`              |
+| `reflect/<cycle>/benchmarking/` | `benchmark.md`, `prompt.md`, `coverage.md`         | `reflect/discovery/benchmarking/coverage.md` |
+| `reflect/<cycle>/reporting/`    | `prompt.md`, `ecosystem.csv`, `ecosystem-map.html` | `reflect/discovery/reporting/ecosystem.csv`  |
 
-Reflect-phase prompts are CLI-only (they scan bulk responses and/or write generated artifacts) and do not participate in the mode ask.
+### Response metadata
 
-### `plan/` holds two kinds of artifact — definitions and per-run data
+Every response file begins with exactly this YAML block shape:
 
-Not every file in `plan/` changes at the same cadence:
-
-| Kind               | Files                                                                 | Changes                                 |
-| ------------------ | --------------------------------------------------------------------- | --------------------------------------- |
-| **Definition**     | `scope.md`, `rubrics.md`, `source-policy.md`                          | Slow-moving — reused across cycle runs  |
-| **Per-run data**   | `plan/rating/platforms.md`                                            | Changes each rating cycle run           |
-
-`plan/rating/platforms.md` is a three-column (`Name`, `Link`, `Layer`) table holding the platforms selected for the **current** rating cycle. Making it a file (rather than a CLI argument or a paste) means the selection is **git-diffable** — `git log plan/rating/platforms.md` is the authoritative record of which platforms were compared in each cycle run, and reviewers can see "cycle 2 dropped X, added Y" at a glance.
-
-The DTCC row MUST be present in `platforms.md`; the rating prompt's Part 3 landscape observations orient around DTCC.
-
-### Response filename convention
-
-Response files in `observe/*/` carry a `cli-` or `web-` prefix naming the interface that produced them:
-
-```
-observe/discovery/
-  web-claude.md          ← Claude via web chat
-  web-chatgpt.md         ← ChatGPT via web chat
-  cli-claude-code.md     ← Claude Code CLI
+```yaml
+model: <self-reported model name and version>
+date: <YYYY-MM-DD>
+prompt: platform-discovery # or: platform-comparison
 ```
 
-The prefix is the single authority — the YAML metadata block inside each file does **not** carry a separate `interface` field. Benchmarking and reporting tools can slice results by interface from the filename.
+## OpenSpec And Prompt Changes
 
-## Prompts are generated, not hand-written
+All `prompt.md` files in this repository are generated and maintained through OpenSpec. They are not hand-edited directly when their contract changes.
 
-All `prompt.md` files in this repository are produced and maintained through an **OpenSpec workflow** — they are not edited directly. To modify a prompt, create a change proposal via OpenSpec:
+To evolve a prompt or governed workflow:
 
 ```bash
 openspec new change "<change-name>"
 ```
 
-The workflow guides you through proposal → design → specs → tasks → implementation → archive.
+The OpenSpec flow is:
 
-## Iterative Research with Git
-
-Each cycle run is an iteration. Use standard git practices to track progress:
-
-- **Feature branches** — one branch per cycle run (e.g. `observe/discovery-round-2`)
-- **Conventional commits** — scope commits to their phase and cycle:
-  - `plan(discovery): refine layer criteria`
-  - `act(discovery): update discovery prompt via openspec`
-  - `observe(discovery): add gpt-4o response`
-  - `reflect(discovery): rerun benchmarking eval`
-- **Tags** — mark significant milestones (e.g. `discovery-v1`, `rating-v1`)
-
-## Running the Discovery Eval
-
-```
-Run reflect/discovery/benchmarking/prompt.md
+```text
+proposal → design → specs → tasks → implementation → archive
 ```
 
-Tell Claude Code to run that file. It reads all responses from `observe/discovery/`, checks recall against `reflect/discovery/benchmarking/benchmark.md`, and writes the coverage report to `reflect/discovery/benchmarking/coverage.md`.
+OpenSpec artifacts follow these locations:
+
+| Artifact                 | Location                                 | Pattern                                       |
+| ------------------------ | ---------------------------------------- | --------------------------------------------- |
+| baseline capability spec | `openspec/specs/<name>/spec.md`          | `act-discovery-prompt`, `plan-rating-rubrics` |
+| active change            | `openspec/changes/<name>/`               | kebab-case verb phrase                        |
+| archived change          | `openspec/changes/archive/<dated-name>/` | `YYYY-MM-DD-<name>`                           |
+
+## Git Conventions
+
+Each cycle run is an iteration. Use git to make that iteration legible.
+
+| Convention         | Pattern                       | Example                                   |
+| ------------------ | ----------------------------- | ----------------------------------------- |
+| phase-cycle commit | `<phase>(<cycle>): <subject>` | `observe(discovery): add gpt-4o response` |
+| generic commit     | `<type>(<scope>): <subject>`  | `refactor(specs): flatten coverage table` |
+| feature branch     | `<phase>/<cycle>-round-<N>`   | `observe/discovery-round-2`               |
+| tag                | `<cycle>-v<N>`                | `discovery-v1`                            |
+
+The combination of `plan/`, `observe/`, `reflect/`, OpenSpec artifacts, and git history is the repository's audit trail.

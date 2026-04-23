@@ -1,7 +1,7 @@
 # UDT Ecosystem Comparison — Dimension Scoring Rubrics
 
 This file defines the dimension scoring rubrics used in the **comparison phase** of the UDT ecosystem mapping study.
-Paste the full content of this file into the `[PASTE_SCOPE_HERE]` slot in the comparison prompt before running a session.
+Rating runs consume this file through the prompt's declared required inputs in CLI mode, or inline it automatically in Web mode.
 
 ---
 
