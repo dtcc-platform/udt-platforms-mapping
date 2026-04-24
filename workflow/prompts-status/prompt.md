@@ -68,8 +68,7 @@ Use this mapping table to determine governing files.
 #### 4. `reflect/discovery/reporting/prompt.md`
 
 - Governing spec: `openspec/specs/reflect-discovery-reporting-prompt/spec.md`
-- Shared contracts:
-  - `openspec/specs/reflect-discovery-reporting-ecosystem/spec.md`
+- Shared contracts: none
 - Runtime inputs:
   - `observe/discovery/*.md`
 
@@ -82,8 +81,8 @@ Use this mapping table to determine governing files.
 
 #### 6. `reflect/rating/reporting/prompt.md`
 
-- Governing spec: none currently present
-- Shared contracts: none currently present
+- Governing spec: `openspec/specs/reflect-rating-reporting/spec.md`
+- Shared contracts: none
 - Runtime inputs:
   - `observe/rating/*.md`
 

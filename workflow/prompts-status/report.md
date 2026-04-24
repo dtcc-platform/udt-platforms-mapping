@@ -10,9 +10,9 @@
 | `act/discovery/prompt.md`                  | `valid`         | `openspec/specs/act-discovery-prompt/spec.md`                  | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/discovery/scope.md`                                                            | Prompt, spec, and required input declaration are aligned |
 | `act/rating/prompt.md`                     | `review-needed` | `openspec/specs/act-rating-prompt/spec.md`                     | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/rating/rubrics.md`, `plan/rating/platforms.md`, `plan/rating/source-policy.md` | Governing spec still contains stale Layer wording        |
 | `reflect/discovery/benchmarking/prompt.md` | `valid`         | `openspec/specs/reflect-discovery-benchmarking-prompt/spec.md` | `openspec/specs/reflect-discovery-benchmarking-coverage/spec.md`                           | `reflect/discovery/benchmarking/benchmark.md`, `observe/discovery/*.md`              | Prompt and governing contracts are aligned               |
-| `reflect/discovery/reporting/prompt.md`    | `invalid`       | `openspec/specs/reflect-discovery-reporting-prompt/spec.md`    | `openspec/specs/reflect-discovery-reporting-ecosystem/spec.md`                             | `observe/discovery/*.md`                                                             | Live sort rule exceeds governing spec                    |
+| `reflect/discovery/reporting/prompt.md`    | `invalid`       | `openspec/specs/reflect-discovery-reporting-prompt/spec.md`    | `none`                                                                                     | `observe/discovery/*.md`                                                             | Live sort rule exceeds governing spec                    |
 | `reflect/rating/benchmarking/prompt.md`    | `review-needed` | `none`                                                         | `none`                                                                                     | `observe/rating/*.md`                                                                | Stub prompt has no governing spec yet                    |
-| `reflect/rating/reporting/prompt.md`       | `review-needed` | `none`                                                         | `none`                                                                                     | `observe/rating/*.md`                                                                | Audit mapping is stale about its governing spec          |
+| `reflect/rating/reporting/prompt.md`       | `review-needed` | `openspec/specs/reflect-rating-reporting/spec.md`              | `none`                                                                                     | `observe/rating/*.md`                                                                | Governing spec is newer than the live prompt             |
 
 ## act/discovery/prompt.md
 
@@ -61,9 +61,9 @@
 
 - **Status:** `invalid`
 - **Governing spec:** `openspec/specs/reflect-discovery-reporting-prompt/spec.md`
-- **Shared contracts:** `openspec/specs/reflect-discovery-reporting-ecosystem/spec.md`
+- **Shared contracts:** `none`
 - **Required inputs:** `observe/discovery/*.md`
-- **Freshness dependencies checked:** `openspec/specs/reflect-discovery-reporting-prompt/spec.md`, `openspec/specs/reflect-discovery-reporting-ecosystem/spec.md`
+- **Freshness dependencies checked:** `openspec/specs/reflect-discovery-reporting-prompt/spec.md`
 - **Prompt git reference:** `e750370 2026-04-24 fix: normalize discovery reporting sort order`
 - **Newer dependency references:** none
 - **Findings:**
@@ -89,14 +89,14 @@
 ## reflect/rating/reporting/prompt.md
 
 - **Status:** `review-needed`
-- **Governing spec:** `none`
+- **Governing spec:** `openspec/specs/reflect-rating-reporting/spec.md`
 - **Shared contracts:** `none`
 - **Required inputs:** `observe/rating/*.md`
-- **Freshness dependencies checked:** none
+- **Freshness dependencies checked:** `openspec/specs/reflect-rating-reporting/spec.md`
 - **Prompt git reference:** `2c32b95 2026-04-24 refactor: restrict rating workflow to core platforms`
-- **Newer dependency references:** none
+- **Newer dependency references:** `uncommitted baseline change: openspec/specs/reflect-rating-reporting/spec.md`
 - **Findings:**
-  - The live prompt is no longer a stub and there are baseline specs at `openspec/specs/reflect-rating-reporting-prompt/spec.md` and `openspec/specs/reflect-rating-reporting-ecosystem/spec.md`.
-  - The audit prompt's own mapping still says this prompt has no governing spec or shared contracts.
-  - I am following the current audit mapping for status assignment, so this prompt remains `review-needed`.
-  - This is a workflow-audit mapping issue rather than evidence that the live rating reporting prompt itself is broken.
+  - The live prompt is now governed by the merged baseline spec at `openspec/specs/reflect-rating-reporting/spec.md`.
+  - The prompt-status audit mapping has been updated to use that merged capability.
+  - The governing baseline spec is newer than the live prompt, so the prompt remains `review-needed`.
+  - This is a freshness issue rather than evidence that the live rating reporting prompt itself is broken.
