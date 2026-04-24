@@ -52,7 +52,7 @@ Rules:
 
 ### Step 3 — Build the consolidated Markdown table
 
-Combine all extracted rows into one Markdown table only.
+Gather all extracted rows from all qualifying discovery responses into one combined row set, then build one Markdown table only from that full aggregated set.
 
 Use exactly this column order:
 
@@ -62,13 +62,17 @@ Do not add any headings, prose, notes, per-file sections, source lists, or extra
 
 ### Step 4 — Order the rows deterministically
 
-Order all rows by the URL portion of the `Link` column, ascending.
+After all qualifying rows have been gathered, sort the final combined row set once before writing the table.
 
 To do this:
 
 - Extract the URL target from each Markdown link cell
-- Sort by that URL string
-- If two rows have the same URL, break ties by `Name`, then `Layer`, then `Reason`
+- Lowercase the URL target
+- Extract the host/domain portion
+- Remove a leading `www.` from the host if present
+- Derive a shared base-domain family key so obvious host variants stay together; for example, `dtcc.chalmers.se`, `www.dtcc.chalmers.se`, and `platform.dtcc.chalmers.se` belong to the same domain family
+- Sort first by that normalized domain-family key
+- If two rows have the same normalized domain-family key, break ties by the full URL target, then `Name`, then `Layer`, then `Reason`
 
 ### Step 5 — Write the output file
 
