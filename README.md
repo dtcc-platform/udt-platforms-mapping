@@ -131,7 +131,13 @@ Different kinds of knowledge are intentionally stored in different places.
 
 ## OpenSpec And Prompt Changes
 
-All `prompt.md` files in this repository are generated and maintained through OpenSpec. They are not hand-edited directly when their contract changes.
+Each OpenSpec baseline spec is a contract for a governed repository artifact or workflow.
+
+For prompts, that contract defines what the agent is supposed to do when the prompt is run. The agent performs the prompt against that contract; it does not invent the workflow from scratch each time.
+
+That is why all `prompt.md` files in this repository are generated and maintained through OpenSpec. They are not hand-edited directly when their contract changes. If a prompt changes, the change should first be recorded as a contract change in OpenSpec so the reasoning and behavior change are documented properly.
+
+When different models or agents execute the same prompt differently, the better fix is usually to add or tighten requirements in the governing OpenSpec spec rather than editing the prompt directly. A spec change makes the missing constraint explicit, records why the change is needed, and improves the contract used to regenerate future prompts. That usually produces more reproducible results across agents, because the workflow becomes better specified at the contract level instead of relying on increasingly ad hoc prompt wording.
 
 To evolve a prompt or governed workflow:
 
