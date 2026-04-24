@@ -68,7 +68,7 @@ File names SHALL be prefixed with either `cli-` or `web-` indicating the interfa
 
 `reflect/discovery/` SHALL contain two subfolders: `benchmarking/` and `reporting/`. `reflect/rating/` SHALL be scaffolded with the same two subfolders.
 
-`reflect/discovery/benchmarking/` SHALL contain: `benchmark.md`, `prompt.md` (the eval runner), and `coverage.md` (the generated coverage report). `reflect/discovery/reporting/` SHALL contain: `prompt.md` (the inventory/reporting prompt), `ecosystem.csv`, and `ecosystem-map.html`.
+`reflect/discovery/benchmarking/` SHALL contain: `benchmark.md`, `prompt.md` (the eval runner), and `coverage.md` (the generated coverage report). `reflect/discovery/reporting/` SHALL contain: `prompt.md` (the inventory/reporting prompt) and `ecosystem.md`. `reflect/rating/reporting/` SHALL contain: `prompt.md`, `ecosystem.csv`, and `ecosystem-map.html`. `reflect-workflow/prompt-validity/` SHALL contain: `prompt.md` and `report.md`.
 
 Each subfolder follows the same pattern: a `prompt.md` that drives the work, outputs at the same level.
 
@@ -80,7 +80,12 @@ Each subfolder follows the same pattern: a `prompt.md` that drives the work, out
 #### Scenario: Researcher generates the ecosystem report
 
 - **WHEN** a researcher runs the reporting prompt
-- **THEN** the prompt is at `reflect/discovery/reporting/prompt.md` and outputs are `ecosystem.csv` and `ecosystem-map.html` in the same folder
+- **THEN** the prompt is at `reflect/discovery/reporting/prompt.md` and the output is `ecosystem.md` in the same folder
+
+#### Scenario: Researcher runs the workflow audit
+
+- **WHEN** a researcher runs the prompt-validity audit
+- **THEN** the prompt is at `reflect-workflow/prompt-validity/prompt.md` and the report is written to `reflect-workflow/prompt-validity/report.md`
 
 ### Requirement: README explains the two-cycle action research structure
 
@@ -104,4 +109,3 @@ Each subfolder follows the same pattern: a `prompt.md` that drives the work, out
 
 - **WHEN** a researcher runs the discovery cycle a second time with a different model
 - **THEN** the README explains they should use a feature branch, save the response to `observe/discovery/`, and commit with a conventional message
-

@@ -8,10 +8,10 @@ This prompt is CLI-only. Do not use it in a web chat session.
 Run it by telling your AI CLI:
 
 ```text
-Run tools/prompt-validity/prompt.md
+Run reflect-workflow/prompt-validity/prompt.md
 ```
 
-Save the generated report to `tools/prompt-validity/report.md`.
+Save the generated report to `reflect-workflow/prompt-validity/report.md`.
 
 ---
 
@@ -19,7 +19,7 @@ Save the generated report to `tools/prompt-validity/report.md`.
 
 You are auditing the validity and freshness of live prompt files in this repository.
 
-Your task is to inspect the live prompts under `act/` and `reflect/`, compare them against their governing baseline specs and related files, assign each prompt one status (`valid`, `review-needed`, or `invalid`), and write the full report to `tools/prompt-validity/report.md`.
+Your task is to inspect the live prompts under `act/` and `reflect/`, compare them against their governing baseline specs and related files, assign each prompt one status (`valid`, `review-needed`, or `invalid`), and write the full report to `reflect-workflow/prompt-validity/report.md`.
 
 Do not inspect archived change artifacts under `openspec/changes/` or `openspec/changes/archive/`.
 
@@ -156,7 +156,7 @@ Do not treat these alone as contradictions:
 
 ### Report format
 
-Write the report to `tools/prompt-validity/report.md` with exactly this structure:
+Write the report to `reflect-workflow/prompt-validity/report.md` with exactly this structure:
 
 ```md
 # Prompt Validity Report — YYYY-MM-DD
@@ -194,6 +194,6 @@ Rules for the report:
 
 ### Output behavior
 
-- Write the report to `tools/prompt-validity/report.md`
+- Write the report to `reflect-workflow/prompt-validity/report.md`
 - Overwrite the file if it already exists
 - After writing, give a brief confirmation with the saved path and a one-line summary of how many prompts were `valid`, `review-needed`, and `invalid`
