@@ -2,13 +2,11 @@
 
 ## Purpose
 
-Defines the report structure written to `reflect-workflow/prompt-validity/report.md` by the prompt-validity audit.
-
+Defines the report structure written to `workflow/prompts-status/report.md` by the prompt-validity audit.
 ## Requirements
-
 ### Requirement: Prompt-validity audit report has a structured summary
 
-The file at `reflect-workflow/prompt-validity/report.md` SHALL contain a header block followed by a single flat summary table with one row per audited prompt.
+The file at `workflow/prompts-status/report.md` SHALL contain a header block followed by a single flat summary table with one row per audited prompt.
 
 The header block SHALL state:
 - audit date
@@ -24,7 +22,7 @@ The summary table SHALL contain exactly these columns:
 - `Reason`
 
 #### Scenario: Researcher opens the report
-- **WHEN** a researcher opens `reflect-workflow/prompt-validity/report.md`
+- **WHEN** a researcher opens `workflow/prompts-status/report.md`
 - **THEN** they first see the audit header and then a flat table summarizing every audited prompt
 
 #### Scenario: Multiple prompts are checked
@@ -61,3 +59,4 @@ The report MAY mention the newer runtime-input change in the detailed findings, 
 #### Scenario: Per-run platforms file changed
 - **WHEN** `plan/rating/platforms.md` changed after `act/rating/prompt.md` and the prompt contract still matches its governing spec
 - **THEN** the report does not mark `act/rating/prompt.md` as `review-needed` or `invalid` on that basis alone
+

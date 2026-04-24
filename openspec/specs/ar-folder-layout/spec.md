@@ -8,12 +8,14 @@ TBD — Defines the top-level folder structure for the repository, organised as 
 
 The repository SHALL use four top-level folders matching the action research phases: `plan/`, `act/`, `observe/`, and `reflect/`. Each phase folder SHALL contain exactly one subfolder per research cycle. The only research cycles are `discovery/` and `rating/`.
 
-No files SHALL live at the phase root level — all content is inside a cycle subfolder. Each cycle is fully self-contained within its phase folder.
+The repository MAY also contain a top-level `workflow/` folder for workflow-level artifacts that are not part of a single research cycle.
+
+No files SHALL live at the phase root level — all research-cycle content is inside a cycle subfolder. Each cycle is fully self-contained within its phase folder.
 
 #### Scenario: Researcher navigates the repository
 
 - **WHEN** a researcher opens the repository root
-- **THEN** they see four folders (`plan/`, `act/`, `observe/`, `reflect/`) plus `README.md`, `AGENTS.md`, and tooling config — no loose content files
+- **THEN** they see four phase folders (`plan/`, `act/`, `observe/`, `reflect/`) and MAY also see `workflow/` plus `README.md`, `AGENTS.md`, and tooling config
 
 #### Scenario: Researcher follows one complete cycle
 
@@ -68,7 +70,7 @@ File names SHALL be prefixed with either `cli-` or `web-` indicating the interfa
 
 `reflect/discovery/` SHALL contain two subfolders: `benchmarking/` and `reporting/`. `reflect/rating/` SHALL be scaffolded with the same two subfolders.
 
-`reflect/discovery/benchmarking/` SHALL contain: `benchmark.md`, `prompt.md` (the eval runner), and `coverage.md` (the generated coverage report). `reflect/discovery/reporting/` SHALL contain: `prompt.md` (the inventory/reporting prompt) and `ecosystem.md`. `reflect/rating/reporting/` SHALL contain: `prompt.md`, `ecosystem.csv`, and `ecosystem-map.html`. `reflect-workflow/prompt-validity/` SHALL contain: `prompt.md` and `report.md`.
+`reflect/discovery/benchmarking/` SHALL contain: `benchmark.md`, `prompt.md` (the eval runner), and `coverage.md` (the generated coverage report). `reflect/discovery/reporting/` SHALL contain: `prompt.md` (the inventory/reporting prompt) and `ecosystem.md`. `reflect/rating/reporting/` SHALL contain: `prompt.md`, `ecosystem.csv`, and `ecosystem-map.html`. `workflow/prompts-status/` SHALL contain: `prompt.md` and `report.md`.
 
 Each subfolder follows the same pattern: a `prompt.md` that drives the work, outputs at the same level.
 
@@ -85,7 +87,7 @@ Each subfolder follows the same pattern: a `prompt.md` that drives the work, out
 #### Scenario: Researcher runs the workflow audit
 
 - **WHEN** a researcher runs the prompt-validity audit
-- **THEN** the prompt is at `reflect-workflow/prompt-validity/prompt.md` and the report is written to `reflect-workflow/prompt-validity/report.md`
+- **THEN** the prompt is at `workflow/prompts-status/prompt.md` and the report is written to `workflow/prompts-status/report.md`
 
 ### Requirement: README explains the two-cycle action research structure
 
@@ -109,3 +111,4 @@ Each subfolder follows the same pattern: a `prompt.md` that drives the work, out
 
 - **WHEN** a researcher runs the discovery cycle a second time with a different model
 - **THEN** the README explains they should use a feature branch, save the response to `observe/discovery/`, and commit with a conventional message
+
