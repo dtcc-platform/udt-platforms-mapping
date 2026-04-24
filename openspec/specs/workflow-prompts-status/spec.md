@@ -34,6 +34,7 @@ The audit SHALL verify that:
 - the prompt's stated behavior does not directly contradict the governing spec
 
 The audit mapping for live prompts SHALL use the current baseline set. In particular:
+- `reflect/discovery/benchmarking/prompt.md` SHALL be checked against `openspec/specs/reflect-discovery-benchmarking/spec.md` without requiring a separate discovery benchmarking coverage shared-contract spec
 - `reflect/discovery/reporting/prompt.md` SHALL be checked against `openspec/specs/reflect-discovery-reporting-prompt/spec.md` without requiring a separate discovery-reporting ecosystem shared-contract spec
 - `reflect/rating/reporting/prompt.md` SHALL be checked against `openspec/specs/reflect-rating-reporting/spec.md`
 
@@ -44,6 +45,10 @@ The audit mapping for live prompts SHALL use the current baseline set. In partic
 #### Scenario: Prompt omits a required input required by spec
 - **WHEN** a governing spec requires an input file declaration that the prompt does not include
 - **THEN** the audit marks that prompt as `invalid` and records the mismatch in the report
+
+#### Scenario: Discovery benchmarking no longer has a separate coverage shared contract
+- **WHEN** the audit checks `reflect/discovery/benchmarking/prompt.md`
+- **THEN** it does not require a separate discovery benchmarking coverage spec as a freshness dependency
 
 #### Scenario: Discovery reporting no longer has a no-op shared contract
 - **WHEN** the audit checks `reflect/discovery/reporting/prompt.md`

@@ -58,9 +58,8 @@ Use this mapping table to determine governing files.
 
 #### 3. `reflect/discovery/benchmarking/prompt.md`
 
-- Governing spec: `openspec/specs/reflect-discovery-benchmarking-prompt/spec.md`
-- Shared contracts:
-  - `openspec/specs/reflect-discovery-benchmarking-coverage/spec.md`
+- Governing spec: `openspec/specs/reflect-discovery-benchmarking/spec.md`
+- Shared contracts: none
 - Runtime inputs:
   - `reflect/discovery/benchmarking/benchmark.md`
   - `observe/discovery/*.md`

@@ -9,7 +9,7 @@
 | ------------------------------------------ | --------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | -------------------------------------------------------- |
 | `act/discovery/prompt.md`                  | `valid`         | `openspec/specs/act-discovery-prompt/spec.md`                  | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/discovery/scope.md`                                                            | Prompt, spec, and required input declaration are aligned |
 | `act/rating/prompt.md`                     | `review-needed` | `openspec/specs/act-rating-prompt/spec.md`                     | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/rating/rubrics.md`, `plan/rating/platforms.md`, `plan/rating/source-policy.md` | Governing spec still contains stale Layer wording        |
-| `reflect/discovery/benchmarking/prompt.md` | `valid`         | `openspec/specs/reflect-discovery-benchmarking-prompt/spec.md` | `openspec/specs/reflect-discovery-benchmarking-coverage/spec.md`                           | `reflect/discovery/benchmarking/benchmark.md`, `observe/discovery/*.md`              | Prompt and governing contracts are aligned               |
+| `reflect/discovery/benchmarking/prompt.md` | `review-needed` | `openspec/specs/reflect-discovery-benchmarking/spec.md`        | `none`                                                                                     | `reflect/discovery/benchmarking/benchmark.md`, `observe/discovery/*.md`              | Governing spec is newer than the live prompt             |
 | `reflect/discovery/reporting/prompt.md`    | `invalid`       | `openspec/specs/reflect-discovery-reporting-prompt/spec.md`    | `none`                                                                                     | `observe/discovery/*.md`                                                             | Live sort rule exceeds governing spec                    |
 | `reflect/rating/benchmarking/prompt.md`    | `review-needed` | `none`                                                         | `none`                                                                                     | `observe/rating/*.md`                                                                | Stub prompt has no governing spec yet                    |
 | `reflect/rating/reporting/prompt.md`       | `review-needed` | `openspec/specs/reflect-rating-reporting/spec.md`              | `none`                                                                                     | `observe/rating/*.md`                                                                | Governing spec is newer than the live prompt             |
@@ -46,16 +46,16 @@
 ## reflect/discovery/benchmarking/prompt.md
 
 - **Status:** `valid`
-- **Governing spec:** `openspec/specs/reflect-discovery-benchmarking-prompt/spec.md`
-- **Shared contracts:** `openspec/specs/reflect-discovery-benchmarking-coverage/spec.md`
+- **Governing spec:** `openspec/specs/reflect-discovery-benchmarking/spec.md`
+- **Shared contracts:** `none`
 - **Required inputs:** `reflect/discovery/benchmarking/benchmark.md`, `observe/discovery/*.md`
-- **Freshness dependencies checked:** `openspec/specs/reflect-discovery-benchmarking-prompt/spec.md`, `openspec/specs/reflect-discovery-benchmarking-coverage/spec.md`
+- **Freshness dependencies checked:** `openspec/specs/reflect-discovery-benchmarking/spec.md`
 - **Prompt git reference:** `07592f5 2026-04-23 feat: replace prompt paste mechanic with CLI/Web run modes`
-- **Newer dependency references:** none
+- **Newer dependency references:** `uncommitted baseline change: openspec/specs/reflect-discovery-benchmarking/spec.md`
 - **Findings:**
-  - The prompt is CLI-only, which matches its governing spec.
+  - The prompt is now governed by the unified baseline spec at `openspec/specs/reflect-discovery-benchmarking/spec.md`.
   - The fixture file exists and the prompt scans the current `observe/discovery/` location.
-  - The output path and report structure remain compatible with the coverage report contract.
+  - The governing baseline spec is newer than the live prompt, so the prompt is currently `review-needed`.
 
 ## reflect/discovery/reporting/prompt.md
 
