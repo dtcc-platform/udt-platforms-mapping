@@ -1,13 +1,12 @@
-# Platform Inventory Prompt
+# Discovery Reporting Prompt
 
-Use this prompt to produce `reflect/discovery/reporting/ecosystem.csv` and `reflect/discovery/reporting/ecosystem-map.html` from all discovery response files in `observe/discovery/`.
+Use this prompt to produce `reflect/discovery/reporting/ecosystem.md` from qualifying discovery response files in `observe/discovery/`.
 
-**Requires:** An AI CLI with filesystem access — Claude Code, Codex CLI, or Gemini CLI.
-This prompt cannot be used in a web chat session (the model needs to read local files).
+**Requires:** An AI CLI with filesystem access. This prompt is CLI-only.
 
-1. Run this prompt in your AI CLI session — no input required
-2. The model will scan `observe/discovery/` automatically and produce ecosystem data
-3. Save outputs to `reflect/discovery/reporting/ecosystem.csv` and `reflect/discovery/reporting/ecosystem-map.html`
+1. Run this prompt in your AI CLI session with no extra input
+2. The model will scan `observe/discovery/` automatically
+3. Save the generated output to `reflect/discovery/reporting/ecosystem.md`
 
 ---
 
@@ -15,88 +14,72 @@ This prompt cannot be used in a web chat session (the model needs to read local 
 
 ## Prompt
 
-You are a research assistant maintaining the UDT platform inventory for this project.
+You are a research assistant maintaining the discovery-stage UDT ecosystem summary for this project.
 
-Your task is to scan the `observe/discovery/` directory, extract platform rows from all discovery response files, and produce `ecosystem.csv` and `ecosystem-map.html` in `reflect/discovery/reporting/`.
+Your task is to scan `observe/discovery/`, extract the summary-table rows from qualifying discovery responses only, and write one consolidated Markdown table to `reflect/discovery/reporting/ecosystem.md`.
 
 **Do not ask for file paths or user input.** Read `observe/discovery/` directly using your file tools.
 
----
-
 ### Step 1 — Identify qualifying files
 
-Read all files in `observe/discovery/`. Response files are prefixed with `cli-` or `web-` indicating the interface that produced the response (e.g., `web-claude.md`, `cli-claude-code.md`) — process both. For each file:
+Read all files in `observe/discovery/`.
+
+For each file:
 
 - Check whether it begins with a fenced YAML block (` ```yaml `) containing a `prompt:` field
-- If `prompt: platform-discovery` → it is a **discovery response** — proceed to Step 2A
-- If `prompt: platform-comparison` → it is a **comparison response** — proceed to Step 2B
-- Any other value or no YAML block: skip the file silently
+- If `prompt: platform-discovery` → it is a qualifying discovery response
+- Any other `prompt` value, or no YAML block: skip the file silently
 
----
+If no qualifying discovery responses exist, report that no qualifying files were found and do not write an output file.
 
-### Step 2A — Extract rows from discovery responses
+### Step 2 — Extract the discovery summary rows
 
-For each discovery response:
+For each qualifying discovery response:
 
-1. Read the YAML block and extract:
-   - `model` → value for the `Model` column
-   - `date` → value for the `Date` column
+1. Locate the summary table immediately after the metadata block
+2. Extract every data row from that table, excluding the header row and separator row
+3. Preserve exactly these columns from each row:
+   - `Name`
+   - `Link`
+   - `Layer`
+   - `Reason`
 
-2. Locate the **summary table** — the GFM pipe table that appears immediately after the metadata block.
+Rules:
 
-3. Extract every data row from that table (exclude the header row and separator row).
+- Preserve the `Link` cell as a Markdown link; do not strip the URL out of `[label](url)`
+- Keep blank `Reason` cells blank
+- If a qualifying file does not contain the expected summary table, skip it silently
 
-4. For each row, output a CSV row with:
-   - `Phase` = `discovery`
-   - `Name` = platform name from the table
-   - `Link` = URL from the Link column — strip any Markdown link syntax `[text](url)` and keep the URL only
-   - `Relevance` = Relevance score from the table
-   - `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra` = all 12 score columns from the summary table; use the value as-is (`0` if absent or unscored)
-   - `Model`, `Date` = from YAML metadata
+### Step 3 — Build the consolidated Markdown table
 
----
+Combine all extracted rows into one Markdown table only.
 
-### Step 3 — Extract rows from comparison responses
+Use exactly this column order:
 
-For each comparison response:
+`Name`, `Link`, `Layer`, `Reason`
 
-1. Read the YAML block and extract:
-   - `model` → value for the `Model` column
-   - `date` → value for the `Date` column
+Do not add any headings, prose, notes, per-file sections, source lists, or extra columns. The output file must contain the single table only.
 
-2. Locate the **Part 1 scoring table** — the GFM pipe table that appears under the `Part 1` heading and contains columns including `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`.
+### Step 4 — Order the rows deterministically
 
-3. Extract every data row from that table (exclude the header row and separator row).
+Order all rows by the URL portion of the `Link` column, ascending.
 
-4. For each row, output a CSV row with:
-   - `Phase` = `comparison`
-   - `Name`, `Link`, `Relevance`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra` = from the Part 1 table
-   - `Link` = URL only — strip any Markdown link syntax
-   - `Model`, `Date` = from YAML metadata
+To do this:
 
----
+- Extract the URL target from each Markdown link cell
+- Sort by that URL string
+- If two rows have the same URL, break ties by `Name`, then `Layer`, then `Reason`
 
-### Step 4 — Reorder columns
+### Step 5 — Write the output file
 
-Every output row must use exactly this column order:
+Write the final single-table Markdown document to:
 
-`Name`, `Link`, `Phase`, `Relevance`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`, `Model`, `Date`
+`reflect/discovery/reporting/ecosystem.md`
 
-Score cells must contain bare integers (`0`–`5`) or `?` for unknown. `0` means not assessed at this phase. Do not write `/5`. The `-1` sentinel is no longer used.
+Overwrite the file if it already exists.
 
----
+After writing the file, give a short confirmation stating:
 
-### Step 5 — Output
-
-First, output a brief preamble (plain text, not a CSV row) stating:
-- Which files were processed (filenames only), separated into discovery and comparison
-- How many rows were extracted in total
-- Which files were skipped and why (if any), including files with missing or unrecognised columns
-
-Then output the CSV data rows only — no header row, no surrounding prose.
-
-The rows must be valid CSV that aligns with the header in `reflect/discovery/reporting/ecosystem.csv`:
-
-```
-Name,Link,Phase,Relevance,Arch,Open,City,Mature,Integ,Gov,Viz,DM,Sim,IoT,Std,Infra,Model,Date
-```
+- the saved path
+- how many qualifying discovery files were used
+- how many rows were written

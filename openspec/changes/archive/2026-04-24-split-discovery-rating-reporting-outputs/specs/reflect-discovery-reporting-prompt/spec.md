@@ -1,10 +1,4 @@
-# Spec: discovery-reporting-prompt
-
-## Purpose
-
-Defines the requirements for `reflect/discovery/reporting/prompt.md` — a self-contained AI CLI prompt that scans discovery response files in `observe/discovery/`, extracts summary-table rows, and produces one consolidated Markdown table.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Platform inventory prompt file exists
 
