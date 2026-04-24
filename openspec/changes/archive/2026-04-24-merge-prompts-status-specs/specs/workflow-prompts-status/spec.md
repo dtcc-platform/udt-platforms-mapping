@@ -1,16 +1,12 @@
-# Spec: prompt-validity-audit-prompt
+## ADDED Requirements
 
-## Purpose
-
-Defines the CLI maintenance prompt at `workflow/prompts-status/prompt.md` that audits live repository prompts for validity and freshness against their governing specs and related files.
-## Requirements
-### Requirement: Prompt-validity audit prompt exists as a CLI maintenance prompt
+### Requirement: Workflow prompt-status audit exists as a CLI maintenance workflow
 
 The repository SHALL contain a file at `workflow/prompts-status/prompt.md`. This file SHALL be a CLI-only maintenance prompt that audits live repository prompt files for validity and freshness. It SHALL NOT be a Web-mode prompt.
 
 The prompt SHALL instruct the AI to inspect live prompt files under `act/` and `reflect/` only.
 
-#### Scenario: Researcher runs the prompt-validity audit
+#### Scenario: Researcher runs the prompt-status audit
 - **WHEN** a researcher tells their AI CLI to run `workflow/prompts-status/prompt.md`
 - **THEN** the AI executes the audit directly in CLI mode without asking for run mode selection
 
@@ -18,9 +14,9 @@ The prompt SHALL instruct the AI to inspect live prompt files under `act/` and `
 - **WHEN** prompt-like files exist under `openspec/changes/` or `openspec/changes/archive/`
 - **THEN** the audit ignores them and checks only the live prompts under `act/` and `reflect/`
 
-### Requirement: Audit prompt checks each prompt against governing files
+### Requirement: Workflow prompt-status audit checks each prompt against governing files
 
-For each live prompt file, the audit prompt SHALL identify:
+For each live prompt file, the audit SHALL identify:
 - its governing baseline prompt spec under `openspec/specs/`
 - any shared baseline contract spec the prompt explicitly relies on
 - any files declared under its `## Required Inputs` section, if present
@@ -39,9 +35,9 @@ The audit SHALL verify that:
 - **WHEN** a governing spec requires an input file declaration that the prompt does not include
 - **THEN** the audit marks that prompt as `invalid` and records the mismatch in the report
 
-### Requirement: Audit prompt distinguishes freshness dependencies from runtime inputs
+### Requirement: Workflow prompt-status audit distinguishes freshness dependencies from runtime inputs
 
-The audit prompt SHALL distinguish freshness dependencies from runtime inputs.
+The audit SHALL distinguish freshness dependencies from runtime inputs.
 
 Freshness dependencies SHALL include the governing baseline prompt spec and any shared baseline contract spec the prompt explicitly relies on. Runtime inputs SHALL include files named under `## Required Inputs`.
 
@@ -55,14 +51,14 @@ A newer freshness dependency than the prompt SHALL produce status `review-needed
 - **WHEN** `plan/rating/platforms.md` has a newer git change than `act/rating/prompt.md`
 - **THEN** the audit does not mark the prompt stale on that fact alone
 
-### Requirement: Audit prompt uses three statuses
+### Requirement: Workflow prompt-status audit uses three statuses
 
-The audit prompt SHALL assign exactly one status to each audited prompt:
+The audit SHALL assign exactly one status to each audited prompt:
 - `valid`
 - `review-needed`
 - `invalid`
 
-The prompt SHALL use these meanings:
+The audit SHALL use these meanings:
 - `valid` — no missing files, no direct contract mismatch, and no newer freshness dependency
 - `review-needed` — the prompt remains runnable, but a freshness dependency is newer or a likely drift signal exists
 - `invalid` — the prompt has a missing dependency, broken declaration, or direct contradiction with its governing contract
@@ -75,13 +71,58 @@ The prompt SHALL use these meanings:
 - **WHEN** a prompt's declared behavior directly conflicts with its governing baseline spec
 - **THEN** the audit records status `invalid`
 
-### Requirement: Audit prompt writes a report file
+### Requirement: Workflow prompt-status audit writes a structured report
 
-The audit prompt SHALL write its results to `workflow/prompts-status/report.md`, overwriting any existing file.
+The audit SHALL write its results to `workflow/prompts-status/report.md`, overwriting any existing file.
 
 The prompt SHALL be runnable by a researcher telling the AI CLI either `run workflow/prompts-status/prompt.md` or `run the prompt validity audit`.
 
+The report file at `workflow/prompts-status/report.md` SHALL contain a header block followed by a single flat summary table with one row per audited prompt.
+
+The header block SHALL state:
+- audit date
+- number of prompts checked
+- the directories scanned
+
+The summary table SHALL contain exactly these columns:
+- `Prompt`
+- `Status`
+- `Governing Spec`
+- `Shared Contracts`
+- `Required Inputs`
+- `Reason`
+
+After the summary table, the report SHALL contain one `##` section per audited prompt in path order.
+
+Each prompt section SHALL include:
+- the final status
+- the governing spec path
+- the declared required inputs
+- the freshness dependencies considered
+- the latest git commit reference for the prompt
+- the latest git commit reference for any newer freshness dependency, if applicable
+- a flat bullet list of findings
+
+If a runtime-input file is newer than a prompt but does not create a contract mismatch, the report SHALL NOT classify the prompt as stale on that basis alone.
+
+The report MAY mention the newer runtime-input change in the detailed findings, but the status SHALL remain `valid` unless another freshness or validity problem is found.
+
 #### Scenario: Researcher reruns the audit after a change
-- **WHEN** a researcher reruns the prompt-validity audit
+- **WHEN** a researcher reruns the prompt-status audit
 - **THEN** the previous `workflow/prompts-status/report.md` is replaced with a new report reflecting the current repository state
 
+#### Scenario: Researcher opens the report
+- **WHEN** a researcher opens `workflow/prompts-status/report.md`
+- **THEN** they first see the audit header and then a flat table summarizing every audited prompt
+
+#### Scenario: Prompt is review-needed because spec is newer
+- **WHEN** a prompt's governing spec has a newer git change than the prompt
+- **THEN** the prompt's detail section names both paths and records the freshness finding
+
+#### Scenario: Prompt is invalid because of a missing file
+- **WHEN** a required input file is missing
+- **THEN** the prompt's detail section lists the missing path in its findings bullets
+
+#### Scenario: Per-run platforms file changed
+- **WHEN** `plan/rating/platforms.md` changed after `act/rating/prompt.md` and the prompt contract still matches its governing spec
+- **THEN** the report does not mark `act/rating/prompt.md` as `review-needed` or `invalid` on that basis alone
