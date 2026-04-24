@@ -59,9 +59,7 @@ The prompt template SHALL instruct the model to produce output in exactly three 
 
 ### Requirement: Comparison prompt Part 1 scoring table includes functional category columns
 
-The Part 1 scoring table SHALL include a `Layer` column and the six dimension columns and six functional category columns. It SHALL NOT include a `Relevance` column — Relevance is retired.
-
-The `Layer` column SHALL appear immediately after `Link`. It SHALL carry the Layer value from the corresponding row in `plan/rating/platforms.md` unchanged. The comparison AI SHALL NOT reassess or revise the Layer assignment — Layer is owned by the discovery phase.
+The Part 1 scoring table SHALL include the six dimension columns and six functional category columns. It SHALL NOT include a `Layer` column. It SHALL NOT include a `Relevance` column — Relevance is retired.
 
 Each score column SHALL use the same 1–5 integer scoring format — bare integer, `?` for unknown, no `/5` suffix in table cells.
 
@@ -70,17 +68,28 @@ The prompt SHALL include a legend immediately below the Part 1 table instruction
 #### Scenario: Researcher reads the Part 1 table
 
 - **WHEN** an AI responds to the comparison prompt
-- **THEN** the Part 1 table header contains exactly: `Name`, `Link`, `Layer`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`
+- **THEN** the Part 1 table header contains exactly: `Name`, `Link`, `Arch`, `Open`, `City`, `Mature`, `Integ`, `Gov`, `Viz`, `DM`, `Sim`, `IoT`, `Std`, `Infra`
 
 #### Scenario: Researcher compares functional strengths across platforms
 
 - **WHEN** an AI responds to the comparison prompt
-- **THEN** every platform row contains a numeric 1–5 score (or `?`) in every dimension and category column, and the Layer value from the discovery row
+- **THEN** every platform row contains a numeric 1–5 score (or `?`) in every dimension and category column, with no `Layer` field in the Part 1 table
 
-#### Scenario: Layer value is carried through unchanged
+### Requirement: Comparison prompt uses a core-platform-only comparison scope
 
-- **WHEN** `plan/rating/platforms.md` contains a platform row with `Layer=backbone`
-- **THEN** the Part 1 table contains `backbone` in the Layer column for that platform; the comparison AI does not reassess or revise it
+The rating prompt SHALL treat `plan/rating/platforms.md` as a curated list of canonical `core-platform` entries only.
+
+The prompt SHALL instruct the model not to broaden the comparison to backbones or domain modules, even if those appear elsewhere in discovery outputs.
+
+#### Scenario: Researcher runs rating on the selected set
+
+- **WHEN** the AI reads `plan/rating/platforms.md`
+- **THEN** it treats every listed row as part of a core-platform-only comparison scope
+
+#### Scenario: Broader ecosystem entries exist in discovery outputs
+
+- **WHEN** discovery responses include backbones or domain modules
+- **THEN** the rating prompt ignores them unless the researcher explicitly changes the rating workflow contract
 
 ### Requirement: Comparison prompt includes DTCC as a required reference entry
 

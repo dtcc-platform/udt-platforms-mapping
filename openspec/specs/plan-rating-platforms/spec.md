@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the `plan/rating/platforms.md` file — the three-column (Name, Link, Layer) table holding the per-run platform selection for a rating cycle, which serves as the comparison-scope boundary and carries the DTCC inclusion requirement.
+Defines the `plan/rating/platforms.md` file — the two-column (Name, Link) table holding the per-run `core-platform` selection for a rating cycle, which serves as the comparison-scope boundary and carries the DTCC inclusion requirement.
 
 ## Requirements
 
@@ -20,21 +20,23 @@ The repository SHALL contain a file at `plan/rating/platforms.md` that defines t
 - **WHEN** the rating prompt is run but `plan/rating/platforms.md` is missing
 - **THEN** the AI CLI fails to resolve the Required Inputs and cannot proceed, surfacing a clear error naming the missing file
 
-### Requirement: platforms.md uses a three-column GFM table
+### Requirement: platforms.md uses a two-column GFM table
 
-The file SHALL contain a Markdown pipe table with exactly three columns in this order: **Name**, **Link**, **Layer**. Each data row SHALL represent one platform to include in the current rating cycle. The table SHALL sit below a short header paragraph explaining the file's purpose.
+The file SHALL contain a Markdown pipe table with exactly two columns in this order: **Name**, **Link**. Each data row SHALL represent one canonical `core-platform` entry to include in the current rating cycle. The table SHALL sit below a short header paragraph explaining the file's purpose.
 
-The `Layer` value SHALL be carried from the relevant discovery response summary table unchanged. The rating model SHALL NOT reassess or revise the Layer assignment — Layer is owned by the discovery phase.
+Inclusion in `plan/rating/platforms.md` SHALL imply that the researcher has already selected that row as a `core-platform` from discovery. The rating model SHALL NOT reassess `Layer`, because `Layer` no longer appears in the file or in rating output.
+
+The file header SHALL also state that aliases do not belong in this table, because rating compares exact selected canonical rows rather than fuzzy-matched names across responses.
 
 #### Scenario: Researcher curates the comparison set
 
 - **WHEN** a researcher selects platforms from a discovery response for a rating cycle run
-- **THEN** they copy the relevant `Name`, `Link`, and `Layer` cells into rows in `plan/rating/platforms.md`
+- **THEN** they copy only the canonical `Name` and `Link` cells for `core-platform` rows into `plan/rating/platforms.md`
 
-#### Scenario: Rating output preserves Layer assignment
+#### Scenario: Researcher considers adding a backbone row
 
-- **WHEN** the rating model produces its Part 1 scoring table
-- **THEN** the `Layer` column for each platform matches the value in `plan/rating/platforms.md`, unchanged
+- **WHEN** a researcher is choosing rows for `plan/rating/platforms.md`
+- **THEN** they exclude backbones and domain modules because the rating workflow is restricted to core platforms
 
 ### Requirement: platforms.md is the comparison-scope boundary
 
@@ -52,12 +54,12 @@ The rating prompt SHALL treat the rows in `plan/rating/platforms.md` as the comp
 
 ### Requirement: platforms.md must include the DTCC row
 
-The file SHALL include a row for DTCC (Digital Twin Cities Centre) so the rating prompt's Part 3 landscape observations can orient around DTCC. The DTCC row SHALL use the same three-column shape as every other row.
+The file SHALL include a row for DTCC (Digital Twin Cities Centre) so the rating prompt's Part 3 landscape observations can orient around DTCC. The DTCC row SHALL use the same two-column shape as every other row.
 
 #### Scenario: Researcher assembles a rating selection
 
 - **WHEN** a researcher fills `plan/rating/platforms.md` for a cycle run
-- **THEN** the DTCC row is present alongside the other selected platforms
+- **THEN** the DTCC row is present alongside the other selected core platforms
 
 #### Scenario: DTCC row is missing
 

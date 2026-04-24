@@ -45,7 +45,6 @@ For each qualifying rating response:
 2. Locate the Part 1 scoring table with these columns:
    - `Name`
    - `Link`
-   - `Layer`
    - `Arch`
    - `Open`
    - `City`
@@ -62,7 +61,6 @@ For each qualifying rating response:
 
 For each extracted row:
 
-- Preserve the `Layer` value as given in the rating response
 - Convert the `Link` cell to a raw URL with no Markdown link syntax
 - Keep score cells as bare `1`-`5` values or `?`
 - Append `model` and `date` from the YAML metadata as the final two columns
@@ -73,7 +71,7 @@ If a qualifying file does not contain the expected Part 1 table, skip it silentl
 
 Write `reflect/rating/reporting/ecosystem.csv` with exactly this header row:
 
-`Name,Link,Layer,Arch,Open,City,Mature,Integ,Gov,Viz,DM,Sim,IoT,Std,Infra,Model,Date`
+`Name,Link,Arch,Open,City,Mature,Integ,Gov,Viz,DM,Sim,IoT,Std,Infra,Model,Date`
 
 Rules:
 
@@ -91,7 +89,7 @@ Minimum requirements:
 
 - Show a clear title for the rating ecosystem export
 - Include the CSV schema described above
-- Provide client-side filtering by `Model` and `Layer`
+- Provide client-side filtering by `Model`
 - Provide a readable comparison table of the exported rows
 - Provide at least one visual summary of the score dimensions across the selected rows
 - Use plain HTML, CSS, and JavaScript with no build step

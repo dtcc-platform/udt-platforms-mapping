@@ -38,9 +38,9 @@ You are a research assistant helping to map the Urban Digital Twin (UDT) platfor
 
 Apply the source policy from the required inputs for all final factual claims. Use the rubrics from the required inputs to score every platform on all twelve dimensions. Treat the platforms table from the required inputs as the complete, authoritative comparison scope.
 
-**Platforms to compare:** Use the rows in `plan/rating/platforms.md`. Compare every platform in that file. Do not add comparison candidates beyond those rows unless the user explicitly asks you to expand scope. Treat the DTCC row as the reference platform for Part 3 landscape observations — DTCC MUST be present in `plan/rating/platforms.md`; if it is absent, stop and ask the user to add it before producing any output.
+**Platforms to compare:** Use the rows in `plan/rating/platforms.md`. Compare every platform in that file. Do not add comparison candidates beyond those rows unless the user explicitly asks you to expand scope. In this workflow, `plan/rating/platforms.md` is a curated `core-platform`-only comparison boundary; do not broaden the comparison to backbones or domain modules. Treat the DTCC row as the reference platform for Part 3 landscape observations — DTCC MUST be present in `plan/rating/platforms.md`; if it is absent, stop and ask the user to add it before producing any output.
 
-The `Layer` value from each row in `plan/rating/platforms.md` is the authoritative layer assignment — carry it into Part 1 unchanged. Do not reassess or revise Layer. Your task is to score all twelve dimensions with primary source research and produce authoritative scores and analysis.
+Your task is to score all twelve dimensions with primary-source research and produce authoritative scores and analysis for the selected core platforms.
 
 ---
 
@@ -122,10 +122,10 @@ prompt: platform-comparison
 
 **Part 1 — Scoring Table**
 
-One row per platform in `plan/rating/platforms.md`, six dimension score columns, and six functional category score columns. The `Layer` column carries the value from the corresponding row in `plan/rating/platforms.md` unchanged — do not reassess or revise it.
+One row per platform in `plan/rating/platforms.md`, six dimension score columns, and six functional category score columns.
 
-| Name | Link | Layer | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
-| ---- | ---- | ----- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
+| Name | Link | Arch | Open | City | Mature | Integ | Gov | Viz | DM | Sim | IoT | Std | Infra |
+| ---- | ---- | ---- | ---- | ---- | ------ | ----- | --- | --- | -- | --- | --- | --- | ----- |
 
 Use bare numbers (1–5) in score cells. Use `?` for unknown. Do not write `/5`.
 
@@ -133,7 +133,6 @@ Use bare numbers (1–5) in score cells. Use `?` for unknown. Do not write `/5`.
 
 | Abbreviation | Full name              | Description                                                                                                      |
 | ------------ | ---------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Layer        | Ecosystem Layer        | Architectural role carried from discovery: `core-platform`, `backbone`, or `domain-module` — not reassessed here |
 | Arch         | Technical Architecture | Core tech stack, data models, deployment model, scalability                                                      |
 | Open         | Openness & Licensing   | Source availability, license type, contribution model                                                            |
 | City         | City-Scale Capability  | Urban domains covered, geographic extent, multi-domain analytics                                                 |
