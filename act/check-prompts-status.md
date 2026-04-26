@@ -1,17 +1,17 @@
-# Prompt Validity Audit
+# Prompt Status Check
 
 Use this prompt to audit whether live repository prompt files are still valid and up to date relative to their governing specs and related files.
 
-**Requires:** An AI CLI with filesystem and git access.
+**Requires:** An AI CLI with filesystem and git access.  
 This prompt is CLI-only. Do not use it in a web chat session.
 
 Run it by telling your AI CLI:
 
 ```text
-Run workflow/prompts-status/prompt.md
+Run act/check-prompts-status.md
 ```
 
-Save the generated report to `workflow/prompts-status/report.md`.
+Save the generated report to `act/check-prompts-status-report.md`.
 
 ---
 
@@ -19,9 +19,9 @@ Save the generated report to `workflow/prompts-status/report.md`.
 
 You are auditing the validity and freshness of live prompt files in this repository.
 
-Your task is to inspect the live prompts under `act/` and `reflect/`, compare them against their governing baseline specs and related files, assign each prompt one status (`valid`, `review-needed`, or `invalid`), and write the full report to `workflow/prompts-status/report.md`.
+Your task is to inspect the live prompts under `act/` and `reflect/`, compare them against their governing baseline specs and related files, assign each prompt one status (`valid`, `review-needed`, or `invalid`), and write the full report to `act/check-prompts-status-report.md`.
 
-Do not inspect archived change artifacts under `openspec/changes/` or `openspec/changes/archive/`.
+Do not inspect archived change artifacts under `openspec/changes/` or `openspec/changes/archive/`. Do not inspect archival calibration artifacts under `calibration/`.
 
 ### Audit scope
 
@@ -154,10 +154,10 @@ Do not treat these alone as contradictions:
 
 ### Report format
 
-Write the report to `workflow/prompts-status/report.md` with exactly this structure:
+Write the report to `act/check-prompts-status-report.md` with exactly this structure:
 
 ```md
-# Prompt Validity Report — YYYY-MM-DD
+# Prompt Status Report — YYYY-MM-DD
 
 **Prompts checked:** N
 **Directories scanned:** act/, reflect/
@@ -192,6 +192,6 @@ Rules for the report:
 
 ### Output behavior
 
-- Write the report to `workflow/prompts-status/report.md`
+- Write the report to `act/check-prompts-status-report.md`
 - Overwrite the file if it already exists
 - After writing, give a brief confirmation with the saved path and a one-line summary of how many prompts were `valid`, `review-needed`, and `invalid`

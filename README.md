@@ -1,76 +1,152 @@
 # udt-platforms-map
 
-A structured research repository for mapping the Urban Digital Twin (UDT) ecosystem around DTCC using an Action Research workflow.
+A spec-first research repository for mapping the Urban Digital Twin ecosystem around DTCC.
+
+This repository uses OpenSpec to govern prompts and workflow changes, and uses git to track how researchers and agents iterate on the work over time.
 
 ## Why Not One Prompt?
 
-The core design choice in this repository is to split what could be one large prompt into separate artifacts.
+The main design choice in this repository is to split what could be one large prompt into separate artifacts.
 
 The most important split is between `discovery` and `rating`:
 
 - `discovery` asks what exists and how it should be classified
 - `rating` asks how a selected set should be evaluated against explicit criteria
 
-This is not only a workflow choice. It is a semantic and epistemological one. Keeping those phases separate preserves the meaning of each result and avoids collapsing search, classification, selection, and evaluation into one prompt.
+This is not only a workflow choice. It is a semantic one. Keeping these phases separate avoids collapsing search, classification, selection, and evaluation into one opaque prompt.
 
-Splitting the prompt also improves the workflow:
+Splitting the workflow also improves the research process:
 
-- better stability, because scope, criteria, source policy, prompt contract, and run inputs can change independently
-- better consistency, because the model gets clearer boundaries between policy, inputs, instructions, and output format
-- better traceability, because later edits are easier to interpret
-- better human judgment, because researchers review explicit boundaries instead of burying them inside prompt text
-- better collaboration, because contributors can refine different parts of the process without rewriting one shared prompt
+- scope, criteria, source policy, prompt contracts, and run inputs can evolve independently
+- later changes are easier to interpret in git
+- different researchers can refine different layers of the process
+- different agents can generate different prompt wording from the same contract without changing the contract itself
+- recurring deviations across agents can be fixed at the spec layer instead of patched ad hoc in prompt text
 
-The repository is intended to function as a shared knowledge space for a joint research endeavour. Different contributors can propose new platforms, criteria changes, fixtures, and benchmark refinements through issues and pull requests. It stores not only outputs, but also the metadata of the research process: intent, scope, criteria, prompt contracts, observations, and reflections.
+The point is not to optimize for the cheapest output. The point is to preserve intent, boundaries, and reasoning so later runs are easier to trust.
 
-The tradeoff is higher process overhead. Splitting prompts does not automatically improve raw model quality, especially in Web mode where the inputs are flattened into one resolved prompt anyway. The main gain is workflow quality and research trust.
+## Core Idea
 
-## At A Glance
+Each OpenSpec baseline spec is a contract for a governed artifact or workflow.
 
-The repository follows two Action Research cycles:
+For prompts, that contract defines what an agent is supposed to do when the prompt is run. The prompt is the operational rendering of the contract, not the source of truth.
 
-| Cycle       | Question                                        |
-| ----------- | ----------------------------------------------- |
+That is why prompt changes should go through OpenSpec:
+
+- the behavior change gets documented before the prompt changes
+- the reason for the change is preserved in proposal, design, and spec history
+- future prompt regeneration starts from a clearer contract
+
+When different agents execute the same prompt differently, the stronger fix is usually to tighten the governing spec rather than patch the prompt directly. That improves reproducibility because the workflow becomes more explicit at the contract level.
+
+Different prompt text from the same spec is expected. The spec defines the contract, not exact wording. Different agents may vary in:
+
+- phrasing
+- ordering
+- emphasis
+- examples
+- instruction density
+
+What matters is contract fidelity:
+
+- do they preserve the same requirements?
+- do they enforce the same boundaries?
+- do they produce the same intended behavior?
+
+If repeated prompt divergence leads to materially different governed behavior, that is evidence that the spec needs to be tightened.
+
+The same proposal can also lead different agents to write different `spec.md` wording. That is acceptable if the resulting contract is equivalent. If the resulting contract is not equivalent, the proposal or design layer was not specific enough.
+
+## Repository Model
+
+The repository is organized around two research cycles:
+
+| Cycle | Question |
+| ---- | ---- |
 | `discovery` | Which UDT platforms exist across the ecosystem? |
-| `rating`    | How do platforms compare on key dimensions?     |
+| `rating` | How should selected core platforms be compared? |
 
-Each cycle uses the same four phases:
+And four Action Research phases:
 
 ```text
 PLAN → ACT → OBSERVE → REFLECT
 ```
 
-| Phase      | Purpose                                                      |
-| ---------- | ------------------------------------------------------------ |
-| `plan/`    | Define scope, rubrics, source policy, and current run inputs |
-| `act/`     | Run the prompt against a model or agent                      |
-| `observe/` | Save the raw response exactly as produced                    |
-| `reflect/` | Benchmark, synthesize, and produce higher-level outputs      |
+| Phase | Purpose |
+| ---- | ---- |
+| `plan/` | current cycle inputs such as scope, rubrics, source policy, and selected platforms |
+| `act/` | accepted canonical prompts and maintenance prompts |
+| `observe/` | accepted reference outputs and saved raw outputs from canonical executions |
+| `reflect/` | benchmarking, reporting, deviations, and synthesis |
+
+This repository has two main parts:
+
+- prompt calibration: the archival layer under `calibration/`, used to compare prompt realizations and agent behavior against the same accepted contract
+- research execution: the canonical layer under `plan/`, `act/`, `observe/`, and `reflect/`, used to run the research itself and get accepted results
+
+In that sense:
+
+- OpenSpec is the common abstraction layer shared by humans and agents for calibrating prompts and workflow behavior
+- `calibration/` is the archival area where prompt and result deviations are made explicit
+- the canonical repository structure is the accepted interface for doing the research and getting results
 
 ## Quick Start
 
-| I want to...                    | Go to...                                   |
-| ------------------------------- | ------------------------------------------ |
-| run discovery                   | `act/discovery/prompt.md`                  |
-| run rating                      | `act/rating/prompt.md`                     |
-| choose platforms for comparison | `plan/rating/platforms.md`                 |
-| inspect discovery criteria      | `plan/discovery/scope.md`                  |
-| inspect rating rubrics          | `plan/rating/rubrics.md`                   |
-| inspect source rules            | `plan/rating/source-policy.md`             |
-| benchmark discovery recall      | `reflect/discovery/benchmarking/prompt.md` |
-| change a prompt contract        | `openspec/specs/` and `openspec/changes/`  |
+| I want to... | Go to... |
+| ---- | ---- |
+| inspect discovery scope | `plan/discovery/scope.md` |
+| inspect rating rubrics | `plan/rating/rubrics.md` |
+| inspect rating source policy | `plan/rating/source-policy.md` |
+| inspect current rating platform set | `plan/rating/platforms.md` |
+| run discovery | `act/discovery/prompt.md` |
+| run rating | `act/rating/prompt.md` |
+| check prompt/spec alignment | `act/check-prompts-status.md` |
+| benchmark discovery coverage | `reflect/discovery/benchmarking/prompt.md` |
+| consolidate discovery reporting | `reflect/discovery/reporting/prompt.md` |
+| generate rating reporting artifacts | `reflect/rating/reporting/prompt.md` |
+
+## Canonical Layout
+
+The canonical research interface uses:
+
+```text
+plan/
+  discovery/
+  rating/
+act/
+  discovery/
+  rating/
+  check-prompts-status.md
+observe/
+  discovery/
+  rating/
+reflect/
+  discovery/
+  rating/
+calibration/
+```
+
+Within that structure:
+
+- `plan/discovery/scope.md` defines discovery classification criteria
+- `plan/rating/rubrics.md`, `plan/rating/source-policy.md`, and `plan/rating/platforms.md` define the rating comparison inputs
+- `act/discovery/prompt.md` and `act/rating/prompt.md` are the canonical accepted prompts
+- `act/check-prompts-status.md` is the maintenance prompt for checking live prompt/spec alignment
+- `observe/discovery/` and `observe/rating/` store accepted and saved outputs for canonical executions
+- `reflect/` contains benchmarking, reporting, deviations, and other reflection artifacts
+- `calibration/` stores archival prompt/result comparisons across agents
 
 ## How To Work In This Repo
 
-### 1. Read the planning files first
+### 1. Start from the planning files
 
-- Discovery runs use `plan/discovery/scope.md`.
-- Rating runs use `plan/rating/rubrics.md`, `plan/rating/platforms.md`, and `plan/rating/source-policy.md`.
-- `plan/rating/platforms.md` is per-run data for the current comparison set.
+- Discovery uses `plan/discovery/scope.md`.
+- Rating uses `plan/rating/rubrics.md`, `plan/rating/source-policy.md`, and `plan/rating/platforms.md`.
+- `plan/rating/platforms.md` is per-run selection data. The others are slower-moving reference inputs.
 
-### 2. Run act-phase prompts through an AI CLI
+### 2. Run the canonical prompts
 
-Run the prompt file directly:
+Use:
 
 ```text
 Run act/discovery/prompt.md
@@ -79,89 +155,213 @@ Run act/rating/prompt.md
 
 The CLI asks:
 
-> Run as CLI or Web?
+```text
+Run as CLI or Web?
+```
 
-- `CLI`: the AI reads the declared input files from the repository and writes the result to `observe/<cycle>/cli-<model-short>.md`.
-- `Web`: the AI emits a fully resolved prompt with required inputs inlined; paste that into a web chat and save the result to `observe/<cycle>/web-<model-short>.md`.
+- `CLI` reads the declared repository inputs directly and writes the response to `observe/<cycle>/cli-<model-short>.md`
+- `Web` emits a resolved prompt with required inputs inlined; paste it into a web interface and save the result to `observe/<cycle>/web-<model-short>.md`
 
-There are no placeholder tokens, cut-lines, or manual paste steps in the current workflow.
+### 3. Use calibration to compare prompt realizations
 
-### 3. Save raw outputs under `observe/`
+When different agents are asked to realize the same accepted contract, store their prompt/result pairs under:
 
-- Discovery responses go in `observe/discovery/`.
-- Rating responses go in `observe/rating/`.
-- File names follow `cli-<model-short>.md` or `web-<model-short>.md`.
-- The `cli-` or `web-` prefix is the authority on which interface produced the file.
+```text
+calibration/<research>/<cycle>/<agent>/
+```
 
-### 4. Reflect on results
+Each calibration leaf folder currently contains:
 
-Discovery benchmarking is currently implemented:
+- `prompt.md`
+- `result.md`
+
+These are archival comparison artifacts, not canonical research artifacts.
+
+### 4. Reflect on saved outputs
+
+Examples:
 
 ```text
 Run reflect/discovery/benchmarking/prompt.md
+Run reflect/discovery/reporting/prompt.md
+Run reflect/rating/reporting/prompt.md
 ```
 
-That prompt reads all files in `observe/discovery/`, checks them against `reflect/discovery/benchmarking/benchmark.md`, and writes `reflect/discovery/benchmarking/coverage.md`.
+These prompts read previously saved outputs and produce higher-level artifacts in the matching `reflect/` folder.
 
-## Repository Structure
+## Recommended Parallel-Agent Pattern
 
-The repository is organized by Action Research phase: `plan/`, `act/`, `observe/`, and `reflect/`.
+If you want to compare how different agents interpret the same accepted spec, the cleanest branching point is after the spec is accepted.
 
-Each phase contains `discovery/` and `rating/` artifacts. The folder layout is part of the method: planning files live in `plan/`, prompts live in `act/`, raw model outputs live in `observe/`, and evaluation or synthesis artifacts live in `reflect/`.
+That measures prompt-level interpretation of the same contract, rather than mixing proposal interpretation, spec formation, and prompt generation into one experiment.
+
+Branching earlier answers a different question:
+
+- branch after proposal: measures variation in interpreting the intended change itself
+- branch after spec: measures variation in operationalizing the same accepted contract
+
+For this repository, the second is usually the more useful experiment because the spec is the explicit form of intent.
+
+One workable pattern is:
+
+```mermaid
+flowchart TD
+    C0["Prompt Calibration"]
+    R0["Research Execution"]
+
+    M0["main
+
+files
+├─ openspec/specs/act-discovery-prompt/spec.md
+├─ plan/discovery/scope.md
+├─ act/discovery/prompt.md
+└─ observe/discovery/reference.md"]
+
+    W1["worktree a"]
+    W2["worktree b"]
+    W3["worktree c"]
+
+    A1["agent-a branch
+
+files
+└─ calibration/discovery/c1/agent-a/prompt.md"]
+
+    B1["agent-b branch
+
+files
+└─ calibration/discovery/c1/agent-b/prompt.md"]
+
+    C1["agent-c branch
+
+files
+└─ calibration/discovery/c1/agent-c/prompt.md"]
+
+    A2["agent-a run
+
+files
+└─ calibration/discovery/c1/agent-a/result.md"]
+
+    B2["agent-b run
+
+files
+└─ calibration/discovery/c1/agent-b/result.md"]
+
+    C2["agent-c run
+
+files
+└─ calibration/discovery/c1/agent-c/result.md"]
+
+    M1["main after agent merges
+
+files
+├─ calibration/discovery/c1/agent-a/prompt.md
+├─ calibration/discovery/c1/agent-a/result.md
+├─ calibration/discovery/c1/agent-b/prompt.md
+├─ calibration/discovery/c1/agent-b/result.md
+├─ calibration/discovery/c1/agent-c/prompt.md
+└─ calibration/discovery/c1/agent-c/result.md"]
+
+    M2["main after reflection
+
+files
+├─ reflect/discovery/deviations.md
+├─ openspec/specs/act-discovery-prompt/spec.md
+├─ plan/discovery/scope.md
+├─ act/discovery/prompt.md
+└─ observe/discovery/reference.md"]
+
+    C0 --> M0
+    M0 -->|git worktree add ../wt-agent-a -b agent-a main| W1
+    M0 -->|git worktree add ../wt-agent-b -b agent-b main| W2
+    M0 -->|git worktree add ../wt-agent-c -b agent-c main| W3
+
+    W1 -->|git add calibration/discovery/c1/agent-a/prompt.md
+git commit -m 'agent-a: generate prompt from spec'| A1
+    W2 -->|git add calibration/discovery/c1/agent-b/prompt.md
+git commit -m 'agent-b: generate prompt from spec'| B1
+    W3 -->|git add calibration/discovery/c1/agent-c/prompt.md
+git commit -m 'agent-c: generate prompt from spec'| C1
+
+    A1 -->|git add calibration/discovery/c1/agent-a/result.md
+git commit -m 'agent-a: add result'| A2
+    B1 -->|git add calibration/discovery/c1/agent-b/result.md
+git commit -m 'agent-b: add result'| B2
+    C1 -->|git add calibration/discovery/c1/agent-c/result.md
+git commit -m 'agent-c: add result'| C2
+
+    A2 -->|cd ../wt-main
+git merge --no-ff agent-a| M1
+    B2 -->|git merge --no-ff agent-b| M1
+    C2 -->|git merge --no-ff agent-c| M1
+
+    R0 --> M2
+    M1 -->|git add reflect/discovery/deviations.md openspec/specs/act-discovery-prompt/spec.md plan/discovery/scope.md act/discovery/prompt.md observe/discovery/reference.md
+git commit -m 'reflect: analyze deviations and update next cycle'| M2
+
+    classDef main fill:#e8f1ff,stroke:#3b82f6,stroke-width:1px;
+    classDef agent fill:#ecfdf5,stroke:#10b981,stroke-width:1px;
+    classDef section fill:#fef3c7,stroke:#d97706,stroke-width:1px;
+
+    class M0,M1,M2 main;
+    class W1,W2,W3,A1,B1,C1,A2,B2,C2 agent;
+    class C0,R0 section;
+```
+
+This pattern is useful because:
+
+- all agents start from the same accepted spec baseline
+- prompt differences become visible as differences in interpretation of the same contract
+- repeated deviations can be fed back into the spec instead of patched ad hoc in prompt text
+- `calibration/<research>/<cycle>/<agent>/...` keeps research meaning, cycle meaning, and agent ownership separate in the path
 
 ## Traceability Model
 
-Different kinds of knowledge are intentionally stored in different places.
+Different layers of knowledge are stored in different places:
 
-| What is tracked                             | Primary location                          |
-| ------------------------------------------- | ----------------------------------------- |
-| research scope, criteria, and run intent    | `plan/`                                   |
-| prompt behavior and prompt contract changes | `openspec/specs/` and `openspec/changes/` |
-| raw model output                            | `observe/`                                |
-| evaluation and synthesis                    | `reflect/`                                |
-| iteration history across all of the above   | git                                       |
+| What is tracked | Primary location |
+| ---- | ---- |
+| accepted scope, rubrics, source policy, and selected platform set | `plan/` |
+| canonical prompt contracts and governed workflow behavior | `openspec/specs/` and `openspec/changes/` |
+| canonical accepted prompts | `act/` |
+| saved outputs and reference observations | `observe/` |
+| calibration runs across prompts and agents | `calibration/` |
+| deviations, benchmarking, reporting, and synthesis | `reflect/` |
+| iteration history across all of the above | git |
 
-`plan/rating/platforms.md` is especially important because it makes the selected comparison set git-diffable across runs.
-
-## Response Files
-
-- Response files live directly in `observe/<cycle>/`.
-- File names follow `<interface>-<model-short>.md`.
-- The filename prefix is the authority on interface: `cli-` or `web-`.
+Git history is part of the method, not just storage. Branches and commits make it possible to inspect how a cycle evolved and why the next cycle changed.
 
 ## OpenSpec And Prompt Changes
 
-Each OpenSpec baseline spec is a contract for a governed repository artifact or workflow.
+All governed prompts in this repository should be managed through OpenSpec rather than edited ad hoc.
 
-For prompts, that contract defines what the agent is supposed to do when the prompt is run. The agent performs the prompt against that contract; it does not invent the workflow from scratch each time.
-
-That is why all `prompt.md` files in this repository are generated and maintained through OpenSpec. They are not hand-edited directly when their contract changes. If a prompt changes, the change should first be recorded as a contract change in OpenSpec so the reasoning and behavior change are documented properly.
-
-When different models or agents execute the same prompt differently, the better fix is usually to add or tighten requirements in the governing OpenSpec spec rather than editing the prompt directly. A spec change makes the missing constraint explicit, records why the change is needed, and improves the contract used to regenerate future prompts. That usually produces more reproducible results across agents, because the workflow becomes better specified at the contract level instead of relying on increasingly ad hoc prompt wording.
-
-To evolve a prompt or governed workflow:
+To evolve a prompt or workflow contract:
 
 ```bash
 openspec new change "<change-name>"
 ```
 
-OpenSpec artifacts follow these locations:
+OpenSpec artifacts use these locations:
 
-| Artifact                 | Location                                 | Pattern                                       |
-| ------------------------ | ---------------------------------------- | --------------------------------------------- |
-| baseline capability spec | `openspec/specs/<name>/spec.md`          | `act-discovery-prompt`, `plan-rating-rubrics` |
-| active change            | `openspec/changes/<name>/`               | kebab-case verb phrase                        |
-| archived change          | `openspec/changes/archive/<dated-name>/` | `YYYY-MM-DD-<name>`                           |
+| Artifact | Location |
+| ---- | ---- |
+| baseline spec | `openspec/specs/<name>/spec.md` |
+| active change | `openspec/changes/<name>/` |
+| archived change | `openspec/changes/archive/<date>-<name>/` |
+
+The general rule is:
+
+- change the contract first
+- regenerate or realign the prompt from that contract
+- use reflection or prompt-status artifacts to detect drift
 
 ## Git Conventions
 
-Each cycle run is an iteration. Use git to make that iteration legible.
+Useful conventions:
 
-| Convention         | Pattern                       | Example                                   |
-| ------------------ | ----------------------------- | ----------------------------------------- |
-| phase-cycle commit | `<phase>(<cycle>): <subject>` | `observe(discovery): add gpt-4o response` |
-| generic commit     | `<type>(<scope>): <subject>`  | `refactor(specs): flatten coverage table` |
-| feature branch     | `<phase>/<cycle>-round-<N>`   | `observe/discovery-round-2`               |
-| tag                | `<cycle>-v<N>`                | `discovery-v1`                            |
+| Kind | Pattern | Example |
+| ---- | ---- | ---- |
+| phase-cycle commit | `<phase>(<cycle>): <subject>` | `observe(discovery): add claude response` |
+| spec/workflow commit | `<type>(<scope>): <subject>` | `refactor(specs): unify discovery benchmarking` |
+| agent branch | `<agent>` or `<agent>-<research>` | `agent-a`, `agent-b-discovery` |
 
-The combination of `plan/`, `observe/`, `reflect/`, OpenSpec artifacts, and git history is the repository's audit trail.
+The combination of OpenSpec history, saved artifacts, and git history is the audit trail of the repository.
