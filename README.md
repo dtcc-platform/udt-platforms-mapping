@@ -36,6 +36,7 @@ That is why prompt changes should go through OpenSpec:
 - the behavior change gets documented before the prompt changes
 - the reason for the change is preserved in proposal, design, and spec history
 - future prompt regeneration starts from a clearer contract
+- shared specs can be refactored once and then reused consistently across every dependent prompt contract
 
 When different agents execute the same prompt differently, the stronger fix is usually to tighten the governing spec rather than patch the prompt directly. That improves reproducibility because the workflow becomes more explicit at the contract level.
 
@@ -61,10 +62,10 @@ The same proposal can also lead different agents to write different `spec.md` wo
 
 The repository is organized around two research cycles:
 
-| Cycle | Question |
-| ---- | ---- |
+| Cycle       | Question                                        |
+| ----------- | ----------------------------------------------- |
 | `discovery` | Which UDT platforms exist across the ecosystem? |
-| `rating` | How should selected core platforms be compared? |
+| `rating`    | How should selected core platforms be compared? |
 
 And four Action Research phases:
 
@@ -72,12 +73,12 @@ And four Action Research phases:
 PLAN → ACT → OBSERVE → REFLECT
 ```
 
-| Phase | Purpose |
-| ---- | ---- |
-| `plan/` | current cycle inputs such as scope, rubrics, source policy, and selected platforms |
-| `act/` | accepted canonical prompts and maintenance prompts |
-| `observe/` | accepted reference outputs and saved raw outputs from canonical executions |
-| `reflect/` | benchmarking, reporting, deviations, and synthesis |
+| Phase      | Purpose                                                                            |
+| ---------- | ---------------------------------------------------------------------------------- |
+| `plan/`    | current cycle inputs such as scope, rubrics, source policy, and selected platforms |
+| `act/`     | accepted canonical prompts and maintenance prompts                                 |
+| `observe/` | accepted reference outputs and saved raw outputs from canonical executions         |
+| `reflect/` | benchmarking, reporting, deviations, and synthesis                                 |
 
 This repository has two main parts:
 
@@ -92,18 +93,18 @@ In that sense:
 
 ## Quick Start
 
-| I want to... | Go to... |
-| ---- | ---- |
-| inspect discovery scope | `plan/discovery/scope.md` |
-| inspect rating rubrics | `plan/rating/rubrics.md` |
-| inspect rating source policy | `plan/rating/source-policy.md` |
-| inspect current rating platform set | `plan/rating/platforms.md` |
-| run discovery | `act/discovery/prompt.md` |
-| run rating | `act/rating/prompt.md` |
-| check prompt/spec alignment | `act/check-prompts-status.md` |
-| benchmark discovery coverage | `reflect/discovery/benchmarking/prompt.md` |
-| consolidate discovery reporting | `reflect/discovery/reporting/prompt.md` |
-| generate rating reporting artifacts | `reflect/rating/reporting/prompt.md` |
+| I want to...                        | Go to...                                   |
+| ----------------------------------- | ------------------------------------------ |
+| inspect discovery scope             | `plan/discovery/scope.md`                  |
+| inspect rating rubrics              | `plan/rating/rubrics.md`                   |
+| inspect rating source policy        | `plan/rating/source-policy.md`             |
+| inspect current rating platform set | `plan/rating/platforms.md`                 |
+| run discovery                       | `act/discovery/prompt.md`                  |
+| run rating                          | `act/rating/prompt.md`                     |
+| check prompt/spec alignment         | `act/check-prompts-status.md`              |
+| benchmark discovery coverage        | `reflect/discovery/benchmarking/prompt.md` |
+| consolidate discovery reporting     | `reflect/discovery/reporting/prompt.md`    |
+| generate rating reporting artifacts | `reflect/rating/reporting/prompt.md`       |
 
 ## Canonical Layout
 
@@ -209,94 +210,50 @@ flowchart TD
     C0["Prompt Calibration"]
     R0["Research Execution"]
 
-    M0["main
-
-files
-├─ openspec/specs/act-discovery-prompt/spec.md
-├─ plan/discovery/scope.md
-├─ act/discovery/prompt.md
-└─ observe/discovery/reference.md"]
+    M0["main baseline
+canonical spec, plan, prompt, reference result"]
 
     W1["worktree a"]
     W2["worktree b"]
     W3["worktree c"]
 
-    A1["agent-a branch
+    A1["agent-a prompt"]
 
-files
-└─ calibration/discovery/c1/agent-a/prompt.md"]
+    B1["agent-b prompt"]
 
-    B1["agent-b branch
+    C1["agent-c prompt"]
 
-files
-└─ calibration/discovery/c1/agent-b/prompt.md"]
+    A2["agent-a result"]
 
-    C1["agent-c branch
+    B2["agent-b result"]
 
-files
-└─ calibration/discovery/c1/agent-c/prompt.md"]
+    C2["agent-c result"]
 
-    A2["agent-a run
-
-files
-└─ calibration/discovery/c1/agent-a/result.md"]
-
-    B2["agent-b run
-
-files
-└─ calibration/discovery/c1/agent-b/result.md"]
-
-    C2["agent-c run
-
-files
-└─ calibration/discovery/c1/agent-c/result.md"]
-
-    M1["main after agent merges
-
-files
-├─ calibration/discovery/c1/agent-a/prompt.md
-├─ calibration/discovery/c1/agent-a/result.md
-├─ calibration/discovery/c1/agent-b/prompt.md
-├─ calibration/discovery/c1/agent-b/result.md
-├─ calibration/discovery/c1/agent-c/prompt.md
-└─ calibration/discovery/c1/agent-c/result.md"]
+    M1["main with calibration artifacts"]
 
     M2["main after reflection
-
-files
-├─ reflect/discovery/deviations.md
-├─ openspec/specs/act-discovery-prompt/spec.md
-├─ plan/discovery/scope.md
-├─ act/discovery/prompt.md
-└─ observe/discovery/reference.md"]
+deviations recorded
+canonical contract updated"]
 
     C0 --> M0
-    M0 -->|git worktree add ../wt-agent-a -b agent-a main| W1
-    M0 -->|git worktree add ../wt-agent-b -b agent-b main| W2
-    M0 -->|git worktree add ../wt-agent-c -b agent-c main| W3
+    M0 -->|create worktrees| W1
+    M0 -->|create worktrees| W2
+    M0 -->|create worktrees| W3
 
-    W1 -->|git add calibration/discovery/c1/agent-a/prompt.md
-git commit -m 'agent-a: generate prompt from spec'| A1
-    W2 -->|git add calibration/discovery/c1/agent-b/prompt.md
-git commit -m 'agent-b: generate prompt from spec'| B1
-    W3 -->|git add calibration/discovery/c1/agent-c/prompt.md
-git commit -m 'agent-c: generate prompt from spec'| C1
+    W1 -->|generate prompt| A1
+    W2 -->|generate prompt| B1
+    W3 -->|generate prompt| C1
 
-    A1 -->|git add calibration/discovery/c1/agent-a/result.md
-git commit -m 'agent-a: add result'| A2
-    B1 -->|git add calibration/discovery/c1/agent-b/result.md
-git commit -m 'agent-b: add result'| B2
-    C1 -->|git add calibration/discovery/c1/agent-c/result.md
-git commit -m 'agent-c: add result'| C2
+    A1 -->|run prompt| A2
+    B1 -->|run prompt| B2
+    C1 -->|run prompt| C2
 
-    A2 -->|cd ../wt-main
-git merge --no-ff agent-a| M1
-    B2 -->|git merge --no-ff agent-b| M1
-    C2 -->|git merge --no-ff agent-c| M1
+    A2 -->|merge branch| M1
+    B2 -->|merge branch| M1
+    C2 -->|merge branch| M1
 
     R0 --> M2
-    M1 -->|git add reflect/discovery/deviations.md openspec/specs/act-discovery-prompt/spec.md plan/discovery/scope.md act/discovery/prompt.md observe/discovery/reference.md
-git commit -m 'reflect: analyze deviations and update next cycle'| M2
+    M1 -->|reflect and update| M2
 
     classDef main fill:#e8f1ff,stroke:#3b82f6,stroke-width:1px;
     classDef agent fill:#ecfdf5,stroke:#10b981,stroke-width:1px;
@@ -318,15 +275,15 @@ This pattern is useful because:
 
 Different layers of knowledge are stored in different places:
 
-| What is tracked | Primary location |
-| ---- | ---- |
-| accepted scope, rubrics, source policy, and selected platform set | `plan/` |
-| canonical prompt contracts and governed workflow behavior | `openspec/specs/` and `openspec/changes/` |
-| canonical accepted prompts | `act/` |
-| saved outputs and reference observations | `observe/` |
-| calibration runs across prompts and agents | `calibration/` |
-| deviations, benchmarking, reporting, and synthesis | `reflect/` |
-| iteration history across all of the above | git |
+| What is tracked                                                   | Primary location                          |
+| ----------------------------------------------------------------- | ----------------------------------------- |
+| accepted scope, rubrics, source policy, and selected platform set | `plan/`                                   |
+| canonical prompt contracts and governed workflow behavior         | `openspec/specs/` and `openspec/changes/` |
+| canonical accepted prompts                                        | `act/`                                    |
+| saved outputs and reference observations                          | `observe/`                                |
+| calibration runs across prompts and agents                        | `calibration/`                            |
+| deviations, benchmarking, reporting, and synthesis                | `reflect/`                                |
+| iteration history across all of the above                         | git                                       |
 
 Git history is part of the method, not just storage. Branches and commits make it possible to inspect how a cycle evolved and why the next cycle changed.
 
@@ -342,10 +299,10 @@ openspec new change "<change-name>"
 
 OpenSpec artifacts use these locations:
 
-| Artifact | Location |
-| ---- | ---- |
-| baseline spec | `openspec/specs/<name>/spec.md` |
-| active change | `openspec/changes/<name>/` |
+| Artifact        | Location                                  |
+| --------------- | ----------------------------------------- |
+| baseline spec   | `openspec/specs/<name>/spec.md`           |
+| active change   | `openspec/changes/<name>/`                |
 | archived change | `openspec/changes/archive/<date>-<name>/` |
 
 The general rule is:
@@ -358,10 +315,10 @@ The general rule is:
 
 Useful conventions:
 
-| Kind | Pattern | Example |
-| ---- | ---- | ---- |
-| phase-cycle commit | `<phase>(<cycle>): <subject>` | `observe(discovery): add claude response` |
-| spec/workflow commit | `<type>(<scope>): <subject>` | `refactor(specs): unify discovery benchmarking` |
-| agent branch | `<agent>` or `<agent>-<research>` | `agent-a`, `agent-b-discovery` |
+| Kind                 | Pattern                           | Example                                         |
+| -------------------- | --------------------------------- | ----------------------------------------------- |
+| phase-cycle commit   | `<phase>(<cycle>): <subject>`     | `observe(discovery): add claude response`       |
+| spec/workflow commit | `<type>(<scope>): <subject>`      | `refactor(specs): unify discovery benchmarking` |
+| agent branch         | `<agent>` or `<agent>-<research>` | `agent-a`, `agent-b-discovery`                  |
 
 The combination of OpenSpec history, saved artifacts, and git history is the audit trail of the repository.

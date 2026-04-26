@@ -1,5 +1,6 @@
-### Requirement: Prompt templates define a shared portable Markdown contract
+## MODIFIED Requirements
 
+### Requirement: Prompt templates define a shared portable Markdown contract
 Each governed prompt template file in the live repository that instructs an AI model to emit Markdown output SHALL include a `### Markdown and Formatting Rules` section defining the project's shared portable Markdown contract.
 
 This shared contract SHALL apply to the governed prompt templates that explicitly rely on it, including current prompts such as `act/discovery/prompt.md` and `act/rating/prompt.md`.
