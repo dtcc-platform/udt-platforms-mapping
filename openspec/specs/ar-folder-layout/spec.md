@@ -25,8 +25,8 @@ The repository MAY also contain a top-level `calibration/` folder for archival p
 
 ### Requirement: plan/ holds cycle inputs
 
-`plan/udt-platforms/` SHALL contain `scope.md`.
-`plan/udt-initiatives/` SHALL contain `scope.md`.
+`plan/udt-platforms/` SHALL contain `scope.md` and `source-policy.md`.
+`plan/udt-initiatives/` SHALL contain `scope.md` and `source-policy.md`.
 `plan/udt-platform-comparison/` SHALL contain `rubrics.md`, `source-policy.md`, and `platforms.md`.
 
 ### Requirement: act/ holds canonical prompts and maintenance prompts

@@ -65,7 +65,9 @@ In that sense:
 | I want to... | Go to... |
 | ------------ | -------- |
 | inspect technical-artifact scope | `plan/udt-platforms/scope.md` |
+| inspect technical-artifact source policy | `plan/udt-platforms/source-policy.md` |
 | inspect initiative scope | `plan/udt-initiatives/scope.md` |
+| inspect initiative source policy | `plan/udt-initiatives/source-policy.md` |
 | inspect comparison rubrics | `plan/udt-platform-comparison/rubrics.md` |
 | inspect comparison source policy | `plan/udt-platform-comparison/source-policy.md` |
 | inspect current comparison platform set | `plan/udt-platform-comparison/platforms.md` |
@@ -102,7 +104,9 @@ calibration/
 Within that structure:
 
 - `plan/udt-platforms/scope.md` defines the technical-artifact classification criteria
+- `plan/udt-platforms/source-policy.md` governs evidence priority for technical-artifact mapping
 - `plan/udt-initiatives/scope.md` defines the initiative table contract
+- `plan/udt-initiatives/source-policy.md` governs evidence priority for initiative and deployment mapping
 - `plan/udt-platform-comparison/rubrics.md`, `source-policy.md`, and `platforms.md` define the comparison inputs
 - `act/udt-platforms/prompt.md` and `act/udt-platform-comparison/prompt.md` are the canonical accepted prompts
 - `observe/udt-platforms/` and `observe/udt-platform-comparison/` store saved outputs for canonical executions
@@ -116,10 +120,11 @@ Only rows with `Type = platform` from `udt-platforms` are eligible for `udt-plat
 
 ### 1. Start from the planning files
 
-- `udt-platforms` uses `plan/udt-platforms/scope.md`
-- `udt-initiatives` uses `plan/udt-initiatives/scope.md`
+- `udt-platforms` uses `plan/udt-platforms/scope.md` and `source-policy.md`
+- `udt-initiatives` uses `plan/udt-initiatives/scope.md` and `source-policy.md`
 - `udt-platform-comparison` uses `plan/udt-platform-comparison/rubrics.md`, `source-policy.md`, and `platforms.md`
 - `plan/udt-platform-comparison/platforms.md` is per-run selection data; the other comparison inputs are slower-moving reference inputs
+- the mapping cycles use their source-policy files to rank evidence, reject weak sources, and handle contradictions explicitly
 
 ### 2. Run the canonical prompts
 

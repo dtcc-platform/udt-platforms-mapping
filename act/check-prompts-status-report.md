@@ -8,7 +8,7 @@
 | Prompt | Status | Governing Spec | Shared Contracts | Required Inputs | Reason |
 | ------ | ------ | -------------- | ---------------- | --------------- | ------ |
 | `act/udt-platform-comparison/prompt.md` | `valid` | `openspec/specs/act-udt-platform-comparison-prompt/spec.md` | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/udt-platform-comparison/rubrics.md`, `plan/udt-platform-comparison/platforms.md`, `plan/udt-platform-comparison/source-policy.md` | Prompt and contract are aligned |
-| `act/udt-platforms/prompt.md` | `valid` | `openspec/specs/act-udt-platforms-prompt/spec.md` | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/udt-platforms/scope.md` | Prompt and contract are aligned |
+| `act/udt-platforms/prompt.md` | `valid` | `openspec/specs/act-udt-platforms-prompt/spec.md` | `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md` | `plan/udt-platforms/scope.md`, `plan/udt-platforms/source-policy.md` | Prompt and contract are aligned |
 | `reflect/udt-platform-comparison/benchmarking/prompt.md` | `review-needed` | `none` | `none` | `none` | Stub prompt has no governing spec yet |
 | `reflect/udt-platform-comparison/reporting/prompt.md` | `valid` | `openspec/specs/reflect-udt-platform-comparison-reporting/spec.md` | `none` | `observe/udt-platform-comparison/*.md` | Prompt and contract are aligned |
 | `reflect/udt-platforms/benchmarking/prompt.md` | `valid` | `openspec/specs/reflect-udt-platforms-benchmarking/spec.md` | `none` | `reflect/udt-platforms/benchmarking/benchmark.md`, `observe/udt-platforms/*.md` | Prompt and contract are aligned |
@@ -32,13 +32,14 @@
 - **Status:** `valid`
 - **Governing spec:** `openspec/specs/act-udt-platforms-prompt/spec.md`
 - **Shared contracts:** `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md`
-- **Required inputs:** `plan/udt-platforms/scope.md`
+- **Required inputs:** `plan/udt-platforms/scope.md`, `plan/udt-platforms/source-policy.md`
 - **Freshness dependencies checked:** `openspec/specs/act-udt-platforms-prompt/spec.md`, `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md`
-- **Prompt git reference:** `67e1cf7`
+- **Prompt git reference:** `working tree modified after 67e1cf7`
 - **Newer dependency references:** none
 - **Findings:**
-  - Required input exists at the renamed `udt-platforms` path.
+  - Required inputs exist at the renamed `udt-platforms` paths.
   - Prompt uses the new `Type`-based artifact contract.
+  - Prompt now declares and uses the governed `udt-platforms` source-policy input.
 
 ## reflect/udt-platform-comparison/benchmarking/prompt.md
 
