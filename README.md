@@ -1,8 +1,8 @@
 # udt-platforms-map
 
-A spec-first research repository for mapping the Urban Digital Twin ecosystem around DTCC.
+A spec-first research repository for governing Urban Digital Twin research agents and stabilizing the workflow they run.
 
-This repository uses OpenSpec to govern prompts and workflow changes, and uses git to track how researchers and agents iterate on the work over time.
+This repository uses OpenSpec to govern prompt and workflow changes, and uses git to track how researchers and agents iterate on the work over time.
 
 ## Methodology
 
@@ -22,9 +22,7 @@ Each OpenSpec baseline spec is a contract for a governed artifact or workflow.
 
 For prompts, that contract defines what an agent is supposed to do when the prompt is run. The prompt is the operational rendering of the contract, not the source of truth.
 
-Composing smaller prompts and smaller supporting artifacts is intentional.
-It keeps scope, criteria, source policy, prompt contracts, and run inputs separable.
-That makes changes easier to interpret, makes shared rules easier to reuse, and keeps humans in the loop by making the important boundaries reviewable instead of burying them in one large prompt.
+Composing smaller prompts and smaller supporting artifacts is intentional. It keeps scope, criteria, source policy, prompt contracts, and run inputs separable. That makes changes easier to interpret, makes shared rules easier to reuse, and keeps humans in the loop by making the important boundaries reviewable instead of burying them in one large prompt.
 
 That is why prompt changes should go through OpenSpec:
 
@@ -34,49 +32,22 @@ That is why prompt changes should go through OpenSpec:
 - shared specs can be refactored once and then reused consistently across every dependent prompt contract
 
 When different agents execute the same prompt differently, the stronger fix is usually to tighten the governing spec rather than patch the prompt directly.
-That improves reproducibility because the workflow becomes more explicit at the contract level.
-
-Different prompt text from the same spec is expected. The spec defines the contract, not exact wording. Different agents may vary in:
-
-- phrasing
-- ordering
-- emphasis
-- examples
-- instruction density
-
-What matters is contract fidelity:
-
-- do they preserve the same requirements?
-- do they enforce the same boundaries?
-- do they produce the same intended behavior?
-
-If repeated prompt divergence leads to materially different governed behavior, that is evidence that the spec needs to be tightened.
-
-The same proposal can also lead different agents to write different `spec.md` wording.
-That is acceptable if the resulting contract is equivalent.
-If the resulting contract is not equivalent, the proposal or design layer was not specific enough.
 
 ### Repository Model
 
-The repository is organized around two research cycles:
+The repository is organized around three research cycles:
 
-| Cycle       | Question                                        |
-| ----------- | ----------------------------------------------- |
-| `discovery` | Which UDT platforms exist across the ecosystem? |
-| `rating`    | How should selected core platforms be compared? |
+| Cycle | Question |
+| ----- | -------- |
+| `udt-platforms` | What technical UDT artifacts exist? |
+| `udt-initiatives` | What UDT initiatives, projects, and deployments exist? |
+| `udt-platform-comparison` | How do selected UDT platforms compare side by side? |
 
 And four Action Research phases:
 
 ```text
 PLAN → ACT → OBSERVE → REFLECT
 ```
-
-| Phase      | Purpose                                                                            |
-| ---------- | ---------------------------------------------------------------------------------- |
-| `plan/`    | current cycle inputs such as scope, rubrics, source policy, and selected platforms |
-| `act/`     | accepted canonical prompts and maintenance prompts                                 |
-| `observe/` | accepted reference outputs and saved raw outputs from canonical executions         |
-| `reflect/` | benchmarking, reporting, deviations, and synthesis                                 |
 
 This repository has two main parts:
 
@@ -91,65 +62,72 @@ In that sense:
 
 ## Quick Start
 
-| I want to...                        | Go to...                                   |
-| ----------------------------------- | ------------------------------------------ |
-| inspect discovery scope             | `plan/discovery/scope.md`                  |
-| inspect rating rubrics              | `plan/rating/rubrics.md`                   |
-| inspect rating source policy        | `plan/rating/source-policy.md`             |
-| inspect current rating platform set | `plan/rating/platforms.md`                 |
-| run discovery                       | `act/discovery/prompt.md`                  |
-| run rating                          | `act/rating/prompt.md`                     |
-| check prompt/spec alignment         | `act/check-prompts-status.md`              |
-| benchmark discovery coverage        | `reflect/discovery/benchmarking/prompt.md` |
-| consolidate discovery reporting     | `reflect/discovery/reporting/prompt.md`    |
-| generate rating reporting artifacts | `reflect/rating/reporting/prompt.md`       |
+| I want to... | Go to... |
+| ------------ | -------- |
+| inspect technical-artifact scope | `plan/udt-platforms/scope.md` |
+| inspect initiative scope | `plan/udt-initiatives/scope.md` |
+| inspect comparison rubrics | `plan/udt-platform-comparison/rubrics.md` |
+| inspect comparison source policy | `plan/udt-platform-comparison/source-policy.md` |
+| inspect current comparison platform set | `plan/udt-platform-comparison/platforms.md` |
+| run technical-artifact mapping | `act/udt-platforms/prompt.md` |
+| run platform comparison | `act/udt-platform-comparison/prompt.md` |
+| check prompt/spec alignment | `act/check-prompts-status.md` |
+| benchmark technical-artifact coverage | `reflect/udt-platforms/benchmarking/prompt.md` |
+| consolidate technical-artifact reporting | `reflect/udt-platforms/reporting/prompt.md` |
+| generate comparison reporting artifacts | `reflect/udt-platform-comparison/reporting/prompt.md` |
 
 ## Canonical Layout
 
-The canonical research interface uses:
-
 ```text
 plan/
-  discovery/
-  rating/
+  udt-platforms/
+  udt-initiatives/
+  udt-platform-comparison/
 act/
-  discovery/
-  rating/
+  udt-platforms/
+  udt-initiatives/
+  udt-platform-comparison/
   check-prompts-status.md
 observe/
-  discovery/
-  rating/
+  udt-platforms/
+  udt-initiatives/
+  udt-platform-comparison/
 reflect/
-  discovery/
-  rating/
+  udt-platforms/
+  udt-initiatives/
+  udt-platform-comparison/
 calibration/
 ```
 
 Within that structure:
 
-- `plan/discovery/scope.md` defines discovery classification criteria
-- `plan/rating/rubrics.md`, `plan/rating/source-policy.md`, and `plan/rating/platforms.md` define the rating comparison inputs
-- `act/discovery/prompt.md` and `act/rating/prompt.md` are the canonical accepted prompts
-- `act/check-prompts-status.md` is the maintenance prompt for checking live prompt/spec alignment
-- `observe/discovery/` and `observe/rating/` store accepted and saved outputs for canonical executions
-- `reflect/` contains benchmarking, reporting, deviations, and other reflection artifacts
+- `plan/udt-platforms/scope.md` defines the technical-artifact classification criteria
+- `plan/udt-initiatives/scope.md` defines the initiative table contract
+- `plan/udt-platform-comparison/rubrics.md`, `source-policy.md`, and `platforms.md` define the comparison inputs
+- `act/udt-platforms/prompt.md` and `act/udt-platform-comparison/prompt.md` are the canonical accepted prompts
+- `observe/udt-platforms/` and `observe/udt-platform-comparison/` store saved outputs for canonical executions
+- `reflect/udt-platforms/` contains benchmarking and reporting for technical-artifact mapping
+- `reflect/udt-platform-comparison/` contains reporting artifacts for side-by-side platform comparison
 - `calibration/` stores archival prompt/result comparisons across agents
+
+Only rows with `Type = platform` from `udt-platforms` are eligible for `udt-platform-comparison`.
 
 ## How To Work In This Repo
 
 ### 1. Start from the planning files
 
-- Discovery uses `plan/discovery/scope.md`.
-- Rating uses `plan/rating/rubrics.md`, `plan/rating/source-policy.md`, and `plan/rating/platforms.md`.
-- `plan/rating/platforms.md` is per-run selection data. The others are slower-moving reference inputs.
+- `udt-platforms` uses `plan/udt-platforms/scope.md`
+- `udt-initiatives` uses `plan/udt-initiatives/scope.md`
+- `udt-platform-comparison` uses `plan/udt-platform-comparison/rubrics.md`, `source-policy.md`, and `platforms.md`
+- `plan/udt-platform-comparison/platforms.md` is per-run selection data; the other comparison inputs are slower-moving reference inputs
 
 ### 2. Run the canonical prompts
 
 Use:
 
 ```text
-Run act/discovery/prompt.md
-Run act/rating/prompt.md
+Run act/udt-platforms/prompt.md
+Run act/udt-platform-comparison/prompt.md
 ```
 
 The CLI asks:
@@ -169,7 +147,7 @@ When different agents are asked to realize the same accepted contract, store the
 calibration/<research>/<cycle>/<agent>/
 ```
 
-Each calibration leaf folder currently contains:
+Each calibration leaf folder contains:
 
 - `prompt.md`
 - `result.md`
@@ -181,9 +159,9 @@ These are archival comparison artifacts, not canonical research artifacts.
 Examples:
 
 ```text
-Run reflect/discovery/benchmarking/prompt.md
-Run reflect/discovery/reporting/prompt.md
-Run reflect/rating/reporting/prompt.md
+Run reflect/udt-platforms/benchmarking/prompt.md
+Run reflect/udt-platforms/reporting/prompt.md
+Run reflect/udt-platform-comparison/reporting/prompt.md
 ```
 
 These prompts read previously saved outputs and produce higher-level artifacts in the matching `reflect/` folder.
@@ -194,43 +172,28 @@ If you want to compare how different agents interpret the same accepted spec, th
 
 That measures prompt-level interpretation of the same contract, rather than mixing proposal interpretation, spec formation, and prompt generation into one experiment.
 
-Branching earlier answers a different question:
-
-- branch after proposal: measures variation in interpreting the intended change itself
-- branch after spec: measures variation in operationalizing the same accepted contract
-
-For this repository, the second is usually the more useful experiment because the spec is the explicit form of intent.
-
-One workable pattern is:
-
 ```mermaid
 flowchart TD
     C0["Prompt Calibration"]
     R0["Research Execution"]
 
     M0["main baseline
-canonical spec, plan, prompt, reference result"]
+canonical spec and inputs"]
 
     W1["worktree a"]
     W2["worktree b"]
     W3["worktree c"]
 
     A1["agent-a prompt"]
-
     B1["agent-b prompt"]
-
     C1["agent-c prompt"]
 
     A2["agent-a result"]
-
     B2["agent-b result"]
-
     C2["agent-c result"]
 
     M1["main with calibration artifacts"]
-
     M2["main after reflection
-deviations recorded
 canonical contract updated"]
 
     C0 --> M0
@@ -246,77 +209,18 @@ canonical contract updated"]
     B1 -->|run prompt| B2
     C1 -->|run prompt| C2
 
-    A2 -->|merge branch| M1
-    B2 -->|merge branch| M1
-    C2 -->|merge branch| M1
+    A2 -->|archive under calibration/| M1
+    B2 -->|archive under calibration/| M1
+    C2 -->|archive under calibration/| M1
 
     R0 --> M2
     M1 -->|reflect and update| M2
-
-    classDef main fill:#e8f1ff,stroke:#3b82f6,stroke-width:1px;
-    classDef agent fill:#ecfdf5,stroke:#10b981,stroke-width:1px;
-    classDef section fill:#fef3c7,stroke:#d97706,stroke-width:1px;
-
-    class M0,M1,M2 main;
-    class W1,W2,W3,A1,B1,C1,A2,B2,C2 agent;
-    class C0,R0 section;
 ```
 
-This pattern is useful because:
+## Naming Conventions
 
-- all agents start from the same accepted spec baseline
-- prompt differences become visible as differences in interpretation of the same contract
-- repeated deviations can be fed back into the spec instead of patched ad hoc in prompt text
-- `calibration/<research>/<cycle>/<agent>/...` keeps research meaning, cycle meaning, and agent ownership separate in the path
-
-## Traceability Model
-
-Different layers of knowledge are stored in different places:
-
-| What is tracked                                                   | Primary location                          |
-| ----------------------------------------------------------------- | ----------------------------------------- |
-| accepted scope, rubrics, source policy, and selected platform set | `plan/`                                   |
-| canonical prompt contracts and governed workflow behavior         | `openspec/specs/` and `openspec/changes/` |
-| canonical accepted prompts                                        | `act/`                                    |
-| saved outputs and reference observations                          | `observe/`                                |
-| calibration runs across prompts and agents                        | `calibration/`                            |
-| deviations, benchmarking, reporting, and synthesis                | `reflect/`                                |
-| iteration history across all of the above                         | git                                       |
-
-Git history is part of the method, not just storage. Branches and commits make it possible to inspect how a cycle evolved and why the next cycle changed.
-
-## OpenSpec And Prompt Changes
-
-All governed prompts in this repository should be managed through OpenSpec rather than edited ad hoc.
-
-To evolve a prompt or workflow contract:
-
-```bash
-openspec new change "<change-name>"
-```
-
-OpenSpec artifacts use these locations:
-
-| Artifact        | Location                                  |
-| --------------- | ----------------------------------------- |
-| baseline spec   | `openspec/specs/<name>/spec.md`           |
-| active change   | `openspec/changes/<name>/`                |
-| archived change | `openspec/changes/archive/<date>-<name>/` |
-
-The general rule is:
-
-- change the contract first
-- regenerate or realign the prompt from that contract
-- use reflection or prompt-status artifacts to detect drift
-
-## Git Conventions
-
-Useful conventions:
-
-| Kind                 | Pattern                           | Example                                         |
-| -------------------- | --------------------------------- | ----------------------------------------------- |
-| phase-cycle commit   | `<phase>(<cycle>): <subject>`     | `observe(discovery): add claude response`       |
-| spec/workflow commit | `<type>(<scope>): <subject>`      | `refactor(specs): unify discovery benchmarking` |
-| agent branch         | `<agent>` or `<agent>-<research>` | `agent-a`, `agent-b-discovery`                  |
-
-The combination of OpenSpec history, saved artifacts, and git history is the audit trail of the repository.
+| Kind | Pattern | Example |
+| ---- | ------- | ------- |
+| phase-cycle commit | `<phase>(<cycle>): <subject>` | `observe(udt-platforms): add claude response` |
+| spec/workflow commit | `<type>(<scope>): <subject>` | `refactor(specs): rename cycles to udt-platforms` |
+| agent branch | `<agent>` or `<agent>-<research>` | `agent-a`, `agent-b-udt-platforms` |

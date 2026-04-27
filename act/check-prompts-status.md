@@ -27,63 +27,48 @@ Do not inspect archived change artifacts under `openspec/changes/` or `openspec/
 
 Audit these live prompts only:
 
-- `act/discovery/prompt.md`
-- `act/rating/prompt.md`
-- `reflect/discovery/benchmarking/prompt.md`
-- `reflect/discovery/reporting/prompt.md`
-- `reflect/rating/benchmarking/prompt.md`
-- `reflect/rating/reporting/prompt.md`
+- `act/udt-platforms/prompt.md`
+- `act/udt-platform-comparison/prompt.md`
+- `reflect/udt-platforms/benchmarking/prompt.md`
+- `reflect/udt-platforms/reporting/prompt.md`
+- `reflect/udt-platform-comparison/benchmarking/prompt.md`
+- `reflect/udt-platform-comparison/reporting/prompt.md`
 
 ### Prompt mapping
 
-Use this mapping table to determine governing files.
+#### 1. `act/udt-platforms/prompt.md`
 
-#### 1. `act/discovery/prompt.md`
-
-- Governing spec: `openspec/specs/act-discovery-prompt/spec.md`
+- Governing spec: `openspec/specs/act-udt-platforms-prompt/spec.md`
 - Shared contracts:
   - `openspec/specs/prompt-run-modes/spec.md`
   - `openspec/specs/prompt-markdown-format/spec.md`
-- Runtime inputs:
-  - read from the prompt's `## Required Inputs` section
 
-#### 2. `act/rating/prompt.md`
+#### 2. `act/udt-platform-comparison/prompt.md`
 
-- Governing spec: `openspec/specs/act-rating-prompt/spec.md`
+- Governing spec: `openspec/specs/act-udt-platform-comparison-prompt/spec.md`
 - Shared contracts:
   - `openspec/specs/prompt-run-modes/spec.md`
   - `openspec/specs/prompt-markdown-format/spec.md`
-- Runtime inputs:
-  - read from the prompt's `## Required Inputs` section
 
-#### 3. `reflect/discovery/benchmarking/prompt.md`
+#### 3. `reflect/udt-platforms/benchmarking/prompt.md`
 
-- Governing spec: `openspec/specs/reflect-discovery-benchmarking/spec.md`
+- Governing spec: `openspec/specs/reflect-udt-platforms-benchmarking/spec.md`
 - Shared contracts: none
-- Runtime inputs:
-  - `reflect/discovery/benchmarking/benchmark.md`
-  - `observe/discovery/*.md`
 
-#### 4. `reflect/discovery/reporting/prompt.md`
+#### 4. `reflect/udt-platforms/reporting/prompt.md`
 
-- Governing spec: `openspec/specs/reflect-discovery-reporting-prompt/spec.md`
+- Governing spec: `openspec/specs/reflect-udt-platforms-reporting-prompt/spec.md`
 - Shared contracts: none
-- Runtime inputs:
-  - `observe/discovery/*.md`
 
-#### 5. `reflect/rating/benchmarking/prompt.md`
+#### 5. `reflect/udt-platform-comparison/benchmarking/prompt.md`
 
 - Governing spec: none currently present
-- Shared contracts: none currently present
-- Runtime inputs:
-  - `observe/rating/*.md`
-
-#### 6. `reflect/rating/reporting/prompt.md`
-
-- Governing spec: `openspec/specs/reflect-rating-reporting/spec.md`
 - Shared contracts: none
-- Runtime inputs:
-  - `observe/rating/*.md`
+
+#### 6. `reflect/udt-platform-comparison/reporting/prompt.md`
+
+- Governing spec: `openspec/specs/reflect-udt-platform-comparison-reporting/spec.md`
+- Shared contracts: none
 
 ### Status rules
 
@@ -108,16 +93,9 @@ Distinguish **freshness dependencies** from **runtime inputs**.
   - any shared contract spec listed in the mapping above
 - Runtime inputs:
   - files declared under `## Required Inputs`
-  - the runtime input paths listed above for reflect prompts
 
-Freshness rule:
-
-- If any freshness dependency has a newer git commit than the prompt file, mark the prompt `review-needed`
-
-Runtime-input rule:
-
-- A runtime-input file being newer than the prompt does **not** make the prompt stale by itself
-- Runtime-input files must still exist and remain compatible with the prompt contract
+If any freshness dependency has a newer git commit than the prompt file, mark the prompt `review-needed`.
+A runtime-input file being newer than the prompt does **not** make the prompt stale by itself.
 
 ### Required checks for each prompt
 
@@ -128,29 +106,9 @@ For each prompt:
 3. If the prompt has a `## Required Inputs` section, extract the declared input paths
 4. Confirm all declared required-input files exist
 5. Confirm the prompt does not directly contradict its governing spec
-6. Confirm the prompt's declared inputs are compatible with what the governing spec requires
-7. Get the latest git commit for:
-   - the prompt file
-   - its governing spec
-   - each shared contract spec
-8. Compare git freshness using the freshness rules above
-9. Record findings and assign one final status
-
-### What counts as a direct contradiction
-
-Treat these as direct contradictions:
-
-- prompt references retired workflow language the governing spec forbids
-- prompt omits required input declarations required by the governing spec
-- prompt asks for run modes where the governing contract says CLI-only
-- prompt output contract conflicts with the governing prompt spec
-- prompt points to retired output paths where the governing spec defines current paths
-
-Do not treat these alone as contradictions:
-
-- runtime input files changed after the prompt
-- wording differences that do not change behavior
-- a stub prompt that is explicitly a stub but has no governing spec yet; mark that `review-needed`, not `invalid`
+6. Get the latest git commit for the prompt and its freshness dependencies
+7. Compare git freshness using the rules above
+8. Record findings and assign one final status
 
 ### Report format
 
@@ -166,32 +124,4 @@ Write the report to `act/check-prompts-status-report.md` with exactly this struc
 
 | Prompt | Status | Governing Spec | Shared Contracts | Required Inputs | Reason |
 | ------ | ------ | -------------- | ---------------- | --------------- | ------ |
-
-## <prompt path>
-
-- **Status:** <valid | review-needed | invalid>
-- **Governing spec:** <path or none>
-- **Shared contracts:** <comma-separated list or none>
-- **Required inputs:** <comma-separated list or none>
-- **Freshness dependencies checked:** <comma-separated list or none>
-- **Prompt git reference:** `<sha> <date> <subject>` or `untracked`
-- **Newer dependency references:** <list or none>
-- **Findings:**
-  - <finding>
-  - <finding>
 ```
-
-Rules for the report:
-
-- Use one row per prompt in the summary table
-- Order prompts by path
-- Use one `##` section per prompt after the summary table
-- The `Reason` column must be short and high signal
-- If a prompt has no governing spec yet, say so explicitly
-- If a runtime-input file is newer but ignored by the freshness rule, you may note it in findings but do not change status on that basis alone
-
-### Output behavior
-
-- Write the report to `act/check-prompts-status-report.md`
-- Overwrite the file if it already exists
-- After writing, give a brief confirmation with the saved path and a one-line summary of how many prompts were `valid`, `review-needed`, and `invalid`
