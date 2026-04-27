@@ -4,32 +4,27 @@ A spec-first research repository for mapping the Urban Digital Twin ecosystem ar
 
 This repository uses OpenSpec to govern prompts and workflow changes, and uses git to track how researchers and agents iterate on the work over time.
 
-## Why Not One Prompt?
+## Methodology
 
-The main design choice in this repository is to split what could be one large prompt into separate artifacts.
+### Primary Goal
 
-The most important split is between `discovery` and `rating`:
+Research results in this repository are not treated as final truths. They are treated as outputs that can be added to, corrected, or improved through repeated cycles.
 
-- `discovery` asks what exists and how it should be classified
-- `rating` asks how a selected set should be evaluated against explicit criteria
+What must become trusted and stabilized is the workflow: how intent is specified, how prompts are governed, how outputs are compared, and how changes are traced.
 
-This is not only a workflow choice. It is a semantic one. Keeping these phases separate avoids collapsing search, classification, selection, and evaluation into one opaque prompt.
+This repository is a medium for governing research agents through explicit contracts, calibration, execution, and reflection.
 
-Splitting the workflow also improves the research process:
+Contributors primarily improve the workflow by calibrating prompts, refining contracts, and adding new research cycles. Agents primarily execute those cycles and generate research outputs within the governed workflow.
 
-- scope, criteria, source policy, prompt contracts, and run inputs can evolve independently
-- later changes are easier to interpret in git
-- different researchers can refine different layers of the process
-- different agents can generate different prompt wording from the same contract without changing the contract itself
-- recurring deviations across agents can be fixed at the spec layer instead of patched ad hoc in prompt text
-
-The point is not to optimize for the cheapest output. The point is to preserve intent, boundaries, and reasoning so later runs are easier to trust.
-
-## Core Idea
+### Core Idea
 
 Each OpenSpec baseline spec is a contract for a governed artifact or workflow.
 
 For prompts, that contract defines what an agent is supposed to do when the prompt is run. The prompt is the operational rendering of the contract, not the source of truth.
+
+Composing smaller prompts and smaller supporting artifacts is intentional.
+It keeps scope, criteria, source policy, prompt contracts, and run inputs separable.
+That makes changes easier to interpret, makes shared rules easier to reuse, and keeps humans in the loop by making the important boundaries reviewable instead of burying them in one large prompt.
 
 That is why prompt changes should go through OpenSpec:
 
@@ -38,7 +33,8 @@ That is why prompt changes should go through OpenSpec:
 - future prompt regeneration starts from a clearer contract
 - shared specs can be refactored once and then reused consistently across every dependent prompt contract
 
-When different agents execute the same prompt differently, the stronger fix is usually to tighten the governing spec rather than patch the prompt directly. That improves reproducibility because the workflow becomes more explicit at the contract level.
+When different agents execute the same prompt differently, the stronger fix is usually to tighten the governing spec rather than patch the prompt directly.
+That improves reproducibility because the workflow becomes more explicit at the contract level.
 
 Different prompt text from the same spec is expected. The spec defines the contract, not exact wording. Different agents may vary in:
 
@@ -56,9 +52,11 @@ What matters is contract fidelity:
 
 If repeated prompt divergence leads to materially different governed behavior, that is evidence that the spec needs to be tightened.
 
-The same proposal can also lead different agents to write different `spec.md` wording. That is acceptable if the resulting contract is equivalent. If the resulting contract is not equivalent, the proposal or design layer was not specific enough.
+The same proposal can also lead different agents to write different `spec.md` wording.
+That is acceptable if the resulting contract is equivalent.
+If the resulting contract is not equivalent, the proposal or design layer was not specific enough.
 
-## Repository Model
+### Repository Model
 
 The repository is organized around two research cycles:
 
