@@ -1,4 +1,4 @@
-# Prompt Status Report — 2026-04-27
+# Prompt Status Report — 2026-04-28
 
 **Prompts checked:** 6
 **Directories scanned:** act/, reflect/
@@ -21,7 +21,7 @@
 - **Shared contracts:** `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md`
 - **Required inputs:** `plan/udt-platform-comparison/rubrics.md`, `plan/udt-platform-comparison/platforms.md`, `plan/udt-platform-comparison/source-policy.md`
 - **Freshness dependencies checked:** `openspec/specs/act-udt-platform-comparison-prompt/spec.md`, `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md`
-- **Prompt git reference:** `untracked at new path`
+- **Prompt git reference:** `67e1cf7`
 - **Newer dependency references:** none
 - **Findings:**
   - Required-input files exist at the renamed comparison paths.
@@ -34,7 +34,7 @@
 - **Shared contracts:** `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md`
 - **Required inputs:** `plan/udt-platforms/scope.md`
 - **Freshness dependencies checked:** `openspec/specs/act-udt-platforms-prompt/spec.md`, `openspec/specs/prompt-run-modes/spec.md`, `openspec/specs/prompt-markdown-format/spec.md`
-- **Prompt git reference:** `untracked at new path`
+- **Prompt git reference:** `67e1cf7`
 - **Newer dependency references:** none
 - **Findings:**
   - Required input exists at the renamed `udt-platforms` path.
@@ -47,7 +47,7 @@
 - **Shared contracts:** `none`
 - **Required inputs:** `none`
 - **Freshness dependencies checked:** `none`
-- **Prompt git reference:** `untracked at new path`
+- **Prompt git reference:** `67e1cf7`
 - **Newer dependency references:** none
 - **Findings:**
   - Stub prompt exists at the renamed path.
@@ -60,7 +60,7 @@
 - **Shared contracts:** `none`
 - **Required inputs:** `observe/udt-platform-comparison/*.md`
 - **Freshness dependencies checked:** `openspec/specs/reflect-udt-platform-comparison-reporting/spec.md`
-- **Prompt git reference:** `untracked at new path`
+- **Prompt git reference:** `67e1cf7`
 - **Newer dependency references:** none
 - **Findings:**
   - Prompt scans the renamed comparison observe path.
@@ -73,7 +73,7 @@
 - **Shared contracts:** `none`
 - **Required inputs:** `reflect/udt-platforms/benchmarking/benchmark.md`, `observe/udt-platforms/*.md`
 - **Freshness dependencies checked:** `openspec/specs/reflect-udt-platforms-benchmarking/spec.md`
-- **Prompt git reference:** `untracked at new path`
+- **Prompt git reference:** `67e1cf7`
 - **Newer dependency references:** none
 - **Findings:**
   - Benchmark fixture exists with the new `Type` column.
@@ -86,7 +86,7 @@
 - **Shared contracts:** `none`
 - **Required inputs:** `observe/udt-platforms/*.md`
 - **Freshness dependencies checked:** `openspec/specs/reflect-udt-platforms-reporting-prompt/spec.md`
-- **Prompt git reference:** `untracked at new path`
+- **Prompt git reference:** `67e1cf7`
 - **Newer dependency references:** none
 - **Findings:**
   - Prompt scans the renamed `udt-platforms` observe path.
