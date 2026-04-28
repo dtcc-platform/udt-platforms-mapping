@@ -23,7 +23,14 @@ The prompt SHALL include a `## Required Inputs` section listing:
 - `plan/udt-platform-comparison/platforms.md`
 - `plan/udt-platform-comparison/source-policy.md`
 
+The repository SHALL contain a file at `plan/udt-platform-comparison/rubrics.md`.
+That file SHALL contain the 12 dimension and functional-category rubrics used by `act/udt-platform-comparison/prompt.md`.
+
 ### Requirement: Comparison prompt executes through one governed path
 
 The prompt SHALL not ask the user to choose between CLI and Web modes.
 The prompt SHALL instruct the AI to read all three required inputs and save the response to `observe/udt-platform-comparison/<model-short>.md`.
+
+### Requirement: Comparison prompt owns the platform-only handoff rule
+
+Only rows from `udt-platforms` where `Type = platform` SHALL be eligible for `udt-platform-comparison`.
