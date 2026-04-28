@@ -104,18 +104,19 @@ That is where purpose, scope, comparison criteria where applicable, and thread d
 
 ### 2. Run canonical prompts from `act/`
 
-Use:
+Use the canonical web prompts:
 
 ```text
 Run act/udt-platforms/prompt.md
+Run act/udt-initiatives/prompt.md
 Run act/udt-platform-comparison/prompt.md
 ```
 
-Canonical prompts read their declared planning inputs and write or prepare outputs for the matching thread.
+Canonical act prompts resolve their declared planning inputs into copy-ready web prompts for the matching thread.
 
 ### 3. Save outputs under `observe/` and synthesize under `reflect/`
 
-Saved canonical outputs belong in `observe/`.
+Saved canonical web outputs belong in `observe/`.
 Reflection, benchmarking, and reporting belong in `reflect/`.
 This is where one thread can inform another and where the next cycle gets shaped.
 
@@ -133,7 +134,7 @@ flowchart TD
     P["plan/
 purpose, scope, criteria, dependencies"]
     A["act/
-canonical prompt"]
+canonical web prompt"]
     O["observe/
 saved result"]
     R["reflect/

@@ -28,8 +28,9 @@ That file SHALL contain the 12 dimension and functional-category rubrics used by
 
 ### Requirement: Comparison prompt executes through one governed path
 
-The prompt SHALL not ask the user to choose between CLI and Web modes.
-The prompt SHALL instruct the AI to read all three required inputs and save the response to `observe/udt-platform-comparison/<model-short>.md`.
+The prompt SHALL instruct the user to use the resolved prompt in a web interface rather than treat CLI execution as the canonical path.
+The prompt SHALL resolve all three required inputs into one copy-ready prompt block.
+The prompt SHALL instruct the user to save the web response to `observe/udt-platform-comparison/web-<model-short>.md`.
 
 ### Requirement: Comparison prompt owns the platform-only handoff rule
 

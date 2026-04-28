@@ -1,18 +1,33 @@
 # Prompt Status Report — 2026-04-28
 
-**Prompts checked:** 6
+**Prompts checked:** 7
 **Directories scanned:** act/, reflect/
 
 ## Summary
 
 | Prompt | Status | Governing Spec | Shared Contracts | Required Inputs | Reason |
 | ------ | ------ | -------------- | ---------------- | --------------- | ------ |
+| `act/udt-initiatives/prompt.md` | `valid` | `openspec/specs/act-udt-initiatives-prompt/spec.md` | `openspec/specs/prompt-markdown-format/spec.md` | `plan/udt-initiatives/scope.md` | Prompt and contract are aligned |
 | `act/udt-platform-comparison/prompt.md` | `valid` | `openspec/specs/act-udt-platform-comparison-prompt/spec.md` | `openspec/specs/prompt-markdown-format/spec.md` | `plan/udt-platform-comparison/rubrics.md`, `plan/udt-platform-comparison/platforms.md`, `plan/udt-platform-comparison/source-policy.md` | Prompt and contract are aligned |
 | `act/udt-platforms/prompt.md` | `valid` | `openspec/specs/act-udt-platforms-prompt/spec.md` | `openspec/specs/prompt-markdown-format/spec.md` | `plan/udt-platforms/scope.md` | Prompt and contract are aligned |
 | `reflect/udt-platform-comparison/benchmarking/prompt.md` | `review-needed` | `none` | `none` | `none` | Stub prompt has no governing spec yet |
 | `reflect/udt-platform-comparison/reporting/prompt.md` | `valid` | `openspec/specs/reflect-udt-platform-comparison-reporting/spec.md` | `none` | `observe/udt-platform-comparison/*.md` | Prompt and contract are aligned |
 | `reflect/udt-platforms/benchmarking/prompt.md` | `valid` | `openspec/specs/reflect-udt-platforms-benchmarking/spec.md` | `none` | `reflect/udt-platforms/benchmarking/benchmark.md`, `observe/udt-platforms/*.md` | Prompt and contract are aligned |
 | `reflect/udt-platforms/reporting/prompt.md` | `valid` | `openspec/specs/reflect-udt-platforms-reporting-prompt/spec.md` | `none` | `observe/udt-platforms/*.md` | Prompt and contract are aligned |
+
+## act/udt-initiatives/prompt.md
+
+- **Status:** `valid`
+- **Governing spec:** `openspec/specs/act-udt-initiatives-prompt/spec.md`
+- **Shared contracts:** `openspec/specs/prompt-markdown-format/spec.md`
+- **Required inputs:** `plan/udt-initiatives/scope.md`
+- **Freshness dependencies checked:** `openspec/specs/act-udt-initiatives-prompt/spec.md`, `openspec/specs/prompt-markdown-format/spec.md`
+- **Prompt git reference:** `working tree modified`
+- **Newer dependency references:** none
+- **Findings:**
+  - Required inputs exist at the `udt-initiatives` path.
+  - Prompt uses the governed initiative table contract.
+  - Prompt is web-canonical and writes to the `observe/udt-initiatives/web-<model-short>.md` pattern.
 
 ## act/udt-platform-comparison/prompt.md
 
@@ -26,7 +41,7 @@
 - **Findings:**
   - Required-input files exist at the renamed comparison paths.
   - Prompt behavior matches the platform-only comparison contract.
-  - Prompt now uses one direct execution path and one canonical observe filename pattern.
+  - Prompt is web-canonical and writes to the `observe/udt-platform-comparison/web-<model-short>.md` pattern.
 
 ## act/udt-platforms/prompt.md
 
@@ -41,7 +56,7 @@
   - Required inputs exist at the renamed `udt-platforms` paths.
   - Prompt uses the new `Type`-based artifact contract.
   - Prompt now frames `udt-platforms` as a broad global discovery thread rather than a strict source-policy workflow.
-  - Prompt now uses one direct execution path and one canonical observe filename pattern.
+  - Prompt is web-canonical and writes to the `observe/udt-platforms/web-<model-short>.md` pattern.
 
 ## reflect/udt-platform-comparison/benchmarking/prompt.md
 

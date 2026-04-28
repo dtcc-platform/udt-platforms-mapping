@@ -32,13 +32,15 @@ The repository MAY also contain a top-level `calibration/` folder for archival p
 ### Requirement: act/ holds canonical prompts and maintenance prompts
 
 `act/udt-platforms/prompt.md` SHALL be the canonical `udt-platforms` prompt template.
+`act/udt-initiatives/prompt.md` SHALL be the canonical `udt-initiatives` prompt template.
 `act/udt-platform-comparison/prompt.md` SHALL be the canonical `udt-platform-comparison` prompt template.
 `act/check-prompts-status.md` SHALL be the prompt-status maintenance prompt.
 
 ### Requirement: observe/ holds canonical saved outputs per cycle
 
-`observe/udt-platforms/` SHALL contain saved `udt-platforms` responses.
-`observe/udt-platform-comparison/` SHALL contain saved comparison responses.
+`observe/udt-platforms/` SHALL contain saved web responses for `udt-platforms`.
+`observe/udt-initiatives/` SHALL contain saved web responses for `udt-initiatives`.
+`observe/udt-platform-comparison/` SHALL contain saved web responses for `udt-platform-comparison`.
 Artifacts under `calibration/` SHALL NOT be treated as canonical outputs.
 
 ### Requirement: reflect/ holds benchmarking and reporting per cycle

@@ -37,5 +37,6 @@ The prompt SHALL include a `## Required Inputs` section listing:
 
 ### Requirement: UDT platforms prompt executes through one governed path
 
-The prompt SHALL not ask the user to choose between CLI and Web modes.
-The prompt SHALL instruct the AI to read the required inputs, including `plan/udt-platforms/scope.md`, and save the response to `observe/udt-platforms/<model-short>.md`.
+The prompt SHALL instruct the user to use the resolved prompt in a web interface rather than treat CLI execution as the canonical path.
+The prompt SHALL resolve `plan/udt-platforms/scope.md` into one copy-ready prompt block.
+The prompt SHALL instruct the user to save the web response to `observe/udt-platforms/web-<model-short>.md`.
