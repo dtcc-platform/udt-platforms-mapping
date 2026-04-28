@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Governs the `udt-initiatives` cycle and its initiative/project output contract.
+Governs the `udt-initiatives` thread and its initiative/project output contract.
 
 ## Requirements
 
-### Requirement: UDT initiatives cycle maps projects and deployments
+### Requirement: UDT initiatives thread maps projects and deployments through broad discovery
 
-The `udt-initiatives` cycle SHALL produce a summary table with:
+The `udt-initiatives` thread SHALL produce a summary table with:
 
 - `Initiative`
 - `Link`
@@ -16,4 +16,4 @@ The `udt-initiatives` cycle SHALL produce a summary table with:
 - `Reason`
 
 `Uses` SHALL contain a comma-separated list of artifact names from `udt-platforms`, or `?` if unclear.
-The cycle SHALL be governed by `plan/udt-initiatives/source-policy.md` for evidence prioritization, unacceptable sources, and contradiction handling.
+The thread SHALL be framed as broad global discovery that prioritizes recall and allows `Uses = ?` when the technical substrate is unclear.

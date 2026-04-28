@@ -40,7 +40,7 @@ That is why prompt changes should go through OpenSpec:
 When different agents execute the same prompt differently, the stronger fix is usually to tighten the governing spec rather than patch the prompt directly.
 
 Composing smaller prompts and smaller supporting artifacts is intentional.
-It keeps scope, criteria, source policy, prompt contracts, and run inputs separable.
+It keeps scope, criteria, prompt contracts, and run inputs separable.
 That makes changes easier to interpret, makes shared rules easier to reuse, and keeps humans in the loop by making the important boundaries reviewable instead of burying them in one large prompt.
 
 ### Repository Model
@@ -60,7 +60,7 @@ Composing smaller prompts is not only a prompt-design choice; it is the mechanis
 That decomposition is also what keeps humans in the loop:
 
 - Scope can be adjusted without rewriting execution prompts
-- Source policy can be tightened without rewriting reflection prompts
+- Comparison criteria can be tightened without rewriting discovery prompts
 - One thread can be redirected without destabilizing the whole repository
 - Reflection can connect threads and let results from one thread influence another
 
@@ -68,6 +68,13 @@ The plan phase carries the thread-level interpretation of the workflow:
 
 - each thread has its own planning material describing its purpose and inputs
 - plan-level dependency documentation explains how threads depend on and inform each other
+
+The first two threads are broad global discovery threads:
+
+- `udt-platforms` casts a wide net over technical artifacts and classifies them using a stable `Type` contract
+- `udt-initiatives` casts a wide net over projects, programmes, and deployments and records `Uses = ?` when the technical substrate is unclear
+
+The stricter evaluative stage is `udt-platform-comparison`, where the selected platform set is compared using tighter criteria and stronger evidence expectations.
 
 The repository has two main parts:
 
@@ -93,7 +100,7 @@ In that sense:
 ### 1. Start in `plan/`
 
 Start from the planning artifacts for the thread you are working on.
-That is where purpose, scope, source policy, and thread dependencies are made explicit before execution.
+That is where purpose, scope, comparison criteria where applicable, and thread dependencies are made explicit before execution.
 
 ### 2. Run canonical prompts from `act/`
 
@@ -124,7 +131,7 @@ Those artifacts are for comparing prompt behavior, not for replacing the canonic
 ```mermaid
 flowchart TD
     P["plan/
-purpose, scope, source policy, dependencies"]
+purpose, scope, criteria, dependencies"]
     A["act/
 canonical prompt"]
     O["observe/

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the prompt template at `act/udt-platforms/prompt.md` — structure, required inputs, run modes, output contract, and save-as conventions for the `udt-platforms` cycle.
+Defines the prompt template at `act/udt-platforms/prompt.md` — structure, required inputs, run modes, output contract, and save-as conventions for the `udt-platforms` thread.
 
 ## Requirements
 
@@ -27,16 +27,15 @@ The summary table SHALL use exactly these columns:
 - `Reason`
 
 Only `Type = platform` rows are eligible for later platform comparison.
-The prompt SHALL also instruct the model to follow `plan/udt-platforms/source-policy.md` when selecting and characterizing evidence.
+The prompt SHALL describe `udt-platforms` as a broad global discovery thread and instruct the model to prefer stronger evidence when available without turning the thread into a strict source-policy workflow.
 
 ### Requirement: UDT platforms prompt declares plan/udt-platforms/scope.md as a required input
 
 The prompt SHALL include a `## Required Inputs` section listing:
 
 - `plan/udt-platforms/scope.md`
-- `plan/udt-platforms/source-policy.md`
 
 ### Requirement: UDT platforms prompt supports CLI and Web run modes
 
-In CLI mode the AI reads the required inputs, including `plan/udt-platforms/scope.md` and `plan/udt-platforms/source-policy.md`, and saves the response to `observe/udt-platforms/cli-<model-short>.md`.
-In Web mode the AI inlines the required inputs, including `plan/udt-platforms/scope.md` and `plan/udt-platforms/source-policy.md`, and the researcher saves the response to `observe/udt-platforms/web-<model-short>.md`.
+In CLI mode the AI reads the required inputs, including `plan/udt-platforms/scope.md`, and saves the response to `observe/udt-platforms/cli-<model-short>.md`.
+In Web mode the AI inlines the required inputs, including `plan/udt-platforms/scope.md`, and the researcher saves the response to `observe/udt-platforms/web-<model-short>.md`.

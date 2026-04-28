@@ -1,10 +1,10 @@
 # UDT Platforms Scope
 
-This file defines the technical-artifact classification used in the `udt-platforms` cycle.
-The cycle maps software or technical artifacts from literature and current ecosystem evidence.
-Use `plan/udt-platforms/source-policy.md` together with this file when deciding which evidence is acceptable and how conflicting sources are handled.
+This file defines the technical-artifact classification used in the `udt-platforms` thread.
+The thread is a broad global discovery thread.
+Its job is to maximize recall across software or technical artifacts from literature and current ecosystem evidence, while keeping the classification contract stable.
 
-Initiatives and projects are tracked separately in the `udt-initiatives` cycle. They are not primary rows in the `udt-platforms` summary table.
+Initiatives and projects are tracked separately in the `udt-initiatives` thread. They are not primary rows in the `udt-platforms` summary table.
 
 ---
 

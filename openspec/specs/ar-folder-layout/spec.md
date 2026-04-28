@@ -10,7 +10,7 @@ Defines the top-level folder structure for the repository, organised as action r
 
 The repository SHALL use four top-level folders matching the action research phases: `plan/`, `act/`, `observe/`, and `reflect/`.
 
-Each phase folder SHALL contain exactly one subfolder per research cycle. The canonical research cycles are:
+Each phase folder SHALL contain exactly one subfolder per research thread. The canonical research threads are:
 
 - `udt-platforms`
 - `udt-initiatives`
@@ -25,8 +25,8 @@ The repository MAY also contain a top-level `calibration/` folder for archival p
 
 ### Requirement: plan/ holds cycle inputs
 
-`plan/udt-platforms/` SHALL contain `scope.md` and `source-policy.md`.
-`plan/udt-initiatives/` SHALL contain `scope.md` and `source-policy.md`.
+`plan/udt-platforms/` SHALL contain `scope.md`.
+`plan/udt-initiatives/` SHALL contain `scope.md`.
 `plan/udt-platform-comparison/` SHALL contain `rubrics.md`, `source-policy.md`, and `platforms.md`.
 
 ### Requirement: act/ holds canonical prompts and maintenance prompts
@@ -51,8 +51,8 @@ Artifacts under `calibration/` SHALL NOT be treated as canonical outputs.
 
 `README.md` SHALL explain:
 
-- `udt-platforms` as the technical-artifact mapping cycle
-- `udt-initiatives` as the initiative/project mapping cycle
-- `udt-platform-comparison` as the side-by-side comparison cycle
+- `udt-platforms` as a broad technical-artifact discovery thread
+- `udt-initiatives` as a broad initiative/project discovery thread
+- `udt-platform-comparison` as the stricter side-by-side comparison thread
 
 It SHALL also state that only `Type = platform` rows from `udt-platforms` are eligible for `udt-platform-comparison`.

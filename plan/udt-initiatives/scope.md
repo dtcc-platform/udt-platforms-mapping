@@ -1,9 +1,10 @@
 # UDT Initiatives Scope
 
-This file defines the initiative and project mapping contract used in the `udt-initiatives` cycle.
-Use `plan/udt-initiatives/source-policy.md` together with this file when deciding which initiative evidence is acceptable and when `Uses` should remain `?`.
+This file defines the initiative and project mapping contract used in the `udt-initiatives` thread.
+The thread is a broad global discovery thread.
+Its job is to maximize recall across UDT-related projects, programmes, deployments, and implementation efforts, while keeping the initiative output contract stable.
 
-The cycle maps city programmes, deployments, projects, and implementation efforts related to Urban Digital Twins.
+The thread maps city programmes, deployments, projects, and implementation efforts related to Urban Digital Twins.
 It does not treat those initiatives as primary software artifacts. Technical artifacts belong in `udt-platforms`.
 
 ---

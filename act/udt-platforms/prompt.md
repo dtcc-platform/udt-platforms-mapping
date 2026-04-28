@@ -4,8 +4,7 @@ Run this prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI). Tell the
 
 ## Required Inputs
 
-- `plan/udt-platforms/scope.md` — `Type` classification criteria for the `udt-platforms` cycle
-- `plan/udt-platforms/source-policy.md` — evidence ranking, unacceptable sources, and contradiction-handling rules for the `udt-platforms` cycle
+- `plan/udt-platforms/scope.md` — `Type` classification criteria for the `udt-platforms` thread
 
 ## Run Modes
 
@@ -15,7 +14,7 @@ Before executing the prompt body below, ask the user:
 
 Then proceed based on the answer:
 
-- **CLI** — Read each file listed under **Required Inputs** and execute the prompt body, using the file contents as the `Type` criteria and source-policy rules. Save the response to `observe/udt-platforms/cli-<model-short>.md`.
+- **CLI** — Read each file listed under **Required Inputs** and execute the prompt body, using the file contents as the `Type` criteria for this broad discovery thread. Save the response to `observe/udt-platforms/cli-<model-short>.md`.
 - **Web** — Produce a fully resolved prompt: inline the content of each file listed under **Required Inputs** at the top of the prompt under a heading naming the file (e.g., `## plan/udt-platforms/scope.md`), then append the prompt body below. Output the resolved prompt as a single copy-ready block with no wrapper, narration, or BEGIN/END markers. Append a short note after the resolved block telling the user to paste it into a web chat and save the response to `observe/udt-platforms/web-<model-short>.md`.
 
 If the user has not specified a mode, ask before proceeding — do not guess.
@@ -32,13 +31,13 @@ Before you begin:
 - Do not add product-native citation markers, sidebars, source appendices, methodology sections, or closing summaries.
 
 You are a research assistant mapping the **technical Urban Digital Twin ecosystem**.
-Your job is to identify technical artifacts from literature and current ecosystem evidence, then classify each artifact using the `Type` criteria from the required inputs while following the source-priority rules from the required inputs.
+Your job is to identify technical artifacts from literature and current ecosystem evidence, then classify each artifact using the `Type` criteria from the required inputs.
 
-Track initiatives and projects only as context during research. Do **not** make initiatives primary rows in this output. They belong in the separate `udt-initiatives` cycle.
+Track initiatives and projects only as context during research. Do **not** make initiatives primary rows in this output. They belong in the separate `udt-initiatives` thread.
 
 # UDT Platforms Mapping — Technical Artifacts
 
-Apply the `Type` criteria supplied in the required inputs (`plan/udt-platforms/scope.md`) to every artifact you include. Follow the evidence ranking and contradiction-handling rules supplied in `plan/udt-platforms/source-policy.md`. All four `Type` values (`platform`, `framework`, `module`, `excluded`) are valid outputs from a mapping session.
+Apply the `Type` criteria supplied in the required inputs (`plan/udt-platforms/scope.md`) to every artifact you include. All four `Type` values (`platform`, `framework`, `module`, `excluded`) are valid outputs from a mapping session.
 
 **Search scope:** Global city-scale UDT platforms and technical building blocks, including commercial and open-source artifacts. Cover all major geographies. Do not limit mapping to systems that market themselves explicitly as "digital twin platforms" — reusable frameworks and modules are in scope when they are materially relevant to UDT work.
 
@@ -56,13 +55,13 @@ For each artifact you identify (including DTCC):
 4. Identify the artifact type in plain language
 5. Assign one `Type` value using the required-input criteria
 
-Source policy:
+Evidence guidance:
 
-- Use `plan/udt-platforms/source-policy.md` as the governing evidence policy for this run.
+- This is a broad global discovery thread. Prioritize breadth and candidate recall over strict pre-filtering.
 - You may use secondary sources to discover candidate artifacts.
-- For final factual claims, prefer the highest-ranked acceptable sources available.
-- If higher-ranked sources cannot support a factual claim, write `unknown` or `?`.
-- Prefer omission over weakly supported inclusion; do not imply global completeness.
+- Prefer stronger and more direct sources for final factual claims when they are available.
+- If the available evidence cannot support a factual claim confidently, write `unknown` or `?`.
+- Do not imply global completeness, and do not invent certainty where the ecosystem evidence is mixed or incomplete.
 
 ### Markdown and Formatting Rules
 
