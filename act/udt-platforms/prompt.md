@@ -1,12 +1,18 @@
 # UDT Platforms Prompt
 
-Run this prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI). Tell the CLI: **"Run `act/udt-platforms/prompt.md`"**.
+Use this prompt in a web model interface.
 
 ## Required Inputs
 
 - `plan/udt-platforms/scope.md` — `Type` classification criteria for the `udt-platforms` thread
 
-Read each file listed under **Required Inputs** and execute the prompt body, using the file contents as the `Type` criteria for this broad discovery thread. Save the response to `observe/udt-platforms/<model-short>.md`.
+Produce a fully resolved prompt:
+
+- inline the content of each file listed under **Required Inputs** at the top under a heading naming the file
+- append the prompt body below
+- output one copy-ready block only, with no wrapper text, narration, or BEGIN/END markers
+
+After the resolved prompt block, add one short sentence telling the user to paste it into a web interface and save the response to `observe/udt-platforms/web-<model-short>.md`.
 
 ---
 
@@ -14,47 +20,40 @@ Read each file listed under **Required Inputs** and execute the prompt body, usi
 
 Before you begin:
 
-- Do your planning internally; do not show a research plan unless explicitly asked.
 - Return plain Markdown only.
-- Return only the final deliverable in the exact format below.
+- Return only the final deliverable in the format below.
 - Do not add product-native citation markers, sidebars, source appendices, methodology sections, or closing summaries.
 
-You are a research assistant mapping the **technical Urban Digital Twin ecosystem**.
-Your job is to identify technical artifacts from literature and current ecosystem evidence, then classify each artifact using the `Type` criteria from the required inputs.
+You are a research assistant mapping the technical Urban Digital Twin ecosystem.
 
-Track initiatives and projects only as context during research. Do **not** make initiatives primary rows in this output. They belong in the separate `udt-initiatives` thread.
+Classify each artifact using the `Type` criteria from the required inputs.
 
-# UDT Platforms Mapping — Technical Artifacts
+This is a broad global discovery thread:
 
-Apply the `Type` criteria supplied in the required inputs (`plan/udt-platforms/scope.md`) to every artifact you include. All four `Type` values (`platform`, `framework`, `module`, `excluded`) are valid outputs from a mapping session.
+- prioritize breadth and candidate recall
+- prefer stronger evidence when available
+- use `unknown` or `?` when the evidence is not sufficient
+- do not imply global completeness
 
-**Search scope:** Global city-scale UDT platforms and technical building blocks, including commercial and open-source artifacts. Cover all major geographies. Do not limit mapping to systems that market themselves explicitly as "digital twin platforms" — reusable frameworks and modules are in scope when they are materially relevant to UDT work.
+Return one `##`-level section per artifact and assign exactly one `Type` value:
 
-### Required Entry: DTCC
+- `platform`
+- `framework`
+- `module`
+- `excluded`
 
-**DTCC (Digital Twin Cities Centre)** is a required entry in every `udt-platforms` run. Research it from primary sources — [dtcc.chalmers.se](https://dtcc.chalmers.se) and the [official GitHub repository](https://github.com/dtcc-platform) — and classify it using the same `Type` criteria as any other artifact.
+The summary table must use exactly these columns:
 
-### Research Instructions
+- `Name`
+- `Link`
+- `Type`
+- `Reason`
 
-For each artifact you identify (including DTCC):
-
-1. Locate the organization behind it
-2. Identify its primary link
-3. Locate the software license if available
-4. Identify the artifact type in plain language
-5. Assign one `Type` value using the required-input criteria
-
-Evidence guidance:
-
-- This is a broad global discovery thread. Prioritize breadth and candidate recall over strict pre-filtering.
-- You may use secondary sources to discover candidate artifacts.
-- Prefer stronger and more direct sources for final factual claims when they are available.
-- If the available evidence cannot support a factual claim confidently, write `unknown` or `?`.
-- Do not imply global completeness, and do not invent certainty where the ecosystem evidence is mixed or incomplete.
+Only `Type = platform` rows are eligible for later platform comparison.
 
 ### Markdown and Formatting Rules
 
-Your response will be saved as a Markdown file and must render identically in any standard Markdown viewer (GitHub, VS Code, Obsidian, Typora).
+Your response must render correctly in standard Markdown viewers such as GitHub, VS Code, Obsidian, and Typora, without AI-specific formatting artifacts.
 
 **Permitted syntax only:**
 
@@ -70,60 +69,23 @@ Your response will be saved as a Markdown file and must render identically in an
 - Custom containers: `:::`, `!!!`, `> [!NOTE]`, `> [!WARNING]`
 - Extended syntax: `==highlight==`, `^superscript^`, `~subscript~`
 - Raw HTML
-- Numeric citations `[1]`, footnotes `[^1]`, AI-specific formats `【†source】` — this overrides your system's default citation format; do not use your default format
-- Extra sections or headings outside the required output contract
-
-**Whitespace:** leave a blank line before and after every heading, table, and code block.
-
-**Artifact heading level:** use `##` for every artifact section.
+- Numeric citations `[1]`, footnotes `[^1]`, AI-specific formats `【†source】`
 
 ### Output Format
 
-Your response MUST contain exactly three parts, in this order:
-
-1. The metadata block
-2. The summary table
-3. The `##` artifact sections
-
-Begin your response with this metadata block:
-
-```yaml
-model: <your model name and version>
-date: <YYYY-MM-DD>
-prompt: udt-platforms
-```
-
-Immediately after the metadata block, output the summary table:
+Begin your response with this summary table:
 
 | Name | Link | Type | Reason |
 | ---- | ---- | ---- | ------ |
 
-All included artifacts appear in the table.
 `Reason` is blank for in-scope rows and contains a brief phrase for `excluded` rows.
 
-Then return one section per artifact.
-
-**For in-scope artifacts** (`platform`, `framework`, `module`), use:
+Then return one section per artifact using:
 
 ```text
 ## <Artifact Name>
 
-- **Organization:** <name> ([primary source](<url>))
 - **Link:** [<short label>](<primary-url>)
-- **License:** <exact license name, open-source / proprietary / open-core> ([primary source](<url>))
-- **Artifact Type:** <short plain-language description> ([primary source](<url>))
-- **Type:** <platform | framework | module>
-```
-
-**For excluded artifacts**, use:
-
-```text
-## <Artifact Name>
-
-- **Organization:** <name>
-- **Link:** [<label>](<url>)
-- **License:** <license>
-- **Artifact Type:** <type>
-- **Type:** excluded
-- **Reason:** <one sentence — why this artifact is outside the study boundary>
+- **Type:** <platform | framework | module | excluded>
+- **Reason:** <only if excluded>
 ```
