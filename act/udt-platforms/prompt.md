@@ -1,23 +1,12 @@
 # UDT Platforms Prompt
 
-Run this prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI). Tell the CLI: **"Run `act/udt-platforms/prompt.md`"**. The CLI will ask you whether to run in CLI or Web mode and handle the rest.
+Run this prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI). Tell the CLI: **"Run `act/udt-platforms/prompt.md`"**.
 
 ## Required Inputs
 
 - `plan/udt-platforms/scope.md` — `Type` classification criteria for the `udt-platforms` thread
 
-## Run Modes
-
-Before executing the prompt body below, ask the user:
-
-> Run as CLI or Web?
-
-Then proceed based on the answer:
-
-- **CLI** — Read each file listed under **Required Inputs** and execute the prompt body, using the file contents as the `Type` criteria for this broad discovery thread. Save the response to `observe/udt-platforms/cli-<model-short>.md`.
-- **Web** — Produce a fully resolved prompt: inline the content of each file listed under **Required Inputs** at the top of the prompt under a heading naming the file (e.g., `## plan/udt-platforms/scope.md`), then append the prompt body below. Output the resolved prompt as a single copy-ready block with no wrapper, narration, or BEGIN/END markers. Append a short note after the resolved block telling the user to paste it into a web chat and save the response to `observe/udt-platforms/web-<model-short>.md`.
-
-If the user has not specified a mode, ask before proceeding — do not guess.
+Read each file listed under **Required Inputs** and execute the prompt body, using the file contents as the `Type` criteria for this broad discovery thread. Save the response to `observe/udt-platforms/<model-short>.md`.
 
 ---
 

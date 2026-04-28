@@ -1,6 +1,6 @@
 # UDT Platform Comparison Prompt
 
-Run this prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI). Tell the CLI: **"Run `act/udt-platform-comparison/prompt.md`"**. The CLI will ask you whether to run in CLI or Web mode and handle the rest.
+Run this prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI). Tell the CLI: **"Run `act/udt-platform-comparison/prompt.md`"**.
 
 ## Required Inputs
 
@@ -8,18 +8,7 @@ Run this prompt through an AI CLI (Claude Code, Codex CLI, Gemini CLI). Tell the
 - `plan/udt-platform-comparison/platforms.md` — the selected platforms to compare (must include DTCC)
 - `plan/udt-platform-comparison/source-policy.md` — acceptable source types and citation conventions
 
-## Run Modes
-
-Before executing the prompt body below, ask the user:
-
-> Run as CLI or Web?
-
-Then proceed based on the answer:
-
-- **CLI** — Read each file listed under **Required Inputs** and execute the prompt body. Save the response to `observe/udt-platform-comparison/cli-<model-short>.md`.
-- **Web** — Produce a fully resolved prompt with all required-input files inlined at the top, then append the prompt body below. Output the resolved prompt as a single copy-ready block with no wrapper or narration. Append a short note telling the user to paste it into a web chat and save the response to `observe/udt-platform-comparison/web-<model-short>.md`.
-
-If the user has not specified a mode, ask before proceeding — do not guess.
+Read each file listed under **Required Inputs** and execute the prompt body. Save the response to `observe/udt-platform-comparison/<model-short>.md`.
 
 ---
 

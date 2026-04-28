@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the prompt template at `act/udt-platforms/prompt.md` — structure, required inputs, run modes, output contract, and save-as conventions for the `udt-platforms` thread.
+Defines the prompt template at `act/udt-platforms/prompt.md` — structure, required inputs, output contract, and save-as conventions for the `udt-platforms` thread.
 
 ## Requirements
 
@@ -35,7 +35,7 @@ The prompt SHALL include a `## Required Inputs` section listing:
 
 - `plan/udt-platforms/scope.md`
 
-### Requirement: UDT platforms prompt supports CLI and Web run modes
+### Requirement: UDT platforms prompt executes through one governed path
 
-In CLI mode the AI reads the required inputs, including `plan/udt-platforms/scope.md`, and saves the response to `observe/udt-platforms/cli-<model-short>.md`.
-In Web mode the AI inlines the required inputs, including `plan/udt-platforms/scope.md`, and the researcher saves the response to `observe/udt-platforms/web-<model-short>.md`.
+The prompt SHALL not ask the user to choose between CLI and Web modes.
+The prompt SHALL instruct the AI to read the required inputs, including `plan/udt-platforms/scope.md`, and save the response to `observe/udt-platforms/<model-short>.md`.

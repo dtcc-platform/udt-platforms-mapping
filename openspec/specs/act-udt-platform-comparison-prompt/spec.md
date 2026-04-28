@@ -23,7 +23,7 @@ The prompt SHALL include a `## Required Inputs` section listing:
 - `plan/udt-platform-comparison/platforms.md`
 - `plan/udt-platform-comparison/source-policy.md`
 
-### Requirement: Comparison prompt supports CLI and Web run modes
+### Requirement: Comparison prompt executes through one governed path
 
-In CLI mode the AI reads all three required inputs and saves the response to `observe/udt-platform-comparison/cli-<model-short>.md`.
-In Web mode the AI inlines the required inputs and the researcher saves the response to `observe/udt-platform-comparison/web-<model-short>.md`.
+The prompt SHALL not ask the user to choose between CLI and Web modes.
+The prompt SHALL instruct the AI to read all three required inputs and save the response to `observe/udt-platform-comparison/<model-short>.md`.

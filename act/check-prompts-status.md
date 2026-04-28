@@ -40,14 +40,12 @@ Audit these live prompts only:
 
 - Governing spec: `openspec/specs/act-udt-platforms-prompt/spec.md`
 - Shared contracts:
-  - `openspec/specs/prompt-run-modes/spec.md`
   - `openspec/specs/prompt-markdown-format/spec.md`
 
 #### 2. `act/udt-platform-comparison/prompt.md`
 
 - Governing spec: `openspec/specs/act-udt-platform-comparison-prompt/spec.md`
 - Shared contracts:
-  - `openspec/specs/prompt-run-modes/spec.md`
   - `openspec/specs/prompt-markdown-format/spec.md`
 
 #### 3. `reflect/udt-platforms/benchmarking/prompt.md`
