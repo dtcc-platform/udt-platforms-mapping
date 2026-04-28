@@ -18,7 +18,7 @@ What must become trusted and stabilized is the workflow:
 - how outputs are compared, and
 - how changes are traced.
 
-This repository is a medium for governing research agents through explicit contracts, calibration, execution, and reflection.
+This repository is a medium for governing research agents through explicit contracts, Continual AI Review, execution, and reflection.
 
 Contributors primarily improve the workflow by calibrating prompts, refining contracts, and adding new research cycles.
 Agents primarily execute those cycles and generate research outputs within the governed workflow.
@@ -58,22 +58,25 @@ That keeps prompts and supporting artifacts smaller, narrower, and easier to com
 Composing smaller prompts is not only a prompt-design choice; it is the mechanism that lets humans steer the workflow without rewriting the whole system each time.
 
 That decomposition is also what keeps humans in the loop:
-- scope can be adjusted without rewriting execution prompts
-- source policy can be tightened without rewriting reflection prompts
-- one thread can be redirected without destabilizing the whole repository
-- reflection can connect threads and let results from one thread influence another
+
+- Scope can be adjusted without rewriting execution prompts
+- Source policy can be tightened without rewriting reflection prompts
+- One thread can be redirected without destabilizing the whole repository
+- Reflection can connect threads and let results from one thread influence another
 
 The plan phase carries the thread-level interpretation of the workflow:
+
 - each thread has its own planning material describing its purpose and inputs
 - plan-level dependency documentation explains how threads depend on and inform each other
 
 The repository has two main parts:
 
-- prompt calibration: the archival layer under `calibration/`, used to compare prompt realizations and agent behavior against the same accepted contract
-- research execution: the canonical layer under `plan/`, `act/`, `observe/`, and `reflect/`, used to run the research itself and get accepted results
+- Continual AI Review: the archival layer under `calibration/`, used to compare prompt realizations and agent behavior against the same accepted contract
+- Research execution: the canonical layer under `plan/`, `act/`, `observe/`, and `reflect/`, used to run the research itself and get accepted results
 
 Git history is part of the workflow, not just storage.
 Together, the repository structure and git history make it possible to inspect how a result was produced:
+
 - the workflow shows which phase artifacts shaped the result
 - the git log shows when those artifacts changed
 - branches and calibration history show how prompt calibration happened
@@ -109,7 +112,7 @@ Saved canonical outputs belong in `observe/`.
 Reflection, benchmarking, and reporting belong in `reflect/`.
 This is where one thread can inform another and where the next cycle gets shaped.
 
-### 4. Use `calibration/` for prompt comparison, not canonical research state
+### 4. Use `calibration/` for Continual AI Review, not canonical research state
 
 When different agents realize the same accepted contract differently, store those prompt/result pairs under `calibration/`.
 Those artifacts are for comparing prompt behavior, not for replacing the canonical research state.
@@ -137,7 +140,7 @@ updated contracts and inputs"]
     R --> N
 ```
 
-### Prompt Calibration
+### Continual AI Review
 
 ```mermaid
 flowchart TD
@@ -205,5 +208,7 @@ if needed"]
 ## Future Directions
 
 - A possible future direction is to adopt a Markdown-native relationship layer such as [Tolaria](https://tolaria.md/) and use YAML frontmatter on governed files to express purpose, dependencies, and thread relationships directly in each document.
-- If that happens, per-file frontmatter could replace or reduce the need for separate dependency-mapping documents, while keeping relationships inspectable through plain files and git history.
-- This is only a future direction. The current repository does not require frontmatter on all Markdown files, and the current workflow remains the source of truth.
+  If that happens, per-file frontmatter could replace or reduce the need for separate dependency-mapping documents, while keeping relationships inspectable through plain files and git history.
+  This is only a future direction. The current repository does not require frontmatter on all Markdown files, and the current workflow remains the source of truth.
+- Another future direction is to simplify the workflow for end users through higher-level skills that wrap the internal repository mechanics, similar in spirit to the skill-driven workflow system described by [The Unfinishable Map](https://unfinishablemap.org/workflow/).
+  That would let users invoke named workflow actions while the underlying prompts, files, and git operations remain governed by the repository.
