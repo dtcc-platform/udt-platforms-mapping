@@ -78,7 +78,7 @@ The stricter evaluative stage is `udt-platform-comparison`, where the selected p
 
 The repository has two main parts:
 
-- Continual AI Review: the archival layer under `calibration/`, used to compare prompt realizations and agent behavior against the same accepted contract
+- Continual AI Review: the archival layer under `calibration/`, used to compare how different agents interpret the same governing spec before accepted contract changes return to `main`
 - Research execution: the canonical layer under `plan/`, `act/`, `observe/`, and `reflect/`, used to run the research itself and get accepted results
 
 Git history is part of the workflow, not just storage.
@@ -86,7 +86,7 @@ Together, the repository structure and git history make it possible to inspect h
 
 - the workflow shows which phase artifacts shaped the result
 - the git log shows when those artifacts changed
-- branches and calibration history show how prompt calibration happened
+- branches and calibration history show how prompt interpretation was calibrated
 - the resulting history shows how much a saved result reflects an up-to-date view of the ecosystem rather than an older contract or older evidence base
 
 In that sense:
@@ -122,8 +122,26 @@ This is where one thread can inform another and where the next cycle gets shaped
 
 ### 4. Use `calibration/` for Continual AI Review, not canonical research state
 
-When different agents realize the same accepted contract differently, store those prompt/result pairs under `calibration/`.
-Those artifacts are for comparing prompt behavior, not for replacing the canonical research state.
+When calibrating a governed prompt spec:
+
+- first generate prompts from the same accepted spec
+- save those prompts under `calibration/<spec-name>/c01/<agent>/prompt.md`
+- only after all prompts are visible, branch by agent
+- let each agent create its own isolated OpenSpec proposal
+- merge those proposals into a dedicated calibration branch
+- decide what to keep there before accepted changes go back to `main`
+
+The credibility of this process depends on isolated context before merge:
+
+- agents may share the governing spec and generated prompts
+- agents do not see other agents' proposals before merge
+- independent proposals are therefore stronger evidence of real ambiguity in the spec
+
+This is not canonical research state.
+It is calibration evidence for tightening the workflow.
+
+Read more:
+`openspec/changes/reframe-calibration-as-isolated-spec-review/`
 
 ## Workflow Diagrams
 
@@ -155,13 +173,6 @@ flowchart TD
     M["main baseline
 accepted spec and inputs"]
 
-    W1["worktree a
-agent-a branch"]
-    W2["worktree b
-agent-b branch"]
-    W3["worktree c
-agent-c branch"]
-
     P1["agent-a
 generate prompt"]
     P2["agent-b
@@ -169,40 +180,47 @@ generate prompt"]
     P3["agent-c
 generate prompt"]
 
-    R1["agent-a
-run prompt and save result"]
-    R2["agent-b
-run prompt and save result"]
-    R3["agent-c
-run prompt and save result"]
-
     C["calibration/
-archive prompt + result pairs"]
+shared prompt artifacts"]
 
-    F["reflection on deviations
-compare prompt realizations"]
+    B1["branch: agent-a"]
+    B2["branch: agent-b"]
+    B3["branch: agent-c"]
 
-    U["update contracts
-if needed"]
+    O1["isolated OpenSpec
+proposal a"]
+    O2["isolated OpenSpec
+proposal b"]
+    O3["isolated OpenSpec
+proposal c"]
 
-    M -->|create worktrees| W1
-    M -->|create worktrees| W2
-    M -->|create worktrees| W3
+    CB["calibration branch
+merged proposals"]
 
-    W1 --> P1
-    W2 --> P2
-    W3 --> P3
+    U["accepted follow-up
+change to spec"]
 
-    P1 --> R1
-    P2 --> R2
-    P3 --> R3
+    M --> P1
+    M --> P2
+    M --> P3
 
-    R1 -->|archive under calibration/| C
-    R2 -->|archive under calibration/| C
-    R3 -->|archive under calibration/| C
+    P1 --> C
+    P2 --> C
+    P3 --> C
 
-    C --> F
-    F --> U
+    C --> B1
+    C --> B2
+    C --> B3
+
+    B1 --> O1
+    B2 --> O2
+    B3 --> O3
+
+    O1 --> CB
+    O2 --> CB
+    O3 --> CB
+
+    CB --> U
 ```
 
 ## Naming Conventions

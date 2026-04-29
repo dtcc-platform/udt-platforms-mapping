@@ -58,3 +58,13 @@ Artifacts under `calibration/` SHALL NOT be treated as canonical outputs.
 - `udt-platform-comparison` as the stricter side-by-side comparison thread
 
 It SHALL also state that only `Type = platform` rows from `udt-platforms` are eligible for `udt-platform-comparison`.
+
+### Requirement: README explains the isolation rule for calibration
+
+`README.md` SHALL explain that the credibility of calibration depends on isolated proposal context before merge.
+
+It SHALL explain that:
+
+- agents may share the governing spec and generated prompts
+- agents do not see other agents' proposals before merge
+- synthesis happens on a dedicated calibration branch rather than directly on `main`
