@@ -223,15 +223,23 @@ change to spec"]
     CB --> U
 ```
 
-## Naming Conventions
+## Naming and Repository Structure
 
-| Kind                 | Pattern                           | Example                                           |
-| -------------------- | --------------------------------- | ------------------------------------------------- |
-| phase-cycle commit   | `<phase>(<cycle>): <subject>`     | `observe(udt-platforms): add claude response`     |
-| spec/workflow commit | `<type>(<scope>): <subject>`      | `refactor(specs): rename cycles to udt-platforms` |
-| calibration branch   | `<agent>`                         | `codex`, `gemini`, `claude`                       |
-| calibration cycle    | `cNN`                             | `c01`, `c02`                                      |
-| OpenSpec change      | `lowercase-hyphenated-name`       | `replace-ar-folder-layout-with-repository-structure` |
+The live repository structure is governed by:
+
+- [openspec/specs/repository-structure/spec.md](openspec/specs/repository-structure/spec.md)
+
+Workflow naming conventions are governed by:
+
+- [openspec/specs/workflow-naming-conventions/spec.md](openspec/specs/workflow-naming-conventions/spec.md)
+
+Use those specs as the source of truth for:
+
+- canonical phase and thread locations
+- calibration path and cycle naming expectations
+- branch naming
+- commit naming
+- OpenSpec change naming
 
 ## Future Directions
 
