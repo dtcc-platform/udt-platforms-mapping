@@ -1,8 +1,8 @@
-# Spec: ar-folder-layout
+# Spec: repository-structure
 
 ## Purpose
 
-Defines the top-level folder structure for the repository, organised as action research phases plus a separate archival calibration area.
+Defines the top-level repository structure for the research workflow, including the phase layout, canonical research-thread locations, canonical prompt/output locations, and README explanation requirements.
 
 ## Requirements
 
@@ -16,14 +16,14 @@ Each phase folder SHALL contain exactly one subfolder per research thread. The c
 - `udt-initiatives`
 - `udt-platform-comparison`
 
-The repository MAY also contain a top-level `calibration/` folder for archival prompt/result comparisons across agents.
+The repository MAY also contain a top-level `calibration/` folder for archival prompt-generation calibration across agents.
 
 #### Scenario: Researcher navigates the repository
 
 - **WHEN** a researcher opens the repository root
-- **THEN** they see the four phase folders, the three cycle names, and may also see `calibration/`
+- **THEN** they see the four phase folders, the three research-thread names, and may also see `calibration/`
 
-### Requirement: plan/ holds cycle inputs
+### Requirement: plan/ holds thread inputs
 
 `plan/udt-platforms/` SHALL contain `scope.md`.
 `plan/udt-initiatives/` SHALL contain `scope.md`.
@@ -36,20 +36,20 @@ The repository MAY also contain a top-level `calibration/` folder for archival p
 `act/udt-platform-comparison/prompt.md` SHALL be the canonical `udt-platform-comparison` prompt template.
 `act/check-prompts-status.md` SHALL be the prompt-status maintenance prompt.
 
-### Requirement: observe/ holds canonical saved outputs per cycle
+### Requirement: observe/ holds canonical saved outputs per thread
 
 `observe/udt-platforms/` SHALL contain saved web responses for `udt-platforms`.
 `observe/udt-initiatives/` SHALL contain saved web responses for `udt-initiatives`.
 `observe/udt-platform-comparison/` SHALL contain saved web responses for `udt-platform-comparison`.
 Artifacts under `calibration/` SHALL NOT be treated as canonical outputs.
 
-### Requirement: reflect/ holds benchmarking and reporting per cycle
+### Requirement: reflect/ holds benchmarking and reporting per thread
 
 `reflect/udt-platforms/` SHALL contain `benchmarking/` and `reporting/`.
 `reflect/udt-platform-comparison/` SHALL contain `reporting/` and MAY contain `benchmarking/`.
 `reflect/udt-initiatives/` MAY contain reporting or synthesis artifacts.
 
-### Requirement: README explains the three-cycle model and comparison handoff
+### Requirement: README explains the three-thread model and comparison handoff
 
 `README.md` SHALL explain:
 

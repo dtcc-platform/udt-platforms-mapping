@@ -141,7 +141,7 @@ This is not canonical research state.
 It is calibration evidence for tightening the workflow.
 
 Read more:
-`openspec/changes/reframe-calibration-as-isolated-spec-review/`
+`openspec/changes/archive/2026-04-29-reframe-calibration-as-isolated-spec-review/`
 
 ## Workflow Diagrams
 
@@ -229,7 +229,9 @@ change to spec"]
 | -------------------- | --------------------------------- | ------------------------------------------------- |
 | phase-cycle commit   | `<phase>(<cycle>): <subject>`     | `observe(udt-platforms): add claude response`     |
 | spec/workflow commit | `<type>(<scope>): <subject>`      | `refactor(specs): rename cycles to udt-platforms` |
-| agent branch         | `<agent>` or `<agent>-<research>` | `agent-a`, `agent-b-udt-platforms`                |
+| calibration branch   | `<agent>`                         | `codex`, `gemini`, `claude`                       |
+| calibration cycle    | `cNN`                             | `c01`, `c02`                                      |
+| OpenSpec change      | `lowercase-hyphenated-name`       | `replace-ar-folder-layout-with-repository-structure` |
 
 ## Future Directions
 

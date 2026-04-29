@@ -1,0 +1,70 @@
+# Spec: repository-structure
+
+## Purpose
+
+Defines the top-level repository structure for the research workflow, including the phase layout, canonical research-thread locations, canonical prompt/output locations, and README explanation requirements.
+
+## Requirements
+
+### Requirement: Repository is organised as action research phases at top level
+
+The repository SHALL use four top-level folders matching the action research phases: `plan/`, `act/`, `observe/`, and `reflect/`.
+
+Each phase folder SHALL contain exactly one subfolder per research thread. The canonical research threads are:
+
+- `udt-platforms`
+- `udt-initiatives`
+- `udt-platform-comparison`
+
+The repository MAY also contain a top-level `calibration/` folder for archival prompt-generation calibration across agents.
+
+#### Scenario: Researcher navigates the repository
+
+- **WHEN** a researcher opens the repository root
+- **THEN** they see the four phase folders, the three research-thread names, and may also see `calibration/`
+
+### Requirement: plan/ holds thread inputs
+
+`plan/udt-platforms/` SHALL contain `scope.md`.
+`plan/udt-initiatives/` SHALL contain `scope.md`.
+`plan/udt-platform-comparison/` SHALL contain `rubrics.md`, `source-policy.md`, and `platforms.md`.
+
+### Requirement: act/ holds canonical prompts and maintenance prompts
+
+`act/udt-platforms/prompt.md` SHALL be the canonical `udt-platforms` prompt template.
+`act/udt-initiatives/prompt.md` SHALL be the canonical `udt-initiatives` prompt template.
+`act/udt-platform-comparison/prompt.md` SHALL be the canonical `udt-platform-comparison` prompt template.
+`act/check-prompts-status.md` SHALL be the prompt-status maintenance prompt.
+
+### Requirement: observe/ holds canonical saved outputs per thread
+
+`observe/udt-platforms/` SHALL contain saved web responses for `udt-platforms`.
+`observe/udt-initiatives/` SHALL contain saved web responses for `udt-initiatives`.
+`observe/udt-platform-comparison/` SHALL contain saved web responses for `udt-platform-comparison`.
+Artifacts under `calibration/` SHALL NOT be treated as canonical outputs.
+
+### Requirement: reflect/ holds benchmarking and reporting per thread
+
+`reflect/udt-platforms/` SHALL contain `benchmarking/` and `reporting/`.
+`reflect/udt-platform-comparison/` SHALL contain `reporting/` and MAY contain `benchmarking/`.
+`reflect/udt-initiatives/` MAY contain reporting or synthesis artifacts.
+
+### Requirement: README explains the three-thread model and comparison handoff
+
+`README.md` SHALL explain:
+
+- `udt-platforms` as a broad technical-artifact discovery thread
+- `udt-initiatives` as a broad initiative/project discovery thread
+- `udt-platform-comparison` as the stricter side-by-side comparison thread
+
+It SHALL also state that only `Type = platform` rows from `udt-platforms` are eligible for `udt-platform-comparison`.
+
+### Requirement: README explains the isolation rule for calibration
+
+`README.md` SHALL explain that the credibility of calibration depends on isolated proposal context before merge.
+
+It SHALL explain that:
+
+- agents may share the governing spec and generated prompts
+- agents do not see other agents' proposals before merge
+- synthesis happens on a dedicated calibration branch rather than directly on `main`
