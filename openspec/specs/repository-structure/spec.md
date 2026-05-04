@@ -41,18 +41,16 @@ The repository MAY also contain a top-level `calibration/` folder for archival p
 - **THEN** they see the canonical thread planning inputs as direct files
 - **THEN** no canonical planning input is hidden behind a per-thread subfolder
 
-### Requirement: act/ holds canonical prompts and maintenance prompts
+### Requirement: act/ holds canonical prompts
 
 `act/udt-platforms.md` SHALL be the canonical `udt-platforms` prompt template.
 `act/udt-initiatives.md` SHALL be the canonical `udt-initiatives` prompt template.
 `act/udt-platform-comparison.md` SHALL be the canonical `udt-platform-comparison` prompt template.
-`act/check-prompts-status.md` SHALL be the prompt-status maintenance prompt.
 
 #### Scenario: Researcher finds canonical prompts
 
 - **WHEN** a researcher opens `act/`
 - **THEN** they see the canonical thread prompts as direct files
-- **THEN** they see the prompt-status maintenance prompt as a direct file
 
 ### Requirement: observe/ holds canonical saved outputs per thread
 
@@ -110,4 +108,3 @@ It SHALL explain that:
 - **WHEN** a researcher reads the calibration guidance in `README.md`
 - **THEN** the README explains the isolated proposal context rule
 - **THEN** the README explains that synthesis happens on a dedicated calibration branch
-
