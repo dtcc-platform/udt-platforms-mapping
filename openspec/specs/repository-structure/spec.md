@@ -16,12 +16,12 @@ The canonical research threads are:
 - `udt-initiatives`
 - `udt-platform-comparison`
 
-The repository MAY also contain a top-level `calibration/` folder for archival prompt-generation calibration across agents.
+The repository SHALL NOT use a top-level `calibration/` folder for live workflow state.
 
 #### Scenario: Researcher navigates the repository
 
 - **WHEN** a researcher opens the repository root
-- **THEN** they see the four phase folders and may also see `calibration/`
+- **THEN** they see the four phase folders
 - **THEN** the researcher can find canonical planning inputs directly under `plan/`
 - **THEN** the researcher can find canonical thread prompts directly under `act/`
 - **THEN** the researcher can find thread-grouped outputs under `observe/`
@@ -57,13 +57,11 @@ The repository MAY also contain a top-level `calibration/` folder for archival p
 `observe/udt-platforms/` SHALL contain saved web responses for `udt-platforms`.
 `observe/udt-initiatives/` SHALL contain saved web responses for `udt-initiatives`.
 `observe/udt-platform-comparison/` SHALL contain saved web responses for `udt-platform-comparison`.
-Artifacts under `calibration/` SHALL NOT be treated as canonical outputs.
 
 #### Scenario: Researcher saves a web response
 
 - **WHEN** a researcher saves a canonical web response
 - **THEN** the response is saved under the matching `observe/<thread>/` folder
-- **THEN** calibration artifacts are not treated as canonical observed outputs
 
 ### Requirement: reflect/ holds benchmarking and reporting per thread
 
@@ -93,18 +91,14 @@ It SHALL also state that only `Type = platform` rows from `udt-platforms` are el
 - **THEN** the README explains the roles of `udt-platforms`, `udt-initiatives`, and `udt-platform-comparison`
 - **THEN** the README states that only `Type = platform` rows are eligible for `udt-platform-comparison`
 
-### Requirement: README explains the isolation rule for calibration
+### Requirement: README explains prompt interpretation review
 
-`README.md` SHALL explain that the credibility of calibration depends on isolated proposal context before merge.
+`README.md` SHALL explain that prompt interpretation review uses agents sequentially to check whether prompts faithfully interpret governing specs.
 
-It SHALL explain that:
+It SHALL explain that accepted improvements are captured as OpenSpec deltas rather than calibration artifacts.
 
-- agents may share the governing spec and generated prompts
-- agents do not see other agents' proposals before merge
-- synthesis happens on a dedicated calibration branch rather than directly on `main`
+#### Scenario: Researcher reviews prompt improvement guidance
 
-#### Scenario: Researcher reviews calibration guidance
-
-- **WHEN** a researcher reads the calibration guidance in `README.md`
-- **THEN** the README explains the isolated proposal context rule
-- **THEN** the README explains that synthesis happens on a dedicated calibration branch
+- **WHEN** a researcher reads the prompt interpretation review guidance in `README.md`
+- **THEN** the README explains sequential agent review
+- **THEN** the README explains that OpenSpec changes preserve accepted review decisions

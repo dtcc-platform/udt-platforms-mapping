@@ -13,15 +13,15 @@ They are treated as outputs that can be added to, corrected, or improved through
 
 What must become trusted and stabilized is the workflow:
 
-- how intent is specified,
-- how prompts are governed,
-- how outputs are compared, and
-- how changes are traced.
+- how intent is specified
+- how prompts are governed
+- how outputs are compared
+- how changes are traced
 
-This repository is a medium for governing research agents through explicit contracts, Continual AI Review, execution, and reflection.
+This repository is a medium for governing research agents through explicit contracts, prompt interpretation review, execution, and reflection.
 
-Contributors primarily improve the workflow by calibrating prompts, refining contracts, and adding new research cycles.
-Agents primarily execute those cycles and generate research outputs within the governed workflow.
+Contributors primarily improve the workflow by refining OpenSpec contracts, reviewing prompt interpretations, and adding new research work.
+Agents primarily execute the governed prompts and help review whether those prompts faithfully implement the specs.
 
 ### Core Idea
 
@@ -37,11 +37,11 @@ That is why prompt changes should go through OpenSpec:
 - future prompt regeneration starts from a clearer contract
 - shared specs can be refactored once and then reused consistently across every dependent prompt contract
 
-When different agents execute the same prompt differently, the stronger fix is usually to tighten the governing spec rather than patch the prompt directly.
+When a prompt is unclear, incomplete, or interpreted differently by another agent, the stronger fix is usually to tighten the governing spec rather than patch the prompt directly.
 
 Composing smaller prompts and smaller supporting artifacts is intentional.
 It keeps scope, criteria, prompt contracts, and run inputs separable.
-That makes changes easier to interpret, makes shared rules easier to reuse, and keeps humans in the loop by making the important boundaries reviewable instead of burying them in one large prompt.
+That makes changes easier to interpret, makes shared rules easier to reuse, and keeps humans in the loop by making important boundaries reviewable instead of burying them in one large prompt.
 
 ### Contract Composition
 
@@ -62,26 +62,12 @@ These threads are not cycles in themselves.
 The cycle is the repeated Action Research loop across phases:
 
 ```text
-PLAN → ACT → OBSERVE → REFLECT
+PLAN -> ACT -> OBSERVE -> REFLECT
 ```
 
 Each thread has its own artifacts across those phases.
 Planning inputs and canonical act prompts are direct files under `plan/` and `act/`, named with their thread prefix.
 Saved outputs and reflection work remain grouped by thread under `observe/` and `reflect/`.
-That keeps prompts and supporting artifacts smaller, narrower, and easier to compose.
-Composing smaller prompts is not only a prompt-design choice; it is the mechanism that lets humans steer the workflow without rewriting the whole system each time.
-
-That decomposition is also what keeps humans in the loop:
-
-- Scope can be adjusted without rewriting execution prompts
-- Comparison criteria can be tightened without rewriting discovery prompts
-- One thread can be redirected without destabilizing the whole repository
-- Reflection can connect threads and let results from one thread influence another
-
-The plan phase carries the thread-level interpretation of the workflow:
-
-- each thread has its own planning material describing its purpose and inputs as direct files under `plan/`
-- plan-level dependency documentation explains how threads depend on and inform each other
 
 The first two threads are broad global discovery threads:
 
@@ -90,34 +76,50 @@ The first two threads are broad global discovery threads:
 
 The stricter evaluative stage is `udt-platform-comparison`, where the selected platform set is compared using tighter criteria and stronger evidence expectations.
 
-The repository has two main parts:
+The repository has two main responsibilities:
 
-- Continual AI Review: the archival layer under `calibration/`, used to compare how different agents interpret the same governing spec before accepted contract changes return to `main`
-- Research execution: the canonical layer under `plan/`, `act/`, `observe/`, and `reflect/`, used to run the research itself and get accepted results
+- Prompt and workflow governance through OpenSpec specs, changes, and archived change history
+- Research execution through the canonical `plan/`, `act/`, `observe/`, and `reflect/` folders
 
 Git history is part of the workflow, not just storage.
-Together, the repository structure and git history make it possible to inspect how a result was produced:
+Together, OpenSpec history, repository structure, and commits make it possible to inspect how a result was produced:
 
-- the workflow shows which phase artifacts shaped the result
+- the specs show which contract governed the work
+- the OpenSpec change archive shows why contracts changed
+- the phase folders show which artifacts shaped a result
 - the git log shows when those artifacts changed
-- branches and calibration history show how prompt interpretation was calibrated
-- the resulting history shows how much a saved result reflects an up-to-date view of the ecosystem rather than an older contract or older evidence base
 
-In that sense:
+In that sense, OpenSpec is the common abstraction layer shared by humans and agents for improving prompts and workflow behavior.
+The canonical repository structure is the accepted interface for doing the research and getting results.
 
-- OpenSpec is the common abstraction layer shared by humans and agents for calibrating prompts and workflow behavior
-- `calibration/` is the archival area where prompt and result deviations are made explicit
-- the canonical repository structure is the accepted interface for doing the research and getting results
+## Prompt Interpretation Review
+
+Prompt interpretation review is the replacement for the old calibration-folder workflow.
+
+The review loop is sequential:
+
+1. Start from a governing OpenSpec spec.
+2. Ask one agent, such as Codex, to generate or update the prompt from that spec.
+3. Ask a second agent, such as Claude, whether the prompt is a faithful interpretation of the spec and whether the contract can be clearer.
+4. If the review finds a real improvement, capture it as an OpenSpec delta.
+5. Regenerate or update the prompt from the improved contract.
+6. Ask the next agent, such as Gemini, to review the current prompt against the current spec/change state.
+
+Accepted review feedback belongs in OpenSpec changes, not in standalone review artifacts.
+Archived OpenSpec changes are the audit trail for prompt-review decisions.
+
+This workflow is intentionally sequential.
+Later reviewers may see earlier accepted deltas because the goal is iterative improvement of the contract and prompt, not blind comparison between isolated agents.
 
 ## How To Work In This Repo
 
-### 1. Start in `plan/`
+### 1. Start In `plan/`
 
 Start from the planning artifacts for the thread you are working on.
 That is where purpose, scope, comparison criteria where applicable, and thread dependencies are made explicit before execution.
 Canonical planning entrypoints are direct files such as `plan/udt-platforms-scope.md`, `plan/udt-initiatives-scope.md`, and `plan/udt-platform-comparison-platforms.md`.
 
-### 2. Run canonical prompts from `act/`
+### 2. Run Canonical Prompts From `act/`
 
 Use the canonical web prompts:
 
@@ -129,113 +131,50 @@ Run act/udt-platform-comparison.md
 
 Canonical act prompts resolve their declared planning inputs into copy-ready web prompts for the matching thread.
 
-### 3. Save outputs under `observe/` and synthesize under `reflect/`
+### 3. Save Outputs Under `observe/` And Synthesize Under `reflect/`
 
 Saved canonical web outputs belong in `observe/`.
 Reflection, benchmarking, and reporting belong in `reflect/`.
 This is where one thread can inform another and where the next cycle gets shaped.
 
-### 4. Use `calibration/` for Continual AI Review, not canonical research state
+### 4. Improve Prompts Through OpenSpec Review
 
-When calibrating a governed prompt spec:
+When a prompt needs review or improvement, start an OpenSpec change.
+Use prompt interpretation review to compare the prompt against its governing spec, then capture accepted feedback as scoped deltas.
 
-- first generate prompts from the same accepted spec
-- save those prompts under `calibration/<spec-name>/c01/<agent>/prompt.md`
-- only after all prompts are visible, branch by agent
-- let each agent create its own isolated OpenSpec proposal
-- merge those proposals into a dedicated calibration branch
-- decide what to keep there before accepted changes go back to `main`
+Do not create a separate calibration artifact tree.
+The OpenSpec change and its archive entry are the record.
 
-The credibility of this process depends on isolated context before merge:
-
-- agents may share the governing spec and generated prompts
-- agents do not see other agents' proposals before merge
-- independent proposals are therefore stronger evidence of real ambiguity in the spec
-
-This is not canonical research state.
-It is calibration evidence for tightening the workflow.
-
-Read more:
-`openspec/changes/archive/2026-04-29-reframe-calibration-as-isolated-spec-review/`
-
-## Workflow Diagrams
-
-### Research Execution
+## Workflow Diagram
 
 ```mermaid
 flowchart TD
-    P["plan/
-purpose, scope, criteria, dependencies"]
+    S["OpenSpec spec
+governing contract"]
+    G["Generate or update prompt
+Codex, Claude, Gemini, or another agent"]
+    V["Prompt interpretation review
+faithful to spec? clearer contract needed?"]
+    D["OpenSpec delta
+accepted improvement"]
     A["act/
 canonical web prompt"]
+    P["plan/
+purpose, scope, criteria, inputs"]
     O["observe/
 saved result"]
     R["reflect/
 benchmarking, reporting, synthesis"]
-    N["next cycle
-updated contracts and inputs"]
 
+    S --> G
+    G --> V
+    V -->|improvement found| D
+    D --> S
+    V -->|accepted prompt| A
     P --> A
     A --> O
     O --> R
-    R --> N
-```
-
-### Continual AI Review
-
-```mermaid
-flowchart TD
-    M["main baseline
-accepted spec and inputs"]
-
-    P1["agent-a
-generate prompt"]
-    P2["agent-b
-generate prompt"]
-    P3["agent-c
-generate prompt"]
-
-    C["calibration/
-shared prompt artifacts"]
-
-    B1["branch: agent-a"]
-    B2["branch: agent-b"]
-    B3["branch: agent-c"]
-
-    O1["isolated OpenSpec
-proposal a"]
-    O2["isolated OpenSpec
-proposal b"]
-    O3["isolated OpenSpec
-proposal c"]
-
-    CB["calibration branch
-merged proposals"]
-
-    U["accepted follow-up
-change to spec"]
-
-    M --> P1
-    M --> P2
-    M --> P3
-
-    P1 --> C
-    P2 --> C
-    P3 --> C
-
-    C --> B1
-    C --> B2
-    C --> B3
-
-    B1 --> O1
-    B2 --> O2
-    B3 --> O3
-
-    O1 --> CB
-    O2 --> CB
-    O3 --> CB
-
-    CB --> U
+    R --> S
 ```
 
 ## Naming and Repository Structure
@@ -248,10 +187,14 @@ Workflow naming conventions are governed by:
 
 - [openspec/specs/workflow-naming-conventions/spec.md](openspec/specs/workflow-naming-conventions/spec.md)
 
+Prompt interpretation review is governed by:
+
+- [openspec/specs/prompt-interpretation-review/spec.md](openspec/specs/prompt-interpretation-review/spec.md)
+
 Use those specs as the source of truth for:
 
 - canonical phase and thread locations
-- calibration path and cycle naming expectations
+- prompt-review expectations
 - branch naming
 - commit naming
 - OpenSpec change naming
