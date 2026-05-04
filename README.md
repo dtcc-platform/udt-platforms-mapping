@@ -145,7 +145,9 @@ Use prompt interpretation review to compare the prompt against its governing spe
 Do not create a separate calibration artifact tree.
 The OpenSpec change and its archive entry are the record.
 
-## Workflow Diagram
+## Workflow Diagrams
+
+### Prompt Interpretation Review
 
 ```mermaid
 flowchart TD
@@ -157,20 +159,31 @@ Codex, Claude, Gemini, or another agent"]
 faithful to spec? clearer contract needed?"]
     D["OpenSpec delta
 accepted improvement"]
-    A["act/
-canonical web prompt"]
-    P["plan/
-purpose, scope, criteria, inputs"]
-    O["observe/
-saved result"]
-    R["reflect/
-benchmarking, reporting, synthesis"]
+    A["accepted prompt
+updated canonical artifact"]
 
     S --> G
     G --> V
     V -->|improvement found| D
     D --> S
-    V -->|accepted prompt| A
+    V -->|faithful enough| A
+```
+
+### Research Execution
+
+```mermaid
+flowchart TD
+    P["plan/
+purpose, scope, criteria, inputs"]
+    A["act/
+canonical web prompt"]
+    O["observe/
+saved result"]
+    R["reflect/
+benchmarking, reporting, synthesis"]
+    S["OpenSpec spec
+next contract update"]
+
     P --> A
     A --> O
     O --> R
