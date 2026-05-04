@@ -1,9 +1,5 @@
-# Spec: act-udt-platforms-prompt
+## MODIFIED Requirements
 
-## Purpose
-
-Defines the prompt template at `act/udt-platforms.md` — structure, required inputs, output contract, and save-as conventions for the `udt-platforms` thread.
-## Requirements
 ### Requirement: UDT platforms prompt file exists
 
 The repository SHALL contain a file at `act/udt-platforms.md` that provides a self-contained prompt template for AI-assisted technical-artifact mapping of UDT platforms.
@@ -15,7 +11,6 @@ The repository SHALL contain a file at `act/udt-platforms.md` that provides a se
 
 ### Requirement: UDT platforms prompt requests Type classification output only
 
-The prompt SHALL instruct the model to classify technical artifacts only.
 The prompt SHALL instruct the model to return one `##`-level Markdown section per artifact and to assign exactly one `Type` value:
 
 - `platform`
@@ -42,11 +37,6 @@ The prompt SHALL describe `udt-platforms` as a broad global discovery thread and
 - **THEN** the resolved prompt contains the `Name`, `Link`, `Type`, `Reason` summary table format
 - **THEN** the resolved prompt contains the per-artifact section template
 - **THEN** the output-format instructions come from the prompt template rather than `plan/udt-platforms-scope.md`
-
-#### Scenario: Platform comparison receives platform rows only
-
-- **WHEN** `udt-platform-comparison` selects candidates from `udt-platforms`
-- **THEN** only rows where `Type = platform` are eligible
 
 ### Requirement: UDT platforms prompt declares plan/udt-platforms-scope.md as a required input
 

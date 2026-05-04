@@ -66,6 +66,8 @@ PLAN → ACT → OBSERVE → REFLECT
 ```
 
 Each thread has its own artifacts across those phases.
+Planning inputs and canonical act prompts are direct files under `plan/` and `act/`, named with their thread prefix.
+Saved outputs and reflection work remain grouped by thread under `observe/` and `reflect/`.
 That keeps prompts and supporting artifacts smaller, narrower, and easier to compose.
 Composing smaller prompts is not only a prompt-design choice; it is the mechanism that lets humans steer the workflow without rewriting the whole system each time.
 
@@ -78,7 +80,7 @@ That decomposition is also what keeps humans in the loop:
 
 The plan phase carries the thread-level interpretation of the workflow:
 
-- each thread has its own planning material describing its purpose and inputs
+- each thread has its own planning material describing its purpose and inputs as direct files under `plan/`
 - plan-level dependency documentation explains how threads depend on and inform each other
 
 The first two threads are broad global discovery threads:
@@ -113,15 +115,16 @@ In that sense:
 
 Start from the planning artifacts for the thread you are working on.
 That is where purpose, scope, comparison criteria where applicable, and thread dependencies are made explicit before execution.
+Canonical planning entrypoints are direct files such as `plan/udt-platforms-scope.md`, `plan/udt-initiatives-scope.md`, and `plan/udt-platform-comparison-platforms.md`.
 
 ### 2. Run canonical prompts from `act/`
 
 Use the canonical web prompts:
 
 ```text
-Run act/udt-platforms/prompt.md
-Run act/udt-initiatives/prompt.md
-Run act/udt-platform-comparison/prompt.md
+Run act/udt-platforms.md
+Run act/udt-initiatives.md
+Run act/udt-platform-comparison.md
 ```
 
 Canonical act prompts resolve their declared planning inputs into copy-ready web prompts for the matching thread.

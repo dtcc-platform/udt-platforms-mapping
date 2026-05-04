@@ -4,7 +4,7 @@ Use this prompt in a web model interface.
 
 ## Required Inputs
 
-- `plan/udt-initiatives/scope.md` — initiative and project mapping contract for the `udt-initiatives` thread
+- `plan/udt-initiatives-scope.md` — initiative and project mapping contract for the `udt-initiatives` thread
 
 Produce a fully resolved prompt:
 
@@ -33,7 +33,7 @@ If the object is mainly a software artifact, it belongs in `udt-platforms`.
 
 # UDT Initiatives Mapping
 
-Apply the initiative contract supplied in the required inputs (`plan/udt-initiatives/scope.md`) to every initiative you include.
+Apply the initiative contract supplied in the required inputs (`plan/udt-initiatives-scope.md`) to every initiative you include.
 
 **Search scope:** Global city-scale UDT initiatives, programmes, pilots, and deployments across public, research, and industry contexts. Cover all major geographies. Breadth matters more than early filtering.
 

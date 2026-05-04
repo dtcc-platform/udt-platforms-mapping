@@ -4,9 +4,9 @@ Use this prompt in a web model interface.
 
 ## Required Inputs
 
-- `plan/udt-platform-comparison/rubrics.md` — dimension rubrics used for 1–5 scoring
-- `plan/udt-platform-comparison/platforms.md` — the selected platforms to compare (must include DTCC)
-- `plan/udt-platform-comparison/source-policy.md` — acceptable source types and citation conventions
+- `plan/udt-platform-comparison-rubrics.md` — dimension rubrics used for 1–5 scoring
+- `plan/udt-platform-comparison-platforms.md` — the selected platforms to compare (must include DTCC)
+- `plan/udt-platform-comparison-source-policy.md` — acceptable source types and citation conventions
 
 Produce a fully resolved prompt:
 
@@ -32,7 +32,7 @@ You are a research assistant helping to benchmark the Urban Digital Twin platfor
 
 Apply the source policy from the required inputs for all final factual claims. Use the rubrics from the required inputs to score every platform on all twelve dimensions. Treat the platforms table from the required inputs as the complete, authoritative comparison scope.
 
-**Platforms to compare:** Use the rows in `plan/udt-platform-comparison/platforms.md`. Compare every platform in that file. Do not add comparison candidates beyond those rows unless the user explicitly asks you to expand scope. This workflow is platform-only; do not broaden the comparison to frameworks or modules. Treat the DTCC row as the reference platform for Part 3 landscape observations. If it is absent, stop and ask the user to add it before producing any output.
+**Platforms to compare:** Use the rows in `plan/udt-platform-comparison-platforms.md`. Compare every platform in that file. Do not add comparison candidates beyond those rows unless the user explicitly asks you to expand scope. This workflow is platform-only; do not broaden the comparison to frameworks or modules. Treat the DTCC row as the reference platform for Part 3 landscape observations. If it is absent, stop and ask the user to add it before producing any output.
 
 ### Markdown and Formatting Rules
 

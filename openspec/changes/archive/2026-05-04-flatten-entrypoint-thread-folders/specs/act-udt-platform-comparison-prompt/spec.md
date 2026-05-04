@@ -1,9 +1,5 @@
-# Spec: act-udt-platform-comparison-prompt
+## MODIFIED Requirements
 
-## Purpose
-
-Defines the prompt template at `act/udt-platform-comparison.md` — structure, required inputs, scoring contract, and save-as conventions for comparison sessions.
-## Requirements
 ### Requirement: UDT platform comparison prompt file exists
 
 The repository SHALL contain a file at `act/udt-platform-comparison.md` that provides a self-contained prompt template for AI-assisted side-by-side comparison of selected UDT platforms.
@@ -60,4 +56,3 @@ Only rows from `udt-platforms` where `Type = platform` SHALL be eligible for `ud
 
 - **WHEN** a researcher prepares `plan/udt-platform-comparison-platforms.md`
 - **THEN** only `Type = platform` rows from `udt-platforms` are eligible for inclusion
-

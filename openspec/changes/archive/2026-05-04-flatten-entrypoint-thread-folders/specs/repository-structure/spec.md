@@ -1,9 +1,5 @@
-# Spec: repository-structure
+## MODIFIED Requirements
 
-## Purpose
-
-Defines the top-level repository structure for the research workflow, including the phase layout, canonical research-thread locations, canonical prompt/output locations, and README explanation requirements.
-## Requirements
 ### Requirement: Repository is organised as action research phases at top level
 
 The repository SHALL use four top-level folders matching the action research phases: `plan/`, `act/`, `observe/`, and `reflect/`.
@@ -78,36 +74,3 @@ Artifacts under `calibration/` SHALL NOT be treated as canonical outputs.
 - **WHEN** a researcher opens `reflect/`
 - **THEN** reflection artifacts are grouped by research thread
 - **THEN** output-heavy benchmarking and reporting artifacts remain inside thread folders
-
-### Requirement: README explains the three-thread model and comparison handoff
-
-`README.md` SHALL explain:
-
-- `udt-platforms` as a broad technical-artifact discovery thread
-- `udt-initiatives` as a broad initiative/project discovery thread
-- `udt-platform-comparison` as the stricter side-by-side comparison thread
-
-It SHALL also state that only `Type = platform` rows from `udt-platforms` are eligible for `udt-platform-comparison`.
-
-#### Scenario: Researcher reads thread roles
-
-- **WHEN** a researcher reads `README.md`
-- **THEN** the README explains the roles of `udt-platforms`, `udt-initiatives`, and `udt-platform-comparison`
-- **THEN** the README states that only `Type = platform` rows are eligible for `udt-platform-comparison`
-
-### Requirement: README explains the isolation rule for calibration
-
-`README.md` SHALL explain that the credibility of calibration depends on isolated proposal context before merge.
-
-It SHALL explain that:
-
-- agents may share the governing spec and generated prompts
-- agents do not see other agents' proposals before merge
-- synthesis happens on a dedicated calibration branch rather than directly on `main`
-
-#### Scenario: Researcher reviews calibration guidance
-
-- **WHEN** a researcher reads the calibration guidance in `README.md`
-- **THEN** the README explains the isolated proposal context rule
-- **THEN** the README explains that synthesis happens on a dedicated calibration branch
-

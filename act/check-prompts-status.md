@@ -27,9 +27,9 @@ Do not inspect archived change artifacts under `openspec/changes/` or `openspec/
 
 Audit these live prompts only:
 
-- `act/udt-platforms/prompt.md`
-- `act/udt-initiatives/prompt.md`
-- `act/udt-platform-comparison/prompt.md`
+- `act/udt-platforms.md`
+- `act/udt-initiatives.md`
+- `act/udt-platform-comparison.md`
 - `reflect/udt-platforms/benchmarking/prompt.md`
 - `reflect/udt-platforms/reporting/prompt.md`
 - `reflect/udt-platform-comparison/benchmarking/prompt.md`
@@ -37,19 +37,19 @@ Audit these live prompts only:
 
 ### Prompt mapping
 
-#### 1. `act/udt-platforms/prompt.md`
+#### 1. `act/udt-platforms.md`
 
 - Governing spec: `openspec/specs/act-udt-platforms-prompt/spec.md`
 - Shared contracts:
   - `openspec/specs/prompt-markdown-format/spec.md`
 
-#### 2. `act/udt-initiatives/prompt.md`
+#### 2. `act/udt-initiatives.md`
 
 - Governing spec: `openspec/specs/act-udt-initiatives-prompt/spec.md`
 - Shared contracts:
   - `openspec/specs/prompt-markdown-format/spec.md`
 
-#### 3. `act/udt-platform-comparison/prompt.md`
+#### 3. `act/udt-platform-comparison.md`
 
 - Governing spec: `openspec/specs/act-udt-platform-comparison-prompt/spec.md`
 - Shared contracts:

@@ -1,9 +1,5 @@
-# Spec: act-udt-initiatives-prompt
+## MODIFIED Requirements
 
-## Purpose
-
-Defines the prompt template at `act/udt-initiatives.md` — structure, required inputs, output contract, and save-as conventions for the `udt-initiatives` thread.
-## Requirements
 ### Requirement: UDT initiatives prompt file exists
 
 The repository SHALL contain a file at `act/udt-initiatives.md` that provides a self-contained prompt template for AI-assisted initiative and project mapping of UDT-related efforts.
@@ -26,7 +22,6 @@ The prompt SHALL include a `## Required Inputs` section listing:
 
 ### Requirement: UDT initiatives prompt uses the initiative table contract
 
-The prompt SHALL instruct the model to map initiative-level efforts rather than technical artifacts.
 The prompt SHALL instruct the model to return a summary table with exactly these columns:
 
 - `Initiative`
@@ -35,8 +30,6 @@ The prompt SHALL instruct the model to return a summary table with exactly these
 - `Reason`
 
 The prompt SHALL preserve `Uses = ?` when the technical substrate is unclear.
-The prompt SHALL instruct the model to use a comma-separated list of artifact names from `udt-platforms` when an initiative's technical substrate is clear.
-The prompt SHALL describe `udt-initiatives` as a broad global discovery thread that prioritizes recall.
 
 #### Scenario: Prompt provides the initiative table contract
 

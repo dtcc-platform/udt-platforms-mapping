@@ -4,7 +4,7 @@ Use this prompt in a web model interface.
 
 ## Required Inputs
 
-- `plan/udt-platforms/scope.md` — `Type` classification criteria for the `udt-platforms` thread
+- `plan/udt-platforms-scope.md` — `Type` classification criteria for the `udt-platforms` thread
 
 Produce a fully resolved prompt:
 
