@@ -18,14 +18,3 @@ Assign each discovered artifact exactly one `Type` value using the observable cr
 | `framework` | Reusable development or enabling structure | Presented as an SDK, API-centered backbone, reusable architecture, or enabling framework rather than the primary end-user platform |
 | `module`    | Narrower capability component              | Covers a specific urban capability, workflow, or domain and is meant to be used inside or alongside a larger UDT stack             |
 | `excluded`  | Outside the study boundary                 | None of the above apply; record a brief reason                                                                                     |
-
-## Output Contract Reminder
-
-The `udt-platforms` summary table uses:
-
-| Name | Link | Type | Reason |
-| ---- | ---- | ---- | ------ |
-
-- `Reason` is blank for in-scope rows.
-- `Reason` contains a brief phrase for `excluded` rows.
-- Only rows with `Type = platform` are eligible for `udt-platform-comparison`.

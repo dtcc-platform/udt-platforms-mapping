@@ -1,10 +1,4 @@
-# Spec: udt-platforms-cycle
-
-## Purpose
-
-Governs the `udt-platforms` thread and its technical-artifact output contract.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: UDT platforms thread maps technical artifacts through broad discovery
 
