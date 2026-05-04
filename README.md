@@ -43,6 +43,18 @@ Composing smaller prompts and smaller supporting artifacts is intentional.
 It keeps scope, criteria, prompt contracts, and run inputs separable.
 That makes changes easier to interpret, makes shared rules easier to reuse, and keeps humans in the loop by making the important boundaries reviewable instead of burying them in one large prompt.
 
+### Contract Composition
+
+Specs can relate to each other in three common ways:
+
+- An artifact-specific contract governs one artifact or workflow, such as a prompt spec governing one prompt file.
+- A cross-cutting contract governs a repeated rule across multiple artifacts, such as shared Markdown formatting rules for governed prompt templates.
+- A prompt-specific or workflow-specific contract may reference a shared contract when it needs that rule without duplicating the full text.
+
+Prefer shared cross-cutting contracts for rules that must stay consistent across multiple prompts or workflows.
+Prefer explicit references from artifact-specific specs when traceability matters.
+Avoid duplicating shared rules unless local readability is more important than the risk of drift.
+
 ### Repository Model
 
 The repository is organized around complementary research threads.
