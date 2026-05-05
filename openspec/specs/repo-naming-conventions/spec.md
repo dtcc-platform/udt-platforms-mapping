@@ -54,6 +54,24 @@ Supported patterns SHALL include:
 - **WHEN** a contributor commits a spec or workflow change
 - **THEN** the commit message uses the type/scope pattern, such as `refactor(specs): rename cycles to udt-platforms`
 
+### Requirement: Phase artifact filenames encode thread and function
+
+Canonical phase artifacts SHALL use direct filenames that encode thread, function, and artifact role when those distinctions are needed.
+
+The filename pattern SHOULD be:
+
+```text
+<thread>-<function>-<artifact>.<ext>
+```
+
+The function segment MAY be omitted when the thread and artifact role are sufficient.
+
+#### Scenario: Contributor adds a phase artifact
+
+- **WHEN** a contributor adds a canonical artifact under `plan/`, `act/`, `observe/`, or `reflect/`
+- **THEN** the artifact is a direct file in that phase folder
+- **THEN** the filename identifies the thread and purpose without requiring a subfolder
+
 ### Requirement: OpenSpec change names are descriptive hyphenated identifiers
 
 OpenSpec change names SHALL be lowercase, descriptive, and hyphen-separated.

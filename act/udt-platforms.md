@@ -12,7 +12,7 @@ Produce a fully resolved prompt:
 - append the prompt body below
 - output one copy-ready block only, with no wrapper text, narration, or BEGIN/END markers
 
-After the resolved prompt block, add one short sentence telling the user to paste it into a web interface and save the response to `observe/udt-platforms/web-<model-short>.md`.
+After the resolved prompt block, add one short sentence telling the user to paste it into a web interface and save the response to `observe/udt-platforms-web-<model-short>.md`.
 
 ---
 

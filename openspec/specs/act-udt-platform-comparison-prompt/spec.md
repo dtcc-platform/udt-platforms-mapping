@@ -44,13 +44,13 @@ That file SHALL contain the 12 dimension and functional-category rubrics used by
 
 The prompt SHALL instruct the user to use the resolved prompt in a web interface rather than treat CLI execution as the canonical path.
 The prompt SHALL resolve all three required inputs into one copy-ready prompt block.
-The prompt SHALL instruct the user to save the web response to `observe/udt-platform-comparison/web-<model-short>.md`.
+The prompt SHALL instruct the user to save the web response to `observe/udt-platform-comparison-web-<model-short>.md`.
 
 #### Scenario: Researcher runs the canonical prompt
 
 - **WHEN** a researcher resolves `act/udt-platform-comparison.md`
 - **THEN** the prompt incorporates the flattened comparison planning inputs
-- **THEN** the prompt tells the researcher to save the web response under `observe/udt-platform-comparison/`
+- **THEN** the prompt tells the researcher to save the web response as a direct file under `observe/`
 
 ### Requirement: Comparison prompt owns the platform-only handoff rule
 
@@ -60,4 +60,3 @@ Only rows from `udt-platforms` where `Type = platform` SHALL be eligible for `ud
 
 - **WHEN** a researcher prepares `plan/udt-platform-comparison-platforms.md`
 - **THEN** only `Type = platform` rows from `udt-platforms` are eligible for inclusion
-

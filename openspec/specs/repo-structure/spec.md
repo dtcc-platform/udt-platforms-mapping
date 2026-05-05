@@ -8,7 +8,7 @@ Defines the top-level repository structure for the research workflow, including 
 
 The repository SHALL use four top-level folders matching the action research phases: `plan/`, `act/`, `observe/`, and `reflect/`.
 
-The `plan/` and `act/` folders SHALL expose canonical thread entrypoints as direct files whose filenames begin with the research-thread name. The `observe/` and `reflect/` folders SHALL retain one subfolder per research thread.
+The `plan/`, `act/`, `observe/`, and `reflect/` folders SHALL expose canonical artifacts as direct files. Direct filenames SHALL begin with the research-thread name when the artifact belongs to a thread.
 
 The canonical research threads are:
 
@@ -23,9 +23,9 @@ The repository SHALL NOT use a top-level `calibration/` folder for live workflow
 - **WHEN** a researcher opens the repository root
 - **THEN** they see the four phase folders
 - **THEN** the researcher can find canonical planning inputs directly under `plan/`
-- **THEN** the researcher can find canonical thread prompts directly under `act/`
-- **THEN** the researcher can find thread-grouped outputs under `observe/`
-- **THEN** the researcher can find thread-grouped reflection artifacts under `reflect/`
+- **THEN** the researcher can find canonical prompts directly under `act/`
+- **THEN** the researcher can find observed outputs directly under `observe/`
+- **THEN** the researcher can find reflection artifacts directly under `reflect/`
 
 ### Requirement: plan/ holds thread inputs
 
@@ -34,6 +34,7 @@ The repository SHALL NOT use a top-level `calibration/` folder for live workflow
 `plan/udt-platform-comparison-rubrics.md` SHALL contain the `udt-platform-comparison` rubrics input.
 `plan/udt-platform-comparison-source-policy.md` SHALL contain the `udt-platform-comparison` source-policy input.
 `plan/udt-platform-comparison-platforms.md` SHALL contain the `udt-platform-comparison` selected-platform input.
+`plan/udt-platforms-benchmark.md` SHALL contain the `udt-platforms` benchmarking fixture input.
 
 #### Scenario: Researcher starts from planning inputs
 
@@ -46,6 +47,10 @@ The repository SHALL NOT use a top-level `calibration/` folder for live workflow
 `act/udt-platforms.md` SHALL be the canonical `udt-platforms` prompt template.
 `act/udt-initiatives.md` SHALL be the canonical `udt-initiatives` prompt template.
 `act/udt-platform-comparison.md` SHALL be the canonical `udt-platform-comparison` prompt template.
+`act/udt-platforms-benchmarking.md` SHALL be the canonical `udt-platforms` benchmarking prompt.
+`act/udt-platforms-reporting.md` SHALL be the canonical `udt-platforms` reporting prompt.
+`act/udt-platform-comparison-benchmarking.md` SHALL be the `udt-platform-comparison` benchmarking prompt stub.
+`act/udt-platform-comparison-reporting.md` SHALL be the canonical `udt-platform-comparison` reporting prompt.
 
 #### Scenario: Researcher finds canonical prompts
 
@@ -54,26 +59,25 @@ The repository SHALL NOT use a top-level `calibration/` folder for live workflow
 
 ### Requirement: observe/ holds canonical saved outputs per thread
 
-`observe/udt-platforms/` SHALL contain saved web responses for `udt-platforms`.
-`observe/udt-initiatives/` SHALL contain saved web responses for `udt-initiatives`.
-`observe/udt-platform-comparison/` SHALL contain saved web responses for `udt-platform-comparison`.
+`observe/udt-platforms-web-chatgpt.md`, `observe/udt-platforms-web-claude.md`, and `observe/udt-platforms-web-gemini.md` SHALL contain saved web responses for `udt-platforms`.
+`observe/udt-platform-comparison-web-chatgpt.md`, `observe/udt-platform-comparison-web-claude.md`, and `observe/udt-platform-comparison-web-gemini.md` SHALL contain saved web responses for `udt-platform-comparison`.
+Observed workflow outputs, such as benchmarking coverage, SHALL also live as direct files under `observe/`.
 
 #### Scenario: Researcher saves a web response
 
 - **WHEN** a researcher saves a canonical web response
-- **THEN** the response is saved under the matching `observe/<thread>/` folder
+- **THEN** the response is saved as a direct file under `observe/`
+- **THEN** the filename begins with the matching research-thread name
 
-### Requirement: reflect/ holds benchmarking and reporting per thread
+### Requirement: reflect/ holds synthesized reflection artifacts as direct files
 
-`reflect/udt-platforms/` SHALL contain `benchmarking/` and `reporting/`.
-`reflect/udt-platform-comparison/` SHALL contain `reporting/` and MAY contain `benchmarking/`.
-`reflect/udt-initiatives/` MAY contain reporting or synthesis artifacts.
+`reflect/` SHALL contain synthesized reflection, reporting, and benchmark-analysis outputs as direct files whose names begin with the research-thread name.
 
 #### Scenario: Researcher finds reflection artifacts
 
 - **WHEN** a researcher opens `reflect/`
-- **THEN** reflection artifacts are grouped by research thread
-- **THEN** output-heavy benchmarking and reporting artifacts remain inside thread folders
+- **THEN** reflection artifacts are direct files
+- **THEN** the filename identifies the thread and function
 
 ### Requirement: README explains the three-thread model and comparison handoff
 

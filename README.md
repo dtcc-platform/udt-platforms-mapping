@@ -66,8 +66,8 @@ PLAN -> ACT -> OBSERVE -> REFLECT
 ```
 
 Each thread has its own artifacts across those phases.
-Planning inputs and canonical act prompts are direct files under `plan/` and `act/`, named with their thread prefix.
-Saved outputs and reflection work remain grouped by thread under `observe/` and `reflect/`.
+Planning inputs, canonical act prompts, observed outputs, and reflection artifacts are direct files under their phase folders.
+Filenames carry the thread and function identity, such as `observe/udt-platforms-web-claude.md` or `reflect/udt-platforms-ecosystem.md`.
 
 The first two threads are broad global discovery threads:
 
@@ -117,7 +117,7 @@ Later reviewers may see earlier accepted deltas because the goal is iterative im
 
 Start from the planning artifacts for the thread you are working on.
 That is where purpose, scope, comparison criteria where applicable, and thread dependencies are made explicit before execution.
-Canonical planning entrypoints are direct files such as `plan/udt-platforms-scope.md`, `plan/udt-initiatives-scope.md`, and `plan/udt-platform-comparison-platforms.md`.
+Canonical planning entrypoints are direct files such as `plan/udt-platforms-scope.md`, `plan/udt-initiatives-scope.md`, `plan/udt-platform-comparison-platforms.md`, and `plan/udt-platforms-benchmark.md`.
 
 ### 2. Run Canonical Prompts From `act/`
 
@@ -127,14 +127,17 @@ Use the canonical web prompts:
 Run act/udt-platforms.md
 Run act/udt-initiatives.md
 Run act/udt-platform-comparison.md
+Run act/udt-platforms-benchmarking.md
+Run act/udt-platforms-reporting.md
+Run act/udt-platform-comparison-reporting.md
 ```
 
 Canonical act prompts resolve their declared planning inputs into copy-ready web prompts for the matching thread.
 
 ### 3. Save Outputs Under `observe/` And Synthesize Under `reflect/`
 
-Saved canonical web outputs belong in `observe/`.
-Reflection, benchmarking, and reporting belong in `reflect/`.
+Saved canonical web outputs and generated coverage reports belong in `observe/` as direct files.
+Synthesized reporting and reflection outputs belong in `reflect/` as direct files.
 This is where one thread can inform another and where the next cycle gets shaped.
 
 ### 4. Improve Prompts Through OpenSpec Review
@@ -178,9 +181,9 @@ purpose, scope, criteria, inputs"]
     A["act/
 canonical web prompt"]
     O["observe/
-saved result"]
+saved result, coverage"]
     R["reflect/
-benchmarking, reporting, synthesis"]
+reporting, synthesis"]
     S["OpenSpec spec
 next contract update"]
 
