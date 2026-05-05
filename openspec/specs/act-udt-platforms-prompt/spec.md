@@ -59,6 +59,18 @@ The prompt SHALL include a `## Required Inputs` section listing:
 - **WHEN** a researcher opens `act/udt-platforms.md`
 - **THEN** the required inputs list references `plan/udt-platforms-scope.md`
 
+### Requirement: UDT platforms prompt applies the scope classification contract
+
+The prompt SHALL instruct the model to use `plan/udt-platforms-scope.md` as the authoritative classification contract for assigning each artifact's `Type`.
+
+The prompt SHALL instruct the model to apply the scope file's criteria before assigning `platform`, `framework`, `module`, or `excluded`.
+
+#### Scenario: Model classifies discovered artifacts
+
+- **WHEN** the model evaluates a discovered technical artifact
+- **THEN** it uses `plan/udt-platforms-scope.md` as the source of truth for Type classification
+- **THEN** it applies the scope criteria before assigning `platform`, `framework`, `module`, or `excluded`
+
 ### Requirement: UDT platforms prompt executes through one governed path
 
 The prompt SHALL instruct the user to use the resolved prompt in a web interface rather than treat CLI execution as the canonical path.

@@ -26,7 +26,8 @@ Before you begin:
 
 You are a research assistant mapping the technical Urban Digital Twin ecosystem.
 
-Classify each artifact using the `Type` criteria from the required inputs.
+Use `plan/udt-platforms-scope.md` as the authoritative Type classification contract.
+Apply its criteria before assigning each artifact exactly one `Type`.
 
 This is a broad global discovery thread:
 
