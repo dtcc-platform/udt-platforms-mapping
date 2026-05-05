@@ -1,10 +1,4 @@
-# Spec: plan-platform-definition
-
-## Purpose
-
-Defines this researcher-facing canonical artifact.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Platform definition is the canonical platform discovery planning contract
 

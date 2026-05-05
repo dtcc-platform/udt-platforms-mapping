@@ -27,7 +27,10 @@ Before you begin:
 You are a research assistant mapping the technical Urban Digital Twin ecosystem.
 
 Use `plan/platform-definition.md` as the authoritative Type classification contract.
-Apply its criteria before assigning each artifact exactly one `Type`.
+Apply its Type criteria and interpretation rules before assigning each artifact exactly one `Type`.
+Classify by observable presentation and role in the UDT ecosystem, not by name alone.
+Use the tie-break guidance when an artifact resembles more than one Type.
+Preserve uncertainty when evidence is weak or ambiguous; do not upgrade an artifact to `platform` without observable support.
 Produce output conforming to the `observe-platform-discovery` OpenSpec contract.
 
 This is a broad global discovery action:
