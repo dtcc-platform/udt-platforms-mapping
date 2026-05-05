@@ -2,7 +2,15 @@
 
 A spec-first research repository for collaborating with AI agents on Urban Digital Twin platform research.
 
-OpenSpec keeps prompts, outputs, and workflow changes explicit and reviewable. Git records how the research artifacts and contracts evolve over time.
+This repo uses OpenSpec because the canonical prompts are not one-time prompts.
+They are maintained research actions that are rerun, reviewed, compared, and improved over time, so they need explicit inputs, output contracts, review history, and traceable changes.
+
+The governing spec is the source of truth.
+A prompt is the operational rendering of that contract: copy-ready text generated or updated from the spec so an agent can run the research action.
+When a canonical prompt is unclear or incomplete, the stronger fix is usually to clarify the contract first, then regenerate or update the prompt.
+Small prompts and one-off experiments can still be direct when they are not part of the governed workflow.
+
+Git records how the research artifacts and contracts evolve over time.
 
 ## Workflow
 
