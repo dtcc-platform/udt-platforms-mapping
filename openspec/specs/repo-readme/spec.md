@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Governs the repository README documentation entrypoints, including the root README and local phase-folder READMEs.
+Governs the root README and phase README documentation entrypoints.
 
 ## Requirements
 
@@ -10,9 +10,11 @@ Governs the repository README documentation entrypoints, including the root READ
 
 `README.md` SHALL be the repository-wide documentation entrypoint.
 
-It SHALL explain the action research workflow, the roles of `plan/`, `act/`, `observe/`, and `reflect/`, the canonical research threads, and the relationship between OpenSpec, prompts, outputs, reflection, and git history.
+It SHALL explain the action research workflow, the roles of `plan/`, `act/`, `observe/`, and `reflect/`, the canonical research objects and actions, and the relationship between OpenSpec, prompts, outputs, reflection, and git history.
 
 It SHALL link to the governing repo-wide specs for structure, naming, prompt review, and README documentation.
+
+It SHALL explain that live artifact names use researcher-facing object/action/role language and do not repeat the `udt-` prefix.
 
 #### Scenario: Contributor opens the repository
 
@@ -21,33 +23,21 @@ It SHALL link to the governing repo-wide specs for structure, naming, prompt rev
 - **THEN** they can find the phase folders and their local README files
 - **THEN** they can find the governing repo-wide specs
 
-### Requirement: Root README explains the three-thread model and comparison handoff
+### Requirement: Root README explains research objects and platform comparison handoff
 
 `README.md` SHALL explain:
 
-- `udt-platforms` as a broad technical-artifact discovery thread
-- `udt-initiatives` as a broad initiative/project discovery thread
-- `udt-platform-comparison` as the stricter side-by-side comparison thread
+- platform discovery as broad technical-artifact discovery
+- initiative discovery as broad project, programme, and deployment discovery
+- platform comparison as stricter side-by-side evaluation
 
-It SHALL state that only `Type = platform` rows from `udt-platforms` are eligible for `udt-platform-comparison`.
+It SHALL state that only rows classified as `Type = platform` by platform discovery are eligible for platform comparison.
 
-#### Scenario: Researcher reads thread roles
+#### Scenario: Researcher reads research object roles
 
 - **WHEN** a researcher reads `README.md`
-- **THEN** the README explains the roles of `udt-platforms`, `udt-initiatives`, and `udt-platform-comparison`
-- **THEN** the README states that only `Type = platform` rows are eligible for `udt-platform-comparison`
-
-### Requirement: Root README explains prompt interpretation review
-
-`README.md` SHALL describe prompt interpretation review as the method for using multiple agents to improve prompt/spec fidelity.
-
-It SHALL explain that accepted review feedback is captured through OpenSpec changes rather than calibration artifacts.
-
-#### Scenario: Contributor reads the workflow overview
-
-- **WHEN** a contributor reads `README.md`
-- **THEN** they understand that multi-agent prompt review is sequential
-- **THEN** they understand that OpenSpec history is the audit trail
+- **THEN** the README explains platform discovery, initiative discovery, and platform comparison
+- **THEN** the README states that only `Type = platform` rows are eligible for platform comparison
 
 ### Requirement: Phase folders include local README files
 
@@ -56,6 +46,8 @@ The repository SHALL contain `plan/README.md`, `act/README.md`, `observe/README.
 Each phase README SHALL explain the local folder purpose, the artifact types stored there, and the naming expectations for direct files in that folder.
 
 Each phase README SHALL point readers back to `README.md` and the governing specs instead of duplicating the full repository workflow.
+
+Each phase README SHALL use object/action/role language rather than thread-centered language for live artifacts.
 
 #### Scenario: Researcher opens a phase folder
 
@@ -66,19 +58,21 @@ Each phase README SHALL point readers back to `README.md` and the governing spec
 
 ### Requirement: Plan README explains planning inputs
 
-`plan/README.md` SHALL explain that `plan/` contains scope, source-policy, rubric, selected-platform, and benchmark fixture inputs used by governed prompts.
+`plan/README.md` SHALL explain that `plan/` contains definitions, source policy, scoring dimensions, comparison set, and benchmark fixture inputs used by governed prompts.
 
-It SHALL explain that thread-specific planning files begin with the research-thread name.
+It SHALL explain the live planning filenames, including `platform-definition.md`, `initiative-definition.md`, `platform-dimensions-scoring.md`, `platform-source-policy.md`, `platform-comparison-set.md`, and `platform-discovery-benchmark.md`.
 
 #### Scenario: Researcher opens plan/
 
 - **WHEN** a researcher reads `plan/README.md`
 - **THEN** they understand which files are planning inputs
-- **THEN** they understand how thread-prefixed filenames identify ownership
+- **THEN** they understand how object/role filenames identify purpose
 
 ### Requirement: Act README explains prompt templates
 
 `act/README.md` SHALL explain that `act/` contains canonical prompt templates used to run research, benchmarking, and reporting workflows.
+
+It SHALL explain the live prompt filenames, including `discover-platforms.md`, `discover-initiatives.md`, `compare-platforms.md`, `benchmark-platform-discovery.md`, `report-platform-discovery.md`, `benchmark-platform-comparison.md`, and `report-platform-comparison.md`.
 
 It SHALL explain that prompt behavior is governed by OpenSpec prompt specs and that prompt changes should go through OpenSpec.
 
@@ -92,22 +86,22 @@ It SHALL explain that prompt behavior is governed by OpenSpec prompt specs and t
 
 `observe/README.md` SHALL explain that `observe/` contains saved model outputs and generated coverage artifacts.
 
-It SHALL explain that saved web outputs should identify the research thread and model in the filename.
+It SHALL explain that saved web outputs identify the research action and model in the filename, such as `platform-discovery-claude.md` and `platform-comparison-gemini.md`.
 
 #### Scenario: Researcher opens observe/
 
 - **WHEN** a researcher reads `observe/README.md`
 - **THEN** they understand which files are observed outputs
-- **THEN** they understand how thread and model identifiers appear in filenames
+- **THEN** they understand how action and model identifiers appear in filenames
 
 ### Requirement: Reflect README explains synthesis artifacts
 
 `reflect/README.md` SHALL explain that `reflect/` contains synthesized ecosystem summaries, reporting artifacts, and benchmark analysis outputs.
 
-It SHALL explain that reflection artifacts should use filenames that identify the research thread and artifact function.
+It SHALL explain that reflection artifacts use filenames that identify the research object and artifact function, such as `platform-ecosystem.md` and `platform-comparison-ecosystem.csv`.
 
 #### Scenario: Researcher opens reflect/
 
 - **WHEN** a researcher reads `reflect/README.md`
 - **THEN** they understand which files are reflection artifacts
-- **THEN** they understand how filenames identify thread and function
+- **THEN** they understand how filenames identify object and function

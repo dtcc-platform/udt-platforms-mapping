@@ -2,84 +2,36 @@
 
 ## Purpose
 
-Defines repo-wide naming conventions that support workflow traceability across branches, commits, OpenSpec changes, and archived change history.
+Defines the researcher-facing naming contract for live repository artifacts.
 
 ## Requirements
 
-### Requirement: Workflow names are descriptive and stable
+### Requirement: Live artifact names use researcher-facing object/action/role language
 
-Workflow-facing names SHALL be descriptive enough to preserve meaning in git history and repository artifacts.
+Live repository artifact filenames SHALL use researcher-facing names that describe the artifact's research object, action, or role.
 
-Where a governed naming pattern exists, agents and contributors SHALL use that pattern instead of ad hoc alternatives.
+Live filenames SHALL NOT repeat the `udt-` prefix because the repository context supplies the Urban Digital Twin domain.
 
-#### Scenario: Contributor creates a prompt review change
+Live documentation and specs SHALL NOT describe canonical live artifacts as research threads. They SHALL use clearer terms such as research object, research action, artifact role, prompt, saved output, or synthesis.
 
-- **WHEN** a contributor captures accepted prompt-review feedback
-- **THEN** the OpenSpec change name describes the prompt/spec improvement rather than the reviewing agent alone
+#### Scenario: Contributor names a live artifact
 
-### Requirement: Spec capability names use effect-scope prefixes
+- **WHEN** a contributor creates or renames a live canonical artifact
+- **THEN** the filename uses object/action/role language
+- **THEN** the filename does not begin with `udt-`
+- **THEN** the governing docs avoid thread-centered language for the live workflow
 
-OpenSpec capability names SHALL use the first hyphen-separated token to identify the spec's effect scope.
+### Requirement: Phase folders use phase-specific naming grammar
 
-The supported effect-scope prefixes SHALL include:
+Plan artifacts SHALL use noun phrases such as `platform-definition.md`, `platform-dimensions-scoring.md`, `platform-comparison-set.md`, and `platform-discovery-benchmark.md`.
 
-- `repo` for repository-wide structure, conventions, and shared contracts
-- `plan` for planning artifacts
-- `act` for execution prompt artifacts
-- `observe` for saved-output artifacts
-- `reflect` for reflection, benchmarking, and reporting artifacts
+Act artifacts SHALL use verb phrases such as `discover-platforms.md`, `compare-platforms.md`, `benchmark-platform-discovery.md`, and `report-platform-discovery.md`.
 
-#### Scenario: Contributor scans active specs
+Observe artifacts SHALL identify the research action and model or generated output, such as `platform-discovery-claude.md`, `platform-comparison-gemini.md`, and `platform-discovery-coverage.md`.
 
-- **WHEN** a contributor reads the active spec list
-- **THEN** the first token of each capability name identifies where the spec takes effect
-- **THEN** repository-wide capabilities use the `repo` prefix
+Reflect artifacts SHALL identify the research object and synthesis product, such as `platform-ecosystem.md` and `platform-comparison-ecosystem.csv`.
 
-### Requirement: Commit messages use governed workflow patterns
+#### Scenario: Researcher scans phase folders
 
-Commit messages SHALL use one of the repository's governed naming patterns for workflow-relevant changes.
-
-Supported patterns SHALL include:
-
-- `<phase>(<thread>): <subject>`
-- `<type>(<scope>): <subject>`
-
-#### Scenario: Contributor commits a canonical research artifact
-
-- **WHEN** a contributor commits a canonical phase artifact
-- **THEN** the commit message uses the phase/thread pattern, such as `observe(udt-platforms): add claude response`
-
-#### Scenario: Contributor commits a spec or workflow refactor
-
-- **WHEN** a contributor commits a spec or workflow change
-- **THEN** the commit message uses the type/scope pattern, such as `refactor(specs): rename cycles to udt-platforms`
-
-### Requirement: Phase artifact filenames encode thread and function
-
-Canonical phase artifacts SHALL use direct filenames that encode thread, function, and artifact role when those distinctions are needed.
-
-The filename pattern SHOULD be:
-
-```text
-<thread>-<function>-<artifact>.<ext>
-```
-
-The function segment MAY be omitted when the thread and artifact role are sufficient.
-
-#### Scenario: Contributor adds a phase artifact
-
-- **WHEN** a contributor adds a canonical artifact under `plan/`, `act/`, `observe/`, or `reflect/`
-- **THEN** the artifact is a direct file in that phase folder
-- **THEN** the filename identifies the thread and purpose without requiring a subfolder
-
-### Requirement: OpenSpec change names are descriptive hyphenated identifiers
-
-OpenSpec change names SHALL be lowercase, descriptive, and hyphen-separated.
-
-They SHOULD describe the workflow or contract change rather than only the local edit mechanism.
-
-#### Scenario: Contributor starts a governed workflow change
-
-- **WHEN** a contributor creates an OpenSpec change
-- **THEN** the change name is lowercase, descriptive, and hyphen-separated
-- **THEN** the change name describes the intended contract or workflow change
+- **WHEN** a researcher opens `plan/`, `act/`, `observe/`, or `reflect/`
+- **THEN** filenames communicate the artifact role without requiring knowledge of old thread identifiers

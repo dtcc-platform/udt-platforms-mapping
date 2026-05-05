@@ -57,17 +57,15 @@ Avoid duplicating shared rules unless local readability is more important than t
 
 ### Repository Model
 
-The repository is organized around complementary research threads.
-These threads are not cycles in themselves.
+The repository is organized around research objects and research actions.
 The cycle is the repeated Action Research loop across phases:
 
 ```text
 PLAN -> ACT -> OBSERVE -> REFLECT
 ```
 
-Each thread has its own artifacts across those phases.
 Planning inputs, canonical act prompts, observed outputs, and reflection artifacts are direct files under their phase folders.
-Filenames carry the thread and function identity, such as `observe/udt-platforms-web-claude.md` or `reflect/udt-platforms-ecosystem.md`.
+Live filenames use researcher-facing object, action, and role language, such as `observe/platform-discovery-claude.md` or `reflect/platform-ecosystem.md`.
 Each phase folder has a local `README.md` that explains its contents and naming expectations:
 
 - [plan/README.md](plan/README.md)
@@ -75,12 +73,14 @@ Each phase folder has a local `README.md` that explains its contents and naming 
 - [observe/README.md](observe/README.md)
 - [reflect/README.md](reflect/README.md)
 
-The first two threads are broad global discovery threads:
+The first two research actions are broad global discovery actions:
 
-- `udt-platforms` casts a wide net over technical artifacts and classifies them using a stable `Type` contract
-- `udt-initiatives` casts a wide net over projects, programmes, and deployments and records `Uses = ?` when the technical substrate is unclear
+- platform discovery casts a wide net over technical artifacts and classifies them using a stable `Type` contract
+- initiative discovery casts a wide net over projects, programmes, and deployments and records `Uses = ?` when the technical substrate is unclear
 
-The stricter evaluative stage is `udt-platform-comparison`, where the selected platform set is compared using tighter criteria and stronger evidence expectations.
+The stricter evaluative stage is platform comparison, where the selected platform set is compared using tighter criteria and stronger evidence expectations.
+
+Historical OpenSpec archive entries may still mention older `udt-*` filenames and thread names. Those names are historical only; the live repository uses the researcher-facing filenames shown in the phase folders.
 
 The repository has two main responsibilities:
 
@@ -121,30 +121,30 @@ Later reviewers may see earlier accepted deltas because the goal is iterative im
 
 ### 1. Start In `plan/`
 
-Start from the planning artifacts for the thread you are working on.
-That is where purpose, scope, comparison criteria where applicable, and thread dependencies are made explicit before execution.
-Canonical planning entrypoints are direct files such as `plan/udt-platforms-scope.md`, `plan/udt-initiatives-scope.md`, `plan/udt-platform-comparison-platforms.md`, and `plan/udt-platforms-benchmark.md`.
+Start from the planning artifacts for the research object or action you are working on.
+That is where purpose, scope, comparison criteria, selected inputs, and action dependencies are made explicit before execution.
+Canonical planning entrypoints are direct files such as `plan/platform-definition.md`, `plan/initiative-definition.md`, `plan/platform-comparison-set.md`, and `plan/platform-discovery-benchmark.md`.
 
 ### 2. Run Canonical Prompts From `act/`
 
 Use the canonical web prompts:
 
 ```text
-Run act/udt-platforms.md
-Run act/udt-initiatives.md
-Run act/udt-platform-comparison.md
-Run act/udt-platforms-benchmarking.md
-Run act/udt-platforms-reporting.md
-Run act/udt-platform-comparison-reporting.md
+Run act/discover-platforms.md
+Run act/discover-initiatives.md
+Run act/compare-platforms.md
+Run act/benchmark-platform-discovery.md
+Run act/report-platform-discovery.md
+Run act/report-platform-comparison.md
 ```
 
-Canonical act prompts resolve their declared planning inputs into copy-ready web prompts for the matching thread.
+Canonical act prompts resolve their declared planning inputs into copy-ready web prompts for the matching research action.
 
 ### 3. Save Outputs Under `observe/` And Synthesize Under `reflect/`
 
 Saved canonical web outputs and generated coverage reports belong in `observe/` as direct files.
 Synthesized reporting and reflection outputs belong in `reflect/` as direct files.
-This is where one thread can inform another and where the next cycle gets shaped.
+This is where one research action can inform another and where the next cycle gets shaped.
 
 ### 4. Improve Prompts Through OpenSpec Review
 
@@ -219,7 +219,7 @@ README documentation entrypoints are governed by:
 
 Use those specs as the source of truth for:
 
-- canonical phase and thread locations
+- canonical phase locations and artifact names
 - README documentation entrypoints
 - prompt-review expectations
 - branch naming
@@ -228,7 +228,7 @@ Use those specs as the source of truth for:
 
 ## Future Directions
 
-- A possible future direction is to adopt a Markdown-native relationship layer such as [Tolaria](https://tolaria.md/) and use YAML frontmatter on governed files to express purpose, dependencies, and thread relationships directly in each document.
+- A possible future direction is to adopt a Markdown-native relationship layer such as [Tolaria](https://tolaria.md/) and use YAML frontmatter on governed files to express purpose, dependencies, and artifact relationships directly in each document.
   If that happens, per-file frontmatter could replace or reduce the need for separate dependency-mapping documents, while keeping relationships inspectable through plain files and git history.
   This is only a future direction. The current repository does not require frontmatter on all Markdown files, and the current workflow remains the source of truth.
 - Another future direction is to simplify the workflow for end users through higher-level skills that wrap the internal repository mechanics, similar in spirit to the skill-driven workflow system described by [The Unfinishable Map](https://unfinishablemap.org/workflow/).

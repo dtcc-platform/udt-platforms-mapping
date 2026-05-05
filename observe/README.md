@@ -2,7 +2,7 @@
 
 `observe/` contains saved model outputs and generated coverage artifacts.
 
-Saved web outputs should identify the research thread and model in the filename, such as `udt-platforms-web-claude.md` or `udt-platform-comparison-web-gemini.md`.
+Saved web outputs should identify the research action and model in the filename, such as `platform-discovery-claude.md` or `platform-comparison-gemini.md`.
 
 Generated workflow outputs also live here as direct files when they are observations of a run, such as benchmarking coverage.
 

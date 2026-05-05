@@ -2,20 +2,17 @@
 
 ## Purpose
 
-Defines the shared portable Markdown contract used by governed prompt templates that instruct AI models to emit Markdown output.
+Defines the shared Markdown formatting contract for governed prompts.
 
 ## Requirements
 
-### Requirement: Prompt templates define a shared portable Markdown contract
+### Requirement: Governed prompts define portable Markdown output
 
 Each governed prompt template file in the live repository that instructs an AI model to emit Markdown output SHALL include a `### Markdown and Formatting Rules` section defining the project's shared portable Markdown contract.
 
-This shared contract SHALL apply to the governed prompt templates that explicitly rely on it, including current prompts such as `act/udt-platforms.md` and `act/udt-platform-comparison.md`.
+This shared contract SHALL apply to the governed prompt templates that explicitly rely on it, including current prompts such as `act/discover-platforms.md` and `act/compare-platforms.md`.
 
-The shared contract SHALL require output that renders correctly in standard Markdown viewers such as GitHub, VS Code, Obsidian, and Typora, without AI-specific formatting artifacts.
+#### Scenario: Contributor reviews a governed prompt template
 
-#### Scenario: Governed prompt declares Markdown rules
-
-- **WHEN** a governed prompt template relies on the shared portable Markdown contract
-- **THEN** it includes a `### Markdown and Formatting Rules` section
-- **THEN** the section requires standard Markdown output without AI-specific formatting artifacts
+- **WHEN** a contributor opens a governed prompt template that emits Markdown
+- **THEN** the prompt includes the shared Markdown and formatting rules

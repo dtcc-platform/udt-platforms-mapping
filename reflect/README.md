@@ -2,7 +2,7 @@
 
 `reflect/` contains synthesized reflection artifacts, including ecosystem summaries, reporting outputs, and benchmark analysis results.
 
-Reflection filenames should identify the research thread and artifact function, such as `udt-platforms-ecosystem.md` or `udt-platform-comparison-ecosystem.csv`.
+Reflection filenames should identify the research object and artifact function, such as `platform-ecosystem.md` or `platform-comparison-ecosystem.csv`.
 
 Use this folder for interpreted outputs that synthesize or compare observed results and can shape the next planning cycle.
 
