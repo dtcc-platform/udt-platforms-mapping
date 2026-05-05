@@ -44,9 +44,13 @@ The workflow SHALL NOT require isolated calibration branches or blind independen
 
 ### Requirement: README explains prompt interpretation review
 
-`README.md` SHALL describe prompt interpretation review as the method for using multiple agents to improve prompt/spec fidelity.
+The prompt interpretation review workflow SHALL have contributor-facing documentation in `README.md`.
 
-It SHALL explain that accepted review feedback is captured through OpenSpec changes rather than calibration artifacts.
+The documentation SHALL describe prompt interpretation review as the method for using multiple agents to improve prompt/spec fidelity.
+
+The documentation SHALL explain that accepted review feedback is captured through OpenSpec changes rather than calibration artifacts.
+
+Detailed README placement and folder-level documentation expectations are governed by `repo-readme`.
 
 #### Scenario: Contributor reads the workflow overview
 

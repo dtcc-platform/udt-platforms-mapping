@@ -2,8 +2,10 @@
 
 ## Purpose
 
-Defines the top-level repository structure for the research workflow, including the phase layout, canonical research-thread locations, canonical prompt/output locations, and README explanation requirements.
+Defines the top-level repository structure for the research workflow, including the phase layout, canonical research-thread locations, and canonical prompt/output locations.
+
 ## Requirements
+
 ### Requirement: Repository is organised as action research phases at top level
 
 The repository SHALL use four top-level folders matching the action research phases: `plan/`, `act/`, `observe/`, and `reflect/`.
@@ -17,6 +19,8 @@ The canonical research threads are:
 - `udt-platform-comparison`
 
 The repository SHALL NOT use a top-level `calibration/` folder for live workflow state.
+
+The phase folders MAY contain local `README.md` files for documentation. These README files are not canonical research artifacts.
 
 #### Scenario: Researcher navigates the repository
 
@@ -78,31 +82,3 @@ Observed workflow outputs, such as benchmarking coverage, SHALL also live as dir
 - **WHEN** a researcher opens `reflect/`
 - **THEN** reflection artifacts are direct files
 - **THEN** the filename identifies the thread and function
-
-### Requirement: README explains the three-thread model and comparison handoff
-
-`README.md` SHALL explain:
-
-- `udt-platforms` as a broad technical-artifact discovery thread
-- `udt-initiatives` as a broad initiative/project discovery thread
-- `udt-platform-comparison` as the stricter side-by-side comparison thread
-
-It SHALL also state that only `Type = platform` rows from `udt-platforms` are eligible for `udt-platform-comparison`.
-
-#### Scenario: Researcher reads thread roles
-
-- **WHEN** a researcher reads `README.md`
-- **THEN** the README explains the roles of `udt-platforms`, `udt-initiatives`, and `udt-platform-comparison`
-- **THEN** the README states that only `Type = platform` rows are eligible for `udt-platform-comparison`
-
-### Requirement: README explains prompt interpretation review
-
-`README.md` SHALL explain that prompt interpretation review uses agents sequentially to check whether prompts faithfully interpret governing specs.
-
-It SHALL explain that accepted improvements are captured as OpenSpec deltas rather than calibration artifacts.
-
-#### Scenario: Researcher reviews prompt improvement guidance
-
-- **WHEN** a researcher reads the prompt interpretation review guidance in `README.md`
-- **THEN** the README explains sequential agent review
-- **THEN** the README explains that OpenSpec changes preserve accepted review decisions

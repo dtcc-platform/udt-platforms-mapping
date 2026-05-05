@@ -68,6 +68,12 @@ PLAN -> ACT -> OBSERVE -> REFLECT
 Each thread has its own artifacts across those phases.
 Planning inputs, canonical act prompts, observed outputs, and reflection artifacts are direct files under their phase folders.
 Filenames carry the thread and function identity, such as `observe/udt-platforms-web-claude.md` or `reflect/udt-platforms-ecosystem.md`.
+Each phase folder has a local `README.md` that explains its contents and naming expectations:
+
+- [plan/README.md](plan/README.md)
+- [act/README.md](act/README.md)
+- [observe/README.md](observe/README.md)
+- [reflect/README.md](reflect/README.md)
 
 The first two threads are broad global discovery threads:
 
@@ -207,9 +213,14 @@ Prompt interpretation review is governed by:
 
 - [openspec/specs/repo-prompt-review/spec.md](openspec/specs/repo-prompt-review/spec.md)
 
+README documentation entrypoints are governed by:
+
+- [openspec/specs/repo-readme/spec.md](openspec/specs/repo-readme/spec.md)
+
 Use those specs as the source of truth for:
 
 - canonical phase and thread locations
+- README documentation entrypoints
 - prompt-review expectations
 - branch naming
 - commit naming
