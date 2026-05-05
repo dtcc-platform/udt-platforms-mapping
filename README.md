@@ -68,6 +68,18 @@ flowchart TD
     V -->|faithful enough| A
 ```
 
+## Health Checks
+
+Use these checks when reviewing, handing off, or committing repository work:
+
+```bash
+openspec validate --all --strict
+git status --short
+```
+
+Use `openspec validate <change-name> --strict` before applying or archiving a specific OpenSpec change.
+These checks confirm repository contract health and working-tree state; they do not verify research truth, evidence quality, or model-output completeness.
+
 ## Specs
 
 Formal repository contracts live in [openspec/specs/](openspec/specs/), especially:
