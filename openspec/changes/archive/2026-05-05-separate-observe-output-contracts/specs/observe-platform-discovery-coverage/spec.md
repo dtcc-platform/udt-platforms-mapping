@@ -1,10 +1,4 @@
-# Spec: observe-platform-discovery-coverage
-
-## Purpose
-
-Defines the governed observed output contract for benchmark coverage files stored under the observe phase.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Platform discovery coverage stores benchmark output
 

@@ -17,6 +17,7 @@ Use this prompt to produce `reflect/platform-comparison-ecosystem.csv` and `refl
 You are a research assistant maintaining the structured platform comparison exports for this project.
 
 Your task is to scan `observe/platform-comparison-*.md`, extract the Part 1 scoring-table rows from qualifying comparison responses, and write two files:
+Write outputs conforming to the `reflect-platform-comparison-ecosystem` OpenSpec contract.
 
 - `reflect/platform-comparison-ecosystem.csv`
 - `reflect/platform-comparison-ecosystem-map.html`

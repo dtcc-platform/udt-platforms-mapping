@@ -34,6 +34,7 @@ If the object is mainly a software artifact, it belongs in platform discovery.
 # Initiative Discovery Mapping
 
 Apply the initiative contract supplied in the required inputs (`plan/initiative-definition.md`) to every initiative you include.
+Produce output conforming to the `observe-initiative-discovery` OpenSpec contract.
 
 **Search scope:** Global city-scale UDT initiatives, programmes, pilots, and deployments across public, research, and industry contexts. Cover all major geographies. Breadth matters more than early filtering.
 

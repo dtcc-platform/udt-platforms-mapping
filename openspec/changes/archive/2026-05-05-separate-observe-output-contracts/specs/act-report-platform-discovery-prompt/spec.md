@@ -1,10 +1,4 @@
-# Spec: act-report-platform-discovery-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Report platform discovery prompt synthesizes platform ecosystem
 

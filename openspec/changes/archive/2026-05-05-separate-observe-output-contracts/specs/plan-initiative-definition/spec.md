@@ -1,10 +1,4 @@
-# Spec: plan-initiative-definition
-
-## Purpose
-
-Defines the initiative discovery world and scope contract.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Initiative definition is the canonical initiative discovery planning contract
 

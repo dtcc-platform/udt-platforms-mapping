@@ -1,10 +1,4 @@
-# Spec: reflect-platform-comparison-ecosystem
-
-## Purpose
-
-Defines the governed reflection output contract for structured platform comparison CSV and HTML artifacts.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Platform comparison ecosystem contains structured comparison outputs
 

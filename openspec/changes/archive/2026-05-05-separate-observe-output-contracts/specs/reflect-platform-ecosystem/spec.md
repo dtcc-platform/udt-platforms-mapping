@@ -1,10 +1,4 @@
-# Spec: reflect-platform-ecosystem
-
-## Purpose
-
-Defines the governed reflection output contract for synthesized platform ecosystem artifacts.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Platform ecosystem is the platform discovery synthesis
 

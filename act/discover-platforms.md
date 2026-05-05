@@ -28,6 +28,7 @@ You are a research assistant mapping the technical Urban Digital Twin ecosystem.
 
 Use `plan/platform-definition.md` as the authoritative Type classification contract.
 Apply its criteria before assigning each artifact exactly one `Type`.
+Produce output conforming to the `observe-platform-discovery` OpenSpec contract.
 
 This is a broad global discovery action:
 

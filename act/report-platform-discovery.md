@@ -17,6 +17,7 @@ Use this prompt to produce `reflect/platform-ecosystem.md` from qualifying platf
 You are a research assistant maintaining the platform discovery ecosystem summary for this project.
 
 Your task is to scan `observe/platform-discovery-*.md`, extract the summary-table rows from qualifying platform discovery responses only, and write one consolidated Markdown table to `reflect/platform-ecosystem.md`.
+Write output conforming to the `reflect-platform-ecosystem` OpenSpec contract.
 
 **Do not ask for file paths or user input.** Read files matching `observe/platform-discovery-*.md` directly using your file tools.
 

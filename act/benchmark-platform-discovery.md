@@ -11,6 +11,7 @@ Claude Code will use its file tools to execute the steps below automatically.
 ## Instructions
 
 You are running a recall check on platform discovery responses. Follow these steps exactly:
+Write output conforming to the `observe-platform-discovery-coverage` OpenSpec contract.
 
 ### Step 1 — Load the fixture
 
