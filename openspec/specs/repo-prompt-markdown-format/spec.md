@@ -1,3 +1,5 @@
+# Spec: repo-prompt-markdown-format
+
 ## Purpose
 
 Defines the shared portable Markdown contract used by governed prompt templates that instruct AI models to emit Markdown output.

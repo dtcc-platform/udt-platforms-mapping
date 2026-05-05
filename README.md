@@ -194,15 +194,15 @@ next contract update"]
 
 The live repository structure is governed by:
 
-- [openspec/specs/repository-structure/spec.md](openspec/specs/repository-structure/spec.md)
+- [openspec/specs/repo-structure/spec.md](openspec/specs/repo-structure/spec.md)
 
 Workflow naming conventions are governed by:
 
-- [openspec/specs/workflow-naming-conventions/spec.md](openspec/specs/workflow-naming-conventions/spec.md)
+- [openspec/specs/repo-naming-conventions/spec.md](openspec/specs/repo-naming-conventions/spec.md)
 
 Prompt interpretation review is governed by:
 
-- [openspec/specs/prompt-interpretation-review/spec.md](openspec/specs/prompt-interpretation-review/spec.md)
+- [openspec/specs/repo-prompt-review/spec.md](openspec/specs/repo-prompt-review/spec.md)
 
 Use those specs as the source of truth for:
 

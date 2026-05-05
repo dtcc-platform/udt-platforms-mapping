@@ -1,4 +1,4 @@
-# Spec: prompt-interpretation-review
+# Spec: repo-prompt-review
 
 ## Purpose
 

@@ -1,4 +1,4 @@
-# Spec: repository-structure
+# Spec: repo-structure
 
 ## Purpose
 
