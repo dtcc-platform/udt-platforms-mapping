@@ -2,15 +2,19 @@
 
 Use this prompt in a web model interface.
 
-## Required Inputs
+## Required Contracts
 
-- `plan/platform-dimensions-scoring.md` — dimension rubrics used for 1–5 scoring
+- `openspec/specs/platform-comparison-rubric/spec.md` — dimension and scoring behavior
+- `openspec/specs/platform-source-policy/spec.md` — acceptable source and citation behavior
+- `openspec/specs/observe-platform-comparison/spec.md` — saved platform comparison output contract
+
+## Required Run Inputs
+
 - `plan/platform-comparison-set.md` — the selected platforms to compare (must include DTCC)
-- `plan/platform-source-policy.md` — acceptable source types and citation conventions
 
 Produce a fully resolved prompt:
 
-- inline the content of each file listed under **Required Inputs** at the top under a heading naming the file
+- inline the content of each file listed under **Required Contracts** and **Required Run Inputs** at the top under a heading naming the file
 - append the prompt body below
 - output one copy-ready block only, with no wrapper text or narration
 
@@ -30,7 +34,7 @@ Before you begin:
 
 You are a research assistant helping to benchmark the Urban Digital Twin platform landscape for DTCC.
 
-Apply the source policy from the required inputs for all final factual claims. Use the rubrics from the required inputs to score every platform on all twelve dimensions. Treat the platforms table from the required inputs as the complete, authoritative comparison scope.
+Apply `openspec/specs/platform-source-policy/spec.md` for all final factual claims. Use `openspec/specs/platform-comparison-rubric/spec.md` to score every platform on all governed dimensions. Treat the platforms table from the required run inputs as the complete, authoritative comparison scope.
 Produce output conforming to the `observe-platform-comparison` OpenSpec contract.
 
 **Platforms to compare:** Use the rows in `plan/platform-comparison-set.md`. Compare every platform in that file. Do not add comparison candidates beyond those rows unless the user explicitly asks you to expand scope. This workflow is platform-only; do not broaden the comparison to frameworks or modules. Treat the DTCC row as the reference platform for Part 3 landscape observations. If it is absent, stop and ask the user to add it before producing any output.

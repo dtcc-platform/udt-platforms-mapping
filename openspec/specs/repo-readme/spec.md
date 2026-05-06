@@ -12,6 +12,8 @@ Governs the root README and phase README documentation entrypoints.
 
 It SHALL present the repository as a spec-first research repository for collaborating with AI agents on Urban Digital Twin platform research.
 
+It SHALL explain that OpenSpec specs are behavior contracts, `plan/` contains run inputs, `act/` prompts operationally implement the contracts, `observe/` stores raw outputs, and `reflect/` stores synthesis.
+
 It SHALL explain the action research workflow, the roles of `plan/`, `act/`, `observe/`, and `reflect/`, the canonical research objects and actions, and the relationship between OpenSpec, prompts, outputs, reflection, and git history.
 
 It SHALL do this as a concise researcher-facing orientation page, using phase README files for local folder detail and `openspec/specs/` for formal repository contracts.
@@ -28,6 +30,7 @@ It SHALL explain that live artifact names use researcher-facing object/action/ro
 
 - **WHEN** a contributor reads `README.md`
 - **THEN** they understand the repository workflow at a high level
+- **THEN** they understand that specs define behavior and `plan/` contains run inputs
 - **THEN** they can find the phase folders and their local README files
 - **THEN** they can find the formal governing specs without the README duplicating their full contract text
 
@@ -66,9 +69,11 @@ Each phase README SHALL use object/action/role language rather than thread-cente
 
 ### Requirement: Plan README explains planning inputs
 
-`plan/README.md` SHALL explain that `plan/` contains definitions, source policy, scoring dimensions, comparison set, and benchmark fixture inputs used by governed prompts.
+`plan/README.md` SHALL explain that `plan/` contains run inputs used by governed prompts.
 
-It SHALL explain the live planning filenames, including `platform-definition.md`, `initiative-definition.md`, `platform-dimensions-scoring.md`, `platform-source-policy.md`, `platform-comparison-set.md`, and `platform-discovery-benchmark.md`.
+It SHALL explain that stable behavior definitions, source policies, scoring rules, and output contracts live in `openspec/specs/`.
+
+It SHALL explain the live run-input filenames, including `platform-comparison-set.md` and `platform-discovery-benchmark.md`.
 
 #### Scenario: Researcher opens plan/
 

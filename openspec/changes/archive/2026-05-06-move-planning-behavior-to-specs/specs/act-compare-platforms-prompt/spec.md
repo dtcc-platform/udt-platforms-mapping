@@ -1,10 +1,4 @@
-# Spec: act-compare-platforms-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Compare platforms prompt is the canonical platform comparison prompt
 

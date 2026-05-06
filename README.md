@@ -5,8 +5,12 @@ A spec-first research repository for collaborating with AI agents on Urban Digit
 This repo uses OpenSpec because the canonical prompts are not one-time prompts.
 They are maintained research actions that are rerun, reviewed, compared, and improved over time, so they need explicit inputs, output contracts, review history, and traceable changes.
 
-The governing spec is the source of truth.
-A prompt is the operational rendering of that contract: copy-ready text generated or updated from the spec so an agent can run the research action.
+An OpenSpec spec is a behavior contract, not an implementation plan.
+In this repository, specs define what a research action must do, including classification behavior, source policies, scoring rules, and output contracts.
+
+The `plan/` folder contains run inputs used by those actions, such as selected comparison sets, benchmark fixtures, and run-specific scope material.
+
+A prompt is the operational implementation of the contract: copy-ready instructions that combine the relevant behavior specs and run inputs so an agent can perform the research action.
 When a canonical prompt is unclear or incomplete, the stronger fix is usually to clarify the contract first, then regenerate or update the prompt.
 Small prompts and one-off experiments can still be direct when they are not part of the governed workflow.
 
@@ -20,7 +24,7 @@ The repository follows an action research loop:
 PLAN -> ACT -> OBSERVE -> REFLECT
 ```
 
-- `plan/` defines research objects, scope, criteria, selected inputs, and benchmark fixtures.
+- `plan/` contains run inputs such as selected comparison sets, benchmark fixtures, and run-specific scope material.
 - `act/` contains canonical prompt templates for running research, benchmarking, and reporting actions.
 - `observe/` stores saved model outputs and generated coverage artifacts.
 - `reflect/` contains synthesized reporting, comparison, and reflection artifacts.
@@ -46,12 +50,14 @@ Canonical actions include:
 
 ## How To Work
 
-1. Start from the relevant planning file in `plan/`.
+1. Start from the relevant behavior spec in `openspec/specs/` and any run input in `plan/`.
 2. Run the matching canonical prompt from `act/`.
 3. Save raw model outputs and coverage artifacts in `observe/`.
 4. Synthesize reports, comparisons, and reflections in `reflect/`.
 5. Improve prompts and workflow behavior through OpenSpec changes.
    One agent can generate or update a prompt from a governing spec, another agent reviews whether the prompt faithfully interprets that spec, and accepted improvements are captured as OpenSpec deltas before updating the baseline.
+
+A useful reviewer question is: does `act/discover-platforms.md` faithfully implement the `platform-definition` behavior contract?
 
 ```mermaid
 flowchart TD
@@ -88,3 +94,7 @@ Formal repository contracts live in [openspec/specs/](openspec/specs/), especial
 - [repo-naming-conventions](openspec/specs/repo-naming-conventions/spec.md)
 - [repo-prompt-review](openspec/specs/repo-prompt-review/spec.md)
 - [repo-readme](openspec/specs/repo-readme/spec.md)
+- [platform-definition](openspec/specs/platform-definition/spec.md)
+- [initiative-definition](openspec/specs/initiative-definition/spec.md)
+- [platform-comparison-rubric](openspec/specs/platform-comparison-rubric/spec.md)
+- [platform-source-policy](openspec/specs/platform-source-policy/spec.md)

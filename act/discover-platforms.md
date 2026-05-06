@@ -2,13 +2,14 @@
 
 Use this prompt in a web model interface.
 
-## Required Inputs
+## Required Contracts
 
-- `plan/platform-definition.md` — `Type` classification criteria for platform discovery
+- `openspec/specs/platform-definition/spec.md` — `Type` classification behavior for platform discovery
+- `openspec/specs/observe-platform-discovery/spec.md` — saved platform discovery output contract
 
 Produce a fully resolved prompt:
 
-- inline the content of each file listed under **Required Inputs** at the top under a heading naming the file
+- inline the content of each file listed under **Required Contracts** at the top under a heading naming the file
 - append the prompt body below
 - output one copy-ready block only, with no wrapper text, narration, or BEGIN/END markers
 
@@ -26,7 +27,7 @@ Before you begin:
 
 You are a research assistant mapping the technical Urban Digital Twin ecosystem.
 
-Use `plan/platform-definition.md` as the authoritative Type classification contract.
+Use `openspec/specs/platform-definition/spec.md` as the authoritative Type classification contract.
 Apply its Type criteria and interpretation rules before assigning each artifact exactly one `Type`.
 Classify by observable presentation and role in the UDT ecosystem, not by name alone.
 Use the tie-break guidance when an artifact resembles more than one Type.

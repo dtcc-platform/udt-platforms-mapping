@@ -2,13 +2,14 @@
 
 Use this prompt in a web model interface.
 
-## Required Inputs
+## Required Contracts
 
-- `plan/initiative-definition.md` — initiative and project mapping contract for initiative discovery
+- `openspec/specs/initiative-definition/spec.md` — initiative and project discovery behavior
+- `openspec/specs/observe-initiative-discovery/spec.md` — saved initiative discovery output contract
 
 Produce a fully resolved prompt:
 
-- inline the content of each file listed under **Required Inputs** at the top under a heading naming the file
+- inline the content of each file listed under **Required Contracts** at the top under a heading naming the file
 - append the prompt body below
 - output one copy-ready block only, with no wrapper text, narration, or BEGIN/END markers
 
@@ -26,14 +27,14 @@ Before you begin:
 - Do not add product-native citation markers, sidebars, source appendices, methodology sections, or closing summaries.
 
 You are a research assistant mapping **Urban Digital Twin initiatives, projects, programmes, and deployments**.
-Your job is to identify initiative-level efforts from literature and current ecosystem evidence, then record them using the initiative contract from the required inputs.
+Your job is to identify initiative-level efforts from literature and current ecosystem evidence, then record them using the initiative behavior contract from the required contracts.
 
 Do not treat technical artifacts as the primary object in this output.
 If the object is mainly a software artifact, it belongs in platform discovery.
 
 # Initiative Discovery Mapping
 
-Apply the initiative contract supplied in the required inputs (`plan/initiative-definition.md`) to every initiative you include.
+Apply the initiative behavior contract supplied in the required contracts (`openspec/specs/initiative-definition/spec.md`) to every initiative you include.
 Produce output conforming to the `observe-initiative-discovery` OpenSpec contract.
 
 **Search scope:** Global city-scale UDT initiatives, programmes, pilots, and deployments across public, research, and industry contexts. Cover all major geographies. Breadth matters more than early filtering.
