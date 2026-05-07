@@ -1,10 +1,4 @@
-# Spec: act-benchmark-platform-discovery-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Benchmark platform discovery prompt checks discovery recall
 
@@ -18,25 +12,7 @@ The prompt SHALL scan `observe/platform-discovery-*.md` files and write `observe
 
 The prompt SHALL read expected artifacts from `plan/platform-discovery-benchmark.md`.
 
-The prompt SHALL extract expected artifacts from the benchmark fixture table using `Name`, `Link`, expected `Type`, `Aliases`, and `Tags`.
-
-The prompt SHALL parse each platform discovery response's YAML metadata block and use the `model` field as the response label.
-
-The prompt SHALL parse each platform discovery response summary table and collect artifact names and `Type` values from summary rows.
-
-The prompt SHALL match expected artifacts case-insensitively against response artifact names using the canonical `Name` and all `Aliases`.
-
-The prompt SHALL record `✓ found` when a matched response row has the expected `Type`.
-
-The prompt SHALL record `✓ found (Type: <actual value>)` when a matched response row has a different `Type`.
-
-The prompt SHALL record `✗ missing` when no response row matches the expected artifact.
-
-The prompt SHALL collect novel finds from each response file by identifying summary rows that do not match any benchmark entry.
-
 The prompt SHALL instruct the model to write coverage output conforming to `observe-platform-discovery-coverage`.
-
-The prompt SHALL overwrite `observe/platform-discovery-coverage.md` if it already exists.
 
 The live `act/benchmark-platform-discovery.md` prompt body SHALL avoid duplicating behavior supplied by required contracts.
 

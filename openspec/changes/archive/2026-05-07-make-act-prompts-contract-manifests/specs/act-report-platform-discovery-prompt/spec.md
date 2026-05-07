@@ -1,10 +1,4 @@
-# Spec: act-report-platform-discovery-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Report platform discovery prompt synthesizes platform ecosystem
 
@@ -18,23 +12,9 @@ The prompt SHALL scan `observe/platform-discovery-*.md` files without requiring 
 
 The prompt SHALL treat as qualifying only files whose YAML block contains `prompt: platform-discovery`.
 
-The prompt SHALL skip files silently when they do not contain a qualifying YAML metadata block.
-
-The prompt SHALL extract summary table rows from each qualifying response.
-
-The prompt SHALL preserve exactly the `Name`, `Link`, `Type`, and `Reason` columns.
-
-The prompt SHALL preserve Markdown links and blank `Reason` cells from qualifying response rows.
-
-The prompt SHALL combine all extracted rows into one Markdown table.
-
-The prompt SHALL sort the combined rows deterministically by `Type`, then `Name`, then URL target, then `Reason`.
-
 The prompt SHALL write its output to `reflect/platform-ecosystem.md`.
 
 The prompt SHALL instruct the model to write output conforming to `reflect-platform-ecosystem`.
-
-The prompt SHALL overwrite `reflect/platform-ecosystem.md` if it already exists.
 
 The live `act/report-platform-discovery.md` prompt body SHALL avoid duplicating behavior supplied by required contracts.
 

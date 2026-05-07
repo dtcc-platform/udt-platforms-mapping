@@ -1,22 +1,12 @@
-# Spec: act-discover-platforms-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Discover platforms prompt is the canonical platform discovery prompt
 
 The repository SHALL contain `act/discover-platforms.md` as the canonical platform discovery prompt template.
 
-The prompt SHALL conform to `repo-act-prompt-manifest`.
-
 The prompt SHALL conform to `repo-web-prompt-template`.
 
 The prompt SHALL require `repo-prompt-markdown-format` as a required formatting contract.
-
-The prompt SHALL declare `act-discover-platforms-prompt` as a required prompt behavior contract.
 
 The prompt SHALL declare `platform-definition` as a required behavior contract.
 
@@ -34,28 +24,16 @@ The prompt SHALL instruct the model to use the platform definition tie-break gui
 
 The prompt SHALL instruct the model to preserve uncertainty when evidence is weak or ambiguous.
 
-The prompt SHALL instruct the model to treat platform discovery as a broad global discovery action.
-
-The prompt SHALL instruct the model to prioritize breadth and candidate recall.
-
-The prompt SHALL instruct the model to prefer stronger evidence when available.
-
-The prompt SHALL instruct the model to use `unknown` or `?` when evidence is insufficient.
-
-The prompt SHALL instruct the model not to imply global completeness.
-
 The prompt SHALL instruct the model to render the `observe-platform-discovery` metadata block, summary table, and artifact sections explicitly.
 
-The prompt SHALL instruct the user to save web responses to `observe/platform-discovery-<model-short>.md`.
+The prompt SHALL instruct the model to produce output conforming to `observe-platform-discovery`.
 
-The live `act/discover-platforms.md` prompt body SHALL avoid duplicating behavior supplied by required contracts.
+The prompt SHALL instruct the user to save web responses to `observe/platform-discovery-<model-short>.md`.
 
 #### Scenario: Researcher runs platform discovery
 
 - **WHEN** a researcher resolves `act/discover-platforms.md`
-- **THEN** the prompt conforms to the shared act manifest contract
 - **THEN** the prompt conforms to the shared web prompt template
-- **THEN** the prompt incorporates the `act-discover-platforms-prompt` prompt behavior contract
 - **THEN** the prompt incorporates the `repo-prompt-markdown-format` formatting contract
 - **THEN** the prompt incorporates the `platform-definition` behavior contract
 - **THEN** the prompt renders the platform definition interpretation rules into executable instructions

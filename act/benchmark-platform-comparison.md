@@ -1,9 +1,9 @@
 # Benchmark Platform Comparison Prompt
 
-> This prompt is a stub. It will be generated via the OpenSpec workflow when the platform comparison benchmarking eval is designed.
+This is a manifest-style stub. It will become executable when the platform comparison benchmarking evaluation is designed.
 
-When complete, this prompt will instruct Claude Code to:
+## Required Contracts
 
-1. Read the future flattened benchmark fixture and extract all expected platforms
-2. Glob all files matching `observe/platform-comparison-*.md`
-3. Check recall per model and write a coverage report to a direct file under `observe/`
+- `openspec/specs/act-benchmark-platform-comparison-prompt/spec.md` - records the current stub status and future prompt ownership
+
+No executable prompt is currently defined.

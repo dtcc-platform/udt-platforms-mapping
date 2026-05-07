@@ -1,10 +1,4 @@
-# Spec: act-discover-initiatives-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Discover initiatives prompt is the canonical initiative discovery prompt
 
@@ -25,16 +19,6 @@ The prompt SHALL declare `observe-initiative-discovery` as a required output con
 The prompt SHALL instruct the model to use platform artifact names from platform discovery when an initiative's technical substrate is clear.
 
 The prompt SHALL instruct the model to preserve uncertainty with `Uses = ?` when an initiative's technical substrate is unclear.
-
-The prompt SHALL instruct the model to treat initiative discovery as a broad global discovery action across city-scale UDT initiatives, programmes, pilots, and deployments.
-
-The prompt SHALL instruct the model to cover public, research, and industry contexts across major geographies.
-
-The prompt SHALL instruct the model to prioritize breadth and candidate recall over strict early filtering.
-
-The prompt SHALL instruct the model to use secondary sources for discovery but prefer stronger and more direct sources for final factual claims when available.
-
-The prompt SHALL instruct the model not to imply global completeness or invent certainty when evidence is mixed or incomplete.
 
 The prompt SHALL instruct the model to render the `observe-initiative-discovery` metadata block, summary table, and initiative sections explicitly.
 

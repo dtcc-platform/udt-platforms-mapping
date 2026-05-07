@@ -1,10 +1,4 @@
-# Spec: act-discover-platforms-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Discover platforms prompt is the canonical platform discovery prompt
 
@@ -33,16 +27,6 @@ The prompt SHALL instruct the model to assign exactly one `Type` per artifact.
 The prompt SHALL instruct the model to use the platform definition tie-break guidance for borderline artifacts.
 
 The prompt SHALL instruct the model to preserve uncertainty when evidence is weak or ambiguous.
-
-The prompt SHALL instruct the model to treat platform discovery as a broad global discovery action.
-
-The prompt SHALL instruct the model to prioritize breadth and candidate recall.
-
-The prompt SHALL instruct the model to prefer stronger evidence when available.
-
-The prompt SHALL instruct the model to use `unknown` or `?` when evidence is insufficient.
-
-The prompt SHALL instruct the model not to imply global completeness.
 
 The prompt SHALL instruct the model to render the `observe-platform-discovery` metadata block, summary table, and artifact sections explicitly.
 

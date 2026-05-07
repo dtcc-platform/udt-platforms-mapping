@@ -1,10 +1,4 @@
-# Spec: act-compare-platforms-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Compare platforms prompt is the canonical platform comparison prompt
 
@@ -29,12 +23,6 @@ The prompt SHALL instruct the model to compare only the platforms selected in `p
 The prompt SHALL instruct the model to apply `platform-comparison-rubric` for scoring behavior.
 
 The prompt SHALL instruct the model to apply `platform-source-policy` for acceptable evidence and citation behavior.
-
-The prompt SHALL instruct the model to treat the DTCC row as the reference platform for landscape observations.
-
-The prompt SHALL instruct the model to stop and ask the user to add DTCC if the DTCC row is absent from the comparison set.
-
-The prompt SHALL instruct the model not to broaden the comparison to frameworks or modules.
 
 The prompt SHALL instruct the model to render the `observe-platform-comparison` metadata block, scoring table, platform profiles, and landscape observations explicitly.
 

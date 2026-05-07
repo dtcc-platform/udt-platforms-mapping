@@ -1,82 +1,22 @@
 # Report Platform Discovery Prompt
 
-Use this prompt to produce `reflect/platform-ecosystem.md` from qualifying platform discovery response files matching `observe/platform-discovery-*.md`.
+Use this manifest in an AI CLI with filesystem access.
 
-**Requires:** An AI CLI with filesystem access. This prompt is CLI-only.
+## Required Contracts
 
-1. Run this prompt in your AI CLI session with no extra input
-2. The model will scan `observe/platform-discovery-*.md` automatically
-3. Save the generated output to `reflect/platform-ecosystem.md`
+- `openspec/specs/act-report-platform-discovery-prompt/spec.md` - governs platform discovery reporting behavior and filesystem scope
+- `openspec/specs/reflect-platform-ecosystem/spec.md` - defines the generated ecosystem summary shape
+
+## Required Run Inputs
+
+- `observe/platform-discovery-*.md` - provides candidate platform discovery responses
+
+Run this prompt in an AI CLI session from the repository root.
+
+The CLI model should read required run inputs directly from the repository, follow the required contracts, and write the governed output file.
 
 ---
 
-> Paste into your AI CLI session from this line onwards.
-
 ## Prompt
 
-You are a research assistant maintaining the platform discovery ecosystem summary for this project.
-
-Your task is to scan `observe/platform-discovery-*.md`, extract the summary-table rows from qualifying platform discovery responses only, and write one consolidated Markdown table to `reflect/platform-ecosystem.md`.
-Write output conforming to the `reflect-platform-ecosystem` OpenSpec contract.
-
-**Do not ask for file paths or user input.** Read files matching `observe/platform-discovery-*.md` directly using your file tools.
-
-### Step 1 — Identify qualifying files
-
-Read all files matching `observe/platform-discovery-*.md`.
-
-For each file:
-
-- Check whether it begins with a fenced YAML block (` ```yaml `) containing a `prompt:` field
-- If `prompt: platform-discovery` → it is a qualifying response
-- Any other `prompt` value, or no YAML block: skip the file silently
-
-If no qualifying responses exist, report that no qualifying files were found and do not write an output file.
-
-### Step 2 — Extract the summary rows
-
-For each qualifying response:
-
-1. Locate the summary table immediately after the metadata block
-2. Extract every data row from that table, excluding the header row and separator row
-3. Preserve exactly these columns:
-   - `Name`
-   - `Link`
-   - `Type`
-   - `Reason`
-
-Rules:
-
-- Preserve the `Link` cell as a Markdown link
-- Keep blank `Reason` cells blank
-- If a qualifying file does not contain the expected summary table, skip it silently
-
-### Step 3 — Build the consolidated Markdown table
-
-Gather all extracted rows from all qualifying responses into one combined row set, then build one Markdown table only from that full aggregated set.
-
-Use exactly this column order:
-
-`Name`, `Link`, `Type`, `Reason`
-
-Do not add any headings, prose, notes, per-file sections, source lists, or extra columns.
-
-### Step 4 — Order the rows deterministically
-
-After all qualifying rows have been gathered, sort the final combined row set once before writing the table.
-
-Sort first by `Type`, then by `Name`, then by the URL target extracted from the `Link` cell, then by `Reason`.
-
-### Step 5 — Write the output file
-
-Write the final single-table Markdown document to:
-
-`reflect/platform-ecosystem.md`
-
-Overwrite the file if it already exists.
-
-After writing the file, give a short confirmation stating:
-
-- the saved path
-- how many qualifying files were used
-- how many rows were written
+Run platform discovery reporting according to the inlined required contracts and run inputs.

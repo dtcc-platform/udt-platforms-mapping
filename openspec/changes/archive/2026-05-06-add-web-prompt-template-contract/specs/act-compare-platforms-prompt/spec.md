@@ -1,22 +1,12 @@
-# Spec: act-compare-platforms-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Compare platforms prompt is the canonical platform comparison prompt
 
 The repository SHALL contain `act/compare-platforms.md` as the canonical platform comparison prompt template.
 
-The prompt SHALL conform to `repo-act-prompt-manifest`.
-
 The prompt SHALL conform to `repo-web-prompt-template`.
 
-The prompt SHALL require `repo-prompt-markdown-format` as a required formatting contract.
-
-The prompt SHALL declare `act-compare-platforms-prompt` as a required prompt behavior contract.
+The prompt SHALL conform to `repo-prompt-markdown-format`.
 
 The prompt SHALL require `platform-comparison-rubric` and `platform-source-policy` as behavior contracts.
 
@@ -30,25 +20,16 @@ The prompt SHALL instruct the model to apply `platform-comparison-rubric` for sc
 
 The prompt SHALL instruct the model to apply `platform-source-policy` for acceptable evidence and citation behavior.
 
-The prompt SHALL instruct the model to treat the DTCC row as the reference platform for landscape observations.
-
-The prompt SHALL instruct the model to stop and ask the user to add DTCC if the DTCC row is absent from the comparison set.
-
-The prompt SHALL instruct the model not to broaden the comparison to frameworks or modules.
-
 The prompt SHALL instruct the model to render the `observe-platform-comparison` metadata block, scoring table, platform profiles, and landscape observations explicitly.
 
-The prompt SHALL instruct the user to save web responses to `observe/platform-comparison-<model-short>.md`.
+The prompt SHALL instruct the model to produce output conforming to `observe-platform-comparison`.
 
-The live `act/compare-platforms.md` prompt body SHALL avoid duplicating behavior supplied by required contracts.
+The prompt SHALL instruct the user to save web responses to `observe/platform-comparison-<model-short>.md`.
 
 #### Scenario: Researcher runs platform comparison
 
 - **WHEN** a researcher resolves `act/compare-platforms.md`
-- **THEN** the prompt conforms to the shared act manifest contract
 - **THEN** the prompt conforms to the shared web prompt template
-- **THEN** the prompt incorporates the `act-compare-platforms-prompt` prompt behavior contract
-- **THEN** the prompt incorporates the `repo-prompt-markdown-format` formatting contract
 - **THEN** the prompt incorporates the comparison set run input
 - **THEN** the prompt incorporates the platform comparison rubric and source policy behavior contracts
 - **THEN** the prompt renders the `observe-platform-comparison` output contract into executable instructions

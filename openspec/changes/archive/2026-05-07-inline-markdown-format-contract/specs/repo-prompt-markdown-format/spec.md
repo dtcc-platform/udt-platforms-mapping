@@ -1,10 +1,4 @@
-# Spec: repo-prompt-markdown-format
-
-## Purpose
-
-Defines the shared Markdown formatting contract for governed prompts.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Governed prompts define portable Markdown output
 
