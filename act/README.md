@@ -1,9 +1,11 @@
 # act/
 
-`act/` contains canonical prompt templates for running governed research, benchmarking, and reporting workflows.
+`act/` contains contract manifests for governed research, benchmarking, and reporting workflows.
 
-Prompt filenames use verb phrases that identify the research action, such as `discover-platforms.md`, `compare-platforms.md`, `benchmark-platform-discovery.md`, or `report-platform-discovery.md`.
+Manifest filenames use verb phrases that identify the research action, such as `discover-platforms.md`, `compare-platforms.md`, `benchmark-platform-discovery.md`, or `report-platform-discovery.md`.
 
-Prompt behavior is governed by OpenSpec prompt specs. Prompt changes should go through an OpenSpec change so the contract, rationale, and accepted deltas remain traceable.
+Each manifest lists the specs and run inputs that affect the action. Web-oriented manifests are resolved into concrete prompts before use; CLI-oriented manifests are run by an AI CLI with filesystem access.
+
+Manifest structure is governed by [repo-act-prompt-manifest](../openspec/specs/repo-act-prompt-manifest/spec.md), and action behavior is governed by the corresponding OpenSpec prompt specs. Manifest and prompt behavior changes should go through an OpenSpec change so the contract, rationale, and accepted deltas remain traceable.
 
 The root [README.md](../README.md) explains the full repository workflow. Governing prompt-review and documentation contracts live in [repo-prompt-review](../openspec/specs/repo-prompt-review/spec.md) and [repo-readme](../openspec/specs/repo-readme/spec.md).

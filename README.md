@@ -2,17 +2,21 @@
 
 A spec-first research repository for collaborating with AI agents on Urban Digital Twin platform research.
 
-This repo uses OpenSpec because the canonical prompts are not one-time prompts.
-They are maintained research actions that are rerun, reviewed, compared, and improved over time, so they need explicit inputs, output contracts, review history, and traceable changes.
+This repository separates expected model behavior from prompt wording.
 
 An OpenSpec spec is a behavior contract, not an implementation plan.
-In this repository, specs define what a research action must do, including classification behavior, source policies, scoring rules, and output contracts.
+In this repository, specs define what a research action must do: classification behavior, source policies, scoring rules, output contracts, and prompt-manifest structure.
 
-The `plan/` folder contains run inputs used by those actions, such as selected comparison sets, benchmark fixtures, and run-specific scope material.
+The `act/` files are contract manifests. They list which specs and run inputs affect an action, with short purpose comments, but they are not the full behavior source and are not usually pasted directly into a web model.
 
-A prompt is the operational implementation of the contract: copy-ready instructions that combine the relevant behavior specs and run inputs so an agent can perform the research action.
-When a canonical prompt is unclear or incomplete, the stronger fix is usually to clarify the contract first, then regenerate or update the prompt.
-Small prompts and one-off experiments can still be direct when they are not part of the governed workflow.
+Resolving a manifest combines the required specs and run inputs into a concrete prompt for a specific model or agent. The resolved prompt is the operational instruction; the specs remain the source of expected behavior.
+
+This repo uses OpenSpec because the research actions are not one-time prompts.
+They are rerun, reviewed, compared, and improved over time, so they need explicit inputs, output contracts, review history, and traceable changes.
+
+The separation makes prompt tuning more precise. A researcher can clarify the behavior contract once, then resolve or regenerate prompts from that contract. Resolving the same manifest with different agents, such as Codex, Claude, and Gemini, can also validate interpretations: differences point to ambiguity in the specs or manifest, and accepted clarifications become OpenSpec changes.
+
+Small prompts and one-off experiments can still be direct when they are outside the governed workflow.
 
 Git records how the research artifacts and contracts evolve over time.
 
@@ -25,7 +29,7 @@ PLAN -> ACT -> OBSERVE -> REFLECT
 ```
 
 - `plan/` contains run inputs such as selected comparison sets, benchmark fixtures, and run-specific scope material.
-- `act/` contains canonical prompt templates for running research, benchmarking, and reporting actions.
+- `act/` contains contract manifests for resolving or running research, benchmarking, and reporting actions.
 - `observe/` stores saved model outputs and generated coverage artifacts.
 - `reflect/` contains synthesized reporting, comparison, and reflection artifacts.
 
@@ -51,27 +55,49 @@ Canonical actions include:
 ## How To Work
 
 1. Start from the relevant behavior spec in `openspec/specs/` and any run input in `plan/`.
-2. Run the matching canonical prompt from `act/`.
-3. Save raw model outputs and coverage artifacts in `observe/`.
-4. Synthesize reports, comparisons, and reflections in `reflect/`.
-5. Improve prompts and workflow behavior through OpenSpec changes.
-   One agent can generate or update a prompt from a governing spec, another agent reviews whether the prompt faithfully interprets that spec, and accepted improvements are captured as OpenSpec deltas before updating the baseline.
+2. Resolve the matching manifest from `act/` into a concrete prompt, or run it in an AI CLI when the manifest is CLI-oriented.
+3. Run the resolved prompt with the selected model or agent.
+4. Save raw model outputs and coverage artifacts in `observe/`.
+5. Synthesize reports, comparisons, and reflections in `reflect/`.
+6. Improve specs, manifests, and workflow behavior through OpenSpec changes.
 
-A useful reviewer question is: does `act/discover-platforms.md` faithfully implement the `platform-definition` behavior contract?
+A useful reviewer question is: does the resolved prompt faithfully compose the required contracts?
 
 ```mermaid
 flowchart TD
-    S["<br>OpenSpec</b>\n spec governing contract"]
-    G["<b>Generate or update prompt</br>\n Codex, Claude, Gemini, or another agent"]
-    V["<b>Prompt Review</b>\n faithful to spec?\n clearer contract needed?"]
-    D["Propose a Change"]
-    A["Accepted Prompt"]
+    S["OpenSpec specs\nbehavior and output contracts"]
+    P["plan/\nrun inputs"]
+    A["act/\ncontract manifest"]
+    R["Resolved prompt\nmodel-facing instruction"]
+    O["observe/\nsaved model outputs"]
+    F["reflect/\nsynthesis and reporting"]
 
-    S --> G
+    S --> A
+    P --> A
+    A -->|resolve| R
+    R -->|run with model or agent| O
+    O --> F
+```
+
+```mermaid
+flowchart TD
+    M["Same act manifest"]
+    C["Codex resolution"]
+    L["Claude resolution"]
+    G["Gemini resolution"]
+    V["Compare interpretations\nfaithful to specs?"]
+    D["Clarify specs or manifest\nwith OpenSpec change"]
+    B["Baseline contracts"]
+
+    M --> C
+    M --> L
+    M --> G
+    C --> V
+    L --> V
     G --> V
-    V -->|improvement found| D
-    D --> S
-    V -->|faithful enough| A
+    V -->|ambiguity found| D
+    D --> B
+    V -->|faithful enough| B
 ```
 
 ## Health Checks
@@ -93,6 +119,8 @@ Formal repository contracts live in [openspec/specs/](openspec/specs/), especial
 - [repo-structure](openspec/specs/repo-structure/spec.md)
 - [repo-naming-conventions](openspec/specs/repo-naming-conventions/spec.md)
 - [repo-prompt-review](openspec/specs/repo-prompt-review/spec.md)
+- [repo-act-prompt-manifest](openspec/specs/repo-act-prompt-manifest/spec.md)
+- [repo-web-prompt-template](openspec/specs/repo-web-prompt-template/spec.md)
 - [repo-readme](openspec/specs/repo-readme/spec.md)
 - [platform-definition](openspec/specs/platform-definition/spec.md)
 - [initiative-definition](openspec/specs/initiative-definition/spec.md)
