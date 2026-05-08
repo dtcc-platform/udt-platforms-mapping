@@ -61,6 +61,15 @@ Canonical actions include:
 5. Synthesize reports, comparisons, and reflections in `reflect/`.
 6. Improve specs, manifests, and workflow behavior through OpenSpec changes.
 
+Example for a web research run:
+
+```text
+Resolve act/discover-platforms.md for web use.
+```
+
+The resolver inlines the manifest's required contracts, appends the manifest prompt body, and returns one copy-ready prompt.
+Paste that resolved prompt into the web model, then save the response to `observe/platform-discovery-<model-short>.md`.
+
 A useful reviewer question is: does the resolved prompt faithfully compose the required contracts?
 
 ```mermaid
