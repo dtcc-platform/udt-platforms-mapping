@@ -6,6 +6,7 @@ Use this template to generate a paste-ready web prompt.
 
 - `openspec/specs/act-discover-platforms-prompt/spec.md` - governs the platform discovery research task, scope, evidence behavior, and required contract composition
 - `openspec/specs/platform-definition/spec.md` - defines allowed artifact `Type` values and classification rules
+- `openspec/specs/platform-discovery-coverage/spec.md` - defines recall targets and seed-list sampling rules so discovery does not stop at selected examples
 - `openspec/specs/observe-platform-discovery/spec.md` - defines the saved output shape for platform discovery results
 - `openspec/specs/repo-prompt-markdown-format/spec.md` - defines portable Markdown output rules
 

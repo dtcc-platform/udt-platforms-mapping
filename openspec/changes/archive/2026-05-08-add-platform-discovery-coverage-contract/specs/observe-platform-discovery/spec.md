@@ -1,10 +1,4 @@
-# Spec: observe-platform-discovery
-
-## Purpose
-
-Defines the observed output contract for this research action.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Platform discovery observations use the governed response contract
 
