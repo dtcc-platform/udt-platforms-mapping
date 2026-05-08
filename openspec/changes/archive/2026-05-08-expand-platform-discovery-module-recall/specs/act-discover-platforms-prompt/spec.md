@@ -1,10 +1,4 @@
-# Spec: act-discover-platforms-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Discover platforms prompt is the canonical platform discovery prompt
 
