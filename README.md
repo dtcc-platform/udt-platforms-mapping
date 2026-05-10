@@ -11,6 +11,8 @@ The `act/` files are contract manifests. They list which specs and run inputs af
 
 Resolving a manifest combines the required specs and run inputs into a concrete prompt for a specific model or agent. The resolved prompt is the operational instruction; the specs remain the source of expected behavior.
 
+Repository-local skills can provide shortcuts for common manifest resolution tasks. They do not replace the specs or manifests; they read the live contracts and assemble the operational prompt.
+
 This repo uses OpenSpec because the research actions are not one-time prompts.
 They are rerun, reviewed, compared, and improved over time, so they need explicit inputs, output contracts, review history, and traceable changes.
 
@@ -69,6 +71,14 @@ Resolve act/discover-platforms.md for web use.
 
 The resolver inlines the manifest's required contracts, appends the manifest prompt body, and returns one copy-ready prompt.
 Use `/copy` to copy the generated prompt, paste it into the web model, then save the response to `observe/platform-discovery-<model-short>.md`.
+
+Shortcut for the same platform discovery resolve step:
+
+```text
+udt:discover
+```
+
+The local skill at `.codex/skills/udt-discover/` resolves the live manifest and contracts. If assistant-side `/copy` is available, the skill should copy the resolved prompt; otherwise run `/copy` on the generated prompt.
 
 A useful reviewer question is: does the resolved prompt faithfully compose the required contracts?
 
@@ -130,6 +140,7 @@ Formal repository contracts live in [openspec/specs/](openspec/specs/), especial
 - [repo-prompt-review](openspec/specs/repo-prompt-review/spec.md)
 - [repo-act-prompt-manifest](openspec/specs/repo-act-prompt-manifest/spec.md)
 - [repo-web-prompt-template](openspec/specs/repo-web-prompt-template/spec.md)
+- [repo-agent-skills](openspec/specs/repo-agent-skills/spec.md)
 - [repo-readme](openspec/specs/repo-readme/spec.md)
 - [platform-definition](openspec/specs/platform-definition/spec.md)
 - [initiative-definition](openspec/specs/initiative-definition/spec.md)

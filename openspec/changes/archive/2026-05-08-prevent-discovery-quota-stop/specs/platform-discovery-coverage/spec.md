@@ -1,10 +1,4 @@
-# Spec: platform-discovery-coverage
-
-## Purpose
-
-Defines recall coverage targets, category quotas, seed-list sampling rules, and non-exhaustive stopping behavior for platform discovery.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Platform discovery uses explicit recall coverage targets
 
@@ -87,6 +81,8 @@ Platform discovery SHALL treat later platform comparison filtering as a separate
 - **WHEN** platform discovery finds a relevant framework, module, or boundary candidate
 - **THEN** it includes the candidate in discovery output with the correct `Type`
 - **THEN** it does not remove the candidate only because later platform comparison accepts only `platform` artifacts
+
+## ADDED Requirements
 
 ### Requirement: Platform discovery targets regional and research-center platform recall
 
