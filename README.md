@@ -2,6 +2,18 @@
 
 A spec-first research repository for collaborating with AI agents on Urban Digital Twin platform research.
 
+## Report Missing Candidates
+
+If a platform, framework, module, initiative, or relevant excluded boundary case is missing, open a GitHub issue with the **Missing research candidate** form.
+
+Use:
+
+```text
+Issues -> New issue -> Missing research candidate
+```
+
+Provide the candidate name, an official link, and a short explanation of why it should be included. Choose `Not sure` in the category dropdown when classification is unclear.
+
 This repository separates expected model behavior from prompt wording.
 
 An OpenSpec spec is a behavior contract, not an implementation plan.

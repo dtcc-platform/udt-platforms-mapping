@@ -1,0 +1,60 @@
+name: Missing research candidate
+description: Report a platform, framework, module, initiative, or boundary case that should be considered.
+title: "[Missing] "
+labels:
+  - needs:triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to report a candidate that appears to be missing from the research workflow.
+
+  - type: dropdown
+    id: missing-category
+    attributes:
+      label: What is missing?
+      description: Choose the closest category. Pick "Not sure" if you want maintainers to classify it.
+      options:
+        - Platform
+        - Framework
+        - Module
+        - Initiative
+        - Excluded boundary case
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: candidate-name
+    attributes:
+      label: Candidate name
+      placeholder: DTCC Platform
+    validations:
+      required: true
+
+  - type: input
+    id: official-link
+    attributes:
+      label: Official link
+      description: Prefer an official site, documentation page, repository, or institution page.
+      placeholder: https://example.org/
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-missing
+    attributes:
+      label: Why should this be included?
+      description: Briefly explain why this candidate belongs in the repo's discovery scope.
+      placeholder: It is presented as an open-source city digital twin platform with city-scale modeling, simulation, and visualization support.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-classification
+    attributes:
+      label: Suggested classification or notes
+      description: Optional. Explain the expected category, boundary issue, or search terms that would help discover it.
+      placeholder: Expected Type = platform. Search terms such as "Digital Twin Cities Centre" and "Chalmers" are useful.
+    validations:
+      required: false
