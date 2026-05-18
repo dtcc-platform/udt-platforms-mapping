@@ -16,6 +16,10 @@ It SHALL explain that expected model behavior is separated from prompt wording.
 
 It SHALL explain that OpenSpec specs are research behavior contracts, `plan/` contains run inputs, `act/` contains contract manifests, `observe/` stores raw outputs, and `reflect/` stores synthesis.
 
+It SHALL explain that OpenSpec capability names follow phase-object-role grammar: `<phase>-<object>-<artifact-role>`.
+
+It SHALL explain that live `act/` manifest filenames may remain verb-first while OpenSpec capability names remain phase-object-role.
+
 It SHALL explain that resolving an `act/` manifest combines required specs and run inputs into a concrete prompt for a model or agent.
 
 It MAY mention repository-local skills as operational shortcuts for resolving governed manifests, but SHALL NOT present local skills as OpenSpec-governed research contracts.
@@ -41,6 +45,7 @@ It SHALL explain that live artifact names use researcher-facing object/action/ro
 - **WHEN** a contributor reads `README.md`
 - **THEN** they understand the repository workflow at a high level
 - **THEN** they understand that specs define research behavior and `plan/` contains run inputs
+- **THEN** they understand that OpenSpec capability names use phase-object-role grammar
 - **THEN** they understand that `act/` files are manifests that must be resolved into prompts
 - **THEN** they understand that repository-local skills can shortcut common manifest resolution tasks without being OpenSpec-governed research contracts
 - **THEN** they can find the phase folders and their local README files

@@ -1,10 +1,4 @@
-# Spec: entity-definition
-
-## Purpose
-
-Defines UDT entity classification behavior for technical artifacts, initiatives, excluded candidates, and initiative-to-artifact substrate relationships.
-
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Entity definition classifies UDT discovery rows
 

@@ -4,9 +4,8 @@ Use this template to generate a paste-ready web prompt.
 
 ## Required Contracts
 
-- `openspec/specs/act-discover-entities-prompt/spec.md` - governs the unified entity discovery research task, scope, evidence behavior, and required contract composition
-- `openspec/specs/entity-definition/spec.md` - defines allowed entity `Type` values and classification rules
-- `openspec/specs/platform-discovery-coverage/spec.md` - defines recall targets and seed-list sampling rules so discovery does not stop at selected examples
+- `openspec/specs/act-entity-discovery/spec.md` - governs the unified entity discovery research task, scope, evidence behavior, recall targets, and required contract composition
+- `openspec/specs/plan-entity-definition/spec.md` - defines allowed entity `Type` values and classification rules
 - `openspec/specs/observe-entity-discovery/spec.md` - defines the saved output shape for entity discovery results
 - `openspec/specs/repo-prompt-markdown-format/spec.md` - defines portable Markdown output rules
 

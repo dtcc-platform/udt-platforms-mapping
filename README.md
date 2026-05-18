@@ -19,6 +19,14 @@ This repository separates expected model behavior from prompt wording.
 An OpenSpec spec is a research behavior contract, not an implementation plan.
 In this repository, specs define what a research action must do: workflow structure, classification behavior, source policies, scoring rules, output contracts, and prompt-manifest structure.
 
+OpenSpec capability names use phase-object-role grammar:
+
+```text
+<phase>-<object>-<artifact-role>
+```
+
+For example, `plan-entity-definition` governs planned entity classification, while `act-entity-discovery` governs the discovery action. Live `act/` manifest filenames may remain verb-first, such as `act/discover-entities.md`, because they are executable prompts.
+
 The `act/` files are contract manifests. They list which specs and run inputs affect an action, with short purpose comments, but they are not the full behavior source and are not usually pasted directly into a web model.
 
 Resolving a manifest combines the required specs and run inputs into a concrete prompt for a specific model or agent. The resolved prompt is the operational instruction; the specs remain the source of expected behavior.
@@ -149,6 +157,7 @@ Formal repository contracts live in [openspec/specs/](openspec/specs/), especial
 - [repo-act-prompt-manifest](openspec/specs/repo-act-prompt-manifest/spec.md)
 - [repo-web-prompt-template](openspec/specs/repo-web-prompt-template/spec.md)
 - [repo-readme](openspec/specs/repo-readme/spec.md)
-- [entity-definition](openspec/specs/entity-definition/spec.md)
+- [plan-entity-definition](openspec/specs/plan-entity-definition/spec.md)
+- [act-entity-discovery](openspec/specs/act-entity-discovery/spec.md)
 - [platform-comparison-rubric](openspec/specs/platform-comparison-rubric/spec.md)
 - [platform-source-policy](openspec/specs/platform-source-policy/spec.md)
