@@ -16,14 +16,14 @@ Provide the candidate name, an official link, and a short explanation of why it 
 
 This repository separates expected model behavior from prompt wording.
 
-An OpenSpec spec is a behavior contract, not an implementation plan.
-In this repository, specs define what a research action must do: classification behavior, source policies, scoring rules, output contracts, and prompt-manifest structure.
+An OpenSpec spec is a research behavior contract, not an implementation plan.
+In this repository, specs define what a research action must do: workflow structure, classification behavior, source policies, scoring rules, output contracts, and prompt-manifest structure.
 
 The `act/` files are contract manifests. They list which specs and run inputs affect an action, with short purpose comments, but they are not the full behavior source and are not usually pasted directly into a web model.
 
 Resolving a manifest combines the required specs and run inputs into a concrete prompt for a specific model or agent. The resolved prompt is the operational instruction; the specs remain the source of expected behavior.
 
-Repository-local skills can provide shortcuts for common manifest resolution tasks. They do not replace the specs or manifests; they read the live contracts and assemble the operational prompt.
+Repository-local skills can provide optional shortcuts for common manifest resolution tasks. They are operational tooling outside OpenSpec governance; the specs and manifests remain the research source of truth.
 
 This repo uses OpenSpec because the research actions are not one-time prompts.
 They are rerun, reviewed, compared, and improved over time, so they need explicit inputs, output contracts, review history, and traceable changes.
@@ -49,12 +49,9 @@ PLAN -> ACT -> OBSERVE -> REFLECT
 
 ## Research Actions
 
-The first discovery actions are intentionally broad:
+Entity discovery is intentionally broad. It finds technical artifacts, initiatives, projects, programmes, deployments, and useful boundary candidates, then classifies them using the stable `Type` contract.
 
-- Platform discovery finds technical artifacts and classifies them using the stable `Type` contract.
-- Initiative discovery finds projects, programmes, and deployments, and records `Uses = ?` when the technical substrate is unclear.
-
-Platform comparison is the stricter evaluative stage. Only rows classified as `Type = platform` by platform discovery are eligible for platform comparison.
+Platform comparison is the stricter evaluative stage. Only rows classified as `Type = platform` by entity discovery are eligible for platform comparison.
 
 Canonical actions include:
 
@@ -146,12 +143,11 @@ These checks confirm repository contract health and working-tree state; they do 
 
 Formal repository contracts live in [openspec/specs/](openspec/specs/), especially:
 
-- [repo-structure](openspec/specs/repo-structure/spec.md)
+- [research-workflow-structure](openspec/specs/research-workflow-structure/spec.md)
 - [repo-naming-conventions](openspec/specs/repo-naming-conventions/spec.md)
 - [repo-prompt-review](openspec/specs/repo-prompt-review/spec.md)
 - [repo-act-prompt-manifest](openspec/specs/repo-act-prompt-manifest/spec.md)
 - [repo-web-prompt-template](openspec/specs/repo-web-prompt-template/spec.md)
-- [repo-agent-skills](openspec/specs/repo-agent-skills/spec.md)
 - [repo-readme](openspec/specs/repo-readme/spec.md)
 - [entity-definition](openspec/specs/entity-definition/spec.md)
 - [platform-comparison-rubric](openspec/specs/platform-comparison-rubric/spec.md)
