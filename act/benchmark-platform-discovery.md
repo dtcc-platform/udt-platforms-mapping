@@ -10,7 +10,7 @@ Use this manifest in an AI CLI with filesystem access.
 ## Required Run Inputs
 
 - `plan/platform-discovery-benchmark.md` - provides the expected artifact fixture
-- `observe/platform-discovery-*.md` - provides platform discovery responses to evaluate
+- `observe/entity-discovery-*.md` - provides entity discovery responses to evaluate for platform recall
 
 Run this prompt in an AI CLI session from the repository root.
 

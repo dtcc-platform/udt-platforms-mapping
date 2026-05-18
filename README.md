@@ -58,8 +58,7 @@ Platform comparison is the stricter evaluative stage. Only rows classified as `T
 
 Canonical actions include:
 
-- discover platforms
-- discover initiatives
+- discover entities
 - compare platforms
 - benchmark platform discovery
 - report platform discovery
@@ -78,13 +77,13 @@ Canonical actions include:
 Example for a web research run:
 
 ```text
-Resolve act/discover-platforms.md for web use.
+Resolve act/discover-entities.md for web use.
 ```
 
 The resolver inlines the manifest's required contracts, appends the manifest prompt body, and returns one copy-ready prompt.
-Use `/copy` to copy the generated prompt, paste it into the web model, then save the response to `observe/platform-discovery-<model-short>.md`.
+Use `/copy` to copy the generated prompt, paste it into the web model, then save the response to `observe/entity-discovery-<model-short>.md`.
 
-Shortcut for the same platform discovery resolve step:
+Shortcut for the same entity discovery resolve step:
 
 ```text
 udt:discover
@@ -154,7 +153,6 @@ Formal repository contracts live in [openspec/specs/](openspec/specs/), especial
 - [repo-web-prompt-template](openspec/specs/repo-web-prompt-template/spec.md)
 - [repo-agent-skills](openspec/specs/repo-agent-skills/spec.md)
 - [repo-readme](openspec/specs/repo-readme/spec.md)
-- [platform-definition](openspec/specs/platform-definition/spec.md)
-- [initiative-definition](openspec/specs/initiative-definition/spec.md)
+- [entity-definition](openspec/specs/entity-definition/spec.md)
 - [platform-comparison-rubric](openspec/specs/platform-comparison-rubric/spec.md)
 - [platform-source-policy](openspec/specs/platform-source-policy/spec.md)

@@ -1,10 +1,4 @@
-# Spec: repo-structure
-
-## Purpose
-
-Defines the live repository phase structure and canonical researcher-facing artifact locations.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Repository is organised as action research phases at top level
 
@@ -95,16 +89,3 @@ Saved platform discovery and initiative discovery responses SHALL NOT be active 
 - **WHEN** a researcher saves a canonical web response
 - **THEN** the response is saved as a direct file under `observe/`
 - **THEN** the filename identifies the research action and model
-
-### Requirement: reflect/ holds synthesized reflection artifacts as direct files
-
-`reflect/` SHALL contain synthesized reflection, reporting, and benchmark-analysis outputs as direct files whose names identify the research object and artifact function.
-
-`reflect/platform-ecosystem.md` SHALL contain the platform discovery ecosystem synthesis.
-`reflect/platform-comparison-ecosystem.csv` and `reflect/platform-comparison-ecosystem-map.html` SHALL contain platform comparison structured reflection outputs.
-
-#### Scenario: Researcher finds reflection artifacts
-
-- **WHEN** a researcher opens `reflect/`
-- **THEN** reflection artifacts are direct files
-- **THEN** filenames identify research object and function without the old `udt-` prefix

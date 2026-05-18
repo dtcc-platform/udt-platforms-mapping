@@ -1,10 +1,4 @@
-# Spec: act-benchmark-platform-discovery-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Benchmark platform discovery prompt checks discovery recall
 

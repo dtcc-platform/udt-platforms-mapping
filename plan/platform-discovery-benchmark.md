@@ -2,7 +2,7 @@
 
 This file is the recall benchmark for platform discovery sessions. It lists technical artifacts expected to appear in mapping responses that are at risk of being missed.
 
-**How to use:** Run `act/benchmark-platform-discovery.md` via an AI CLI to check all `observe/platform-discovery-*.md` files against this list.
+**How to use:** Run `act/benchmark-platform-discovery.md` via an AI CLI to check all `observe/entity-discovery-*.md` files against this list.
 
 ## Tag Legend
 

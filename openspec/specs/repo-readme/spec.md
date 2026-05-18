@@ -20,7 +20,7 @@ It SHALL explain that resolving an `act/` manifest combines required specs and r
 
 It SHALL explain that repository-local skills can provide shortcuts for resolving governed manifests, while OpenSpec specs and act manifests remain the source of truth.
 
-It SHALL document `udt:discover` as a shortcut for resolving `act/discover-platforms.md` for web use and explain the `/copy` fallback when automatic copy is unavailable.
+It SHALL document `udt:discover` as a shortcut for resolving `act/discover-entities.md` for web use and explain the `/copy` fallback when automatic copy is unavailable.
 
 It SHALL explain that resolving the same manifest with different agents can reveal ambiguous spec interpretation and support contract improvement.
 
@@ -50,16 +50,15 @@ It SHALL explain that live artifact names use researcher-facing object/action/ro
 
 `README.md` SHALL explain:
 
-- platform discovery as broad technical-artifact discovery
-- initiative discovery as broad project, programme, and deployment discovery
+- entity discovery as broad technical-artifact, initiative, project, programme, deployment, and boundary-candidate discovery
 - platform comparison as stricter side-by-side evaluation
 
-It SHALL state that only rows classified as `Type = platform` by platform discovery are eligible for platform comparison.
+It SHALL state that only rows classified as `Type = platform` by entity discovery are eligible for platform comparison.
 
 #### Scenario: Researcher reads research object roles
 
 - **WHEN** a researcher reads `README.md`
-- **THEN** the README explains platform discovery, initiative discovery, and platform comparison
+- **THEN** the README explains entity discovery and platform comparison
 - **THEN** the README states that only `Type = platform` rows are eligible for platform comparison
 
 ### Requirement: Phase folders include local README files
@@ -97,7 +96,7 @@ It SHALL explain the live run-input filenames, including `platform-comparison-se
 
 `act/README.md` SHALL explain that `act/` contains contract manifests used to resolve or run governed research, benchmarking, and reporting workflows.
 
-It SHALL explain the live manifest filenames, including `discover-platforms.md`, `discover-initiatives.md`, `compare-platforms.md`, `benchmark-platform-discovery.md`, `report-platform-discovery.md`, `benchmark-platform-comparison.md`, and `report-platform-comparison.md`.
+It SHALL explain the live manifest filenames, including `discover-entities.md`, `compare-platforms.md`, `benchmark-platform-discovery.md`, `report-platform-discovery.md`, `benchmark-platform-comparison.md`, and `report-platform-comparison.md`.
 
 It SHALL explain that manifest behavior is governed by OpenSpec prompt specs and `repo-act-prompt-manifest`.
 
@@ -113,7 +112,7 @@ It SHALL explain that manifest and prompt behavior changes should go through Ope
 
 `observe/README.md` SHALL explain that `observe/` contains saved model outputs and generated coverage artifacts.
 
-It SHALL explain that saved web outputs identify the research action and model in the filename, such as `platform-discovery-claude.md` and `platform-comparison-gemini.md`.
+It SHALL explain that saved web outputs identify the research action and model in the filename, such as `entity-discovery-claude.md` and `platform-comparison-gemini.md`.
 
 #### Scenario: Researcher opens observe/
 

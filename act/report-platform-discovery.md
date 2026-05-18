@@ -9,7 +9,7 @@ Use this manifest in an AI CLI with filesystem access.
 
 ## Required Run Inputs
 
-- `observe/platform-discovery-*.md` - provides candidate platform discovery responses
+- `observe/entity-discovery-*.md` - provides candidate entity discovery responses
 
 Run this prompt in an AI CLI session from the repository root.
 
