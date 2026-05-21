@@ -1,22 +1,16 @@
-# Spec: act-benchmark-platform-discovery-prompt
+## ADDED Requirements
 
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
-
-### Requirement: Benchmark platform discovery prompt checks discovery recall
+### Requirement: Platform discovery benchmark action checks discovery recall
 
 The repository SHALL contain `act/benchmark-platform-discovery.md`.
 
 The prompt SHALL conform to `repo-act-prompt-manifest`.
 
-The prompt SHALL declare `act-benchmark-platform-discovery-prompt` as a required prompt behavior contract.
+The prompt SHALL declare `act-platform-discovery-benchmark` as a required prompt behavior contract.
 
 The prompt SHALL scan `observe/entity-discovery-*.md` files and write `observe/platform-discovery-coverage.md`.
 
-The prompt SHALL read expected artifacts from `plan/platform-discovery-benchmark.md`.
+The prompt SHALL require `plan/platform-discovery-benchmark.md` as the expected artifact fixture.
 
 The prompt SHALL extract expected artifacts from the benchmark fixture table using `Name`, `Link`, expected `Type`, `Aliases`, and `Tags`.
 
@@ -48,3 +42,14 @@ The live `act/benchmark-platform-discovery.md` prompt body SHALL avoid duplicati
 - **THEN** the prompt reads entity discovery observations and benchmark fixture
 - **THEN** it writes coverage to `observe/platform-discovery-coverage.md`
 - **THEN** the written coverage follows `observe-platform-discovery-coverage`
+
+### Requirement: Platform discovery benchmark fixture is available
+
+The repository SHALL contain `plan/platform-discovery-benchmark.md` as the benchmark fixture input for platform discovery.
+
+The file SHALL contain the expected artifact table used by `act/benchmark-platform-discovery.md`.
+
+#### Scenario: Researcher opens platform discovery benchmark
+
+- **WHEN** a researcher opens `plan/platform-discovery-benchmark.md`
+- **THEN** the platform discovery benchmark fixture is available

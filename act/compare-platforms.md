@@ -4,9 +4,9 @@ Use this template to generate a paste-ready web prompt.
 
 ## Required Contracts
 
-- `openspec/specs/act-compare-platforms-prompt/spec.md` - governs the platform comparison task, selected-scope behavior, and required contract composition
-- `openspec/specs/platform-comparison-rubric/spec.md` - defines comparison dimensions and scoring behavior
-- `openspec/specs/platform-source-policy/spec.md` - defines acceptable evidence and citation behavior
+- `openspec/specs/act-platform-comparison/spec.md` - governs the platform comparison task, selected-scope behavior, and required contract composition
+- `openspec/specs/plan-platform-comparison-rubric/spec.md` - defines comparison dimensions and scoring behavior
+- `openspec/specs/plan-platform-source-policy/spec.md` - defines acceptable evidence and citation behavior
 - `openspec/specs/observe-platform-comparison/spec.md` - defines the saved output shape for platform comparison results
 - `openspec/specs/repo-prompt-markdown-format/spec.md` - defines portable Markdown output rules
 

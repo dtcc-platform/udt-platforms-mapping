@@ -1,4 +1,4 @@
-# Spec: platform-source-policy
+# Spec: plan-platform-source-policy
 
 ## Purpose
 

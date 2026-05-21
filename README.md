@@ -159,5 +159,6 @@ Formal repository contracts live in [openspec/specs/](openspec/specs/), especial
 - [repo-readme](openspec/specs/repo-readme/spec.md)
 - [plan-entity-definition](openspec/specs/plan-entity-definition/spec.md)
 - [act-entity-discovery](openspec/specs/act-entity-discovery/spec.md)
-- [platform-comparison-rubric](openspec/specs/platform-comparison-rubric/spec.md)
-- [platform-source-policy](openspec/specs/platform-source-policy/spec.md)
+- [act-platform-comparison](openspec/specs/act-platform-comparison/spec.md)
+- [plan-platform-comparison-rubric](openspec/specs/plan-platform-comparison-rubric/spec.md)
+- [plan-platform-source-policy](openspec/specs/plan-platform-source-policy/spec.md)

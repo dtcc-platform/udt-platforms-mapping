@@ -51,6 +51,10 @@ Stable behavior definitions, source policies, and scoring rubrics SHALL be gover
 `plan/platform-comparison-set.md` SHALL contain the selected platform comparison set.
 `plan/platform-discovery-benchmark.md` SHALL contain the platform discovery benchmark fixture.
 
+The behavior for consuming `plan/platform-comparison-set.md` SHALL be governed by `act-platform-comparison`.
+
+The behavior for consuming `plan/platform-discovery-benchmark.md` SHALL be governed by `act-platform-discovery-benchmark`.
+
 Additional `plan/` files MAY contain run-specific scope notes, seed inputs, selected candidates, or temporary input material used by canonical prompts.
 
 #### Scenario: Researcher starts from planning inputs

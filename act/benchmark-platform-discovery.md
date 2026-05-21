@@ -4,7 +4,7 @@ Use this manifest in an AI CLI with filesystem access.
 
 ## Required Contracts
 
-- `openspec/specs/act-benchmark-platform-discovery-prompt/spec.md` - governs the platform discovery coverage evaluation behavior
+- `openspec/specs/act-platform-discovery-benchmark/spec.md` - governs the platform discovery coverage evaluation behavior and benchmark fixture consumption
 - `openspec/specs/observe-platform-discovery-coverage/spec.md` - defines the saved coverage report shape
 
 ## Required Run Inputs

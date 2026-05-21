@@ -1,25 +1,4 @@
-# Spec: repo-naming-conventions
-
-## Purpose
-
-Defines the researcher-facing naming contract for live repository artifacts.
-
-## Requirements
-
-### Requirement: Live artifact names use researcher-facing object/action/role language
-
-Live repository artifact filenames SHALL use researcher-facing names that describe the artifact's research object, action, or role.
-
-Live filenames SHALL NOT repeat the `udt-` prefix because the repository context supplies the Urban Digital Twin domain.
-
-Live documentation and specs SHALL NOT describe canonical live artifacts as research threads. They SHALL use clearer terms such as research object, research action, artifact role, prompt, saved output, or synthesis.
-
-#### Scenario: Contributor names a live artifact
-
-- **WHEN** a contributor creates or renames a live canonical artifact
-- **THEN** the filename uses object/action/role language
-- **THEN** the filename does not begin with `udt-`
-- **THEN** the governing docs avoid thread-centered language for the live workflow
+## MODIFIED Requirements
 
 ### Requirement: Phase folders use phase-specific naming grammar
 
@@ -40,10 +19,6 @@ OpenSpec capability names SHALL use phase-object-role grammar:
 
 Live `act/` manifest filenames MAY remain verb-first because they are executable action prompts, while OpenSpec capability names SHALL remain phase-object-role.
 
-The canonical merged UDT entity definition spec SHALL be named `plan-entity-definition`.
-
-The canonical entity discovery action spec SHALL be named `act-entity-discovery`.
-
 Comparison-related OpenSpec capabilities SHALL use names such as `act-platform-comparison`, `act-platform-discovery-benchmark`, `plan-platform-comparison-rubric`, and `plan-platform-source-policy`.
 
 Tiny run-input files MAY be governed by the consuming `act-` capability when their only behavior is how the action consumes them.
@@ -58,12 +33,6 @@ Tiny run-input files MAY be governed by the consuming `act-` capability when the
 - **WHEN** a contributor creates or renames an OpenSpec capability
 - **THEN** the capability name follows `<phase>-<object>-<artifact-role>`
 - **THEN** live act manifest filenames may still use verb-first names such as `compare-platforms.md`
-
-#### Scenario: Contributor names entity discovery specs
-
-- **WHEN** a contributor updates the entity definition or entity discovery action contracts
-- **THEN** the entity definition capability is `plan-entity-definition`
-- **THEN** the entity discovery action capability is `act-entity-discovery`
 
 #### Scenario: Contributor names comparison specs
 

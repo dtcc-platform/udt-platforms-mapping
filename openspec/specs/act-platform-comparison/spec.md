@@ -1,12 +1,12 @@
-# Spec: act-compare-platforms-prompt
+# Spec: act-platform-comparison
 
 ## Purpose
 
-Defines the prompt execution contract and required output-contract conformance.
+Defines the platform comparison action, selected comparison set behavior, scoring contract composition, source-policy composition, DTCC reference handling, and output contract conformance.
 
 ## Requirements
 
-### Requirement: Compare platforms prompt is the canonical platform comparison prompt
+### Requirement: Platform comparison action is canonical
 
 The repository SHALL contain `act/compare-platforms.md` as the canonical platform comparison prompt template.
 
@@ -16,9 +16,9 @@ The prompt SHALL conform to `repo-web-prompt-template`.
 
 The prompt SHALL require `repo-prompt-markdown-format` as a required formatting contract.
 
-The prompt SHALL declare `act-compare-platforms-prompt` as a required prompt behavior contract.
+The prompt SHALL declare `act-platform-comparison` as a required prompt behavior contract.
 
-The prompt SHALL require `platform-comparison-rubric` and `platform-source-policy` as behavior contracts.
+The prompt SHALL require `plan-platform-comparison-rubric` and `plan-platform-source-policy` as behavior contracts.
 
 The prompt SHALL require `observe-platform-comparison` as a required output contract.
 
@@ -26,9 +26,9 @@ The prompt SHALL require `plan/platform-comparison-set.md` as the selected platf
 
 The prompt SHALL instruct the model to compare only the platforms selected in `plan/platform-comparison-set.md`.
 
-The prompt SHALL instruct the model to apply `platform-comparison-rubric` for scoring behavior.
+The prompt SHALL instruct the model to apply `plan-platform-comparison-rubric` for scoring behavior.
 
-The prompt SHALL instruct the model to apply `platform-source-policy` for acceptable evidence and citation behavior.
+The prompt SHALL instruct the model to apply `plan-platform-source-policy` for acceptable evidence and citation behavior.
 
 The prompt SHALL instruct the model to treat the DTCC row as the reference platform for landscape observations.
 
@@ -47,9 +47,23 @@ The live `act/compare-platforms.md` prompt body SHALL avoid duplicating behavior
 - **WHEN** a researcher resolves `act/compare-platforms.md`
 - **THEN** the prompt conforms to the shared act manifest contract
 - **THEN** the prompt conforms to the shared web prompt template
-- **THEN** the prompt incorporates the `act-compare-platforms-prompt` prompt behavior contract
+- **THEN** the prompt incorporates the `act-platform-comparison` behavior contract
 - **THEN** the prompt incorporates the `repo-prompt-markdown-format` formatting contract
 - **THEN** the prompt incorporates the comparison set run input
 - **THEN** the prompt incorporates the platform comparison rubric and source policy behavior contracts
 - **THEN** the prompt renders the `observe-platform-comparison` output contract into executable instructions
 - **THEN** the prompt tells the researcher to save the web response under `observe/`
+
+### Requirement: Platform comparison set is authoritative run input
+
+The repository SHALL contain `plan/platform-comparison-set.md` as the selected platform comparison set.
+
+Each data row SHALL represent one selected row that already qualifies as `Type = platform` from entity discovery.
+
+The comparison prompt SHALL treat the rows in `plan/platform-comparison-set.md` as the complete and authoritative set of platforms to compare.
+
+#### Scenario: Researcher opens platform comparison set
+
+- **WHEN** a researcher opens `plan/platform-comparison-set.md`
+- **THEN** the file is available as the selected platform comparison input
+- **THEN** the platform comparison action treats it as authoritative comparison scope

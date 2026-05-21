@@ -1,4 +1,4 @@
-# Spec: platform-comparison-rubric
+# Spec: plan-platform-comparison-rubric
 
 ## Purpose
 
