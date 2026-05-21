@@ -10,4 +10,4 @@ For entity discovery, the repository-local `udt:discover` skill is a shortcut fo
 
 Manifest structure is governed by [act-prompt-manifest](../openspec/specs/act-prompt-manifest/spec.md), and action behavior is governed by the corresponding OpenSpec prompt specs. Manifest and prompt behavior changes should go through an OpenSpec change so the contract, rationale, and accepted deltas remain traceable.
 
-The root [README.md](../README.md) explains the full repository workflow. Governing prompt-review and documentation contracts live in [repo-prompt-review](../openspec/specs/repo-prompt-review/spec.md) and [repo-readme](../openspec/specs/repo-readme/spec.md).
+The root [README.md](../README.md) explains the full repository workflow. Governing prompt-review behavior lives in [repo-prompt-review](../openspec/specs/repo-prompt-review/spec.md).

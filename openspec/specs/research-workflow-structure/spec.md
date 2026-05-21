@@ -27,7 +27,7 @@ The canonical live research actions are:
 - benchmark platform comparison
 - report platform comparison
 
-The phase folders MAY contain local `README.md` files for documentation. These README files are not canonical research artifacts.
+The phase folders MAY contain local `README.md` files for documentation. These README files are documentation aids and SHALL NOT be treated as canonical research artifacts or standalone OpenSpec-governed contracts.
 
 #### Scenario: Researcher navigates the workflow
 

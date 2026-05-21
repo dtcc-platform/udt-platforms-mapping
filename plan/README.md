@@ -9,4 +9,4 @@ Examples:
 - `platform-comparison-set.md` defines the selected platform input for comparison.
 - `platform-discovery-benchmark.md` defines the benchmark fixture input for the platform discovery benchmark prompt.
 
-The root [README.md](../README.md) explains the full repository workflow. Governing behavior and documentation contracts live in [openspec/specs](../openspec/specs/), including [research-workflow-structure](../openspec/specs/research-workflow-structure/spec.md) and [repo-readme](../openspec/specs/repo-readme/spec.md).
+The root [README.md](../README.md) explains the full repository workflow. Governing research workflow contracts live in [openspec/specs](../openspec/specs/), including [research-workflow-structure](../openspec/specs/research-workflow-structure/spec.md).

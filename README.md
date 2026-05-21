@@ -156,7 +156,6 @@ Formal repository contracts live in [openspec/specs/](openspec/specs/), especial
 - [repo-prompt-review](openspec/specs/repo-prompt-review/spec.md)
 - [act-prompt-manifest](openspec/specs/act-prompt-manifest/spec.md)
 - [act-web-prompt-template](openspec/specs/act-web-prompt-template/spec.md)
-- [repo-readme](openspec/specs/repo-readme/spec.md)
 - [plan-entity-definition](openspec/specs/plan-entity-definition/spec.md)
 - [act-entity-discovery](openspec/specs/act-entity-discovery/spec.md)
 - [act-platform-comparison](openspec/specs/act-platform-comparison/spec.md)

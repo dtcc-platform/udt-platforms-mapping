@@ -50,7 +50,7 @@ The documentation SHALL describe prompt interpretation review as the method for 
 
 The documentation SHALL explain that accepted review feedback is captured through OpenSpec changes rather than calibration artifacts.
 
-Detailed README placement and folder-level documentation expectations are governed by `repo-readme`.
+README placement and wording SHALL NOT be governed by a standalone README OpenSpec capability.
 
 #### Scenario: Contributor reads the workflow overview
 
