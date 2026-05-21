@@ -1,25 +1,4 @@
-# Spec: repo-naming-conventions
-
-## Purpose
-
-Defines the researcher-facing naming contract for live repository artifacts.
-
-## Requirements
-
-### Requirement: Live artifact names use researcher-facing object/action/role language
-
-Live repository artifact filenames SHALL use researcher-facing names that describe the artifact's research object, action, or role.
-
-Live filenames SHALL NOT repeat the `udt-` prefix because the repository context supplies the Urban Digital Twin domain.
-
-Live documentation and specs SHALL NOT describe canonical live artifacts as research threads. They SHALL use clearer terms such as research object, research action, artifact role, prompt, saved output, or synthesis.
-
-#### Scenario: Contributor names a live artifact
-
-- **WHEN** a contributor creates or renames a live canonical artifact
-- **THEN** the filename uses object/action/role language
-- **THEN** the filename does not begin with `udt-`
-- **THEN** the governing docs avoid thread-centered language for the live workflow
+## MODIFIED Requirements
 
 ### Requirement: Phase folders use phase-specific naming grammar
 
@@ -86,3 +65,4 @@ Tiny run-input files MAY be governed by the consuming `act-` capability when the
 - **THEN** the platform discovery report capability is `act-platform-discovery-report`
 - **THEN** the comparison rubric capability is `plan-platform-comparison-rubric`
 - **THEN** the source policy capability is `plan-platform-source-policy`
+

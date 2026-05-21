@@ -1,4 +1,4 @@
-# Spec: act-report-platform-discovery-prompt
+# Spec: act-platform-discovery-report
 
 ## Purpose
 
@@ -12,7 +12,7 @@ The repository SHALL contain `act/report-platform-discovery.md`.
 
 The prompt SHALL conform to `act-prompt-manifest`.
 
-The prompt SHALL declare `act-report-platform-discovery-prompt` as a required prompt behavior contract.
+The prompt SHALL declare `act-platform-discovery-report` as a required prompt behavior contract.
 
 The prompt SHALL scan `observe/entity-discovery-*.md` files without requiring manual path input.
 

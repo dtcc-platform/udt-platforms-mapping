@@ -1,10 +1,4 @@
-# Spec: act-report-platform-comparison-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Report platform comparison prompt exports comparison ecosystem
 
@@ -12,7 +6,7 @@ The repository SHALL contain `act/report-platform-comparison.md`.
 
 The prompt SHALL conform to `act-prompt-manifest`.
 
-The prompt SHALL declare `act-report-platform-comparison-prompt` as a required prompt behavior contract.
+The prompt SHALL declare `act-platform-comparison-report` as a required prompt behavior contract.
 
 The prompt SHALL scan `observe/platform-comparison-*.md` files without requiring manual path input.
 
@@ -50,3 +44,4 @@ The live `act/report-platform-comparison.md` prompt body SHALL avoid duplicating
 - **THEN** the prompt scans platform comparison observations
 - **THEN** it writes comparison ecosystem outputs under `reflect/`
 - **THEN** the written exports follow `reflect-platform-comparison-ecosystem`
+

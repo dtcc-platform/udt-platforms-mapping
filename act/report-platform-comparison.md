@@ -4,7 +4,7 @@ Use this manifest in an AI CLI with filesystem access.
 
 ## Required Contracts
 
-- `openspec/specs/act-report-platform-comparison-prompt/spec.md` - governs platform comparison export behavior and filesystem scope
+- `openspec/specs/act-platform-comparison-report/spec.md` - governs platform comparison export behavior and filesystem scope
 - `openspec/specs/reflect-platform-comparison-ecosystem/spec.md` - defines the generated CSV and HTML export shape
 
 ## Required Run Inputs

@@ -4,7 +4,7 @@ Use this manifest in an AI CLI with filesystem access.
 
 ## Required Contracts
 
-- `openspec/specs/act-report-platform-discovery-prompt/spec.md` - governs platform discovery reporting behavior and filesystem scope
+- `openspec/specs/act-platform-discovery-report/spec.md` - governs platform discovery reporting behavior and filesystem scope
 - `openspec/specs/reflect-platform-ecosystem/spec.md` - defines the generated ecosystem summary shape
 
 ## Required Run Inputs

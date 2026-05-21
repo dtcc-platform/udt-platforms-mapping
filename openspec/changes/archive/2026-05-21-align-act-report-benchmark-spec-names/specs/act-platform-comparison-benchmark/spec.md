@@ -1,10 +1,4 @@
-# Spec: act-benchmark-platform-comparison-prompt
-
-## Purpose
-
-Defines this researcher-facing canonical artifact.
-
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Benchmark platform comparison prompt is available as a stub
 
@@ -19,3 +13,4 @@ The file SHALL remain a stub until the platform comparison benchmarking evaluati
 - **WHEN** a researcher opens `act/`
 - **THEN** `benchmark-platform-comparison.md` is available as the platform comparison benchmarking prompt stub
 - **THEN** the stub does not define behavior outside its governing spec
+
