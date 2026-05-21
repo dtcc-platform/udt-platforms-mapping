@@ -1,10 +1,4 @@
-# Spec: act-report-platform-comparison-prompt
-
-## Purpose
-
-Defines the prompt execution contract and required output-contract conformance.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Report platform comparison prompt exports comparison ecosystem
 

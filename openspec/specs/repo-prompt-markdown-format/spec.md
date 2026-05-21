@@ -10,11 +10,11 @@ Defines the shared Markdown formatting contract for governed prompts.
 
 Each governed prompt template file in the live repository that instructs an AI model to emit Markdown output SHALL make `repo-prompt-markdown-format` available to the model either by declaring it as a required contract or by rendering equivalent rules into the resolved prompt.
 
-Canonical web prompt templates that conform to `repo-web-prompt-template` SHALL declare `openspec/specs/repo-prompt-markdown-format/spec.md` under `## Required Contracts`.
+Canonical web prompt templates that conform to `act-web-prompt-template` SHALL declare `openspec/specs/repo-prompt-markdown-format/spec.md` under `## Required Contracts`.
 
 This shared contract SHALL apply to the governed prompt templates that explicitly rely on it, including current prompts such as `act/discover-entities.md` and `act/compare-platforms.md`.
 
-The `repo-web-prompt-template` contract SHALL reuse this shared Markdown formatting contract rather than duplicating it.
+The `act-web-prompt-template` contract SHALL reuse this shared Markdown formatting contract rather than duplicating it.
 
 #### Scenario: Contributor reviews a governed prompt template
 

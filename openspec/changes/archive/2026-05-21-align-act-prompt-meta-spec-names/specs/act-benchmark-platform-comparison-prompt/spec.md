@@ -1,10 +1,4 @@
-# Spec: act-benchmark-platform-comparison-prompt
-
-## Purpose
-
-Defines this researcher-facing canonical artifact.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Benchmark platform comparison prompt is available as a stub
 

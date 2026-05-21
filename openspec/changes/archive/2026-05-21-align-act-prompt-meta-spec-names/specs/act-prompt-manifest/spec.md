@@ -1,10 +1,4 @@
-# Spec: repo-act-prompt-manifest
-
-## Purpose
-
-Defines the shared manifest contract for governed prompt files under `act/`.
-
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Governed act prompts are contract manifests
 

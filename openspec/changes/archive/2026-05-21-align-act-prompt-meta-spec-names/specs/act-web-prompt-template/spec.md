@@ -1,16 +1,10 @@
-# Spec: repo-web-prompt-template
-
-## Purpose
-
-Defines the shared structure for canonical web prompt templates.
-
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Canonical web prompts declare contracts and run inputs separately
 
 Canonical web prompt templates that conform to this contract SHALL distinguish required behavior/output contracts from required run inputs.
 
-The prompt SHALL conform to `repo-act-prompt-manifest`.
+The prompt SHALL conform to `act-prompt-manifest`.
 
 The prompt SHALL use a `## Required Contracts` section when it depends on OpenSpec behavior or output contracts.
 

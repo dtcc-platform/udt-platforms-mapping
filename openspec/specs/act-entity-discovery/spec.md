@@ -10,9 +10,9 @@ Defines the entity discovery action, including prompt execution, discovery scope
 
 The repository SHALL contain `act/discover-entities.md` as the canonical UDT entity discovery prompt template.
 
-The prompt SHALL conform to `repo-act-prompt-manifest`.
+The prompt SHALL conform to `act-prompt-manifest`.
 
-The prompt SHALL conform to `repo-web-prompt-template`.
+The prompt SHALL conform to `act-web-prompt-template`.
 
 The prompt SHALL require `repo-prompt-markdown-format` as a required formatting contract.
 

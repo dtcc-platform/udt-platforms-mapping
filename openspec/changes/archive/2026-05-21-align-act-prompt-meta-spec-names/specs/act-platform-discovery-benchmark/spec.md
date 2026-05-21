@@ -1,10 +1,4 @@
-# Spec: act-platform-discovery-benchmark
-
-## Purpose
-
-Defines the platform discovery benchmark action, benchmark fixture consumption, and coverage output behavior.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Platform discovery benchmark action checks discovery recall
 
@@ -48,14 +42,3 @@ The live `act/benchmark-platform-discovery.md` prompt body SHALL avoid duplicati
 - **THEN** the prompt reads entity discovery observations and benchmark fixture
 - **THEN** it writes coverage to `observe/platform-discovery-coverage.md`
 - **THEN** the written coverage follows `observe-platform-discovery-coverage`
-
-### Requirement: Platform discovery benchmark fixture is available
-
-The repository SHALL contain `plan/platform-discovery-benchmark.md` as the benchmark fixture input for platform discovery.
-
-The file SHALL contain the expected artifact table used by `act/benchmark-platform-discovery.md`.
-
-#### Scenario: Researcher opens platform discovery benchmark
-
-- **WHEN** a researcher opens `plan/platform-discovery-benchmark.md`
-- **THEN** the platform discovery benchmark fixture is available
