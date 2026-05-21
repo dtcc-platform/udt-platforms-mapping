@@ -1,10 +1,4 @@
-# Spec: observe-markdown-output-format
-
-## Purpose
-
-Defines the shared Markdown formatting contract for governed Markdown outputs.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Governed prompts define portable Markdown output
 

@@ -36,7 +36,7 @@ Repository-local skills can provide optional shortcuts for common manifest resol
 This repo uses OpenSpec because the research actions are not one-time prompts.
 They are rerun, reviewed, compared, and improved over time, so they need explicit inputs, output contracts, review history, and traceable changes.
 
-The separation makes prompt tuning more precise. A researcher can clarify the behavior contract once, then resolve or regenerate prompts from that contract. Resolving the same manifest with different agents, such as Codex, Claude, and Gemini, can also validate interpretations: differences point to ambiguity in the specs or manifest, and accepted clarifications become OpenSpec changes.
+The separation makes prompt tuning more precise. A researcher can clarify the behavior contract once, then resolve or regenerate prompts from that contract. Resolving the same manifest with different agents can also validate interpretations: differences point to ambiguity in the specs or manifest, and accepted clarifications become OpenSpec changes.
 
 Small prompts and one-off experiments can still be direct when they are outside the governed workflow.
 
@@ -117,9 +117,9 @@ flowchart TD
 ```mermaid
 flowchart TD
     M["Same act manifest"]
-    C["Codex resolution"]
-    L["Claude resolution"]
-    G["Gemini resolution"]
+    C["Agent A resolution"]
+    L["Agent B resolution"]
+    G["Agent C resolution"]
     V["Compare interpretations\nfaithful to specs?"]
     D["Clarify specs or manifest\nwith OpenSpec change"]
     B["Baseline contracts"]
@@ -149,7 +149,7 @@ These checks confirm repository contract health and working-tree state; they do 
 
 ## Specs
 
-Formal repository contracts live in [openspec/specs/](openspec/specs/), especially:
+Formal research contracts live in [openspec/specs/](openspec/specs/), especially:
 
 - [research-workflow-structure](openspec/specs/research-workflow-structure/spec.md)
 - [research-artifact-naming](openspec/specs/research-artifact-naming/spec.md)

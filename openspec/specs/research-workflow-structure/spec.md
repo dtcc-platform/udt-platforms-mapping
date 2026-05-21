@@ -134,8 +134,8 @@ The workflow SHALL allow later reviewing agents to see the current accepted chan
 
 The workflow SHALL NOT require isolated calibration branches or blind independent proposals.
 
-#### Scenario: Gemini reviews after Claude
+#### Scenario: Later reviewer follows accepted deltas
 
-- **WHEN** Codex generates a prompt and Claude review produces an accepted OpenSpec delta
-- **THEN** Gemini reviews the prompt against the updated current spec/change state
-- **THEN** Gemini may propose another OpenSpec delta if it finds a further improvement
+- **WHEN** one agent generates a prompt and an earlier review produces an accepted OpenSpec delta
+- **THEN** a later reviewing agent reviews the prompt against the updated current spec/change state
+- **THEN** the later reviewing agent may propose another OpenSpec delta if it finds a further improvement

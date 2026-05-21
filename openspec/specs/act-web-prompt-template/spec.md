@@ -20,7 +20,7 @@ The prompt SHALL use a `## Required Run Inputs` section when it depends on `plan
 
 - **WHEN** a researcher opens a conforming canonical web prompt
 - **THEN** required OpenSpec contracts are distinguishable from run inputs
-- **THEN** the prompt follows the repository act prompt manifest contract
+- **THEN** the prompt follows the act prompt manifest contract
 
 ### Requirement: Canonical web prompts include resolver instructions
 

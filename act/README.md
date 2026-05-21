@@ -8,6 +8,6 @@ Each manifest lists the specs and run inputs that affect the action. Web-oriente
 
 For entity discovery, the repository-local `udt:discover` skill is a shortcut for resolving `act/discover-entities.md` for web use. It should read the live manifest and required contracts, produce the copy-ready prompt, then use assistant-side `/copy` when available or tell the researcher to run `/copy`.
 
-Manifest structure is governed by [act-prompt-manifest](../openspec/specs/act-prompt-manifest/spec.md), and action behavior is governed by the corresponding OpenSpec prompt specs. Manifest and prompt behavior changes should go through an OpenSpec change so the contract, rationale, and accepted deltas remain traceable.
+Manifest structure is governed by [act-prompt-manifest](../openspec/specs/act-prompt-manifest/spec.md), and action behavior is governed by the corresponding OpenSpec research specs. Manifest and prompt behavior changes should go through an OpenSpec change so the contract, rationale, and accepted deltas remain traceable.
 
 The root [README.md](../README.md) explains the full repository workflow. Prompt interpretation review is governed by [research-workflow-structure](../openspec/specs/research-workflow-structure/spec.md).
