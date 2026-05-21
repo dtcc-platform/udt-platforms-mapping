@@ -8,7 +8,7 @@ Use this template to generate a paste-ready web prompt.
 - `openspec/specs/plan-platform-comparison-rubric/spec.md` - defines comparison dimensions and scoring behavior
 - `openspec/specs/plan-platform-source-policy/spec.md` - defines acceptable evidence and citation behavior
 - `openspec/specs/observe-platform-comparison/spec.md` - defines the saved output shape for platform comparison results
-- `openspec/specs/repo-prompt-markdown-format/spec.md` - defines portable Markdown output rules
+- `openspec/specs/observe-markdown-output-format/spec.md` - defines portable Markdown output rules
 
 ## Required Run Inputs
 

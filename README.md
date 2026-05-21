@@ -152,10 +152,10 @@ These checks confirm repository contract health and working-tree state; they do 
 Formal repository contracts live in [openspec/specs/](openspec/specs/), especially:
 
 - [research-workflow-structure](openspec/specs/research-workflow-structure/spec.md)
-- [repo-naming-conventions](openspec/specs/repo-naming-conventions/spec.md)
-- [repo-prompt-review](openspec/specs/repo-prompt-review/spec.md)
+- [research-artifact-naming](openspec/specs/research-artifact-naming/spec.md)
 - [act-prompt-manifest](openspec/specs/act-prompt-manifest/spec.md)
 - [act-web-prompt-template](openspec/specs/act-web-prompt-template/spec.md)
+- [observe-markdown-output-format](openspec/specs/observe-markdown-output-format/spec.md)
 - [plan-entity-definition](openspec/specs/plan-entity-definition/spec.md)
 - [act-entity-discovery](openspec/specs/act-entity-discovery/spec.md)
 - [act-platform-comparison](openspec/specs/act-platform-comparison/spec.md)

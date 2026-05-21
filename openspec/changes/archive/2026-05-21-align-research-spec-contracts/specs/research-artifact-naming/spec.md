@@ -1,10 +1,4 @@
-# Spec: repo-naming-conventions
-
-## Purpose
-
-Defines the researcher-facing naming contract for live repository artifacts.
-
-## Requirements
+## ADDED Requirements
 
 ### Requirement: Live artifact names use researcher-facing object/action/role language
 

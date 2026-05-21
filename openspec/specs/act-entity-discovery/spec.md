@@ -14,7 +14,7 @@ The prompt SHALL conform to `act-prompt-manifest`.
 
 The prompt SHALL conform to `act-web-prompt-template`.
 
-The prompt SHALL require `repo-prompt-markdown-format` as a required formatting contract.
+The prompt SHALL require `observe-markdown-output-format` as a required formatting contract.
 
 The prompt SHALL declare `act-entity-discovery` as a required prompt behavior contract.
 
@@ -44,7 +44,7 @@ The live `act/discover-entities.md` prompt body SHALL avoid duplicating behavior
 - **THEN** the prompt conforms to the shared act manifest contract
 - **THEN** the prompt conforms to the shared web prompt template
 - **THEN** the prompt incorporates the `act-entity-discovery` behavior contract
-- **THEN** the prompt incorporates the `repo-prompt-markdown-format` formatting contract
+- **THEN** the prompt incorporates the `observe-markdown-output-format` formatting contract
 - **THEN** the prompt incorporates the `plan-entity-definition` behavior contract
 - **THEN** the prompt renders the `observe-entity-discovery` output contract into executable instructions
 - **THEN** the prompt tells the researcher to save the web response under `observe/`

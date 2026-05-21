@@ -1,4 +1,4 @@
-# Spec: repo-prompt-markdown-format
+# Spec: observe-markdown-output-format
 
 ## Purpose
 
@@ -8,9 +8,9 @@ Defines the shared Markdown formatting contract for governed prompts.
 
 ### Requirement: Governed prompts define portable Markdown output
 
-Each governed prompt template file in the live repository that instructs an AI model to emit Markdown output SHALL make `repo-prompt-markdown-format` available to the model either by declaring it as a required contract or by rendering equivalent rules into the resolved prompt.
+Each governed prompt template file in the live repository that instructs an AI model to emit Markdown output SHALL make `observe-markdown-output-format` available to the model either by declaring it as a required contract or by rendering equivalent rules into the resolved prompt.
 
-Canonical web prompt templates that conform to `act-web-prompt-template` SHALL declare `openspec/specs/repo-prompt-markdown-format/spec.md` under `## Required Contracts`.
+Canonical web prompt templates that conform to `act-web-prompt-template` SHALL declare `openspec/specs/observe-markdown-output-format/spec.md` under `## Required Contracts`.
 
 This shared contract SHALL apply to the governed prompt templates that explicitly rely on it, including current prompts such as `act/discover-entities.md` and `act/compare-platforms.md`.
 

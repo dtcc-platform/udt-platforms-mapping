@@ -7,7 +7,7 @@ Use this template to generate a paste-ready web prompt.
 - `openspec/specs/act-entity-discovery/spec.md` - governs the unified entity discovery research task, scope, evidence behavior, recall targets, and required contract composition
 - `openspec/specs/plan-entity-definition/spec.md` - defines allowed entity `Type` values and classification rules
 - `openspec/specs/observe-entity-discovery/spec.md` - defines the saved output shape for entity discovery results
-- `openspec/specs/repo-prompt-markdown-format/spec.md` - defines portable Markdown output rules
+- `openspec/specs/observe-markdown-output-format/spec.md` - defines portable Markdown output rules
 
 Produce a fully resolved prompt:
 
