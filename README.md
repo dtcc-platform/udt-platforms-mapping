@@ -151,7 +151,6 @@ These checks confirm repository contract health and working-tree state; they do 
 Formal research contracts live in [openspec/specs/](openspec/specs/), especially:
 
 - [research-workflow-structure](openspec/specs/research-workflow-structure/spec.md)
-- [research-artifact-naming](openspec/specs/research-artifact-naming/spec.md)
 - [act-prompt-manifest](openspec/specs/act-prompt-manifest/spec.md)
 - [act-web-prompt-template](openspec/specs/act-web-prompt-template/spec.md)
 - [observe-markdown-output-format](openspec/specs/observe-markdown-output-format/spec.md)
