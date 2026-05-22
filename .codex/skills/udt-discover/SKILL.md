@@ -1,21 +1,21 @@
 ---
 name: udt-discover
-description: Resolve the Urban Digital Twin entity discovery manifest for web use. Use when the user says udt:discover, udt-discover, asks to resolve act/discover-entities.md for web, or wants a copy-ready entity discovery prompt.
+description: Resolve the Urban Digital Twin entity discovery manifest for web use. Use when the user says udt:discover, udt-discover, asks to resolve act/entity-discovery.md for web, or wants a copy-ready entity discovery prompt.
 ---
 
 # UDT Discover
 
-Resolve `act/discover-entities.md` into a paste-ready web prompt.
+Resolve `act/entity-discovery.md` into a paste-ready web prompt.
 
 ## Source of Truth
 
 - OpenSpec specs define research behavior and output contracts.
-- `act/discover-entities.md` is the manifest that declares which contracts affect entity discovery.
+- `act/entity-discovery.md` is the manifest that declares which contracts affect entity discovery.
 - This skill is only an operational shortcut. Do not hardcode or maintain a separate discovery prompt here.
 
 ## Workflow
 
-1. Read `act/discover-entities.md`.
+1. Read `act/entity-discovery.md`.
 2. Read every file listed under its `## Required Contracts` section.
 3. Produce one resolved prompt block:
    - inline each required contract under a heading naming the source file

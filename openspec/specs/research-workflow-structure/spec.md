@@ -95,7 +95,7 @@ Live filenames SHALL NOT repeat the `udt-` prefix because the repository context
 
 Plan artifacts SHALL use noun phrases for run inputs, definitions, rubrics, policies, or fixtures.
 
-Act artifacts SHALL use verb phrases for executable research actions, reporting actions, and benchmark actions.
+Act artifacts SHALL use object/action/role names for executable research actions, reporting actions, and benchmark actions.
 
 Observe artifacts SHALL identify the research action and model or generated output.
 
@@ -108,9 +108,7 @@ OpenSpec capability names SHALL use phase-object-role grammar:
 - `observe-<object>-<artifact-role>` for saved outputs and generated observations
 - `reflect-<object>-<artifact-role>` for synthesis, reporting, and reflection outputs
 
-Live `act/` filenames SHALL use verb-first action names when they are executable prompts.
-
-OpenSpec capability names SHALL remain phase-first even when the governed live `act/` filename is verb-first.
+Live artifact filenames SHALL use the same object/action/role naming convention as the governed capability without repeating the phase prefix supplied by the folder.
 
 Phase-local structural contracts SHALL use the phase prefix when the contract governs artifacts in one phase folder.
 
@@ -125,7 +123,7 @@ Cross-phase research governance contracts SHALL use the `research-` prefix.
 
 - **WHEN** a contributor creates or renames an OpenSpec capability for one workflow phase
 - **THEN** the capability name follows `<phase>-<object>-<artifact-role>`
-- **THEN** live `act/` filenames may still use verb-first names such as `compare-platforms.md`
+- **THEN** the matching live artifact filename uses the object/action/role portion without the phase prefix
 
 #### Scenario: Contributor names a cross-phase research spec
 

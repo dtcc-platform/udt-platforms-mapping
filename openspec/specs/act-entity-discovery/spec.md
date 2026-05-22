@@ -8,7 +8,7 @@ Defines the entity discovery action, including prompt execution, discovery scope
 
 ### Requirement: Entity discovery prompt is the canonical discovery prompt
 
-The repository SHALL contain `act/discover-entities.md` as the canonical UDT entity discovery prompt template.
+The repository SHALL contain `act/entity-discovery.md` as the canonical UDT entity discovery prompt template.
 
 The prompt SHALL conform to `act-prompt-manifest`.
 
@@ -36,11 +36,11 @@ The prompt SHALL instruct the model to render the `observe-entity-discovery` met
 
 The prompt SHALL instruct the user to save web responses to `observe/entity-discovery-<model-short>.md`.
 
-The live `act/discover-entities.md` prompt body SHALL avoid duplicating behavior supplied by required contracts.
+The live `act/entity-discovery.md` prompt body SHALL avoid duplicating behavior supplied by required contracts.
 
 #### Scenario: Researcher runs entity discovery
 
-- **WHEN** a researcher resolves `act/discover-entities.md`
+- **WHEN** a researcher resolves `act/entity-discovery.md`
 - **THEN** the prompt conforms to the shared act manifest contract
 - **THEN** the prompt conforms to the shared web prompt template
 - **THEN** the prompt incorporates the `act-entity-discovery` behavior contract

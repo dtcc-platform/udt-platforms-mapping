@@ -12,7 +12,7 @@ Each governed prompt template file in the live repository that instructs an AI m
 
 Canonical web prompt templates that conform to `act-web-prompt-template` SHALL declare `openspec/specs/observe-markdown-output-format/spec.md` under `## Required Contracts`.
 
-This shared contract SHALL apply to governed Markdown outputs that explicitly rely on it, including current outputs produced from prompts such as `act/discover-entities.md` and `act/compare-platforms.md`.
+This shared contract SHALL apply to governed Markdown outputs that explicitly rely on it, including current outputs produced from prompts such as `act/entity-discovery.md` and `act/platform-comparison.md`.
 
 The `act-web-prompt-template` contract SHALL reuse this shared Markdown output formatting contract rather than duplicating it.
 

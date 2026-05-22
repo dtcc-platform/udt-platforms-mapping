@@ -25,7 +25,7 @@ OpenSpec capability names use phase-object-role grammar:
 <phase>-<object>-<artifact-role>
 ```
 
-For example, `plan-entity-definition` governs planned entity classification, while `act-entity-discovery` governs the discovery action. Live `act/` manifest filenames may remain verb-first, such as `act/discover-entities.md`, because they are executable prompts.
+For example, `plan-entity-definition` governs planned entity classification, while `act-entity-discovery` governs the discovery action. Live artifact filenames use the same object/action/role naming convention without repeating the phase prefix supplied by the folder, such as `act/entity-discovery.md`.
 
 The `act/` files are contract manifests. They list which specs and run inputs affect an action, with short purpose comments, but they are not the full behavior source and are not usually pasted directly into a web model.
 
@@ -81,7 +81,7 @@ Canonical actions include:
 Example for a web research run:
 
 ```text
-Resolve act/discover-entities.md for web use.
+Resolve act/entity-discovery.md for web use.
 ```
 
 The resolver inlines the manifest's required contracts, appends the manifest prompt body, and returns one copy-ready prompt.

@@ -1,7 +1,7 @@
 # Platform Comparison Set
 
 This file holds the platforms selected for the **current** platform comparison cycle run.
-It is a required input of `act/compare-platforms.md`.
+It is a required input of `act/platform-comparison.md`.
 
 Unlike `rubrics.md` and `source-policy.md`, which are slow-moving definitions reused across cycle runs, this file is **per-run data** and is expected to change between comparison cycles.
 Add a row to include a platform in the current comparison; remove a row to drop it.
