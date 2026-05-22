@@ -67,7 +67,6 @@ Canonical actions include:
 - compare platforms
 - benchmark platform discovery
 - report platform discovery
-- benchmark platform comparison
 - report platform comparison
 
 ## How To Work

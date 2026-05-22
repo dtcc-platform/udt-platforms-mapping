@@ -1,10 +1,4 @@
-# Spec: research-artifact-naming
-
-## Purpose
-
-Defines the researcher-facing naming contract for live research artifacts and OpenSpec capabilities.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Live artifact names use researcher-facing object/action/role language
 

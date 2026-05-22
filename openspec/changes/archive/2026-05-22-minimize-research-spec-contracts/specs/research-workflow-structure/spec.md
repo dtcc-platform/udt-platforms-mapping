@@ -1,10 +1,4 @@
-# Spec: research-workflow-structure
-
-## Purpose
-
-Defines the live research workflow phase structure and artifact ownership boundaries.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Research workflow is organised as action research phases
 
@@ -78,3 +72,22 @@ Generated workflow outputs SHALL live as direct files under `observe/` when they
 - **WHEN** a researcher opens `reflect/`
 - **THEN** reflection artifacts are direct files
 - **THEN** filenames identify object and function
+## REMOVED Requirements
+
+### Requirement: Prompt interpretation review checks prompt fidelity against governing specs
+
+**Reason**: This requirement governs review procedure rather than research workflow structure, and it no longer has a dedicated prompt-review capability after previous consolidation.
+
+**Migration**: Use the OpenSpec change process directly when prompt interpretation exposes an ambiguity or mismatch.
+
+### Requirement: Accepted prompt-review improvements become OpenSpec deltas
+
+**Reason**: This repeats the repository's OpenSpec-first process rather than defining a distinct research workflow contract.
+
+**Migration**: Capture accepted spec or prompt behavior changes through normal scoped OpenSpec changes.
+
+### Requirement: Prompt interpretation review is sequential
+
+**Reason**: Sequential prompt-review procedure is workflow process guidance, not a minimum research artifact structure requirement.
+
+**Migration**: Later reviewers should use the current accepted repository state and propose scoped OpenSpec changes when they find further improvements.
