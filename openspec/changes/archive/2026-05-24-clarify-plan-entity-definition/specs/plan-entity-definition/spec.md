@@ -1,10 +1,4 @@
-# Spec: plan-entity-definition
-
-## Purpose
-
-Defines UDT entity classification behavior for technical artifacts, initiatives, excluded candidates, and initiative-to-artifact substrate relationships.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Entity definition classifies UDT discovery rows
 
@@ -45,35 +39,6 @@ Technical artifacts SHALL be assigned one output `Type`: `platform`, `framework`
 - **WHEN** a candidate is a distinct technical substrate related to Urban Digital Twins
 - **THEN** discovery treats it as part of the internal `artifact` group
 - **THEN** entity discovery assigns `Type` as `platform`, `framework`, or `module`
-
-### Requirement: Platform Type means usable UDT platform
-
-An artifact SHALL be classified as `platform` when it is presented as a deployable or usable system for city-scale integration, visualization, simulation, or management of urban systems.
-
-An artifact SHALL NOT be classified as `platform` only because it has an ambitious name, belongs to a smart-city initiative, or is mentioned near UDT language.
-
-#### Scenario: Artifact is a platform
-
-- **WHEN** an artifact is presented as a usable city-scale UDT system
-- **THEN** entity discovery classifies it as `Type = platform`
-
-### Requirement: Framework Type means reusable enabling structure
-
-An artifact SHALL be classified as `framework` when it is mainly presented as an SDK, API-centered backbone, reusable architecture, toolkit, reference model, or enabling layer for building UDT systems rather than as the primary end-user platform.
-
-#### Scenario: Artifact is a framework
-
-- **WHEN** an artifact is mainly a reusable architecture or enabling layer
-- **THEN** entity discovery classifies it as `Type = framework`
-
-### Requirement: Module Type means bounded capability component
-
-An artifact SHALL be classified as `module` when it mainly provides one bounded capability, domain workflow, analytical function, data pipeline, visualization component, simulator, or integration component for use inside or alongside a broader UDT stack.
-
-#### Scenario: Artifact is a module
-
-- **WHEN** an artifact mainly provides one bounded UDT capability
-- **THEN** entity discovery classifies it as `Type = module`
 
 ### Requirement: Initiative Type means real-world UDT activity
 
