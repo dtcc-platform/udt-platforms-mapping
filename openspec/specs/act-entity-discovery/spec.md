@@ -34,6 +34,8 @@ The prompt SHALL instruct the model to preserve uncertainty when evidence is wea
 
 The prompt SHALL instruct the model to render the `observe-entity-discovery` metadata block, coverage statement, summary table, and entity sections explicitly.
 
+The prompt SHALL provide an explicit runnable research query suitable for web research tools before relying on inlined contract details.
+
 The prompt SHALL instruct the user to save web responses to `observe/entity-discovery-<model-short>.md`.
 
 The live `act/entity-discovery.md` prompt body SHALL avoid duplicating behavior supplied by required contracts.
@@ -41,6 +43,7 @@ The live `act/entity-discovery.md` prompt body SHALL avoid duplicating behavior 
 #### Scenario: Researcher runs entity discovery
 
 - **WHEN** a researcher resolves `act/entity-discovery.md`
+- **THEN** the prompt starts with a runnable research query
 - **THEN** the prompt conforms to the shared act manifest contract
 - **THEN** the prompt conforms to the shared web prompt template
 - **THEN** the prompt incorporates the `act-entity-discovery` behavior contract

@@ -11,8 +11,9 @@ Use this template to generate a paste-ready web prompt.
 
 Produce a fully resolved prompt:
 
+- start with the prompt body below as the executable research query
+- place resolved prompt metadata after the prompt body when saving a resolved prompt artifact
 - inline each required contract under a heading naming the source file
-- append the prompt body below
 - output one copy-ready block only, with no wrapper text, narration, or BEGIN/END markers
 - when resolving for review or reuse, save the resolved prompt as `act/entity-discovery-resolved-<resolver-short>.md`
 
@@ -24,6 +25,6 @@ After the resolved prompt block, add one short sentence telling the user to past
 
 You are a research assistant mapping the Urban Digital Twin entity ecosystem.
 
-Perform entity discovery according to the inlined required contracts.
+Deeply research and map the Urban Digital Twin entity ecosystem. Follow the inlined required contracts below and perform entity discovery according to those contracts.
 
 Return only the final deliverable.
