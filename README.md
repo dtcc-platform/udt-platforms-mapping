@@ -19,24 +19,27 @@ This repository separates expected model behavior from prompt wording.
 An OpenSpec spec is a research behavior contract, not an implementation plan.
 In this repository, specs define what a research action must do: workflow structure, classification behavior, source policies, scoring rules, output contracts, and prompt-manifest structure.
 
-OpenSpec capability names use phase-object-role grammar:
+OpenSpec capability names use either cross-phase research governance names or phase-object-role names:
 
 ```text
+research-<workflow-contract>
 <phase>-<object>-<artifact-role>
 ```
 
+Use `research-*` for contracts that govern the workflow across phases, such as `research-workflow-structure` and `research-prompt-review`.
+Use phase prefixes when the contract governs artifacts in one phase: `plan-*`, `act-*`, `observe-*`, or `reflect-*`.
 For example, `plan-entity-definition` governs planned entity classification, while `act-entity-discovery` governs the discovery action. Live artifact filenames use the same object/action/role naming convention without repeating the phase prefix supplied by the folder, such as `act/entity-discovery.md`.
 
 The `act/` files are contract manifests. They list which specs and run inputs affect an action, with short purpose comments, but they are not the full behavior source and are not usually pasted directly into a web model.
 
-Resolving a manifest combines the required specs and run inputs into a concrete prompt for a specific model or agent. The resolved prompt is the operational instruction; the specs remain the source of expected behavior.
+Resolving a manifest combines the required specs and run inputs into a concrete prompt for a specific model or agent. The resolved prompt is the operational instruction; the specs remain the source of expected behavior. When a resolved prompt is reviewed, save the prompt snapshot under `observe/<action>-resolved-prompt-<resolver-short>.md`; do not replace the `act/` manifest.
 
 Repository-local skills can provide optional shortcuts for common manifest resolution tasks. They are operational tooling outside OpenSpec governance; the specs and manifests remain the research source of truth.
 
 This repo uses OpenSpec because the research actions are not one-time prompts.
-They are rerun, reviewed, compared, and improved over time, so they need explicit inputs, output contracts, review history, and traceable changes.
+They are rerun, reviewed, compared, and improved over time, so they need explicit inputs, output contracts, prompt-review evidence, and traceable changes.
 
-The separation makes prompt tuning more precise. A researcher can clarify the behavior contract once, then resolve or regenerate prompts from that contract. Resolving the same manifest with different agents can also validate interpretations: differences point to ambiguity in the specs or manifest, and accepted clarifications become OpenSpec changes.
+The separation makes prompt tuning more precise. A researcher can clarify the behavior contract once, then resolve or regenerate prompts from that contract. Reviewing the same resolved prompt with different agents can validate interpretations: differences point to ambiguity in the specs, manifest, run inputs, or resolver output, and accepted clarifications become OpenSpec changes.
 
 Small prompts and one-off experiments can still be direct when they are outside the governed workflow.
 
@@ -52,8 +55,8 @@ PLAN -> ACT -> OBSERVE -> REFLECT
 
 - `plan/` contains run inputs such as selected comparison sets, benchmark fixtures, and run-specific scope material.
 - `act/` contains contract manifests for resolving or running research, benchmarking, and reporting actions.
-- `observe/` stores saved model outputs and generated coverage artifacts.
-- `reflect/` contains synthesized reporting, comparison, and reflection artifacts.
+- `observe/` stores saved model outputs, generated coverage artifacts, resolved prompt snapshots, and per-agent prompt reviews.
+- `reflect/` contains synthesized reporting, comparison, prompt-review, and reflection artifacts.
 
 ## Research Actions
 
@@ -75,8 +78,9 @@ Canonical actions include:
 2. Resolve the matching manifest from `act/` into a concrete prompt, or run it in an AI CLI when the manifest is CLI-oriented.
 3. Run the resolved prompt with the selected model or agent.
 4. Save raw model outputs and coverage artifacts in `observe/`.
-5. Synthesize reports, comparisons, and reflections in `reflect/`.
-6. Improve specs, manifests, and workflow behavior through OpenSpec changes.
+5. When reviewing a generated prompt, save the resolved prompt snapshot and per-agent prompt reviews in `observe/`.
+6. Synthesize reports, comparisons, prompt-review findings, and reflections in `reflect/`.
+7. Improve specs, manifests, and workflow behavior through OpenSpec changes.
 
 Example for a web research run:
 
@@ -95,7 +99,7 @@ udt:discover
 
 The local skill at `.codex/skills/udt-discover/` resolves the live manifest and contracts. If assistant-side `/copy` is available, the skill should copy the resolved prompt; otherwise run `/copy` on the generated prompt.
 
-A useful reviewer question is: does the resolved prompt faithfully compose the required contracts?
+A useful reviewer question is: does the resolved prompt faithfully compose the required contracts? When prompt review is part of the workflow, save the resolved prompt snapshot as `observe/<action>-resolved-prompt-<resolver-short>.md`, save each review as `observe/<action>-prompt-review-<reviewer-short>.md`, and save optional synthesis as `reflect/<action>-prompt-review.md`.
 
 ```mermaid
 flowchart TD
@@ -103,35 +107,47 @@ flowchart TD
     P["plan/\nrun inputs"]
     A["act/\ncontract manifest"]
     R["Resolved prompt\nmodel-facing instruction"]
-    O["observe/\nsaved model outputs"]
-    F["reflect/\nsynthesis and reporting"]
+    RS["observe/\nresolved prompt snapshot"]
+    O["observe/\nsaved model outputs and generated artifacts"]
+    PR["observe/\nper-agent prompt reviews"]
+    F["reflect/\nsynthesis, reporting, and review findings"]
+    C["OpenSpec change\naccepted clarification"]
 
     S --> A
     P --> A
     A -->|resolve| R
+    R -->|save for review| RS
     R -->|run with model or agent| O
+    RS --> PR
     O --> F
+    PR --> F
+    F -->|accepted issue| C
+    C --> S
+    C --> A
 ```
 
 ```mermaid
 flowchart TD
-    M["Same act manifest"]
-    C["Agent A resolution"]
-    L["Agent B resolution"]
-    G["Agent C resolution"]
-    V["Compare interpretations\nfaithful to specs?"]
-    D["Clarify specs or manifest\nwith OpenSpec change"]
-    B["Baseline contracts"]
+    M["act/ manifest"]
+    S["Required specs"]
+    P["Required plan inputs"]
+    R["Saved resolved prompt\nobserve/<action>-resolved-prompt-<resolver>.md"]
+    A["Reviewer A output\nobserve/<action>-prompt-review-a.md"]
+    B["Reviewer B output\nobserve/<action>-prompt-review-b.md"]
+    F["Review synthesis\nreflect/<action>-prompt-review.md"]
+    D["OpenSpec change\naccepted clarification"]
+    Base["Baseline specs and manifests"]
 
-    M --> C
-    M --> L
-    M --> G
-    C --> V
-    L --> V
-    G --> V
-    V -->|ambiguity found| D
-    D --> B
-    V -->|faithful enough| B
+    M --> R
+    S --> R
+    P --> R
+    R --> A
+    R --> B
+    A --> F
+    B --> F
+    F -->|ambiguity or mismatch accepted| D
+    D --> Base
+    F -->|faithful enough| Base
 ```
 
 ## Health Checks
@@ -151,6 +167,7 @@ These checks confirm repository contract health and working-tree state; they do 
 Formal research contracts live in [openspec/specs/](openspec/specs/), especially:
 
 - [research-workflow-structure](openspec/specs/research-workflow-structure/spec.md)
+- [research-prompt-review](openspec/specs/research-prompt-review/spec.md)
 - [act-prompt-manifest](openspec/specs/act-prompt-manifest/spec.md)
 - [act-web-prompt-template](openspec/specs/act-web-prompt-template/spec.md)
 - [observe-markdown-output-format](openspec/specs/observe-markdown-output-format/spec.md)
