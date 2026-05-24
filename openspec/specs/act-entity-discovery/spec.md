@@ -53,20 +53,23 @@ The live `act/entity-discovery.md` prompt body SHALL avoid duplicating behavior 
 
 Entity discovery SHALL treat the action as broad candidate discovery across `platform`, `framework`, `module`, `initiative`, and useful `excluded` boundary candidates.
 
-Entity discovery SHALL return at least 40 candidate artifacts when enough evidence is available.
+Entity discovery SHALL return at least 50 candidate entities when enough evidence is available.
 
 Entity discovery SHALL include at least:
 
 - 10 candidates classified as `platform`
 - 15 candidates classified as `framework`
 - 10 candidates classified as `module`
+- 5 candidates classified as `initiative`
 - 5 candidates classified as `excluded`
+
+The remaining candidates needed to meet the 50-entity floor SHALL be high-relevance entities of any allowed `Type`.
 
 Entity discovery SHALL use these quotas as minimum quality gates, not as stopping conditions.
 
 Meeting the minimum count SHALL NOT be considered sufficient when additional high-relevance candidates are discoverable.
 
-After reaching the quota, entity discovery SHALL perform at least one additional targeted recall pass for regional, academic, open-source, and research-center UDT platforms.
+After reaching the quota, entity discovery SHALL perform at least one additional targeted recall pass for regional, academic, open-source, and research-center UDT platforms and initiatives.
 
 Entity discovery SHALL NOT stop after representative examples when additional relevant candidates are discoverable.
 
@@ -79,8 +82,8 @@ When a coverage target cannot be met after reasonable search, entity discovery S
 #### Scenario: Discovery has enough evidence
 
 - **WHEN** enough relevant evidence is available for the target categories
-- **THEN** entity discovery returns at least 40 candidate artifacts
-- **THEN** entity discovery satisfies the platform, framework, module, and excluded category targets
+- **THEN** entity discovery returns at least 50 candidate entities
+- **THEN** entity discovery satisfies the platform, framework, module, initiative, and excluded category targets
 - **THEN** entity discovery performs at least one additional targeted recall pass after meeting the quotas
 
 #### Scenario: Discovery cannot meet a target
@@ -119,7 +122,7 @@ The adjacent seed-list families SHALL include:
 - 3D geospatial visualization and 3D Tiles
 - point-cloud, LiDAR, and city-model visualization
 
-Entity discovery SHALL extract multiple relevant candidate artifacts from each sampled seed-list family when relevant candidates are available.
+Entity discovery SHALL extract multiple relevant candidates from each sampled seed-list family when relevant candidates are available.
 
 Entity discovery SHALL classify every included seed-list candidate using `plan-entity-definition`.
 
