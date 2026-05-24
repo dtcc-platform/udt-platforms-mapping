@@ -95,19 +95,21 @@ Repository-local skills are operational shortcuts. They are not the source of tr
 
 Prompt review checks whether a resolved prompt faithfully composes its manifest, required specs, and run inputs.
 
-The point is to align agents on one interpretation of the specs before spending time on deep research runs. It is faster and more credible to resolve ambiguity at the contract and prompt-composition level than to wait until agents have produced large research outputs and then try to reconcile inconsistent interpretations after the fact.
+The resolved prompt is the working contract between the researcher and the agent that will run the research. One agent drafts that contract from the approved specs and inputs; a different agent reviews it as a third party against the same shared context before execution.
 
-The process and storage rules are governed by `research-prompt-review`.
+The point is to align agents on one interpretation of the specs before spending time on deep research runs. Even when resolution is mostly inlining, review is still valuable because the final prompt can fail at the composition layer: missing contracts, stale contracts, confusing order, resolver glue, ambiguous combined instructions, or a prompt that is faithful on paper but not executable in the target web tool.
+
+The process and storage rules are governed by `research-prompt-review`. The minimum third-party review criteria are governed by `research-prompt-review-checklist`.
 
 Use this when prompt generation or agent interpretation matters:
 
 1. Save the resolved prompt snapshot as `act/<action>-resolved-<resolver-short>.md`.
-2. Ask a different reviewer agent to compare it against the source manifest and required contracts.
+2. Ask a different reviewer agent to compare it against the source manifest, required contracts, required inputs, and `research-prompt-review-checklist`.
 3. Review happens in stdout/chat by default; save `observe/<action>-prompt-review-<reviewer-short>.md` only when an audit artifact is useful.
 4. If a fix is needed, the reviewer proposes an OpenSpec change intent instead of rewriting the prompt directly.
 5. Convert accepted issues into scoped OpenSpec changes, then regenerate the resolved prompt.
 
-Reviewers look for missing contracts, missing inputs, invented behavior, duplicated behavior, output-contract mismatches, resolver mistakes, and ambiguous spec wording.
+The checklist covers the minimum checks: source coverage, composition fidelity, prompt executability, target-runner fit, output contract clarity, ambiguity, conflict, and whether a repository fix needs an OpenSpec proposal. Reviewer agents can still add action-specific findings.
 
 ```mermaid
 flowchart TD
@@ -115,14 +117,16 @@ flowchart TD
     S["Required specs"]
     P["Required plan inputs"]
     R["act/\nresolved prompt"]
-    V["Different reviewer\nstdout review"]
-    D["OpenSpec change"]
+    K["research-prompt-review-checklist"]
+    V["Third-party reviewer\nstdout review"]
+    D["OpenSpec proposal"]
 
     M --> R
     S --> R
     P --> R
+    K --> V
     R --> V
-    V -->|accepted issue| D
+    V -->|required fix| D
     D --> S
     D --> M
     D --> R
