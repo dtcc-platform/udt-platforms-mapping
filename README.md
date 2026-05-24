@@ -33,28 +33,29 @@ PLAN -> ACT -> OBSERVE -> REFLECT
 - `observe/` stores saved model outputs, generated coverage artifacts, resolved prompt snapshots, and per-agent prompt reviews.
 - `reflect/` contains synthesized reporting, comparison, prompt-review, and reflection artifacts.
 
-The meta workflow reviews how well generated prompts and agent outputs follow the contracts:
+Phase structure and artifact naming are governed by `research-workflow-structure`.
 
-```text
-RESOLVE PROMPT -> REVIEW FAITHFULNESS -> SYNTHESIZE FINDINGS -> UPDATE CONTRACTS
+```mermaid
+flowchart TD
+    P["plan/\nrun inputs and scope"]
+    A["act/\nresearch manifests"]
+    O["observe/\nmodel outputs and generated artifacts"]
+    F["reflect/\nsynthesis and reporting"]
+    C["OpenSpec change\naccepted clarification"]
+
+    P --> A
+    A --> O
+    O --> F
+    F --> C
+    C --> P
+    C --> A
 ```
-
-Prompt review is governed by `research-prompt-review`. It stores resolved prompt snapshots and per-agent reviews under `observe/`, then stores optional synthesis under `reflect/`. Accepted findings become OpenSpec changes.
 
 ## OpenSpec Naming
 
 Formal contracts live in `openspec/specs/`.
 
-Use `research-*` for cross-phase research governance, such as workflow structure and prompt review.
-
-Use phase prefixes when a contract governs one phase:
-
-- `plan-*` for planning inputs, definitions, rubrics, policies, and fixtures
-- `act-*` for action manifests and prompt execution behavior
-- `observe-*` for saved outputs and generated observations
-- `reflect-*` for synthesis and reporting outputs
-
-Live artifact filenames use the same object/action/role naming convention without repeating the phase prefix supplied by the folder. For example, `act/entity-discovery.md` is governed by `act-entity-discovery`.
+Naming rules are governed by `research-workflow-structure`. In short, `research-*` specs govern cross-phase research workflow concerns, while `plan-*`, `act-*`, `observe-*`, and `reflect-*` specs govern one phase.
 
 ## Research Actions
 
@@ -96,6 +97,8 @@ Prompt review checks whether a resolved prompt faithfully composes its manifest,
 
 The point is to align agents on one interpretation of the specs before spending time on deep research runs. It is faster and more credible to resolve ambiguity at the contract and prompt-composition level than to wait until agents have produced large research outputs and then try to reconcile inconsistent interpretations after the fact.
 
+The process and storage rules are governed by `research-prompt-review`.
+
 Use this when prompt generation or agent interpretation matters:
 
 1. Save the resolved prompt snapshot as `observe/<action>-resolved-prompt-<resolver-short>.md`.
@@ -105,28 +108,6 @@ Use this when prompt generation or agent interpretation matters:
 5. Convert accepted issues into scoped OpenSpec changes.
 
 Reviewers look for missing contracts, missing inputs, invented behavior, duplicated behavior, output-contract mismatches, resolver mistakes, and ambiguous spec wording.
-
-## Flow
-
-```mermaid
-flowchart TD
-    S["OpenSpec specs\nresearch contracts"]
-    P["plan/\nrun inputs"]
-    A["act/\nmanifest"]
-    R["Resolved prompt"]
-    O["observe/\nmodel outputs and generated artifacts"]
-    F["reflect/\nsynthesis and reporting"]
-    C["OpenSpec change\naccepted clarification"]
-
-    S --> A
-    P --> A
-    A -->|resolve or run| R
-    R --> O
-    O --> F
-    F --> C
-    C --> S
-    C --> A
-```
 
 ```mermaid
 flowchart TD
