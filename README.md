@@ -155,4 +155,4 @@ Use:
 Issues -> New issue -> Missing research candidate
 ```
 
-Provide the candidate name, an official link, and a short explanation of why it should be included. Choose `Not sure` in the category dropdown when classification is unclear.
+Add the candidate name, a link if available, and any short note that helps triage it. Classification can be handled later.
