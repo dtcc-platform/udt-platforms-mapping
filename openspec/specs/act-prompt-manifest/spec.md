@@ -60,6 +60,7 @@ Allowed resolver and execution glue includes:
 - instructions to output one copy-ready block
 - instructions about whether the prompt is for a web model or an AI CLI with filesystem access
 - save or write-location guidance when that location is already governed by a required output contract
+- resolved-prompt save guidance when that location is governed by `research-prompt-review` or `research-workflow-structure`
 
 Resolver and execution glue SHALL NOT restate the substantive behavior of the action.
 
@@ -68,6 +69,12 @@ Resolver and execution glue SHALL NOT restate the substantive behavior of the ac
 - **WHEN** a resolver processes a governed act prompt manifest
 - **THEN** the manifest tells the resolver how to compose or run the prompt
 - **THEN** substantive task behavior comes from required contracts and inputs
+
+#### Scenario: Manifest includes resolved-prompt save guidance
+
+- **WHEN** a governed act prompt manifest tells the resolver where to save a resolved prompt artifact
+- **THEN** the save location is governed by `research-prompt-review` or `research-workflow-structure`
+- **THEN** the manifest does not define a separate prompt-review storage convention
 
 ### Requirement: Act prompt bodies are minimal task invocations
 

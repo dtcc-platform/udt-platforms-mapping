@@ -14,6 +14,7 @@ Produce a fully resolved prompt:
 - inline each required contract under a heading naming the source file
 - append the prompt body below
 - output one copy-ready block only, with no wrapper text, narration, or BEGIN/END markers
+- when resolving for review or reuse, save the resolved prompt as `act/entity-discovery-resolved-<resolver-short>.md`
 
 After the resolved prompt block, add one short sentence telling the user to paste it into a web interface and save the response to `observe/entity-discovery-<model-short>.md`.
 

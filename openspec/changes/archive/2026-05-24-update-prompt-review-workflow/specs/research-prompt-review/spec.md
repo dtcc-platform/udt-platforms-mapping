@@ -1,10 +1,4 @@
-# Spec: research-prompt-review
-
-## Purpose
-
-Defines the cross-phase research workflow for reviewing resolved prompts against their manifests, required contracts, and run inputs.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Prompt review uses saved resolved prompt snapshots
 
@@ -77,7 +71,7 @@ The synthesis SHALL NOT directly change baseline specs, manifests, documentation
 
 #### Scenario: Researcher consolidates prompt reviews
 
-- **WHEN** multiple prompt review outputs exist for one action
+- **WHEN** multiple prompt review findings exist for one action
 - **THEN** a synthesis may be saved as `reflect/entity-discovery-prompt-review.md`
 - **THEN** the synthesis compares reviewer agreement and disagreement
 - **THEN** accepted fixes are expressed as proposed OpenSpec changes

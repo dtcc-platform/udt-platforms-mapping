@@ -29,8 +29,8 @@ PLAN -> ACT -> OBSERVE -> REFLECT
 ```
 
 - `plan/` contains run inputs such as selected comparison sets, benchmark fixtures, and run-specific scope material.
-- `act/` contains contract manifests for resolving or running research, benchmarking, and reporting actions.
-- `observe/` stores saved model outputs, generated coverage artifacts, resolved prompt snapshots, and per-agent prompt reviews.
+- `act/` contains contract manifests and resolved executable prompts for research, benchmarking, and reporting actions.
+- `observe/` stores saved model outputs, generated coverage artifacts, and optional saved review evidence.
 - `reflect/` contains synthesized reporting, comparison, prompt-review, and reflection artifacts.
 
 Phase structure and artifact naming are governed by `research-workflow-structure`.
@@ -81,7 +81,7 @@ For a web research run:
 Resolve act/entity-discovery.md for web use.
 ```
 
-The resolver inlines the manifest's required contracts, appends the manifest prompt body, and returns one copy-ready prompt. Paste that prompt into the selected web model, then save the response to `observe/entity-discovery-<model-short>.md`.
+The resolver inlines the manifest's required contracts, appends the manifest prompt body, and saves the resolved prompt as `act/entity-discovery-resolved-<resolver-short>.md`. Paste that prompt into the selected web model, then save the response to `observe/entity-discovery-<model-short>.md`.
 
 The repository-local shortcut for the same entity discovery resolve step is:
 
@@ -101,11 +101,11 @@ The process and storage rules are governed by `research-prompt-review`.
 
 Use this when prompt generation or agent interpretation matters:
 
-1. Save the resolved prompt snapshot as `observe/<action>-resolved-prompt-<resolver-short>.md`.
-2. Ask one or more reviewer agents to compare it against the source manifest and required contracts.
-3. Save each review as `observe/<action>-prompt-review-<reviewer-short>.md`.
-4. Optionally synthesize findings as `reflect/<action>-prompt-review.md`.
-5. Convert accepted issues into scoped OpenSpec changes.
+1. Save the resolved prompt snapshot as `act/<action>-resolved-<resolver-short>.md`.
+2. Ask a different reviewer agent to compare it against the source manifest and required contracts.
+3. Review happens in stdout/chat by default; save `observe/<action>-prompt-review-<reviewer-short>.md` only when an audit artifact is useful.
+4. If a fix is needed, the reviewer proposes an OpenSpec change intent instead of rewriting the prompt directly.
+5. Convert accepted issues into scoped OpenSpec changes, then regenerate the resolved prompt.
 
 Reviewers look for missing contracts, missing inputs, invented behavior, duplicated behavior, output-contract mismatches, resolver mistakes, and ambiguous spec wording.
 
@@ -114,22 +114,18 @@ flowchart TD
     M["act/ manifest"]
     S["Required specs"]
     P["Required plan inputs"]
-    R["observe/\nresolved prompt snapshot"]
-    A["observe/\nreviewer A output"]
-    B["observe/\nreviewer B output"]
-    F["reflect/\nprompt-review synthesis"]
+    R["act/\nresolved prompt"]
+    V["Different reviewer\nstdout review"]
     D["OpenSpec change"]
 
     M --> R
     S --> R
     P --> R
-    R --> A
-    R --> B
-    A --> F
-    B --> F
-    F -->|accepted issue| D
+    R --> V
+    V -->|accepted issue| D
     D --> S
     D --> M
+    D --> R
 ```
 
 ## Health Checks
