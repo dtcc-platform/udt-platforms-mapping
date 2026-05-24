@@ -1,26 +1,4 @@
-# Spec: act-web-prompt-template
-
-## Purpose
-
-Defines the shared structure for canonical web prompt templates.
-
-## Requirements
-
-### Requirement: Canonical web prompts declare contracts and run inputs separately
-
-Canonical web prompt templates that conform to this contract SHALL distinguish required behavior/output contracts from required run inputs.
-
-The prompt SHALL conform to `act-prompt-manifest`.
-
-The prompt SHALL use a `## Required Contracts` section when it depends on OpenSpec behavior or output contracts.
-
-The prompt SHALL use a `## Required Run Inputs` section when it depends on `plan/` files or other run-specific input artifacts.
-
-#### Scenario: Researcher opens a canonical web prompt
-
-- **WHEN** a researcher opens a conforming canonical web prompt
-- **THEN** required OpenSpec contracts are distinguishable from run inputs
-- **THEN** the prompt follows the act prompt manifest contract
+## MODIFIED Requirements
 
 ### Requirement: Canonical web prompts include resolver instructions
 
@@ -52,19 +30,6 @@ The `Research topic:` line SHALL name the concrete research subject and action f
 - **THEN** the resolved prompt is saved under `act/` using the governed resolved-prompt naming convention
 - **THEN** the saved resolved prompt starts with a concrete research topic
 
-### Requirement: Canonical web prompts render output contracts explicitly
-
-Canonical web prompt templates that conform to this contract SHALL render the relevant observe output contract into executable model instructions.
-
-When an observe output contract requires a metadata block, the prompt SHALL explicitly include that metadata block in the output format.
-
-The prompt SHALL preserve the output contract's required tables, columns, section structure, and allowed values.
-
-#### Scenario: Model follows a web prompt
-
-- **WHEN** a model follows a conforming canonical web prompt
-- **THEN** the model sees the required output metadata, tables, sections, and allowed values
-
 ### Requirement: Canonical web prompts include execution and save guidance
 
 Canonical web prompt templates that conform to this contract SHALL include guidance for web model execution.
@@ -85,18 +50,3 @@ When a resolved prompt is provided to a web research tool as an attachment, the 
 - **WHEN** a researcher uploads a saved resolved prompt to a web research tool
 - **THEN** the researcher uses a launcher message telling the tool to read the attached file as the complete prompt
 - **THEN** the web research tool has an explicit chat query even when the prompt is supplied as an attachment
-
-### Requirement: Canonical web prompts reuse shared Markdown formatting
-
-Canonical web prompt templates that conform to this contract and ask models to emit Markdown SHALL require `observe-markdown-output-format` as an inlined required contract.
-
-The prompt SHALL list `openspec/specs/observe-markdown-output-format/spec.md` under `## Required Contracts`.
-
-The web prompt template contract SHALL NOT require each prompt template to duplicate the full shared Markdown formatting rules in the prompt body.
-
-#### Scenario: Prompt emits Markdown
-
-- **WHEN** a conforming canonical web prompt asks a model to emit Markdown
-- **THEN** it lists `observe-markdown-output-format` as a required contract
-- **THEN** the resolver inlines the shared Markdown formatting contract before the prompt body
-- **THEN** the prompt body can reference the inlined Markdown formatting contract instead of duplicating it

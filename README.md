@@ -83,6 +83,12 @@ Resolve act/entity-discovery.md for web use.
 
 The resolver inlines the manifest's required contracts, appends the manifest prompt body, and saves the resolved prompt as `act/entity-discovery-resolved-<resolver-short>.md`. Paste that prompt into the selected web model, then save the response to `observe/entity-discovery-<model-short>.md`.
 
+When uploading the resolved prompt as a file to a web research tool, use this launcher message:
+
+```text
+The attached file contains the complete research prompt. Read the file content as the query and execute it exactly. Do not ask me for another topic unless the file cannot be read.
+```
+
 The repository-local shortcut for the same entity discovery resolve step is:
 
 ```text

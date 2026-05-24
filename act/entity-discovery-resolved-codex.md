@@ -1,4 +1,4 @@
-# Prompt
+Research topic: Deeply research and map the Urban Digital Twin entity ecosystem, including platforms, frameworks, modules, initiatives, and excluded boundary candidates.
 
 You are a research assistant mapping the Urban Digital Twin entity ecosystem.
 
@@ -58,6 +58,8 @@ The prompt SHALL instruct the model to render the `observe-entity-discovery` met
 
 The prompt SHALL provide an explicit runnable research query suitable for web research tools before relying on inlined contract details.
 
+The resolved entity discovery prompt SHALL start with a `Research topic:` line naming the Urban Digital Twin entity ecosystem, including platforms, frameworks, modules, initiatives, and excluded boundary candidates.
+
 The prompt SHALL instruct the user to save web responses to `observe/entity-discovery-<model-short>.md`.
 
 The live `act/entity-discovery.md` prompt body SHALL avoid duplicating behavior supplied by required contracts.
@@ -65,7 +67,7 @@ The live `act/entity-discovery.md` prompt body SHALL avoid duplicating behavior 
 #### Scenario: Researcher runs entity discovery
 
 - **WHEN** a researcher resolves `act/entity-discovery.md`
-- **THEN** the prompt starts with a runnable research query
+- **THEN** the prompt starts with a runnable research topic
 - **THEN** the prompt conforms to the shared act manifest contract
 - **THEN** the prompt conforms to the shared web prompt template
 - **THEN** the prompt incorporates the `act-entity-discovery` behavior contract
