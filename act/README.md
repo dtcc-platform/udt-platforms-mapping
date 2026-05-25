@@ -1,8 +1,8 @@
 # act/
 
-`act/` contains contract manifests for governed research, benchmarking, and reporting workflows.
+`act/` contains contract manifests for governed research and reporting workflows.
 
-Manifest filenames use object/action/role names that align with the governing OpenSpec capability without repeating the `act-` phase prefix, such as `entity-discovery.md`, `platform-comparison.md`, `entity-discovery-benchmark.md`, or `platform-discovery-report.md`.
+Manifest filenames use object/action/role names that align with the governing OpenSpec capability without repeating the `act-` phase prefix, such as `entity-discovery.md`, `platform-comparison.md`, or `platform-discovery-report.md`.
 
 Each manifest lists the specs and run inputs that affect the action. Web-oriented manifests are resolved into concrete prompts before use; CLI-oriented manifests are run by an AI CLI with filesystem access.
 

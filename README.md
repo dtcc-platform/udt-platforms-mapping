@@ -28,9 +28,9 @@ The core research loop follows action research:
 PLAN -> ACT -> OBSERVE -> REFLECT
 ```
 
-- `plan/` contains run inputs such as selected comparison sets, benchmark fixtures, and run-specific scope material.
-- `act/` contains contract manifests and resolved executable prompts for research, benchmarking, and reporting actions.
-- `observe/` stores saved model outputs, generated benchmark reports, and optional saved review evidence.
+- `plan/` contains run inputs such as selected comparison sets and run-specific scope material.
+- `act/` contains contract manifests and resolved executable prompts for research and reporting actions.
+- `observe/` stores saved model outputs, generated workflow outputs, and optional saved review evidence.
 - `reflect/` contains synthesized reporting, comparison, prompt-review, and reflection artifacts.
 
 Phase structure and artifact naming are governed by `research-workflow-structure`.
@@ -67,7 +67,6 @@ Canonical actions include:
 
 - entity discovery
 - platform comparison
-- entity discovery benchmark
 - platform discovery report
 - platform comparison report
 

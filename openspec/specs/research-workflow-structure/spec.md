@@ -71,8 +71,6 @@ Saved web responses SHALL use filenames that identify the research action and mo
 
 Generated workflow outputs SHALL live as direct files under `observe/` when they are observations of a run.
 
-Generated benchmark reports SHALL use filenames that identify the evaluated research action and `benchmark-report` role.
-
 Prompt review feedback SHALL be stdout/chat by default and SHALL NOT require a saved `observe/` artifact.
 
 Optional saved prompt review evidence SHALL live as a direct file under `observe/` when a researcher explicitly preserves it.
@@ -94,15 +92,9 @@ Optional saved prompt review evidence SHALL live as a direct file under `observe
 - **THEN** the artifact is saved as a direct file under `observe/`
 - **THEN** the filename identifies the research action and prompt-review role
 
-#### Scenario: Benchmark report is generated
-
-- **WHEN** a benchmark action generates an observed report
-- **THEN** the report is saved as a direct file under `observe/`
-- **THEN** the filename identifies the evaluated research action and benchmark-report role
-
 ### Requirement: reflect/ holds synthesized research artifacts
 
-`reflect/` SHALL contain synthesized reflection, reporting, and benchmark-analysis outputs as direct files whose names identify the research object and artifact function.
+`reflect/` SHALL contain synthesized reflection and reporting outputs as direct files whose names identify the research object and artifact function.
 
 Prompt-review synthesis outputs SHALL live under `reflect/` when they consolidate resolved-prompt review findings across agents.
 
@@ -134,7 +126,7 @@ Live filenames SHALL NOT repeat the `udt-` prefix because the repository context
 
 Plan artifacts SHALL use noun phrases for run inputs, definitions, rubrics, policies, or fixtures.
 
-Act artifacts SHALL use object/action/role names for executable research actions, reporting actions, and benchmark actions.
+Act artifacts SHALL use object/action/role names for executable research actions and reporting actions.
 
 Observe artifacts SHALL identify the research action and model or generated output.
 
@@ -142,8 +134,8 @@ Reflect artifacts SHALL identify the research object and synthesis or export pro
 
 OpenSpec capability names SHALL use phase-object-role grammar:
 
-- `plan-<object>-<artifact-role>` for planned definitions, inputs, rubrics, source policies, and benchmark fixtures
-- `act-<object>-<artifact-role>` for research actions, prompt execution contracts, benchmarking actions, and reporting actions
+- `plan-<object>-<artifact-role>` for planned definitions, inputs, rubrics, source policies, and checklist contracts
+- `act-<object>-<artifact-role>` for research actions, prompt execution contracts, and reporting actions
 - `observe-<object>-<artifact-role>` for saved outputs and generated observations
 - `reflect-<object>-<artifact-role>` for synthesis, reporting, and reflection outputs
 

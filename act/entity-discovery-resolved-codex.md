@@ -4,16 +4,19 @@ You are a research assistant mapping the Urban Digital Twin entity ecosystem.
 
 Deeply research and map the Urban Digital Twin entity ecosystem. Follow the inlined required contracts below and perform entity discovery according to those contracts.
 
+Use the inlined recall checklist as a visible known-candidate audit after open discovery. This improves completeness and forces explicit explanations for known misses, but it is not a blind recall benchmark because the checklist candidates are visible to you during the run.
+
 Return only the final deliverable.
 
 # Resolved Prompt Metadata
 
 - Source manifest: `act/entity-discovery.md`
 - Resolver: `codex`
-- Date: `2026-05-24`
+- Date: `2026-05-25`
 - Required contracts:
   - `openspec/specs/act-entity-discovery/spec.md`
   - `openspec/specs/plan-entity-definition/spec.md`
+  - `openspec/specs/plan-entity-discovery-recall-checklist/spec.md`
   - `openspec/specs/observe-entity-discovery/spec.md`
   - `openspec/specs/observe-markdown-output-format/spec.md`
 - Required run inputs: none
@@ -42,9 +45,15 @@ The prompt SHALL declare `act-entity-discovery` as a required prompt behavior co
 
 The prompt SHALL declare `plan-entity-definition` as a required behavior contract.
 
+The prompt SHALL declare `plan-entity-discovery-recall-checklist` as a required recall-check contract.
+
 The prompt SHALL declare `observe-entity-discovery` as a required output contract.
 
 The prompt SHALL instruct the model to use `plan-entity-definition` as the authoritative classification contract for assigning each candidate's `Type`.
+
+The prompt SHALL instruct the model to use `plan-entity-discovery-recall-checklist` as a visible known-candidate recall check after open discovery.
+
+The prompt SHALL explain that the recall checklist improves completeness and miss explanation but is not a blind recall benchmark because the model can see the known candidates.
 
 The prompt SHALL instruct the model to discover technical artifacts, initiatives, excluded boundary candidates, and initiative-to-artifact substrate relationships in one discovery run.
 
@@ -54,7 +63,7 @@ The prompt SHALL instruct the model to use the entity definition tie-break guida
 
 The prompt SHALL instruct the model to preserve uncertainty when evidence is weak or ambiguous.
 
-The prompt SHALL instruct the model to render the `observe-entity-discovery` metadata block, coverage statement, summary table, and entity sections explicitly.
+The prompt SHALL instruct the model to render the `observe-entity-discovery` metadata block, coverage statement, summary table, recall-check table, recall-check explanations, and entity sections explicitly.
 
 The prompt SHALL provide an explicit runnable research query suitable for web research tools before relying on inlined contract details.
 
@@ -73,6 +82,7 @@ The live `act/entity-discovery.md` prompt body SHALL avoid duplicating behavior 
 - **THEN** the prompt incorporates the `act-entity-discovery` behavior contract
 - **THEN** the prompt incorporates the `observe-markdown-output-format` formatting contract
 - **THEN** the prompt incorporates the `plan-entity-definition` behavior contract
+- **THEN** the prompt incorporates the `plan-entity-discovery-recall-checklist` contract
 - **THEN** the prompt renders the `observe-entity-discovery` output contract into executable instructions
 - **THEN** the prompt tells the researcher to save the web response under `observe/`
 
@@ -342,6 +352,36 @@ Discovery SHALL NOT introduce ad hoc output `Type` values such as `unknown`, `to
 - **THEN** discovery assigns one of `platform`, `framework`, `module`, `initiative`, or `excluded`
 - **THEN** discovery explains the uncertainty instead of creating a new `Type`
 
+# openspec/specs/plan-entity-discovery-recall-checklist/spec.md
+
+# Spec: plan-entity-discovery-recall-checklist
+
+## Purpose
+
+Defines known entity recall-check cases that the entity discovery prompt must audit during each discovery run.
+
+## Requirements
+
+### Requirement: GeoDatalytics is a known recall-check entity
+
+Entity discovery SHALL treat GeoDatalytics as a known recall-check entity.
+
+The recall-check entity SHALL use `GeoDatalytics` as the canonical `Name`.
+
+The recall-check entity SHALL use `https://github.com/OpenGeoscience/geodatalytics` as the canonical `Link`.
+
+The recall-check entity SHALL use `module` as the expected `Type`.
+
+The recall-check entity SHALL include `geodatalytics` as an alias.
+
+The recall-check rationale SHALL state that GeoDatalytics is an accepted recall-miss case for adjacent geospatial or urban analytics tooling that may not use explicit digital twin wording.
+
+#### Scenario: Discovery checks GeoDatalytics
+
+- **WHEN** entity discovery runs with the recall checklist contract
+- **THEN** it checks GeoDatalytics as a known recall-check entity
+- **THEN** it reports whether GeoDatalytics was found, missed, or excluded under the governed miss categories
+
 # openspec/specs/observe-entity-discovery/spec.md
 
 # Spec: observe-entity-discovery
@@ -376,6 +416,29 @@ Each entity discovery row SHALL assign exactly one `Type` value: `platform`, `fr
 
 The summary table SHALL NOT include `Uses`, `Reason`, `Description`, `EntityKind`, or other detail columns.
 
+Each saved entity discovery response SHALL include a `## Known Candidate Recall Check` section after the summary table.
+
+The recall-check section SHALL include a table with exactly these columns in this order:
+
+- `Name`
+- `Link`
+- `Expected Type`
+- `Status`
+
+Each recall-check row SHALL use exactly one `Status` value: `found`, `recall-miss`, `wording-miss`, `classification-miss`, `evidence-limited`, or `out-of-scope`.
+
+The recall-check section SHALL include explanatory paragraphs below the recall-check table for any row whose `Status` is not `found`.
+
+A `recall-miss` SHALL mean the known candidate is relevant but was not recovered during open discovery.
+
+A `wording-miss` SHALL mean the candidate is likely relevant but was missed because its public framing does not use obvious Urban Digital Twin or digital twin terminology.
+
+A `classification-miss` SHALL mean the candidate was found but assigned a different `Type` than the expected type.
+
+An `evidence-limited` status SHALL mean the model could not verify enough evidence to include or classify the candidate confidently.
+
+An `out-of-scope` status SHALL mean the candidate was checked and excluded under `plan-entity-definition`.
+
 Each saved entity discovery response SHALL include one `##` section per entity.
 
 Each entity section SHALL include a concise paragraph describing what the entity is, why the assigned `Type` fits, and any uncertainty.
@@ -387,7 +450,7 @@ For excluded rows, the entity paragraph SHALL explain the exclusion reason.
 #### Scenario: Researcher saves entity discovery output
 
 - **WHEN** a researcher saves an entity discovery web response
-- **THEN** the response follows the metadata, coverage statement, table, Type, and entity section contract
+- **THEN** the response follows the metadata, coverage statement, table, Type, recall-check, and entity section contract
 
 #### Scenario: Summary table is rendered
 
@@ -395,6 +458,12 @@ For excluded rows, the entity paragraph SHALL explain the exclusion reason.
 - **THEN** the table columns are exactly `Name`, `Type`, and `Link`
 - **THEN** `Link` is the final column
 - **THEN** `Uses` and `Reason` are not table columns
+
+#### Scenario: Recall check is rendered
+
+- **WHEN** an entity discovery response renders the known candidate recall check
+- **THEN** the recall-check table columns are exactly `Name`, `Link`, `Expected Type`, and `Status`
+- **THEN** any non-`found` status is explained in a paragraph below the table
 
 #### Scenario: Initiative uses a known artifact
 

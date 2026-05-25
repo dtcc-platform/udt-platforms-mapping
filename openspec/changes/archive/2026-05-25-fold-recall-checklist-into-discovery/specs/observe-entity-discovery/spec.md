@@ -1,10 +1,4 @@
-# Spec: observe-entity-discovery
-
-## Purpose
-
-Defines the observed output contract for unified entity discovery.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Entity discovery observations use the governed response contract
 

@@ -13,7 +13,7 @@ Frameworks, modules, and excluded rows do not belong here.
 **The DTCC row MUST be present.** The comparison prompt's Part 3 landscape observations orient around DTCC, so removing the DTCC row breaks Part 3 output.
 If DTCC is missing, the comparison prompt will surface a scope error and refuse to produce output.
 
-Aliases do not belong here. Comparison uses exact selected canonical rows; fuzzy alias handling belongs in the platform discovery benchmarking workflow.
+Aliases do not belong here. Comparison uses exact selected canonical rows; fuzzy matching belongs in entity discovery and recall-check contracts.
 
 | Name              | Link                                                                                                      |
 | ----------------- | --------------------------------------------------------------------------------------------------------- |
