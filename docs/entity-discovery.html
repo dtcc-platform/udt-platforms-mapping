@@ -1,104 +1,116 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Entity Discovery Tables</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>platform-discovery-chatgpt</title>
   <style>
-    :root {
-      color-scheme: light;
-      --bg: #f7f8fa;
-      --panel: #ffffff;
-      --text: #20242a;
-      --muted: #5d6673;
-      --line: #d8dde5;
-      --accent: #0b6bcb;
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font: 15px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background: var(--bg);
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
     }
-    main {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 32px 20px 56px;
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
-    h1 { margin: 0 0 8px; font-size: 2rem; }
-    h2 { margin: 0 0 12px; font-size: 1.35rem; }
-    h3 { margin: 24px 0 10px; font-size: 1rem; }
-    .intro { margin: 0 0 24px; color: var(--muted); }
-    .run {
-      margin: 24px 0;
-      padding: 20px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    .metadata {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 10px 16px;
-      margin: 0 0 18px;
-    }
-    .metadata div { min-width: 0; }
-    dt { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; }
-    dd { margin: 2px 0 0; overflow-wrap: anywhere; }
-    code {
-      padding: 2px 4px;
-      background: #eef1f5;
-      border-radius: 4px;
-      font-size: 0.9em;
-    }
-    .table-wrap {
-      overflow-x: auto;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-    }
-    th, td {
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--line);
-      text-align: left;
-      vertical-align: top;
-      white-space: nowrap;
-    }
-    th {
-      position: sticky;
-      top: 0;
-      background: #eef3f8;
-      font-weight: 650;
-    }
-    tr:last-child td { border-bottom: 0; }
-    a { color: var(--accent); }
-    @media (max-width: 720px) {
-      main { padding: 20px 12px 40px; }
-      .run { padding: 14px; }
-      th, td { padding: 7px 8px; }
-    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
-  <main>
-    <h1>Entity Discovery Tables</h1>
-    <p class="intro">Generated from saved discovery observations in <code>observe/</code>.</p>
-    
-<section class="run">
-  <h2>GPT-5.2 Thinking</h2>
-  <dl class="metadata">
-    <div><dt>Source</dt><dd><code>observe/platform-discovery-chatgpt.md</code></dd></div>
-    <div><dt>Date</dt><dd>2026-05-24</dd></div>
-    <div><dt>Prompt</dt><dd>entity-discovery</dd></div>
-    <div><dt>Rows</dt><dd>55</dd></div>
-  </dl>
-  <div class="table-wrap">
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model</span><span class="kw">:</span><span class="at"> gpt-5.2-thinking</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> 2026-05-25</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prompt</span><span class="kw">:</span><span class="at"> entity-discovery</span></span></code></pre></div>
+<h1 id="urban-digital-twin-entity-ecosystem-discovery">Urban Digital
+Twin Entity Ecosystem Discovery</h1>
+<p>Resolved prompt: <a
+href="sandbox:/mnt/data/entity-discovery-resolved-codex.md">entity-discovery-resolved-codex.md</a></p>
+<p>I identified 55 supported candidates: 11 <code>platform</code>, 18
+<code>framework</code>, 15 <code>module</code>, 6
+<code>initiative</code>, and 5 <code>excluded</code>. I met all coverage
+targets, and after meeting the minimum floors I extended recall into
+regional, academic, open-source, and research-centre candidates across
+the required adjacent families: frontend GIS/web mapping, 3D geospatial
+and 3D Tiles, and point-cloud/city-model tooling.</p>
 <table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 5%" />
+<col style="width: 76%" />
+</colgroup>
 <thead>
 <tr>
 <th>Name</th>
@@ -108,593 +120,701 @@
 </thead>
 <tbody>
 <tr>
-<td>ArcGIS Urban</td>
+<td>Bentley iTwin Platform</td>
 <td>platform</td>
-<td><a href="https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview">Official page</a></td>
+<td><a
+href="https://www.bentley.com/software/itwin-platform/">Link</a></td>
 </tr>
 <tr>
 <td>Bentley OpenCities Planner</td>
 <td>platform</td>
-<td><a href="https://www.bentley.com/software/opencities-planner/">Official page</a></td>
+<td><a
+href="https://www.bentley.com/software/opencities-planner/">Link</a></td>
+</tr>
+<tr>
+<td>ArcGIS Urban</td>
+<td>platform</td>
+<td><a href="https://urban.arcgis.com/">Link</a></td>
+</tr>
+<tr>
+<td>Hexagon Octave</td>
+<td>platform</td>
+<td><a href="https://www.octave.com/go/urban-digital-twin">Link</a></td>
 </tr>
 <tr>
 <td>3DEXPERIENCity</td>
 <td>platform</td>
-<td><a href="https://discover.3ds.com/smart-city-technology-collaboration-and-digital-twin-0">Official page</a></td>
+<td><a
+href="https://discover.3ds.com/smart-city-technology-collaboration-and-digital-twin-0">Link</a></td>
 </tr>
 <tr>
 <td>VU.CITY</td>
 <td>platform</td>
-<td><a href="https://www.vu.city/">Official page</a></td>
-</tr>
-<tr>
-<td>NSW Spatial Digital Twin</td>
-<td>platform</td>
-<td><a href="https://www.spatial.nsw.gov.au/digital_twin">Official page</a></td>
-</tr>
-<tr>
-<td>DTCC Platform</td>
-<td>platform</td>
-<td><a href="https://www-1.dtcc.chalmers.se/digital-twin-platform/">Official page</a></td>
-</tr>
-<tr>
-<td>Terria</td>
-<td>platform</td>
-<td><a href="https://terria.com/">Official page</a></td>
-</tr>
-<tr>
-<td>VC Suite</td>
-<td>platform</td>
-<td><a href="https://vc.systems/en/">Official page</a></td>
+<td><a href="https://www.vu.city/">Link</a></td>
 </tr>
 <tr>
 <td>Snap4City</td>
 <td>platform</td>
-<td><a href="https://www.snap4city.org/">Official page</a></td>
+<td><a href="https://www.snap4city.org/drupal/node/749">Link</a></td>
 </tr>
 <tr>
 <td>DUET Digital Twins</td>
 <td>platform</td>
-<td><a href="https://www.digitalurbantwins.com/">Official page</a></td>
+<td><a href="https://www.digitalurbantwins.com/">Link</a></td>
+</tr>
+<tr>
+<td>Virtual Singapore Platform</td>
+<td>platform</td>
+<td><a
+href="https://www.3ds.com/newsroom/press-releases/dassault-systemes-and-national-research-foundation-collaborate-develop-virtual-singapore-platform">Link</a></td>
+</tr>
+<tr>
+<td>GATE City Digital Twin</td>
+<td>platform</td>
+<td><a href="https://www.gate-ai.eu/en/business/ss-2/">Link</a></td>
+</tr>
+<tr>
+<td>DTCC Platform</td>
+<td>platform</td>
+<td><a href="https://github.com/dtcc-platform">Link</a></td>
 </tr>
 <tr>
 <td>CesiumJS</td>
 <td>framework</td>
-<td><a href="https://cesium.com/platform/cesiumjs/">Official page</a></td>
+<td><a href="https://cesium.com/platform/cesiumjs/">Link</a></td>
+</tr>
+<tr>
+<td>TerriaJS</td>
+<td>framework</td>
+<td><a href="https://github.com/TerriaJS/terriajs">Link</a></td>
+</tr>
+<tr>
+<td>iTowns</td>
+<td>framework</td>
+<td><a href="https://www.itowns-project.org/">Link</a></td>
 </tr>
 <tr>
 <td>OpenLayers</td>
 <td>framework</td>
-<td><a href="https://openlayers.org/">Official page</a></td>
-</tr>
-<tr>
-<td>MapLibre GL JS</td>
-<td>framework</td>
-<td><a href="https://maplibre.org/projects/gl-js/">Official page</a></td>
-</tr>
-<tr>
-<td>Leaflet</td>
-<td>framework</td>
-<td><a href="https://leafletjs.com/">Official page</a></td>
+<td><a href="https://openlayers.org/">Link</a></td>
 </tr>
 <tr>
 <td>deck.gl</td>
 <td>framework</td>
-<td><a href="https://deck.gl/docs">Official page</a></td>
-</tr>
-<tr>
-<td>TerriaJS</td>
-<td>framework</td>
-<td><a href="https://terria.com/open-source">Official page</a></td>
-</tr>
-<tr>
-<td>NASA WorldWind</td>
-<td>framework</td>
-<td><a href="https://worldwind.arc.nasa.gov/">Official page</a></td>
-</tr>
-<tr>
-<td>Azure Digital Twins</td>
-<td>framework</td>
-<td><a href="https://learn.microsoft.com/en-us/azure/digital-twins/overview">Official page</a></td>
-</tr>
-<tr>
-<td>Eclipse Ditto</td>
-<td>framework</td>
-<td><a href="https://eclipse.dev/ditto/">Official page</a></td>
-</tr>
-<tr>
-<td>FIWARE</td>
-<td>framework</td>
-<td><a href="https://www.fiware.org/about-us/">Official page</a></td>
-</tr>
-<tr>
-<td>3D City Database</td>
-<td>framework</td>
-<td><a href="https://www.3dcitydb.org/">Official page</a></td>
-</tr>
-<tr>
-<td>iTwin.js</td>
-<td>framework</td>
-<td><a href="https://www.itwinjs.org/">Official page</a></td>
-</tr>
-<tr>
-<td>Cesium Native</td>
-<td>framework</td>
-<td><a href="https://cesium.com/learn/cesium-native/ref-doc/">Official page</a></td>
-</tr>
-<tr>
-<td>Giro3D</td>
-<td>framework</td>
-<td><a href="https://giro3d.org/">Official page</a></td>
+<td><a href="https://deck.gl/">Link</a></td>
 </tr>
 <tr>
 <td>loaders.gl</td>
 <td>framework</td>
-<td><a href="https://loaders.gl/">Official page</a></td>
+<td><a href="https://github.com/visgl/loaders.gl">Link</a></td>
 </tr>
 <tr>
-<td>PLATEAU SDK for Unity</td>
+<td>MapLibre GL JS</td>
 <td>framework</td>
-<td><a href="https://github.com/Project-PLATEAU/PLATEAU-SDK-for-Unity">Official page</a></td>
+<td><a href="https://maplibre.org/maplibre-gl-js/docs/">Link</a></td>
 </tr>
 <tr>
-<td>PLATEAU SDK for Unreal</td>
+<td>Leaflet</td>
 <td>framework</td>
-<td><a href="https://github.com/Project-PLATEAU/PLATEAU-SDK-for-Unreal">Official page</a></td>
+<td><a href="https://leafletjs.com/">Link</a></td>
 </tr>
 <tr>
-<td>ArcGIS GeoBIM</td>
-<td>module</td>
-<td><a href="https://www.esri.com/en-us/arcgis/products/arcgis-geobim/overview">Official page</a></td>
+<td>NASA WorldWind</td>
+<td>framework</td>
+<td><a href="https://worldwind.arc.nasa.gov/">Link</a></td>
 </tr>
 <tr>
-<td>SimStadt</td>
-<td>module</td>
-<td><a href="https://simstadt.hft-stuttgart.de/">Official page</a></td>
+<td>iTwin.js</td>
+<td>framework</td>
+<td><a href="https://www.itwinjs.org/">Link</a></td>
 </tr>
 <tr>
-<td>City Energy Analyst</td>
-<td>module</td>
-<td><a href="https://cityenergyanalyst.com/">Official page</a></td>
+<td>FIWARE</td>
+<td>framework</td>
+<td><a
+href="https://www.fiware.org/about-us/smart-cities/">Link</a></td>
 </tr>
 <tr>
-<td>UMEP</td>
-<td>module</td>
-<td><a href="https://umep-docs.readthedocs.io/">Official page</a></td>
+<td>UrbanSim</td>
+<td>framework</td>
+<td><a href="https://www.urbansim.com/">Link</a></td>
 </tr>
 <tr>
-<td>NoiseModelling</td>
-<td>module</td>
-<td><a href="https://noisemodelling.readthedocs.io/">Official page</a></td>
+<td>Cesium for Unreal</td>
+<td>framework</td>
+<td><a
+href="https://cesium.com/platform/cesium-for-unreal/">Link</a></td>
 </tr>
 <tr>
-<td>PDAL</td>
-<td>module</td>
-<td><a href="https://pdal.org/">Official page</a></td>
+<td>Cesium for Unity</td>
+<td>framework</td>
+<td><a
+href="https://cesium.com/platform/cesium-for-unity/">Link</a></td>
 </tr>
 <tr>
-<td>Entwine</td>
-<td>module</td>
-<td><a href="https://entwine.io/">Official page</a></td>
+<td>Cesium for O3DE</td>
+<td>framework</td>
+<td><a href="https://cesium.com/platform/cesium-for-o3de/">Link</a></td>
 </tr>
 <tr>
-<td>py3dtiles</td>
+<td>CityDigitalTwin</td>
+<td>framework</td>
+<td><a href="https://github.com/uihilab/CityDigitalTwin">Link</a></td>
+</tr>
+<tr>
+<td>kepler.gl</td>
+<td>framework</td>
+<td><a href="https://kepler.gl/docs/">Link</a></td>
+</tr>
+<tr>
+<td>three-geospatial</td>
+<td>framework</td>
+<td><a
+href="https://github.com/takram-design-engineering/three-geospatial">Link</a></td>
+</tr>
+<tr>
+<td>GeoDatalytics</td>
 <td>module</td>
-<td><a href="https://py3dtiles.org/main/">Official page</a></td>
+<td><a
+href="https://github.com/OpenGeoscience/geodatalytics">Link</a></td>
+</tr>
+<tr>
+<td>Digital Twin Toolbox</td>
+<td>module</td>
+<td><a
+href="https://github.com/geosolutions-it/digital-twin-toolbox">Link</a></td>
 </tr>
 <tr>
 <td>Potree</td>
 <td>module</td>
-<td><a href="https://potree.github.io/">Official page</a></td>
+<td><a href="https://potree.github.io/">Link</a></td>
 </tr>
 <tr>
-<td>SUMO</td>
+<td>PotreeConverter</td>
 <td>module</td>
-<td><a href="https://eclipse.dev/sumo/">Official page</a></td>
+<td><a href="https://github.com/potree/PotreeConverter">Link</a></td>
 </tr>
 <tr>
-<td>MATSim</td>
+<td>3DTilesRendererJS</td>
 <td>module</td>
-<td><a href="https://matsim.org/">Official page</a></td>
+<td><a
+href="https://github.com/NASA-AMMOS/3DTilesRendererJS">Link</a></td>
 </tr>
 <tr>
-<td>Orion Context Broker</td>
+<td>three-loader-3dtiles</td>
 <td>module</td>
-<td><a href="https://fiware-orion.readthedocs.io/">Official page</a></td>
+<td><a
+href="https://github.com/nytimes/three-loader-3dtiles">Link</a></td>
 </tr>
 <tr>
-<td>Urban Modeling Interface</td>
+<td>py3dtiles</td>
 <td>module</td>
-<td><a href="https://web.mit.edu/sustainabledesignlab/projects/umi/index.html">Official page</a></td>
+<td><a href="https://py3dtiles.org/">Link</a></td>
 </tr>
 <tr>
-<td>Connected Urban Twins</td>
+<td>PDAL</td>
+<td>module</td>
+<td><a href="https://pdal.org/">Link</a></td>
+</tr>
+<tr>
+<td>3D City Database</td>
+<td>module</td>
+<td><a href="https://github.com/3dcitydb">Link</a></td>
+</tr>
+<tr>
+<td>citygml4j</td>
+<td>module</td>
+<td><a href="https://github.com/citygml4j/citygml4j">Link</a></td>
+</tr>
+<tr>
+<td>cjio</td>
+<td>module</td>
+<td><a href="https://github.com/cityjson/cjio">Link</a></td>
+</tr>
+<tr>
+<td>val3dity</td>
+<td>module</td>
+<td><a href="https://val3dity.readthedocs.io/">Link</a></td>
+</tr>
+<tr>
+<td>SimStadt</td>
+<td>module</td>
+<td><a href="https://simstadt.hft-stuttgart.de/">Link</a></td>
+</tr>
+<tr>
+<td>NoiseModelling</td>
+<td>module</td>
+<td><a
+href="https://github.com/Universite-Gustave-Eiffel/NoiseModelling">Link</a></td>
+</tr>
+<tr>
+<td>OSMnx</td>
+<td>module</td>
+<td><a href="https://osmnx.readthedocs.io/">Link</a></td>
+</tr>
+<tr>
+<td>Virtual Singapore</td>
 <td>initiative</td>
-<td><a href="https://www.connectedurbantwins.de/en/">Official page</a></td>
+<td><a
+href="https://www.tech.gov.sg/technews/5-things-to-know-about-virtual-singapore/">Link</a></td>
 </tr>
 <tr>
 <td>DUET project</td>
 <td>initiative</td>
-<td><a href="https://www.digitalurbantwins.com/about-1">Official page</a></td>
+<td><a href="https://cordis.europa.eu/project/id/870697">Link</a></td>
 </tr>
 <tr>
-<td>CitiVERSE EDIC</td>
+<td>Helsinki 3D+</td>
 <td>initiative</td>
-<td><a href="https://digital-strategy.ec.europa.eu/en/factpages/citiverse">Official page</a></td>
+<td><a
+href="https://www.hel.fi/en/decision-making/information-on-helsinki/maps-and-geospatial-data/helsinki-3d">Link</a></td>
 </tr>
 <tr>
-<td>x-CITE</td>
+<td>GATE City Digital Twin Pilot Project</td>
 <td>initiative</td>
-<td><a href="https://xcitecitiverse.eu/">Official page</a></td>
-</tr>
-<tr>
-<td>Project PLATEAU</td>
-<td>initiative</td>
-<td><a href="https://www.mlit.go.jp/plateau/en/">Official page</a></td>
-</tr>
-<tr>
-<td>CReDo</td>
-<td>initiative</td>
-<td><a href="https://www.cdbb.cam.ac.uk/events/credo-project-show-and-tell-webinar-collaboration-and-resilience-through-connected-digital">Official page</a></td>
-</tr>
-<tr>
-<td>National Digital Twin Programme</td>
-<td>initiative</td>
-<td><a href="https://www.cdbb.cam.ac.uk/what-we-did/national-digital-twin-programme">Official page</a></td>
+<td><a href="https://city.gate-ai.eu/">Link</a></td>
 </tr>
 <tr>
 <td>Digital Twin Cities Centre</td>
 <td>initiative</td>
-<td><a href="https://www.dtcc.chalmers.se/">Official page</a></td>
+<td><a href="https://www.dtcc.chalmers.se/">Link</a></td>
 </tr>
 <tr>
-<td>Virtual Singapore</td>
+<td>Stuttgart Urban Digital Twin</td>
 <td>initiative</td>
-<td><a href="https://www.3ds.com/insights/customer-stories/virtual-singapore">Official page</a></td>
+<td><a
+href="https://www.stuttgart.de/en/leben/bauen/geoportal/urbane-digitale-zwillinge">Link</a></td>
 </tr>
 <tr>
 <td>ArcGIS StoryMaps</td>
 <td>excluded</td>
-<td><a href="https://www.esri.com/en-us/arcgis/products/arcgis-storymaps/overview">Official page</a></td>
+<td><a
+href="https://www.esri.com/en-us/arcgis/products/arcgis-storymaps/overview">Link</a></td>
+</tr>
+<tr>
+<td>StoryMapJS</td>
+<td>excluded</td>
+<td><a href="https://storymap.knightlab.com/">Link</a></td>
 </tr>
 <tr>
 <td>Flourish</td>
 <td>excluded</td>
-<td><a href="https://flourish.studio/">Official page</a></td>
+<td><a href="https://flourish.studio/">Link</a></td>
 </tr>
 <tr>
-<td>Tableau</td>
+<td>Destination Earth</td>
 <td>excluded</td>
-<td><a href="https://www.tableau.com/">Official page</a></td>
+<td><a
+href="https://digital-strategy.ec.europa.eu/en/policies/destination-earth">Link</a></td>
 </tr>
 <tr>
-<td>CityGML</td>
+<td>National Digital Twin Programme</td>
 <td>excluded</td>
-<td><a href="https://www.ogc.org/standards/citygml/">Official page</a></td>
-</tr>
-<tr>
-<td>3D Tiles</td>
-<td>excluded</td>
-<td><a href="https://www.ogc.org/standards/3dtiles/">Official page</a></td>
-</tr>
-<tr>
-<td>IndoorGML</td>
-<td>excluded</td>
-<td><a href="https://www.ogc.org/standards/indoorgml/">Official page</a></td>
+<td><a
+href="https://www.gov.uk/government/collections/the-national-digital-twin-programme-ndtp">Link</a></td>
 </tr>
 </tbody>
 </table>
-</div>
-  <h3>Known Candidate Recall Check</h3>
-  <p>No recall-check table was found in this observation.</p>
-</section>
-
-
-<section class="run">
-  <h2>Claude Opus 4.7</h2>
-  <dl class="metadata">
-    <div><dt>Source</dt><dd><code>observe/platform-discovery-claude.md</code></dd></div>
-    <div><dt>Date</dt><dd>2026-04-21</dd></div>
-    <div><dt>Prompt</dt><dd>platform-discovery</dd></div>
-    <div><dt>Rows</dt><dd>32</dd></div>
-  </dl>
-  <div class="table-wrap">
+<h2 id="known-candidate-recall-check">Known Candidate Recall Check</h2>
 <table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 63%" />
+<col style="width: 14%" />
+<col style="width: 6%" />
+</colgroup>
 <thead>
 <tr>
 <th>Name</th>
 <th>Link</th>
-<th>Type</th>
-<th>Reason</th>
+<th>Expected Type</th>
+<th>Status</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>DTCC Platform</td>
-<td><a href="https://platform.dtcc.chalmers.se/">platform.dtcc.chalmers.se</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>Virtual Singapore</td>
-<td><a href="https://www.nrf.gov.sg/programmes/virtual-singapore">nrf.gov.sg/programmes/virtual-singapore</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>Project PLATEAU</td>
-<td><a href="https://www.mlit.go.jp/plateau/en/">mlit.go.jp/plateau/en</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>Dassault Systèmes 3DEXPERIENCity</td>
-<td><a href="https://investor.3ds.com/news-releases/news-release-details/dassault-systemes-and-national-research-foundation-collaborate">3ds.com</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>NVIDIA Omniverse</td>
-<td><a href="https://www.nvidia.com/en-us/company/digital-transformation/siemens-xcelerator/">nvidia.com/omniverse</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>ArcGIS Urban</td>
-<td><a href="https://www.esri.com/en-us/capabilities/3d-gis/get-started">esri.com/arcgis/products/arcgis-urban</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>Bentley OpenCities Planner</td>
-<td><a href="https://www.bentley.com/software/opencities-planner/">bentley.com/software/opencities-planner</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>Hexagon Urban Digital Twin Platform</td>
-<td><a href="https://hexagon.com/go/sig/urban-digital-twin">hexagon.com</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>Snap4City</td>
-<td><a href="https://www.fiware.org/powered-by-fiware/snap4city/km4city.html">snap4city.org</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>51WORLD 51Aes</td>
-<td><a href="https://51world.medium.com/digital-twin-at-scale-by-51world-db05fe3afad9">51world.com</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>SuperMap Digital Twin Platform</td>
-<td><a href="https://www.supermap.com/en-us/news/?82_4338">supermap.com</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>DUET (Digital Urban European Twins)</td>
-<td><a href="https://www.digitalurbantwins.com/">digitalurbantwins.com</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>Virtual City Systems VC Suite / VC Map</td>
-<td><a href="https://vc.systems/en/solutions/digital-twin/">vc.systems</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>TerriaJS</td>
-<td><a href="https://terria.com/open-source">terria.io</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>CesiumJS</td>
-<td><a href="https://cesium.com/platform/cesiumjs/">cesium.com/cesiumjs</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>3D Tiles</td>
-<td><a href="https://github.com/CesiumGS/3d-tiles">github.com/CesiumGS/3d-tiles</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>3DCityDB</td>
-<td><a href="https://github.com/3dcitydb/3dcitydb">3dcitydb.org</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>FIWARE</td>
-<td><a href="https://www.fiware.org/">fiware.org</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>FROST-Server</td>
-<td><a href="https://fraunhoferiosb.github.io/FROST-Server/sensorthingsapi/1_Home.html">fraunhoferiosb.github.io/FROST-Server</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>Bentley iTwin Platform</td>
-<td><a href="https://www.bentley.com/software/itwin-platform/">bentley.com/itwin-platform</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>kepler.gl</td>
-<td><a href="https://kepler.gl/">kepler.gl</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>deck.gl</td>
-<td><a href="https://vis.gl/">deck.gl</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>3D BAG</td>
-<td><a href="https://www.tudelft.nl/en/2021/bk/all-10-million-buildings-in-the-netherlands-available-as-3d-models">3dbag.nl</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>ArcGIS CityEngine</td>
-<td><a href="https://www.esri.com/en-us/arcgis/products/arcgis-cityengine/overview">esri.com/arcgis-cityengine</a></td>
+<td>GeoDatalytics</td>
+<td><a
+href="https://github.com/OpenGeoscience/geodatalytics">Link</a></td>
 <td>module</td>
-<td></td>
-</tr>
-<tr>
-<td>Eclipse SUMO</td>
-<td><a href="https://eclipse.dev/sumo/">eclipse.dev/sumo</a></td>
-<td>module</td>
-<td></td>
-</tr>
-<tr>
-<td>MATSim</td>
-<td><a href="https://matsim.org/">matsim.org</a></td>
-<td>module</td>
-<td></td>
-</tr>
-<tr>
-<td>UrbanSim</td>
-<td><a href="https://cloud.urbansim.com/docs/general/documentation/urbansim.html">urbansim.com</a></td>
-<td>module</td>
-<td></td>
-</tr>
-<tr>
-<td>CityEnergyAnalyst</td>
-<td><a href="https://github.com/architecture-building-systems/CityEnergyAnalyst">cityenergyanalyst.com</a></td>
-<td>module</td>
-<td></td>
-</tr>
-<tr>
-<td>UMEP (Urban Multi-scale Environmental Predictor)</td>
-<td><a href="https://umep-docs.readthedocs.io/en/latest/Introduction.html">umep-docs.readthedocs.io</a></td>
-<td>module</td>
-<td></td>
-</tr>
-<tr>
-<td>NVIDIA Earth-2</td>
-<td><a href="https://www.nvidia.com/en-us/high-performance-computing/earth-2/">nvidia.com/earth-2</a></td>
-<td>module</td>
-<td></td>
-</tr>
-<tr>
-<td>GAMA Platform</td>
-<td><a href="https://gama-platform.org/wiki/1.8.2-RC2/Home">gama-platform.org</a></td>
-<td>module</td>
-<td></td>
-</tr>
-<tr>
-<td>Siemens Xcelerator</td>
-<td><a href="https://xcelerator.siemens.com/global/en/industries/urban-communities/smart-cities/digital-city-solutions.html">siemens.com/xcelerator</a></td>
-<td>excluded</td>
-<td>enterprise IoT/industrial platform, not city-scale UDT</td>
+<td>found</td>
 </tr>
 </tbody>
 </table>
-</div>
-  <h3>Known Candidate Recall Check</h3>
-  <p>No recall-check table was found in this observation.</p>
-</section>
-
-
-<section class="run">
-  <h2>Gemini 3 Flash</h2>
-  <dl class="metadata">
-    <div><dt>Source</dt><dd><code>observe/platform-discovery-gemini.md</code></dd></div>
-    <div><dt>Date</dt><dd>2026-04-21</dd></div>
-    <div><dt>Prompt</dt><dd>platform-discovery</dd></div>
-    <div><dt>Rows</dt><dd>10</dd></div>
-  </dl>
-  <div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Link</th>
-<th>Type</th>
-<th>Reason</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DTCC (Digital Twin Cities Centre)</td>
-<td><a href="https://dtcc.chalmers.se">dtcc.chalmers.se</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>Virtual Singapore</td>
-<td><a href="https://www.smartnation.gov.sg/initiatives/urban-living/virtual-singapore/">smartnation.gov.sg</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>CityZenith SmartWorldOS</td>
-<td><a href="https://cityzenith.com/">cityzenith.com</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>Siradel S-Twin</td>
-<td><a href="https://www.siradel.com/solutions/smart-city/s-twin/">siradel.com</a></td>
-<td>platform</td>
-<td></td>
-</tr>
-<tr>
-<td>Cesium</td>
-<td><a href="https://cesium.com">cesium.com</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>iTwin (Bentley Systems)</td>
-<td><a href="https://www.bentley.com/software/itwin/">bentley.com</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>TerriaJS</td>
-<td><a href="https://terria.io/">terria.io</a></td>
-<td>framework</td>
-<td></td>
-</tr>
-<tr>
-<td>SimWalk</td>
-<td><a href="https://www.simwalk.com/">simwalk.com</a></td>
-<td>module</td>
-<td></td>
-</tr>
-<tr>
-<td>OpenEEmeter</td>
-<td><a href="https://www.openeemeter.org/">openeemeter.org</a></td>
-<td>module</td>
-<td></td>
-</tr>
-<tr>
-<td>AutoCAD</td>
-<td><a href="https://www.autodesk.com/products/autocad/">autodesk.com</a></td>
-<td>excluded</td>
-<td>General-purpose CAD software not specific to city-scale twinning</td>
-</tr>
-</tbody>
-</table>
-</div>
-  <h3>Known Candidate Recall Check</h3>
-  <p>No recall-check table was found in this observation.</p>
-</section>
-
-  </main>
+<h2 id="bentley-itwin-platform">Bentley iTwin Platform</h2>
+<p>I classify <a
+href="https://www.bentley.com/software/itwin-platform/">Bentley iTwin
+Platform</a> as a platform because Bentley presents it as an open,
+scalable cloud platform for creating, visualizing, and analyzing digital
+twins, and Bentley’s <a
+href="https://www.bentley.com/user-story/citywide-digital-twin-urban-planning-optimization/">Pau
+urban digital twin case</a> shows city-scale operational use rather than
+a narrowly bounded component.</p>
+<h2 id="bentley-opencities-planner">Bentley OpenCities Planner</h2>
+<p>I classify <a
+href="https://www.bentley.com/software/opencities-planner/">Bentley
+OpenCities Planner</a> as a platform because Bentley presents it as
+software to design and visualize digital cities, share urban projects to
+web and mobile, and support stakeholder collaboration around city-scale
+digital twin workflows.</p>
+<h2 id="arcgis-urban">ArcGIS Urban</h2>
+<p>I classify <a href="https://urban.arcgis.com/">ArcGIS Urban</a> as a
+platform because Esri presents it as a working environment for 3D
+planning and development scenario analysis, and Esri’s <a
+href="https://learn.arcgis.com/en/projects/get-started-with-arcgis-urban/">learning
+documentation</a> shows it functioning as a system of record for urban
+models, zoning, land use, and scenario comparison.</p>
+<h2 id="hexagon-octave">Hexagon Octave</h2>
+<p>I classify <a
+href="https://www.octave.com/go/urban-digital-twin">Hexagon Octave</a>
+as a platform because Hexagon explicitly presents it as an urban digital
+twin platform that integrates a digital city, connected city, and
+intelligent city into one operational environment for municipal
+decision-making.</p>
+<h2 id="dexperiencity">3DEXPERIENCity</h2>
+<p>I classify <a
+href="https://discover.3ds.com/smart-city-technology-collaboration-and-digital-twin-0">3DEXPERIENCity</a>
+as a platform because Dassault Systèmes presents it as the city virtual
+twin solution that lets urban stakeholders collaborate across silos, and
+the company’s <a
+href="https://www.3ds.com/industries/cities-public-services/harness-power-virtual-world-see-and-transform-future">cities
+platform material</a> frames the city twin as a common environment for
+exploring, simulating, planning, and managing the city.</p>
+<h2 id="vu.city">VU.CITY</h2>
+<p>I classify <a href="https://www.vu.city/">VU.CITY</a> as a platform
+because the company presents it directly as a 3D digital twin platform
+for understanding city context, modelling change, and supporting
+planning and design decisions at city scale.</p>
+<h2 id="snap4city">Snap4City</h2>
+<p>I classify <a
+href="https://www.snap4city.org/drupal/node/749">Snap4City</a> as a
+platform because its official digital twin material presents it as a
+city-scale smart city digital twin able to manage 3D urban
+representations, IoT, mobility, environmental data, and planning use
+cases, and the broader <a
+href="https://www.snap4city.org/drupal/node/1">platform overview</a>
+emphasizes operational deployments across multiple cities. This is
+borderline with framework language, but the operational posture makes
+platform the better fit.</p>
+<h2 id="duet-digital-twins">DUET Digital Twins</h2>
+<p>I classify <a href="https://www.digitalurbantwins.com/">DUET Digital
+Twins</a> as a platform because the official site presents them as
+virtual city replicas with analytics for operational and policy
+decisions and provides live city-twin access rather than only a reusable
+developer toolkit.</p>
+<h2 id="virtual-singapore-platform">Virtual Singapore Platform</h2>
+<p>I classify the <a
+href="https://www.3ds.com/newsroom/press-releases/dassault-systemes-and-national-research-foundation-collaborate-develop-virtual-singapore-platform">Virtual
+Singapore Platform</a> as a platform because the official launch
+described it as a collaborative platform under development, and
+Dassault’s <a
+href="https://www.3ds.com/insights/customer-stories/virtual-singapore">customer
+story</a> describes a secure, controlled environment for a dynamic 3D
+digital model of the city. I separate that deployment artifact from the
+wider public-sector initiative below.</p>
+<h2 id="gate-city-digital-twin">GATE City Digital Twin</h2>
+<p>I classify <a href="https://www.gate-ai.eu/en/business/ss-2/">GATE
+City Digital Twin</a> as a platform because the official GATE
+description presents it as a virtual 3D replica of Sofia’s urban fabric
+enriched with semantics and designed to support simulations of heat,
+water, pollution, sound, and mobility at city scale.</p>
+<h2 id="dtcc-platform">DTCC Platform</h2>
+<p>I classify <a href="https://github.com/dtcc-platform">DTCC
+Platform</a> as a platform because the maintainers describe it as an
+open-source platform for the exploration of digital twins for cities,
+and the <a href="https://www.vinnova.se/en/p/digital-twin-cities/">DTCC
+programme material</a> presents it as an open-source environment that
+supports long-term city planning, environmental analysis, and
+decision-making.</p>
+<h2 id="cesiumjs">CesiumJS</h2>
+<p>I classify <a
+href="https://cesium.com/platform/cesiumjs/">CesiumJS</a> as a framework
+because Cesium presents it as an open-source JavaScript library for 3D
+globes and maps, explicitly used across industries including smart
+cities, which makes it a reusable enabling layer rather than an end-user
+urban twin platform.</p>
+<h2 id="terriajs">TerriaJS</h2>
+<p>I classify <a
+href="https://github.com/TerriaJS/terriajs">TerriaJS</a> as a framework
+because its maintainers present it as a library for building rich
+geospatial data explorers and note that it powers implementations such
+as the NSW Spatial Digital Twin, which is classic reusable-substrate
+behavior.</p>
+<h2 id="itowns">iTowns</h2>
+<p>I classify <a href="https://www.itowns-project.org/">iTowns</a> as a
+framework because the project presents it as an open-source technology
+for integrating mapping and 3D visualization into web applications, with
+support for 3D Tiles, point clouds, raster data, and vector tiles.</p>
+<h2 id="openlayers">OpenLayers</h2>
+<p>I classify <a href="https://openlayers.org/">OpenLayers</a> as a
+framework because it is presented as a high-performance, feature-packed
+library for creating interactive maps on the web. In this ecosystem map
+I treat it as adjacent frontend GIS substrate rather than a complete UDT
+platform.</p>
+<h2 id="deck.gl">deck.gl</h2>
+<p>I classify <a href="https://deck.gl/">deck.gl</a> as a framework
+because it is presented as a GPU-powered framework for large-scale data
+visualization, and deck.gl’s <a
+href="https://deck.gl/docs/developer-guide/base-maps/using-with-3d-tiles">3D
+Tiles guide</a> shows it directly supporting tileset-based 3D geospatial
+visualization needed inside many urban twin viewers.</p>
+<h2 id="loaders.gl">loaders.gl</h2>
+<p>I classify <a
+href="https://github.com/visgl/loaders.gl">loaders.gl</a> as a framework
+because the project describes itself as a set of framework-independent
+loaders focused on geospatial, 3D, and big-data visualization use cases.
+That makes it an enabling ingestion layer, not a stand-alone urban twin
+system.</p>
+<h2 id="maplibre-gl-js">MapLibre GL JS</h2>
+<p>I classify <a
+href="https://maplibre.org/maplibre-gl-js/docs/">MapLibre GL JS</a> as a
+framework because its documentation presents it as an open-source
+TypeScript library for WebGL vector-tile maps in the browser. I include
+it as adjacent frontend GIS infrastructure that often underpins urban
+visual analytics.</p>
+<h2 id="leaflet">Leaflet</h2>
+<p>I classify <a href="https://leafletjs.com/">Leaflet</a> as a
+framework because it is presented as an open-source JavaScript library
+for interactive maps. It is not a UDT in itself, but it remains a
+relevant adjacent web-mapping substrate in discovery.</p>
+<h2 id="nasa-worldwind">NASA WorldWind</h2>
+<p>I classify <a href="https://worldwind.arc.nasa.gov/">NASA
+WorldWind</a> as a framework because NASA presents it as a 3D globe
+engine for developers and explicitly notes use cases that include
+visualizing cities and terrain. It is a reusable geospatial engine, not
+a deployable city twin product.</p>
+<h2 id="itwin.js">iTwin.js</h2>
+<p>I classify <a href="https://www.itwinjs.org/">iTwin.js</a> as a
+framework because Bentley presents it as the open JavaScript library for
+aggregating BIM, reality, GIS, and IoT data and for building digital
+twin applications across multiple platforms. That is an enabling
+architecture rather than a primary end-user platform.</p>
+<h2 id="fiware">FIWARE</h2>
+<p>I classify <a
+href="https://www.fiware.org/about-us/smart-cities/">FIWARE</a> as a
+framework because FIWARE presents itself as an open-source initiative
+defining standards and components for context data management in smart
+cities, with the Orion Context Broker as a core reusable backbone for
+interoperable city solutions.</p>
+<h2 id="urbansim">UrbanSim</h2>
+<p>I classify <a href="https://www.urbansim.com/">UrbanSim</a> as a
+framework because UrbanSim is presented as a reusable urban planning and
+development modelling system that links land use, transport, economy,
+and environment, even though the current site also uses platform
+language. Its primary role is enabling urban simulation workflows rather
+than serving as a general-purpose city integration platform.</p>
+<h2 id="cesium-for-unreal">Cesium for Unreal</h2>
+<p>I classify <a
+href="https://cesium.com/platform/cesium-for-unreal/">Cesium for
+Unreal</a> as a framework because Cesium presents it as a reusable
+plugin that combines open geospatial standards with Unreal Engine to
+unlock 3D geospatial application development.</p>
+<h2 id="cesium-for-unity">Cesium for Unity</h2>
+<p>I classify <a
+href="https://cesium.com/platform/cesium-for-unity/">Cesium for
+Unity</a> as a framework because Cesium presents it as a reusable
+package for building 3D geospatial applications in Unity using open
+standards and 3D Tiles.</p>
+<h2 id="cesium-for-o3de">Cesium for O3DE</h2>
+<p>I classify <a
+href="https://cesium.com/platform/cesium-for-o3de/">Cesium for O3DE</a>
+as a framework because Cesium presents it as a reusable geospatial
+capability layer for Open 3D Engine, including a full-scale globe and
+runtime streaming of real-world 3D content.</p>
+<h2 id="citydigitaltwin">CityDigitalTwin</h2>
+<p>I classify <a
+href="https://github.com/uihilab/CityDigitalTwin">CityDigitalTwin</a> as
+a framework because the open-source project and its accompanying <a
+href="https://www.sciencedirect.com/science/article/abs/pii/S2212095525003566">SoftwareX
+paper abstract</a> present it as a city-scale digital twin framework
+that integrates flood forecasting, transport networks, and critical
+infrastructure into a reusable cyberinfrastructure.</p>
+<h2 id="kepler.gl">kepler.gl</h2>
+<p>I classify <a href="https://kepler.gl/docs/">kepler.gl</a> as a
+framework because its documentation presents it as a high-performance
+geospatial analytic visualization environment for large datasets and
+city or regional trends. Although it is easy for end users to operate,
+its role in this map is that of a reusable visual analytics
+substrate.</p>
+<h2 id="three-geospatial">three-geospatial</h2>
+<p>I classify <a
+href="https://github.com/takram-design-engineering/three-geospatial">three-geospatial</a>
+as a framework because the project presents itself as a modular library
+set for geospatial rendering in Three.js, which is enabling
+infrastructure for custom 3D urban viewers rather than a complete twin
+application.</p>
+<h2 id="geodatalytics">GeoDatalytics</h2>
+<p>I classify <a
+href="https://github.com/OpenGeoscience/geodatalytics">GeoDatalytics</a>
+as a module because the project is explicitly framed as an urban
+visualization and data analysis toolkit, which is a bounded analytics
+capability rather than a full city-scale platform.</p>
+<h2 id="digital-twin-toolbox">Digital Twin Toolbox</h2>
+<p>I classify <a
+href="https://github.com/geosolutions-it/digital-twin-toolbox">Digital
+Twin Toolbox</a> as a module because the repository presents it as an
+open-source solution for inspecting and generating 3D Tiles for urban
+environments, which is a focused technical capability inside a broader
+UDT stack.</p>
+<h2 id="potree">Potree</h2>
+<p>I classify <a href="https://potree.github.io/">Potree</a> as a module
+because it is presented as a WebGL point-cloud renderer for large
+datasets. That is a highly relevant but bounded visualization capability
+for LiDAR-heavy urban twins.</p>
+<h2 id="potreeconverter">PotreeConverter</h2>
+<p>I classify <a
+href="https://github.com/potree/PotreeConverter">PotreeConverter</a> as
+a module because it generates the octree LOD structure needed to stream
+and render massive point clouds in Potree, which is a narrow but
+important pipeline function.</p>
+<h2 id="dtilesrendererjs">3DTilesRendererJS</h2>
+<p>I classify <a
+href="https://github.com/NASA-AMMOS/3DTilesRendererJS">3DTilesRendererJS</a>
+as a module because the project is a JavaScript renderer for the 3D
+Tiles format with support for Three.js and Babylon.js. That is a bounded
+rendering component, not an overall platform.</p>
+<h2 id="three-loader-3dtiles">three-loader-3dtiles</h2>
+<p>I classify <a
+href="https://github.com/nytimes/three-loader-3dtiles">three-loader-3dtiles</a>
+as a module because it is a loader module for handling OGC 3D Tiles
+inside Three.js, which is exactly the kind of bounded integration
+component the module type is meant to capture.</p>
+<h2 id="py3dtiles">py3dtiles</h2>
+<p>I classify <a href="https://py3dtiles.org/">py3dtiles</a> as a module
+because it is presented as a Python library and CLI for generating and
+managing 3D Tiles datasets. That is a specific content-preparation
+capability within UDT data pipelines.</p>
+<h2 id="pdal">PDAL</h2>
+<p>I classify <a href="https://pdal.org/">PDAL</a> as a module because
+PDAL is presented as a library and toolset for translating, filtering,
+and processing point-cloud data. I include it as adjacent
+LiDAR-processing substrate, not as a stand-alone UDT framework.</p>
+<h2 id="d-city-database">3D City Database</h2>
+<p>I classify <a href="https://github.com/3dcitydb">3D City Database</a>
+as a module because it is presented as a free and open-source solution
+for managing, analysing, and utilising virtual 3D city models on top of
+a spatial database. Its role is a bounded city-model persistence and
+workflow component.</p>
+<h2 id="citygml4j">citygml4j</h2>
+<p>I classify <a
+href="https://github.com/citygml4j/citygml4j">citygml4j</a> as a module
+because it is an open-source Java API for parsing, processing, and
+writing CityGML datasets. That is a discrete CityGML handling capability
+rather than a full system.</p>
+<h2 id="cjio">cjio</h2>
+<p>I classify <a href="https://github.com/cityjson/cjio">cjio</a> as a
+module because it is a Python CLI for processing and manipulating
+CityJSON files, which is a narrow but useful capability in city-model
+toolchains.</p>
+<h2 id="val3dity">val3dity</h2>
+<p>I classify <a href="https://val3dity.readthedocs.io/">val3dity</a> as
+a module because it is focused on validating 3D primitives against ISO
+19107 and GML/CityGML rules. That is a bounded validation function
+inside broader UDT data quality workflows.</p>
+<h2 id="simstadt">SimStadt</h2>
+<p>I classify <a href="https://simstadt.hft-stuttgart.de/">SimStadt</a>
+as a module because the official documentation presents it as a workflow
+for energy analyses of buildings, districts, cities, and regions using
+CityGML data. Its scope is important but still domain-bounded.</p>
+<h2 id="noisemodelling">NoiseModelling</h2>
+<p>I classify <a
+href="https://github.com/Universite-Gustave-Eiffel/NoiseModelling">NoiseModelling</a>
+as a module because the project is explicitly focused on producing
+environmental noise maps and propagation simulations, which is a single
+domain workflow suitable for plugging into an urban digital twin
+stack.</p>
+<h2 id="osmnx">OSMnx</h2>
+<p>I classify <a href="https://osmnx.readthedocs.io/">OSMnx</a> as a
+module because it packages a specific urban network workflow:
+downloading, modelling, analysing, and visualising street networks and
+other geographic features from OpenStreetMap.</p>
+<h2 id="virtual-singapore">Virtual Singapore</h2>
+<p>I classify <a
+href="https://www.tech.gov.sg/technews/5-things-to-know-about-virtual-singapore/">Virtual
+Singapore</a> as an initiative because the public-sector framing
+presents it as a multi-agency national collaboration led by public
+institutions, while Dassault’s <a
+href="https://www.3ds.com/insights/customer-stories/virtual-singapore">customer
+story</a> shows the technical substrate separately. Uses:
+3DEXPERIENCity.</p>
+<h2 id="duet-project">DUET project</h2>
+<p>I classify the <a
+href="https://cordis.europa.eu/project/id/870697">DUET project</a> as an
+initiative because CORDIS presents it as an EU innovation project to
+improve public-sector decision-making using digital twins, while the
+operational system is separately presented on the <a
+href="https://www.digitalurbantwins.com/">DUET Digital Twins</a> site.
+Uses: DUET Digital Twins.</p>
+<h2 id="helsinki-3d">Helsinki 3D+</h2>
+<p>I classify <a
+href="https://www.hel.fi/en/decision-making/information-on-helsinki/maps-and-geospatial-data/helsinki-3d">Helsinki
+3D+</a> as an initiative because the City of Helsinki presents it as the
+city’s digital twin and open-data programme rather than as a separable
+vendor product, while Bentley’s <a
+href="https://www.bentley.com/company/esg-user-project-city-of-helsinki/">city
+project description</a> documents the technical stack. Uses: Bentley
+OpenCities Planner.</p>
+<h2 id="gate-city-digital-twin-pilot-project">GATE City Digital Twin
+Pilot Project</h2>
+<p>I classify the <a href="https://city.gate-ai.eu/">GATE City Digital
+Twin Pilot Project</a> as an initiative because the official project
+page presents it as a pilot effort to implement the digital twin concept
+in Sofia, while the <a
+href="https://www.gate-ai.eu/en/business/ss-2/">GATE business page</a>
+separately describes the technical twin artifact. Uses: GATE City
+Digital Twin.</p>
+<h2 id="digital-twin-cities-centre">Digital Twin Cities Centre</h2>
+<p>I classify <a href="https://www.dtcc.chalmers.se/">Digital Twin
+Cities Centre</a> as an initiative because it is a national research
+centre convening municipalities, academia, and industry to advance city
+digital twins, while the software substrate is separately represented by
+the <a href="https://github.com/dtcc-platform">DTCC Platform</a>. Uses:
+DTCC Platform.</p>
+<h2 id="stuttgart-urban-digital-twin">Stuttgart Urban Digital Twin</h2>
+<p>I classify <a
+href="https://www.stuttgart.de/en/leben/bauen/geoportal/urbane-digitale-zwillinge">Stuttgart
+Urban Digital Twin</a> as an initiative because Stuttgart presents it as
+a municipal urban-digital-twin programme for analysis and simulation,
+while Hexagon’s <a
+href="https://hexagon.com/company/newsroom/press-releases/2022/hexagon-fujitsu-support-stuttgarts-urban-digital-twin-project">project
+announcement</a> describes the supporting SaaS twin solution. Uses:
+Hexagon Octave, with some branding continuity uncertainty because the
+project announcement predates the current Octave naming.</p>
+<h2 id="arcgis-storymaps">ArcGIS StoryMaps</h2>
+<p>I classify <a
+href="https://www.esri.com/en-us/arcgis/products/arcgis-storymaps/overview">ArcGIS
+StoryMaps</a> as excluded because Esri presents it as a storytelling and
+briefing product for turning GIS work into interactive narratives. That
+places it on the communication boundary, not inside the modelling,
+simulation, or operational UDT artifact boundary.</p>
+<h2 id="storymapjs">StoryMapJS</h2>
+<p>I classify <a href="https://storymap.knightlab.com/">StoryMapJS</a>
+as excluded because Knight Lab and the project’s <a
+href="https://github.com/NUKnightLab/StoryMapJS">GitHub repository</a>
+present it as a simple map-based storytelling tool. It is useful for
+narrative communication but not a UDT artifact or initiative.</p>
+<h2 id="flourish">Flourish</h2>
+<p>I classify <a href="https://flourish.studio/">Flourish</a> as
+excluded because the platform presents itself as a data visualization
+and storytelling environment. It can communicate urban-twin outputs, but
+it does not itself model, simulate, integrate, or operate urban
+systems.</p>
+<h2 id="destination-earth">Destination Earth</h2>
+<p>I classify <a
+href="https://digital-strategy.ec.europa.eu/en/policies/destination-earth">Destination
+Earth</a> as excluded because the European Commission presents it as a
+digital twin of the Earth at global scale, not as an urban digital twin
+artifact or urban-focused initiative, even though it is an important
+adjacent boundary case in the wider twin landscape.</p>
+<h2 id="national-digital-twin-programme">National Digital Twin
+Programme</h2>
+<p>I classify the <a
+href="https://www.gov.uk/government/collections/the-national-digital-twin-programme-ndtp">National
+Digital Twin Programme</a> as excluded because GOV.UK and the
+programme’s own <a href="https://ndtp.co.uk/">extended site</a> present
+it as a national, cross-sector capability programme for digital twinning
+in general. It is strategically relevant, but it sits outside the
+narrower urban digital twin artifact and city-specific initiative
+boundary.</p>
 </body>
 </html>
