@@ -1,6 +1,6 @@
 name: Missing research candidate
 description: Quickly report a candidate that should be considered.
-title: "[Missing] "
+title: "[Missing Candidate Name]"
 labels:
   - needs:triage
 body:
@@ -8,15 +8,6 @@ body:
     attributes:
       value: |
         Report anything that may belong in the research workflow: a platform, framework, module, initiative, or boundary case.
-
-  - type: input
-    id: candidate-name
-    attributes:
-      label: Name
-      description: Candidate name.
-      placeholder: Example Platform
-    validations:
-      required: true
 
   - type: input
     id: candidate-link
@@ -28,25 +19,12 @@ body:
       required: true
 
   - type: checkboxes
-    id: research-tags
+    id: candidate-kind
     attributes:
-      label: Research tags
-      description: Optional. Select any tags that help triage the report quickly.
+      label: Kind
+      description: Optional. Select the kind if you know it; leave all empty when unknown.
       options:
-        - label: recall-miss - candidate appears in scope but was not found by a discovery run.
-        - label: model-specific - behavior differs across model outputs or runners.
-        - label: wording - prompt, spec, or documentation wording may have caused confusion.
-        - label: classification - candidate was found but its Type may be wrong.
-        - label: boundary - candidate is near an inclusion or exclusion boundary.
-        - label: benchmark - finding should be tracked through recall benchmark or coverage checks.
-        - label: accepted - human review accepted the candidate or finding.
-        - label: needs-review - needs human or spec review before action.
-
-  - type: textarea
-    id: model-notes
-    attributes:
-      label: Model notes
-      description: Optional. Paste the model's own answer about why it missed this candidate.
-      placeholder: The model said it missed the candidate because...
-    validations:
-      required: false
+        - label: platform
+        - label: framework
+        - label: module
+        - label: initiative
