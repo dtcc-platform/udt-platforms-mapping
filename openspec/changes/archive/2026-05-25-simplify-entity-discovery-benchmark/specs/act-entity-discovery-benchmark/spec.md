@@ -1,10 +1,4 @@
-# Spec: act-entity-discovery-benchmark
-
-## Purpose
-
-Defines the entity discovery benchmark action, benchmark fixture consumption, and benchmark report output behavior.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Entity discovery benchmark action checks discovery recall
 

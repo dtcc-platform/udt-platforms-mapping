@@ -1,10 +1,4 @@
-# Spec: observe-entity-discovery-benchmark-report
-
-## Purpose
-
-Defines the governed observed output contract for entity discovery benchmark reports stored under the observe phase.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Entity discovery benchmark report stores benchmark output
 
