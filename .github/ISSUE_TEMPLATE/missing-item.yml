@@ -21,6 +21,21 @@ body:
     validations:
       required: true
 
+  - type: checkboxes
+    id: research-tags
+    attributes:
+      label: Research tags
+      description: Optional. Select any tags that help triage the report quickly.
+      options:
+        - label: recall-miss - candidate appears in scope but was not found by a discovery run.
+        - label: model-specific - behavior differs across model outputs or runners.
+        - label: wording - prompt, spec, or documentation wording may have caused confusion.
+        - label: classification - candidate was found but its Type may be wrong.
+        - label: boundary - candidate is near an inclusion or exclusion boundary.
+        - label: benchmark - finding should be tracked through recall benchmark or coverage checks.
+        - label: accepted - human review accepted the candidate or finding.
+        - label: needs-review - needs human or spec review before action.
+
   - type: textarea
     id: extra-notes
     attributes:
