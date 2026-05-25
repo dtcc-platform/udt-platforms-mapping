@@ -1,11 +1,11 @@
-# Platform Discovery Coverage Report — 2026-04-23
+# Entity Discovery Benchmark Report — 2026-04-23
 
-**Fixture:** plan/platform-discovery-benchmark.md
+**Fixture:** plan/entity-discovery-benchmark.md
 **Responses tested:** 3 files
 
 ---
 
-## Recall
+## Recall Coverage
 
 | Artifact                                         | Type         | Tags             | Claude Opus 4.7                | GPT-5.4 Thinking | Gemini 3 Flash |
 | ------------------------------------------------ | ------------- | ---------------- | ------------------------------ | ---------------- | -------------- |
@@ -50,7 +50,7 @@
 
 ## Novel Finds — not in benchmark
 
-Artifacts discovered by models but not in plan/platform-discovery-benchmark.md.
+Entities discovered by models but not in plan/entity-discovery-benchmark.md.
 Review and add to the benchmark if in-scope, filling in the Tags column before pasting.
 
 ### Claude Opus 4.7

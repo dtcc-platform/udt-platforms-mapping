@@ -7,6 +7,6 @@ These files provide selected comparison sets, benchmark fixtures, and run-specif
 Examples:
 
 - `platform-comparison-set.md` defines the selected platform input for comparison.
-- `platform-discovery-benchmark.md` defines the benchmark fixture input for `act/platform-discovery-benchmark.md`.
+- `entity-discovery-benchmark.md` defines the benchmark fixture input for `act/entity-discovery-benchmark.md`.
 
 The root [README.md](../README.md) explains the full repository workflow. Governing research workflow contracts live in [openspec/specs](../openspec/specs/), including [research-workflow-structure](../openspec/specs/research-workflow-structure/spec.md).
