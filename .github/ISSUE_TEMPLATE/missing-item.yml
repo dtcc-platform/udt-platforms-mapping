@@ -9,15 +9,21 @@ body:
       value: |
         Report anything that may belong in the research workflow: a platform, framework, module, initiative, or boundary case.
 
-  - type: textarea
-    id: candidate
+  - type: input
+    id: candidate-name
     attributes:
-      label: Candidate
-      description: Add the name, link if you have one, and any short note that helps triage it.
-      placeholder: |
-        Name: Example Platform
-        Link: https://example.org/
-        Note: Looks like a city digital twin platform with simulation and visualization support.
+      label: Name
+      description: Candidate name.
+      placeholder: Example Platform
+    validations:
+      required: true
+
+  - type: input
+    id: candidate-link
+    attributes:
+      label: Link
+      description: Canonical or best available source link.
+      placeholder: https://example.org/
     validations:
       required: true
 
@@ -37,10 +43,10 @@ body:
         - label: needs-review - needs human or spec review before action.
 
   - type: textarea
-    id: extra-notes
+    id: model-notes
     attributes:
-      label: Extra notes
-      description: Optional. Add category, aliases, search terms, or uncertainty.
-      placeholder: Not sure whether this is a platform or framework.
+      label: Model notes
+      description: Optional. Paste the model's own answer about why it missed this candidate.
+      placeholder: The model said it missed the candidate because...
     validations:
       required: false
