@@ -7,21 +7,23 @@ Jekyll is not required. The committed HTML files can be opened directly in a bro
 ## Files
 
 - `index.html` is the local/public entry page.
-- `entity-discovery.html` is the published entity discovery table page.
+- `observations/` contains published HTML pages generated from direct Markdown artifacts in `observe/`.
+- `reflections/` contains published HTML pages generated from direct Markdown artifacts in `reflect/`.
 - `assets/site.css` contains shared page and table styling.
 
 ## Update Workflow
 
-Maintain the source Markdown manually, then regenerate HTML with Pandoc.
-
-Example:
+Maintain the source Markdown in the research phase folders, then regenerate public HTML with:
 
 ```bash
-pandoc <source>.md \
-  --standalone \
-  --css assets/site.css \
-  --metadata title="Entity Discovery Tables" \
-  -o docs/entity-discovery.html
+scripts/publish.sh
 ```
 
-When publishing from this repository without a hosting service, open `docs/index.html` or `docs/entity-discovery.html` directly.
+The publish command converts eligible direct Markdown files as follows:
+
+- `observe/<name>.md` -> `docs/observations/<name>.html`
+- `reflect/<name>.md` -> `docs/reflections/<name>.html`
+
+Phase-local `README.md` files are not published as research artifact pages.
+
+When publishing from this repository without a hosting service, open `docs/index.html` directly.

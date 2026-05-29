@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>platform discovery claude</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">platform discovery claude</h1>
+</header>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model</span><span class="kw">:</span><span class="at"> Claude Opus 4.7</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> 2026-04-21</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prompt</span><span class="kw">:</span><span class="at"> platform-discovery</span></span></code></pre></div>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 54%" />
+<col style="width: 4%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Link</th>
+<th>Type</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DTCC Platform</td>
+<td><a
+href="https://platform.dtcc.chalmers.se/">platform.dtcc.chalmers.se</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Virtual Singapore</td>
+<td><a
+href="https://www.nrf.gov.sg/programmes/virtual-singapore">nrf.gov.sg/programmes/virtual-singapore</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Project PLATEAU</td>
+<td><a
+href="https://www.mlit.go.jp/plateau/en/">mlit.go.jp/plateau/en</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Dassault Systèmes 3DEXPERIENCity</td>
+<td><a
+href="https://investor.3ds.com/news-releases/news-release-details/dassault-systemes-and-national-research-foundation-collaborate">3ds.com</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>NVIDIA Omniverse</td>
+<td><a
+href="https://www.nvidia.com/en-us/company/digital-transformation/siemens-xcelerator/">nvidia.com/omniverse</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>ArcGIS Urban</td>
+<td><a
+href="https://www.esri.com/en-us/capabilities/3d-gis/get-started">esri.com/arcgis/products/arcgis-urban</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Bentley OpenCities Planner</td>
+<td><a
+href="https://www.bentley.com/software/opencities-planner/">bentley.com/software/opencities-planner</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Hexagon Urban Digital Twin Platform</td>
+<td><a
+href="https://hexagon.com/go/sig/urban-digital-twin">hexagon.com</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Snap4City</td>
+<td><a
+href="https://www.fiware.org/powered-by-fiware/snap4city/km4city.html">snap4city.org</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>51WORLD 51Aes</td>
+<td><a
+href="https://51world.medium.com/digital-twin-at-scale-by-51world-db05fe3afad9">51world.com</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>SuperMap Digital Twin Platform</td>
+<td><a
+href="https://www.supermap.com/en-us/news/?82_4338">supermap.com</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>DUET (Digital Urban European Twins)</td>
+<td><a
+href="https://www.digitalurbantwins.com/">digitalurbantwins.com</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Virtual City Systems VC Suite / VC Map</td>
+<td><a
+href="https://vc.systems/en/solutions/digital-twin/">vc.systems</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>TerriaJS</td>
+<td><a href="https://terria.com/open-source">terria.io</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>CesiumJS</td>
+<td><a
+href="https://cesium.com/platform/cesiumjs/">cesium.com/cesiumjs</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>3D Tiles</td>
+<td><a
+href="https://github.com/CesiumGS/3d-tiles">github.com/CesiumGS/3d-tiles</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>3DCityDB</td>
+<td><a href="https://github.com/3dcitydb/3dcitydb">3dcitydb.org</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>FIWARE</td>
+<td><a href="https://www.fiware.org/">fiware.org</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>FROST-Server</td>
+<td><a
+href="https://fraunhoferiosb.github.io/FROST-Server/sensorthingsapi/1_Home.html">fraunhoferiosb.github.io/FROST-Server</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>Bentley iTwin Platform</td>
+<td><a
+href="https://www.bentley.com/software/itwin-platform/">bentley.com/itwin-platform</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>kepler.gl</td>
+<td><a href="https://kepler.gl/">kepler.gl</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>deck.gl</td>
+<td><a href="https://vis.gl/">deck.gl</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>3D BAG</td>
+<td><a
+href="https://www.tudelft.nl/en/2021/bk/all-10-million-buildings-in-the-netherlands-available-as-3d-models">3dbag.nl</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>ArcGIS CityEngine</td>
+<td><a
+href="https://www.esri.com/en-us/arcgis/products/arcgis-cityengine/overview">esri.com/arcgis-cityengine</a></td>
+<td>module</td>
+<td></td>
+</tr>
+<tr>
+<td>Eclipse SUMO</td>
+<td><a href="https://eclipse.dev/sumo/">eclipse.dev/sumo</a></td>
+<td>module</td>
+<td></td>
+</tr>
+<tr>
+<td>MATSim</td>
+<td><a href="https://matsim.org/">matsim.org</a></td>
+<td>module</td>
+<td></td>
+</tr>
+<tr>
+<td>UrbanSim</td>
+<td><a
+href="https://cloud.urbansim.com/docs/general/documentation/urbansim.html">urbansim.com</a></td>
+<td>module</td>
+<td></td>
+</tr>
+<tr>
+<td>CityEnergyAnalyst</td>
+<td><a
+href="https://github.com/architecture-building-systems/CityEnergyAnalyst">cityenergyanalyst.com</a></td>
+<td>module</td>
+<td></td>
+</tr>
+<tr>
+<td>UMEP (Urban Multi-scale Environmental Predictor)</td>
+<td><a
+href="https://umep-docs.readthedocs.io/en/latest/Introduction.html">umep-docs.readthedocs.io</a></td>
+<td>module</td>
+<td></td>
+</tr>
+<tr>
+<td>NVIDIA Earth-2</td>
+<td><a
+href="https://www.nvidia.com/en-us/high-performance-computing/earth-2/">nvidia.com/earth-2</a></td>
+<td>module</td>
+<td></td>
+</tr>
+<tr>
+<td>GAMA Platform</td>
+<td><a
+href="https://gama-platform.org/wiki/1.8.2-RC2/Home">gama-platform.org</a></td>
+<td>module</td>
+<td></td>
+</tr>
+<tr>
+<td>Siemens Xcelerator</td>
+<td><a
+href="https://xcelerator.siemens.com/global/en/industries/urban-communities/smart-cities/digital-city-solutions.html">siemens.com/xcelerator</a></td>
+<td>excluded</td>
+<td>enterprise IoT/industrial platform, not city-scale UDT</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dtcc-platform">DTCC Platform</h2>
+<ul>
+<li><strong>Organization:</strong> Digital Twin Cities Centre, Chalmers
+University of Technology (<a
+href="https://www.dtcc.chalmers.se/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://platform.dtcc.chalmers.se/">platform.dtcc.chalmers.se</a></li>
+<li><strong>License:</strong> MIT — open-source (<a
+href="https://github.com/dtcc-platform/dtcc">License</a>)</li>
+<li><strong>Artifact Type:</strong> open modelling, simulation and
+visualisation platform for cities (<a
+href="https://platform.dtcc.chalmers.se/">Docs</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="virtual-singapore">Virtual Singapore</h2>
+<ul>
+<li><strong>Organization:</strong> National Research Foundation,
+Singapore Land Authority, GovTech Singapore (<a
+href="https://www.nrf.gov.sg/programmes/virtual-singapore">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.nrf.gov.sg/programmes/virtual-singapore">nrf.gov.sg/programmes/virtual-singapore</a></li>
+<li><strong>License:</strong> proprietary (government programme built on
+Dassault 3DEXPERIENCity) (<a
+href="https://investor.3ds.com/news-releases/news-release-details/dassault-systemes-and-national-research-foundation-collaborate">Source</a>)</li>
+<li><strong>Artifact Type:</strong> dynamic 3D semantic city model and
+collaborative data platform (<a
+href="https://www.nrf.gov.sg/programmes/virtual-singapore">Programme</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="project-plateau">Project PLATEAU</h2>
+<ul>
+<li><strong>Organization:</strong> Ministry of Land, Infrastructure,
+Transport and Tourism (MLIT), Japan (<a
+href="https://www.mlit.go.jp/plateau/en/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.mlit.go.jp/plateau/en/">mlit.go.jp/plateau/en</a></li>
+<li><strong>License:</strong> open data, open-source components (tools
+released via Project-PLATEAU GitHub) (<a
+href="https://github.com/Project-PLATEAU">GitHub</a>)</li>
+<li><strong>Artifact Type:</strong> national 3D city model programme and
+digital twin platform based on CityGML (<a
+href="https://www.mlit.go.jp/plateau/en/">Overview</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="dassault-systèmes-3dexperiencity">Dassault Systèmes
+3DEXPERIENCity</h2>
+<ul>
+<li><strong>Organization:</strong> Dassault Systèmes (<a
+href="https://investor.3ds.com/news-releases/news-release-details/dassault-systemes-and-national-research-foundation-collaborate">Press
+release</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://investor.3ds.com/news-releases/news-release-details/dassault-systemes-and-national-research-foundation-collaborate">3ds.com</a></li>
+<li><strong>License:</strong> proprietary (<a
+href="https://investor.3ds.com/news-releases/news-release-details/dassault-systemes-and-national-research-foundation-collaborate">Source</a>)</li>
+<li><strong>Artifact Type:</strong> integrated 3D city modelling,
+simulation and collaboration platform (built on 3DEXPERIENCE) (<a
+href="https://investor.3ds.com/news-releases/news-release-details/dassault-systemes-and-national-research-foundation-collaborate">Press
+release</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="nvidia-omniverse">NVIDIA Omniverse</h2>
+<ul>
+<li><strong>Organization:</strong> NVIDIA (<a
+href="https://www.nvidia.com/en-us/company/digital-transformation/siemens-xcelerator/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://nvidianews.nvidia.com/news/nvidia-announces-digital-twin-platform-for-scientific-computing">nvidia.com/omniverse</a></li>
+<li><strong>License:</strong> proprietary with free Standard License for
+individuals; OpenUSD open-source (<a
+href="https://nvidianews.nvidia.com/news/nvidia-announces-digital-twin-platform-for-scientific-computing">Product</a>)</li>
+<li><strong>Artifact Type:</strong> OpenUSD-based 3D simulation and
+collaboration platform used for city-scale digital twins (<a
+href="https://nvidianews.nvidia.com/news/nvidia-announces-digital-twin-platform-for-scientific-computing">Press
+release</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="arcgis-urban">ArcGIS Urban</h2>
+<ul>
+<li><strong>Organization:</strong> Esri (<a
+href="https://www.esri.com/en-us/arcgis/products/arcgis-urban/overview">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.esri.com/en-us/capabilities/3d-gis/get-started">esri.com/arcgis-urban</a></li>
+<li><strong>License:</strong> proprietary commercial (<a
+href="https://www.esri.com/en-us/capabilities/3d-gis/get-started">Product
+page</a>)</li>
+<li><strong>Artifact Type:</strong> web-based 3D planning platform with
+scenario planning, BIM/GIS integration, city-scale digital twin (<a
+href="https://www.esri.com/en-us/capabilities/3d-gis/get-started">Overview</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="bentley-opencities-planner">Bentley OpenCities Planner</h2>
+<ul>
+<li><strong>Organization:</strong> Bentley Systems (<a
+href="https://www.bentley.com/software/opencities-planner/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.bentley.com/software/opencities-planner/">bentley.com/opencities-planner</a></li>
+<li><strong>License:</strong> proprietary commercial SaaS (<a
+href="https://www.bentley.com/software/opencities-planner/">Product</a>)</li>
+<li><strong>Artifact Type:</strong> cloud-based city-scale digital twin
+visualization and planning platform (<a
+href="https://www.bentley.com/software/opencities-planner/">Product</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="hexagon-urban-digital-twin-platform">Hexagon Urban Digital Twin
+Platform</h2>
+<ul>
+<li><strong>Organization:</strong> Hexagon AB, Safety, Infrastructure
+&amp; Geospatial division (<a
+href="https://hexagon.com/go/sig/urban-digital-twin">Product</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://hexagon.com/go/sig/urban-digital-twin">hexagon.com/urban-digital-twin</a></li>
+<li><strong>License:</strong> proprietary commercial (<a
+href="https://hexagon.com/go/sig/urban-digital-twin">Product</a>)</li>
+<li><strong>Artifact Type:</strong> integrated urban digital twin
+combining digital, connected, and intelligent city capabilities (<a
+href="https://hexagon.com/go/sig/urban-digital-twin">Product</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="snap4city">Snap4City</h2>
+<ul>
+<li><strong>Organization:</strong> DISIT Lab, University of Florence (<a
+href="https://www.fiware.org/powered-by-fiware/snap4city/km4city.html">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.fiware.org/powered-by-fiware/snap4city/km4city.html">snap4city.org</a></li>
+<li><strong>License:</strong> open-source (AGPL, “Powered by FIWARE”
+certified) (<a
+href="https://www.fiware.org/powered-by-fiware/snap4city/km4city.html">Source</a>)</li>
+<li><strong>Artifact Type:</strong> IoT-integrated smart-city and urban
+digital twin platform with simulations, what-if analysis, and 3D city
+representation (<a
+href="https://www.fiware.org/powered-by-fiware/snap4city/km4city.html">Description</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="world-51aes">51WORLD 51Aes</h2>
+<ul>
+<li><strong>Organization:</strong> Beijing 51World Digital Twin
+Technology Co., Ltd. (<a
+href="https://51world.medium.com/digital-twin-at-scale-by-51world-db05fe3afad9">Company</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://51world.medium.com/digital-twin-at-scale-by-51world-db05fe3afad9">51aes.com</a></li>
+<li><strong>License:</strong> proprietary commercial (<a
+href="https://51world.medium.com/digital-twin-at-scale-by-51world-db05fe3afad9">Source</a>)</li>
+<li><strong>Artifact Type:</strong> digital twin platform with scene
+generation, city modelling, and smart-city operating system built on a
+game-engine stack (<a
+href="https://51world.medium.com/digital-twin-at-scale-by-51world-db05fe3afad9">Overview</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="supermap-digital-twin-platform">SuperMap Digital Twin
+Platform</h2>
+<ul>
+<li><strong>Organization:</strong> SuperMap Software Co., Ltd. (<a
+href="https://www.supermap.com/en-us/news/?82_4338">Overview</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.supermap.com/en-us/news/?82_4338">supermap.com</a></li>
+<li><strong>License:</strong> proprietary commercial (<a
+href="https://geoawesome.com/inside-supermaps-gis-digital-twin-platform-a-blueprint-for-smarter-infrastructure/">Source</a>)</li>
+<li><strong>Artifact Type:</strong> GIS-based digital twin platform
+unifying 3D/BIM, GeoAI, IoT, and simulation for smart cities and land
+governance (<a
+href="https://geoawesome.com/inside-supermaps-gis-digital-twin-platform-a-blueprint-for-smarter-infrastructure/">Overview</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="duet-digital-urban-european-twins">DUET (Digital Urban European
+Twins)</h2>
+<ul>
+<li><strong>Organization:</strong> DUET consortium, led by Digital
+Flanders, funded by EU Horizon 2020 (<a
+href="https://www.digitalurbantwins.com/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.digitalurbantwins.com/">digitalurbantwins.com</a></li>
+<li><strong>License:</strong> open-source architecture (components
+released openly) (<a
+href="https://cordis.europa.eu/project/id/870697/reporting">CORDIS</a>)</li>
+<li><strong>Artifact Type:</strong> local digital twin platform
+combining open data, HPC/AI, and 3D simulations for multi-domain policy
+analysis (<a
+href="https://cordis.europa.eu/project/id/870697/reporting">CORDIS</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="virtual-city-systems-vc-suite-vc-map">Virtual City Systems VC
+Suite / VC Map</h2>
+<ul>
+<li><strong>Organization:</strong> Virtual City Systems GmbH (<a
+href="https://vc.systems/en/solutions/digital-twin/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://vc.systems/en/solutions/digital-twin/">vc.systems</a></li>
+<li><strong>License:</strong> open-core (VC Map viewer built on
+CesiumJS; commercial extensions) (<a
+href="https://cesium.com/blog/2025/12/02/vcs-advocates-open-source-for-urban-digital-twins/">Source</a>)</li>
+<li><strong>Artifact Type:</strong> CityGML-based urban digital twin
+suite (data, visualization, analytics) used across German and European
+cities (<a
+href="https://vc.systems/en/5cc-network-advances-urban-digital-twin/">Source</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="terriajs">TerriaJS</h2>
+<ul>
+<li><strong>Organization:</strong> Terria (originally CSIRO, now
+independent) (<a href="https://terria.com/open-source">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://terria.com/open-source">terria.io</a></li>
+<li><strong>License:</strong> Apache-2.0 — open-source (<a
+href="https://github.com/TerriaJS/terriajs">GitHub</a>)</li>
+<li><strong>Artifact Type:</strong> JavaScript framework for web-based
+geospatial 2D/3D data platforms and digital twins, built on CesiumJS (<a
+href="https://github.com/TerriaJS/terriajs">GitHub</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="cesiumjs">CesiumJS</h2>
+<ul>
+<li><strong>Organization:</strong> Cesium GS (part of Bentley Systems)
+(<a href="https://cesium.com/platform/cesiumjs/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://cesium.com/platform/cesiumjs/">cesium.com/cesiumjs</a></li>
+<li><strong>License:</strong> Apache-2.0 — open-source (open-core with
+commercial Cesium ion) (<a
+href="https://cesium.com/platform/cesiumjs/">Source</a>)</li>
+<li><strong>Artifact Type:</strong> WebGL 3D globe and geospatial
+visualization library (<a
+href="https://github.com/CesiumGS/cesium">GitHub</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="d-tiles">3D Tiles</h2>
+<ul>
+<li><strong>Organization:</strong> Cesium GS / Open Geospatial
+Consortium (<a
+href="https://github.com/CesiumGS/3d-tiles">Spec</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://github.com/CesiumGS/3d-tiles">github.com/CesiumGS/3d-tiles</a></li>
+<li><strong>License:</strong> Apache-2.0 — open-source specification
+(OGC Community Standard) (<a
+href="https://github.com/CesiumGS/3d-tiles-validator/blob/main/LICENSE.md">License</a>)</li>
+<li><strong>Artifact Type:</strong> open specification for streaming
+massive heterogeneous 3D geospatial datasets (<a
+href="https://github.com/CesiumGS/3d-tiles">Spec</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="dcitydb">3DCityDB</h2>
+<ul>
+<li><strong>Organization:</strong> Chair of Geoinformatics, Technical
+University of Munich, with Virtual City Systems and M.O.S.S. (<a
+href="https://github.com/3dcitydb/3dcitydb">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://github.com/3dcitydb/3dcitydb">3dcitydb.org</a></li>
+<li><strong>License:</strong> Apache-2.0 — open-source (<a
+href="https://github.com/3dcitydb/3dcitydb">License</a>)</li>
+<li><strong>Artifact Type:</strong> open-source geodatabase schema and
+tools for storing and managing CityGML-based semantic 3D city models (<a
+href="https://github.com/3dcitydb/3dcitydb">GitHub</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="fiware">FIWARE</h2>
+<ul>
+<li><strong>Organization:</strong> FIWARE Foundation (<a
+href="https://www.fiware.org/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.fiware.org/">fiware.org</a></li>
+<li><strong>License:</strong> mixed open-source (AGPL for catalogue,
+permissive for components) (<a
+href="https://github.com/FIWARE/catalogue/blob/master/LICENSE">License</a>)</li>
+<li><strong>Artifact Type:</strong> open-source framework of
+context-management, IoT, and smart-data-model components for smart
+cities (<a href="https://www.fiware.org/about-us/smart-cities/">Smart
+cities</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="frost-server">FROST-Server</h2>
+<ul>
+<li><strong>Organization:</strong> Fraunhofer IOSB (<a
+href="https://www.iosb.fraunhofer.de/en/projects-and-products/frost-server.html">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://fraunhoferiosb.github.io/FROST-Server/sensorthingsapi/1_Home.html">fraunhoferiosb.github.io/FROST-Server</a></li>
+<li><strong>License:</strong> LGPL-3.0 — open-source (<a
+href="https://github.com/FraunhoferIOSB/FROST-Server">GitHub</a>)</li>
+<li><strong>Artifact Type:</strong> reference implementation of the OGC
+SensorThings API for IoT and geospatial sensor integration (<a
+href="https://www.iosb.fraunhofer.de/en/projects-and-products/frost-server.html">About</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="bentley-itwin-platform">Bentley iTwin Platform</h2>
+<ul>
+<li><strong>Organization:</strong> Bentley Systems (<a
+href="https://www.bentley.com/software/itwin-platform/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.bentley.com/software/itwin-platform/">bentley.com/itwin-platform</a></li>
+<li><strong>License:</strong> open-core (iModel.js/iTwin.js open-source;
+commercial services) (<a
+href="https://cesium.com/blog/2025/08/21/introducing-itwin-platform/">Source</a>)</li>
+<li><strong>Artifact Type:</strong> open API platform and SDK for
+building infrastructure digital twin applications (<a
+href="https://www.bentley.com/software/itwin-platform/">Product</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="kepler.gl">kepler.gl</h2>
+<ul>
+<li><strong>Organization:</strong> OpenJS Foundation (originally Uber,
+via Urban Computing Foundation) (<a
+href="https://vis.gl/">History</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://kepler.gl/">kepler.gl</a></li>
+<li><strong>License:</strong> MIT — open-source (<a
+href="https://openscience.eu/visualization-geospatial-kepler">Source</a>)</li>
+<li><strong>Artifact Type:</strong> web-based large-scale geospatial
+data visualization and analysis library (<a
+href="https://github.com/keplergl/kepler.gl">GitHub</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="deck.gl">deck.gl</h2>
+<ul>
+<li><strong>Organization:</strong> OpenJS Foundation / vis.gl framework
+suite (originally Uber) (<a href="https://vis.gl/">History</a>)</li>
+<li><strong>Link:</strong> <a href="https://vis.gl/">deck.gl</a></li>
+<li><strong>License:</strong> MIT — open-source (<a
+href="https://vis.gl/">Source</a>)</li>
+<li><strong>Artifact Type:</strong> WebGL-powered data visualization
+framework for large-scale geospatial datasets (<a
+href="https://vis.gl/">Overview</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="d-bag">3D BAG</h2>
+<ul>
+<li><strong>Organization:</strong> 3D Geoinformation group, TU Delft
+(with Kadaster) (<a
+href="https://www.tudelft.nl/en/2021/bk/all-10-million-buildings-in-the-netherlands-available-as-3d-models">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.tudelft.nl/en/2021/bk/all-10-million-buildings-in-the-netherlands-available-as-3d-models">3dbag.nl</a></li>
+<li><strong>License:</strong> open data, open-source tooling (<a
+href="https://www.tudelft.nl/en/2021/bk/all-10-million-buildings-in-the-netherlands-available-as-3d-models">Source</a>)</li>
+<li><strong>Artifact Type:</strong> countrywide automatically
+reconstructed 3D building dataset (LoD1.2/1.3/2.2) serving as digital
+twin foundation (<a
+href="https://www.tudelft.nl/en/2021/bk/all-10-million-buildings-in-the-netherlands-available-as-3d-models">Overview</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="arcgis-cityengine">ArcGIS CityEngine</h2>
+<ul>
+<li><strong>Organization:</strong> Esri (<a
+href="https://www.esri.com/en-us/arcgis/products/arcgis-cityengine/overview">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.esri.com/en-us/arcgis/products/arcgis-cityengine/overview">esri.com/arcgis-cityengine</a></li>
+<li><strong>License:</strong> proprietary commercial (<a
+href="https://www.esri.com/en-us/arcgis/products/arcgis-cityengine/overview">Product</a>)</li>
+<li><strong>Artifact Type:</strong> procedural 3D city modelling and
+urban design tool (<a
+href="https://www.esri.com/en-us/arcgis/products/arcgis-cityengine/overview">Product</a>)</li>
+<li><strong>Type:</strong> module</li>
+</ul>
+<h2 id="eclipse-sumo">Eclipse SUMO</h2>
+<ul>
+<li><strong>Organization:</strong> German Aerospace Center (DLR),
+Institute of Transportation Systems; Eclipse Foundation (<a
+href="https://eclipse.dev/sumo/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://eclipse.dev/sumo/">eclipse.dev/sumo</a></li>
+<li><strong>License:</strong> EPL-2.0 with secondary GPL-2.0+ —
+open-source (<a href="https://eclipse.dev/sumo/">License</a>)</li>
+<li><strong>Artifact Type:</strong> microscopic, multi-modal urban
+traffic simulation package (<a
+href="https://sumo.dlr.de/docs/index.html">Overview</a>)</li>
+<li><strong>Type:</strong> module</li>
+</ul>
+<h2 id="matsim">MATSim</h2>
+<ul>
+<li><strong>Organization:</strong> MATSim community, TU Berlin and ETH
+Zurich (<a href="https://matsim.org/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://matsim.org/">matsim.org</a></li>
+<li><strong>License:</strong> GPL-2.0 — open-source (<a
+href="https://github.com/matsim-org">GitHub</a>)</li>
+<li><strong>Artifact Type:</strong> large-scale agent-based transport
+simulation framework (<a href="https://matsim.org/">Overview</a>)</li>
+<li><strong>Type:</strong> module</li>
+</ul>
+<h2 id="urbansim">UrbanSim</h2>
+<ul>
+<li><strong>Organization:</strong> UrbanSim Inc. and University of
+California, Berkeley (Paul Waddell) (<a
+href="https://cloud.urbansim.com/docs/general/documentation/urbansim.html">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://cloud.urbansim.com/docs/general/documentation/urbansim.html">urbansim.com</a></li>
+<li><strong>License:</strong> BSD 3-Clause — open-source (core);
+commercial cloud platform (<a
+href="https://udst.github.io/urbansim_templates/getting-started.html">License</a>)</li>
+<li><strong>Artifact Type:</strong> microsimulation platform for land
+use, transportation, and environmental planning (<a
+href="https://cloud.urbansim.com/docs/general/documentation/urbansim.html">Overview</a>)</li>
+<li><strong>Type:</strong> module</li>
+</ul>
+<h2 id="cityenergyanalyst">CityEnergyAnalyst</h2>
+<ul>
+<li><strong>Organization:</strong> Architecture and Building Systems,
+ETH Zurich (<a
+href="https://github.com/architecture-building-systems/CityEnergyAnalyst">GitHub</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://github.com/architecture-building-systems/CityEnergyAnalyst">cityenergyanalyst.com</a></li>
+<li><strong>License:</strong> open-source (<a
+href="https://github.com/architecture-building-systems/CityEnergyAnalyst">GitHub</a>)</li>
+<li><strong>Artifact Type:</strong> urban building energy modelling
+(UBEM) platform and computation tool (<a
+href="https://github.com/architecture-building-systems/CityEnergyAnalyst">GitHub</a>)</li>
+<li><strong>Type:</strong> module</li>
+</ul>
+<h2 id="umep-urban-multi-scale-environmental-predictor">UMEP (Urban
+Multi-scale Environmental Predictor)</h2>
+<ul>
+<li><strong>Organization:</strong> University of Gothenburg, University
+of Reading, and community contributors (<a
+href="https://umep-docs.readthedocs.io/en/latest/Introduction.html">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://umep-docs.readthedocs.io/en/latest/Introduction.html">umep-docs.readthedocs.io</a></li>
+<li><strong>License:</strong> GPL-3.0 — open-source (<a
+href="https://umep-docs.readthedocs.io/en/latest/Introduction.html">License</a>)</li>
+<li><strong>Artifact Type:</strong> QGIS-based toolbox for urban climate
+and microclimate modelling (SOLWEIG, SUEWS, BLUEWS, LUCY) (<a
+href="https://umep-docs.readthedocs.io/en/latest/Introduction.html">Overview</a>)</li>
+<li><strong>Type:</strong> module</li>
+</ul>
+<h2 id="nvidia-earth-2">NVIDIA Earth-2</h2>
+<ul>
+<li><strong>Organization:</strong> NVIDIA (<a
+href="https://www.nvidia.com/en-us/high-performance-computing/earth-2/">Product</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.nvidia.com/en-us/high-performance-computing/earth-2/">nvidia.com/earth-2</a></li>
+<li><strong>License:</strong> proprietary cloud APIs; some components
+(FourCastNet, PhysicsNeMo) open-source (<a
+href="https://nvidianews.nvidia.com/news/nvidia-announces-earth-climate-digital-twin">Source</a>)</li>
+<li><strong>Artifact Type:</strong> AI-accelerated climate and weather
+digital twin platform, increasingly incorporating city-scale simulation
+data (<a
+href="https://www.nvidia.com/en-us/high-performance-computing/earth-2/">Product</a>)</li>
+<li><strong>Type:</strong> module</li>
+</ul>
+<h2 id="gama-platform">GAMA Platform</h2>
+<ul>
+<li><strong>Organization:</strong> UMMISCO (IRD/Sorbonne Université)
+international research unit and partners (<a
+href="https://gama-platform.org/wiki/1.8.2-RC2/Home">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://gama-platform.org/wiki/1.8.2-RC2/Home">gama-platform.org</a></li>
+<li><strong>License:</strong> GPL-3.0 — open-source (<a
+href="https://gama-platform.github.io/wiki/Home">License</a>)</li>
+<li><strong>Artifact Type:</strong> spatially explicit agent-based
+modelling and simulation platform for urban mobility, planning,
+epidemiology and risk (<a
+href="https://gama-platform.org/wiki/1.8.2-RC2/Home">Overview</a>)</li>
+<li><strong>Type:</strong> module</li>
+</ul>
+<h2 id="siemens-xcelerator">Siemens Xcelerator</h2>
+<ul>
+<li><strong>Organization:</strong> Siemens AG (<a
+href="https://www.siemens.com/en-us/company/digital-transformation/siemens-xcelerator/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://xcelerator.siemens.com/global/en/industries/urban-communities/smart-cities/digital-city-solutions.html">siemens.com/xcelerator</a></li>
+<li><strong>License:</strong> proprietary (<a
+href="https://www.siemens.com/en-us/company/digital-transformation/siemens-xcelerator/">Product</a>)</li>
+<li><strong>Artifact Type:</strong> open digital business platform and
+marketplace for industrial, building, grid, and mobility IoT
+applications</li>
+<li><strong>Type:</strong> excluded</li>
+<li><strong>Reason:</strong> Enterprise IoT/industrial-operations and
+building-management platform; Siemens’ city-scale twin work is delivered
+as bespoke solutions rather than a distinct UDT product.</li>
+</ul>
+</body>
+</html>

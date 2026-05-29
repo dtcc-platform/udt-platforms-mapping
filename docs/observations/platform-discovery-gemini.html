@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>platform discovery gemini</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">platform discovery gemini</h1>
+</header>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model</span><span class="kw">:</span><span class="at"> Gemini 3 Flash</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> 2026-04-21</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prompt</span><span class="kw">:</span><span class="at"> platform-discovery</span></span></code></pre></div>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 46%" />
+<col style="width: 5%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr>
+<th>Name</th>
+<th>Link</th>
+<th>Type</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DTCC (Digital Twin Cities Centre)</td>
+<td><a href="https://dtcc.chalmers.se">dtcc.chalmers.se</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Virtual Singapore</td>
+<td><a
+href="https://www.smartnation.gov.sg/initiatives/urban-living/virtual-singapore/">smartnation.gov.sg</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>CityZenith SmartWorldOS</td>
+<td><a href="https://cityzenith.com/">cityzenith.com</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Siradel S-Twin</td>
+<td><a
+href="https://www.siradel.com/solutions/smart-city/s-twin/">siradel.com</a></td>
+<td>platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Cesium</td>
+<td><a href="https://cesium.com">cesium.com</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>iTwin (Bentley Systems)</td>
+<td><a
+href="https://www.bentley.com/software/itwin/">bentley.com</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>TerriaJS</td>
+<td><a href="https://terria.io/">terria.io</a></td>
+<td>framework</td>
+<td></td>
+</tr>
+<tr>
+<td>SimWalk</td>
+<td><a href="https://www.simwalk.com/">simwalk.com</a></td>
+<td>module</td>
+<td></td>
+</tr>
+<tr>
+<td>OpenEEmeter</td>
+<td><a href="https://www.openeemeter.org/">openeemeter.org</a></td>
+<td>module</td>
+<td></td>
+</tr>
+<tr>
+<td>AutoCAD</td>
+<td><a
+href="https://www.autodesk.com/products/autocad/">autodesk.com</a></td>
+<td>excluded</td>
+<td>General-purpose CAD software not specific to city-scale
+twinning</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dtcc-digital-twin-cities-centre">DTCC (Digital Twin Cities
+Centre)</h2>
+<ul>
+<li><strong>Organization:</strong> Chalmers University of Technology (<a
+href="https://dtcc.chalmers.se/about/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://dtcc.chalmers.se">dtcc.chalmers.se</a></li>
+<li><strong>License:</strong> MIT — open-source (<a
+href="https://github.com/dtcc-platform/dtcc/blob/main/LICENSE">Repository</a>)</li>
+<li><strong>Artifact Type:</strong> End-to-end platform for digital
+twins, including data generation, simulation, and visualization (<a
+href="https://dtcc.chalmers.se/research/">Research</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="virtual-singapore">Virtual Singapore</h2>
+<ul>
+<li><strong>Organization:</strong> National Research Foundation (NRF)
+Singapore (<a
+href="https://www.nrf.gov.sg/programmes/virtual-singapore">Initiatives</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.smartnation.gov.sg/initiatives/urban-living/virtual-singapore/">smartnation.gov.sg</a></li>
+<li><strong>License:</strong> Proprietary — government-led (<a
+href="https://www.smartnation.gov.sg/terms-of-use/">Terms</a>)</li>
+<li><strong>Artifact Type:</strong> Collaborative 3D city model and data
+platform for simulation and virtual experimentation (<a
+href="https://www.nrf.gov.sg/programmes/virtual-singapore">Project
+Details</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="cityzenith-smartworldos">CityZenith SmartWorldOS</h2>
+<ul>
+<li><strong>Organization:</strong> CityZenith (<a
+href="https://cityzenith.com/">Company</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://cityzenith.com/">cityzenith.com</a></li>
+<li><strong>License:</strong> Proprietary — commercial (<a
+href="https://cityzenith.com/">FAQ</a>)</li>
+<li><strong>Artifact Type:</strong> AI-driven Urban Digital Twin
+platform focusing on carbon neutrality and building performance (<a
+href="https://cityzenith.com/">Product</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="siradel-s-twin">Siradel S-Twin</h2>
+<ul>
+<li><strong>Organization:</strong> Siradel (Engie Group) (<a
+href="https://www.siradel.com/about-us/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.siradel.com/solutions/smart-city/s-twin/">siradel.com</a></li>
+<li><strong>License:</strong> Proprietary (<a
+href="https://www.siradel.com/solutions/">Solutions</a>)</li>
+<li><strong>Artifact Type:</strong> 3D city modeling and simulation
+platform for connectivity and urban planning (<a
+href="https://www.siradel.com/solutions/smart-city/s-twin/">S-Twin</a>)</li>
+<li><strong>Type:</strong> platform</li>
+</ul>
+<h2 id="cesium">Cesium</h2>
+<ul>
+<li><strong>Organization:</strong> Cesium GS, Inc. (<a
+href="https://cesium.com/about/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://cesium.com">cesium.com</a></li>
+<li><strong>License:</strong> Apache-2.0 — open-core (<a
+href="https://github.com/CesiumGS/cesium/blob/main/LICENSE.md">GitHub</a>)</li>
+<li><strong>Artifact Type:</strong> 3D geospatial platform and
+visualization engine (<a
+href="https://cesium.com/platform/">Platform</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="itwin-bentley-systems">iTwin (Bentley Systems)</h2>
+<ul>
+<li><strong>Organization:</strong> Bentley Systems (<a
+href="https://www.bentley.com/about-us/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.bentley.com/software/itwin/">bentley.com</a></li>
+<li><strong>License:</strong> Proprietary / Open-core (iTwin.js is
+Apache-2.0) (<a
+href="https://github.com/iTwin/itwinjs-core/blob/master/LICENSE.md">GitHub</a>)</li>
+<li><strong>Artifact Type:</strong> Infrastructure digital twin platform
+for modeling and data integration (<a
+href="https://www.itwinjs.org/">iTwin JS</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="terriajs">TerriaJS</h2>
+<ul>
+<li><strong>Organization:</strong> Terria / Data61 (<a
+href="https://terria.io/about/">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://terria.io/">terria.io</a></li>
+<li><strong>License:</strong> Apache-2.0 — open-source (<a
+href="https://github.com/TerriaJS/terriajs/blob/main/LICENSE">GitHub</a>)</li>
+<li><strong>Artifact Type:</strong> Library for building web-based
+geospatial data explorers (<a
+href="https://docs.terria.io/">Docs</a>)</li>
+<li><strong>Type:</strong> framework</li>
+</ul>
+<h2 id="simwalk">SimWalk</h2>
+<ul>
+<li><strong>Organization:</strong> SimWalk (<a
+href="https://www.simwalk.com/contact/">Contact</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.simwalk.com/">simwalk.com</a></li>
+<li><strong>License:</strong> Proprietary (<a
+href="https://www.simwalk.com/pedestrian-simulation/">Software</a>)</li>
+<li><strong>Artifact Type:</strong> Pedestrian simulation and urban
+mobility analytics (<a href="https://www.simwalk.com/">Product</a>)</li>
+<li><strong>Type:</strong> module</li>
+</ul>
+<h2 id="openeemeter">OpenEEmeter</h2>
+<ul>
+<li><strong>Organization:</strong> Recurve (<a
+href="https://github.com/openeemeter/openeemeter">GitHub</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.openeemeter.org/">openeemeter.org</a></li>
+<li><strong>License:</strong> Apache-2.0 — open-source (<a
+href="https://github.com/openeemeter/openeemeter/blob/master/LICENSE">License</a>)</li>
+<li><strong>Artifact Type:</strong> Energy efficiency meter for building
+and grid-scale analysis (<a
+href="https://oeemeter.readthedocs.io/">Docs</a>)</li>
+<li><strong>Type:</strong> module</li>
+</ul>
+<h2 id="autocad">AutoCAD</h2>
+<ul>
+<li><strong>Organization:</strong> Autodesk (<a
+href="https://www.autodesk.com/company">About</a>)</li>
+<li><strong>Link:</strong> <a
+href="https://www.autodesk.com/products/autocad/">autodesk.com</a></li>
+<li><strong>License:</strong> Proprietary (<a
+href="https://www.autodesk.com/company/terms-of-use">EULA</a>)</li>
+<li><strong>Artifact Type:</strong> General-purpose CAD software</li>
+<li><strong>Type:</strong> excluded</li>
+<li><strong>Reason:</strong> Focuses on individual building or part
+design rather than city-scale digital twin management or geospatial
+infrastructure.</li>
+</ul>
+</body>
+</html>
