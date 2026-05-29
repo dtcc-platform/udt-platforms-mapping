@@ -6,6 +6,7 @@ DOCS_DIR="$ROOT_DIR/docs"
 OBSERVE_DOCS_DIR="$DOCS_DIR/observations"
 REFLECT_DOCS_DIR="$DOCS_DIR/reflections"
 CSS_PATH="assets/site.css"
+SCRIPT_INCLUDE_PATH="assets/site-after-body.html"
 
 if ! command -v pandoc >/dev/null 2>&1; then
   echo "error: pandoc is required to publish docs" >&2
@@ -55,6 +56,7 @@ publish_sources() {
     pandoc "$source" \
       --standalone \
       --css "../$CSS_PATH" \
+      --include-after-body "$DOCS_DIR/$SCRIPT_INCLUDE_PATH" \
       --metadata "title=$title" \
       -o "$output"
   done
